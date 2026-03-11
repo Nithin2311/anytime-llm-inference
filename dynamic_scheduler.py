@@ -10,15 +10,15 @@ def generate_stateless_anytime(model, prompt, max_new_tokens=15, deadline_ms=50.
     print("="*55 + "\n")
     
     print("Warming up GPU kernels...")
-    with torch.no_grad():
+    with torch.inference_mode():
         _ = model(input_ids)
     torch.cuda.synchronize()
     print("Warm-up complete. Starting strict timing.\n")
     
     generated_tokens = []
-    full_pass_wcet = 23.0 
+    full_pass_wcet = 18.0 
     
-    with torch.no_grad():
+    with torch.inference_mode():
         for i in range(max_new_tokens):
             start_event = torch.cuda.Event(enable_timing=True)
             mid_event = torch.cuda.Event(enable_timing=True)
