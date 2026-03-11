@@ -1,52 +1,64 @@
 # Dynamic Anytime Scheduling for LLM Inference
+**Bounding Tail Latency via Predictive Early-Exit Mechanisms**
 
 **Author:** Nithin Palyam
-**Course:** Real-Time Systems (Spring 2026)
+**Course:** CIS 6930 - Real-Time Systems (Spring 2026)
 
-## Project Overview
-As generative AI is integrated into interactive and cyber-physical systems, ensuring predictable response times is a critical safety requirement. Standard autoregressive generation in causal Large Language Models (LLMs) processes inputs layer-by-layer, resulting in unbounded execution times and significant tail latency spikes that violate soft real-time constraints.
+## 📌 Project Overview
+As generative AI is increasingly integrated into interactive Human-Computer Interaction (HCI) and cyber-physical systems, ensuring predictable response times becomes a critical safety requirement. Standard autoregressive generation in Large Language Models (LLMs) processes inputs layer-by-layer for every token, resulting in unbounded execution times and tail latency spikes that violate soft real-time constraints.
 
-This project investigates early-exit and anytime capabilities in LLM inference pipelines. By attaching intermediate evaluation points to a base model (TinyLlama), we designed an uncertainty-aware scheduler that guarantees bounded response times using an Anytime Algorithm framework.
+This project implements an uncertainty-aware **Anytime Algorithm** framework for LLM inference. By modifying a baseline causal model (TinyLlama-1.1B) with intermediate early-exit capabilities, the system utilizes a feedback control loop to guarantee bounded response times while maximizing semantic utility.
 
-## Key Features & Phases
+## 🚀 Objectives Achieved
 
 ### Phase 1: Base Implementation
-* **Architecture Modification:** Modified the base causal model to support intermediate exits by routing hidden states through the language modeling head at earlier transformer blocks.
-* **Microsecond Temporal Profiling:** Established Worst-Case Execution Time (WCET) bounds using asynchronous `torch.cuda.Event` timing to bypass shared-memory hypervisor noise.
-* **Static Anytime Scheduler:** A baseline control loop that halts computation early if a rigid confidence threshold (e.g., 80%) is met before a hard deadline expires.
+- **Architecture Modification (`early_exit_model.py`):** Modified the base Transformer architecture to allow intermediate forward-pass halting (e.g., at Layer 5 or Layer 16) while successfully routing raw hidden states through the final Language Modeling (LM) head.
+- **Microsecond Temporal Profiling (`profile_wcet.py`):** Established the Worst-Case Execution Time (WCET) of individual transformer layers using asynchronous `torch.cuda.Event` timing, completely isolating the GPU metrics from CPU/hypervisor overhead.
+- **Static Anytime Scheduler (`static_scheduler.py`):** Built a static control loop that halts computation if a strict confidence threshold (e.g., 0.8) is met before a hard temporal deadline (e.g., 50.0 ms) expires.
 
-### Phase 2: Advanced Scheduling
-* **Dynamic Threshold Decay:** An upgraded scheduler that linearly scales the required confidence threshold based on the remaining temporal budget, forcing maximized-utility exits just before a deadline miss.
-* **KV-Cache Bypass (Stateless Execution):** Addresses the representation collapse and memory desynchronization (hallucinations) caused by skipping deeper layers during early exits. The engine falls back to stateless generation, recalculating the sequence context to maintain semantic integrity while strictly respecting temporal bounds.
+### Phase 2: Extended Real-Time Features
+- **Dynamic Threshold Decay (`dynamic_scheduler.py`):** Upgraded the scheduler to dynamically scale down the required confidence threshold as the temporal budget depletes. If the budget drops below the safety margin required for a full 22-layer pass, the threshold crashes to `0.0`, forcing an immediate maximized-utility exit to save the deadline.
+- **KV-Cache Management & Bypass:** Addressed Representation Collapse and Key-Value desynchronization caused by skipped intermediate layers. Implemented a stateless cache bypass (`use_cache=False`) that successfully recalculates sequence contexts to maintain semantic integrity while remaining strictly under a 30.0 ms deadline. 
 
-## Project Structure
-* `early_exit_model.py`: Contains the modified TinyLlama architecture supporting custom exit routing.
-* `profile_wcet.py`: GPU benchmarking scripts for establishing base execution times per layer.
-* `static_scheduler.py`: The Phase 1 control loop with rigid temporal boundaries.
-* `dynamic_scheduler.py`: The Phase 2 control loop featuring threshold decay and stateless cache bypass.
+## 🛠️ System Architecture & Files
+- `early_exit_model.py`: Contains the `EarlyExitTinyLlama` class. Overrides the standard Hugging Face `forward` pass to accept dynamic `exit_layer` and `use_cache` parameters.
+- `profile_wcet.py`: Runs automated profiling matrices with warm-up loops to calculate precise GPU execution times per layer to inform the scheduler's safety margins.
+- `static_scheduler.py`: The Phase 1 static control loop demonstrating bounded tail latency against fixed confidence parameters.
+- `dynamic_scheduler.py`: The Phase 2 dynamic control loop featuring proportional temporal threshold decay and forced deadline-saving exits.
 
-## Installation & Setup
-Rigorous timing experiments require dedicated, bare-metal GPU instances. 
+## 💻 Environment & Setup
+This system requires a dedicated bare-metal GPU environment (e.g., RunPod RTX instances) to avoid shared-memory hypervisor noise during microsecond-level WCET profiling.
 
-1. Clone the repository:
-   ```bash
-   git clone git@github.com:Nithin2311/anytime-llm-inference.git
-   cd anytime-llm-inference
-   '''
-2. Set up the virtual environment:
-  python -m venv venv
-  source venv/bin/activate
+Dependencies:
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install torch torchvision torchaudio --index-url [https://download.pytorch.org/whl/cu121](https://download.pytorch.org/whl/cu121)
+pip install transformers accelerate datasets
+```
 
-3.Install dependencies:
-  pip install torch torchvision torchaudio --index-url [https://download.pytorch.org/whl/cu121](https://download.pytorch.org/whl/cu121)
-  pip install transformers accelerate datasets
+Authentication:
+To prevent Hugging Face Hub rate-limiting (HTTP Error 429), ensure your environment is authenticated:
 
-4. Authenticate Hugging Face to bypass rate limits:
-   export HF_TOKEN="your_token_here"
+```Bash
+export HF_TOKEN="your_huggingface_token"
+```
+⚙️ Usage
+To run the dynamic scheduler and observe the token-by-token latency and confidence decay:
 
-Usage
-To test the Phase 2 scheduler under strict temporal pressure (e.g., 30ms hard deadline):
-python dynamic_scheduler.py
+```Bash
+python dynamic_scheduler.py`
+```
+Expected Output Metrics:
+The terminal will output a step-by-step breakdown of the generation process, including:
 
-   
-   
+Exit Type: Whether the token was generated via a Full Pass, Early (Thresh), or Early (Forced).
+
+Time: The strict end-to-end execution time in milliseconds (bounded below the deadline).
+
+Conf: The model's confidence probability at the intermediate early-exit layer.
+
+Active Thresh: The dynamically sliding confidence threshold based on remaining temporal budget.
+
+🔬 Next Steps (In Progress)
+Domain-Specific Benchmarking: Evaluating the scheduler's utility-versus-latency trade-off under strict temporal bounds using clinical datasets (PubMedQA) for Trustworthy AI diagnostic workflows.
