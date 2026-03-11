@@ -23,40 +23,36 @@ class EarlyExitTinyLlama(nn.Module):
         self.num_layers = len(self.base_model.model.layers)
         print(f"Model loaded with {self.num_layers} transformer layers.")
 
-    def forward(self, input_ids, exit_layer=None, use_cache=False):
+    def forward(self, input_ids, past_key_values=None, exit_layer=None, use_cache=True):
         """
-        Forward pass with a true early exit and manual cache control.
+        Forward pass that intercepts and returns KV-cache states for $O(1)$ execution.
         """
         if exit_layer is None or exit_layer >= self.num_layers:
-            # Standard full forward pass
             outputs = self.base_model.model(
                 input_ids=input_ids,
-                use_cache=use_cache # Pass the cache flag
+                past_key_values=past_key_values,
+                use_cache=use_cache
             )
-            return self.lm_head(outputs.last_hidden_state)
+            logits = self.lm_head(outputs.last_hidden_state)
+            return logits, outputs.past_key_values
             
-        # 1. Save a reference to the original full stack of layers
         original_layers = self.base_model.model.layers
-        
         try:
-            # 2. Dynamically truncate the module list to force an early exit
             import torch.nn as nn
             self.base_model.model.layers = nn.ModuleList(original_layers[:exit_layer])
             
-            # 3. Run the forward pass (halt computing at exit_layer)
             outputs = self.base_model.model(
                 input_ids=input_ids,
-                use_cache=use_cache # Pass the cache flag
+                past_key_values=past_key_values,
+                use_cache=use_cache
             )
             hidden_states = outputs.last_hidden_state
             
         finally:
-            # 4. CRITICAL: Restore the original layers
             self.base_model.model.layers = original_layers
             
-        # Pass the early hidden state through the LM head
         logits = self.lm_head(hidden_states)
-        return logits
+        return logits, outputs.past_key_values
         
 # --- Quick Verification ---
 if __name__ == "__main__":
