@@ -23,13 +23,16 @@ class EarlyExitTinyLlama(nn.Module):
         self.num_layers = len(self.base_model.model.layers)
         print(f"Model loaded with {self.num_layers} transformer layers.")
 
-    def forward(self, input_ids, exit_layer=None):
+    def forward(self, input_ids, exit_layer=None, use_cache=False):
         """
-        Forward pass with a true early exit that physically halts computation.
+        Forward pass with a true early exit and manual cache control.
         """
         if exit_layer is None or exit_layer >= self.num_layers:
             # Standard full forward pass
-            outputs = self.base_model.model(input_ids)
+            outputs = self.base_model.model(
+                input_ids=input_ids,
+                use_cache=use_cache # Pass the cache flag
+            )
             return self.lm_head(outputs.last_hidden_state)
             
         # 1. Save a reference to the original full stack of layers
@@ -40,12 +43,15 @@ class EarlyExitTinyLlama(nn.Module):
             import torch.nn as nn
             self.base_model.model.layers = nn.ModuleList(original_layers[:exit_layer])
             
-            # 3. Run the forward pass (it will now physically stop computing at exit_layer)
-            outputs = self.base_model.model(input_ids)
+            # 3. Run the forward pass (halt computing at exit_layer)
+            outputs = self.base_model.model(
+                input_ids=input_ids,
+                use_cache=use_cache # Pass the cache flag
+            )
             hidden_states = outputs.last_hidden_state
             
         finally:
-            # 4. CRITICAL: Restore the original layers so we don't permanently break the model
+            # 4. CRITICAL: Restore the original layers
             self.base_model.model.layers = original_layers
             
         # Pass the early hidden state through the LM head

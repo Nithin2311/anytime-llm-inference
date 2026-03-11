@@ -16,7 +16,7 @@ def generate_with_dynamic_deadline(model, prompt, max_new_tokens=15, deadline_ms
     print("Warm-up complete. Starting strict timing.\n")
     
     generated_tokens = []
-    full_pass_wcet = 25.0  # The approximate safety margin needed for a full 22-layer pass
+    full_pass_wcet = 23.0  # The approximate safety margin needed for a full 22-layer pass
     
     with torch.no_grad():
         for i in range(max_new_tokens):
@@ -27,7 +27,8 @@ def generate_with_dynamic_deadline(model, prompt, max_new_tokens=15, deadline_ms
             start_event.record()
             
             # --- STAGE 1: Early Evaluation (Layer 5) ---
-            logits_early = model(input_ids, exit_layer=5)
+            # Disable cache so the model evaluates the full sequence context up to this point
+            logits_early = model(input_ids, exit_layer=5, use_cache=False)
             mid_event.record()
             torch.cuda.synchronize() 
             
@@ -60,7 +61,8 @@ def generate_with_dynamic_deadline(model, prompt, max_new_tokens=15, deadline_ms
                 end_event.record()
                 
             else:
-                logits_full = model(input_ids)
+                # Full pass, also disabling cache
+                logits_full = model(input_ids, use_cache=False)
                 next_token = torch.argmax(logits_full[0, -1, :], dim=-1)
                 exit_type = "Full Pass"
                 end_event.record()
@@ -81,4 +83,4 @@ def generate_with_dynamic_deadline(model, prompt, max_new_tokens=15, deadline_ms
 if __name__ == "__main__":
     model = EarlyExitTinyLlama()
     prompt = "The most critical aspect of a real-time system is"
-    generate_with_dynamic_deadline(model, prompt, deadline_ms=30.0)
+    generate_with_dynamic_deadline(model, prompt, deadline_ms=50.0)
