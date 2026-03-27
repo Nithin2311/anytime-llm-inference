@@ -14,10 +14,11 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 from datasets import load_dataset
+from transformers import AutoTokenizer
 
 from early_exit_model import EarlyExitTinyLlama
 from dynamic_scheduler import generate_stateless_anytime
-from benchmark import extract_label
+from benchmark import extract_label, _build_prompt
 
 RESULTS_FILE = "sweep_results.json"
 FIGURE_FILE  = "deadline_tradeoff.png"
@@ -142,9 +143,10 @@ def plot_tradeoff(sweep_results):
 
 if __name__ == "__main__":
     print("Loading PubMedQA Dataset...")
-    dataset = load_dataset("pubmed_qa", "pqa_labeled", split=f"train[:{N_SAMPLES}]")
+    dataset   = load_dataset("pubmed_qa", "pqa_labeled", split=f"train[:{N_SAMPLES}]")
+    tokenizer = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
     prompts = [
-        f"Context: {item['context']['contexts'][0]}\nQuestion: {item['question']}\nAnswer:"
+        _build_prompt(tokenizer, item["context"]["contexts"][0], item["question"])
         for item in dataset
     ]
     ground_truths = [item["final_decision"] for item in dataset]

@@ -11,6 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from datasets import load_dataset
+from transformers import AutoTokenizer
 
 from early_exit_model import EarlyExitTinyLlama
 from static_scheduler import generate_with_deadline
@@ -55,12 +56,32 @@ def aggregate(all_records, deadline_ms):
     }
 
 
+def _build_prompt(tokenizer, context, question):
+    """Chat-template prompt matching benchmark.py for consistent evaluation."""
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "You are a biomedical expert answering clinical questions. "
+                "Answer each question with exactly one word: 'yes', 'no', or 'maybe'. "
+                "Do not add any explanation."
+            ),
+        },
+        {
+            "role": "user",
+            "content": f"Context: {context}\n\nQuestion: {question}",
+        },
+    ]
+    return tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+
+
 def run_comparison():
     print("Loading PubMedQA Dataset...")
     dataset = load_dataset("pubmed_qa", "pqa_labeled", split=f"train[:{N_SAMPLES}]")
 
     print("Loading model (shared for both schedulers)...")
-    model = EarlyExitTinyLlama()
+    model     = EarlyExitTinyLlama()
+    tokenizer = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 
     static_all_records  = []
     dynamic_all_records = []
@@ -68,7 +89,7 @@ def run_comparison():
     for i, item in enumerate(dataset):
         context  = item["context"]["contexts"][0]
         question = item["question"]
-        prompt   = f"Context: {context}\nQuestion: {question}\nAnswer:"
+        prompt   = _build_prompt(tokenizer, context, question)
 
         print(f"\n{'='*60}")
         print(f"Query {i+1}/{N_SAMPLES} | GT: {item['final_decision']}")

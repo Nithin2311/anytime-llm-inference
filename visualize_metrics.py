@@ -89,7 +89,17 @@ def plot_execution_timeline(data):
     print("Saved 'execution_timeline.png'")
 
 
-# ── Figure 2: CDF of TPOT (all queries, skip TTFT per query) ─────────────────
+# ── Figure 2: CDF of TPOT with bootstrap P99 CI ─────────────────────────────
+def _bootstrap_p99_ci(samples, n_boot=2000, ci=95):
+    """Return (p99_lo, p99_hi) bootstrap confidence interval for P99."""
+    rng    = np.random.default_rng(42)
+    p99s   = [np.percentile(rng.choice(samples, size=len(samples), replace=True), 99)
+              for _ in range(n_boot)]
+    lo = np.percentile(p99s, (100 - ci) / 2)
+    hi = np.percentile(p99s, 100 - (100 - ci) / 2)
+    return lo, hi
+
+
 def plot_tail_latency_cdf(data):
     deadline  = data["global_metrics"]["deadline_ms"]
     all_tpot  = [
@@ -97,8 +107,12 @@ def plot_tail_latency_cdf(data):
         for q in data["query_results"]
         for r in q["token_records"][1:]     # skip first token (prefill) per query
     ]
-    tpot_sorted = np.sort(all_tpot)
+    tpot_arr    = np.array(all_tpot)
+    tpot_sorted = np.sort(tpot_arr)
     cdf = np.arange(1, len(tpot_sorted) + 1) / len(tpot_sorted)
+
+    p99         = np.percentile(tpot_arr, 99)
+    p99_lo, p99_hi = _bootstrap_p99_ci(tpot_arr)
 
     fig, ax = plt.subplots(figsize=(6, 4))
     ax.plot(tpot_sorted, cdf, marker="o", markersize=3, linestyle="-",
@@ -107,14 +121,18 @@ def plot_tail_latency_cdf(data):
                label=f"Hard Deadline ({deadline:.0f} ms)")
     ax.axhline(y=0.99, color="grey", linestyle=":", linewidth=1.0, label="P99")
 
+    # Bootstrap CI band on P99
+    ax.axvspan(p99_lo, p99_hi, alpha=0.18, color="#2b5b84",
+               label=f"P99 95% CI [{p99_lo:.1f}, {p99_hi:.1f}] ms")
+    ax.axvline(x=p99, color="#2b5b84", linestyle=":", linewidth=1.2)
+
     ax.set_xlabel("Execution Time (ms)")
     ax.set_ylabel("Cumulative Probability")
     ax.set_title(f"CDF of Token Generation Latency (TPOT) — {len(data['query_results'])} Queries")
-    ax.legend()
+    ax.legend(fontsize=8)
 
-    p99 = np.percentile(tpot_sorted, 99)
     ax.annotate(f"P99={p99:.1f} ms", xy=(p99, 0.99),
-                xytext=(p99 + 1, 0.85), fontsize=8,
+                xytext=(p99 + 1, 0.82), fontsize=8,
                 arrowprops=dict(arrowstyle="->", color="grey"))
 
     plt.tight_layout()

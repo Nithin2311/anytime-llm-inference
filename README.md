@@ -100,7 +100,8 @@ The anytime scheduler accepts a slightly higher mean TPOT (it always runs at lea
 | `benchmark.py` | 30-query PubMedQA benchmark using the dynamic scheduler; reports accuracy, TPOT distribution, deadline miss rate, throughput (tokens/sec), and utilization ratio |
 | `evaluate_tail_latency.py` | Formal schedulability proof — CDF comparison of baseline vs anytime across 3 clinical prompts; saves `schedulability_proof.png` and `tail_latency_results.json` |
 | `deadline_sweep.py` | Utility-latency tradeoff sweep across deadlines [20–60] ms; reveals the schedulability "knee" at ~30 ms; saves `deadline_tradeoff.png` |
-| `compare_schedulers.py` | Head-to-head static vs dynamic scheduler on 5 PubMedQA queries; saves `scheduler_comparison.png` |
+| `exit_layer_ablation.py` | Exit-layer ablation — compares L5/L11/L16 on agreement rate, confidence, and latency; validates L16 as the only viable early-exit point |
+| `compare_schedulers.py` | Head-to-head static vs dynamic scheduler on 5 PubMedQA queries; reports throughput, utilization ratio, and exit distribution |
 | `visualize_metrics.py` | Reads `benchmark_results.json` and produces 4 IEEE-styled figures: execution timeline, tail latency CDF, exit distribution, accuracy summary |
 
 ---
@@ -144,15 +145,44 @@ Layer 5 exits almost never agree with the full pass — this is why the static s
 
 > **Note on label extraction:** TinyLlama-1.1B does not reliably follow single-word instructions, producing verbose responses or re-generating the question in 57% of cases. This is a known limitation of 1.1B parameter instruction-tuned models. The scheduling metrics (TPOT, miss rate, utilization) are independent of this and represent the primary evaluation.
 
-### Scheduler Comparison (Static vs Dynamic)
+### Exit-Layer Ablation Study
+
+The choice of L16 as the early-exit point is validated empirically:
+
+| Metric | Layer 5 | Layer 11 | **Layer 16** |
+|--------|---------|----------|--------------|
+| Agreement with full pass | 0.0% | 0.0% | **23.78%** |
+| Agreement @ conf ≥ 0.5 | 0.0% | 0.0% | **33.33%** |
+| Mean confidence | 0.065 | 0.063 | **0.158** |
+| Mean TPOT | 4.4 ms | 8.5 ms | **11.8 ms** |
+| WCET | 7.7 ms | 15.5 ms | 13.3 ms |
+
+L5 and L11 have zero agreement with the oracle full pass — they carry no predictive signal useful for early exit. L16 provides the only meaningful early-exit quality at a TPOT cost of ~12 ms (vs 17 ms for full pass).
+
+### Scheduler Comparison (Static vs Dynamic, 5 queries)
 
 | Metric | Static (L5, thresh=0.8) | Dynamic (L16, decay) |
 |--------|------------------------|----------------------|
-| Mean TPOT | ~20.6 ms | ~26.3 ms |
-| Early exit rate | ~0% | ~12% |
-| Deadline misses | 0% | 0% |
+| Mean TPOT | 25.1 ms | 32.6 ms |
+| Throughput | 39.9 tok/s | 30.7 tok/s |
+| P99 TPOT | 35.8 ms | 45.3 ms |
+| Util (P99/D) | 0.795 | 1.008 |
+| Early exit rate | 0% | 9.3% |
+| Deadline misses | 1.3% | 1.3% |
 
-The static scheduler almost never exits early (L5 agreement = 1%), effectively acting as a pure full-pass system. The dynamic scheduler at L16 achieves meaningful early exits while maintaining schedulability.
+The static scheduler (L5) effectively never exits early due to L5's zero agreement rate — it runs full pass on every token. The dynamic scheduler (L16) achieves meaningful early exits at the cost of a higher mean TPOT (always runs at least L16 before deciding).
+
+### Deadline Sweep (5 queries, dynamic scheduler)
+
+| Deadline (ms) | Full% | Thresh% | Forced% | Miss% |
+|---------------|-------|---------|---------|-------|
+| 20 | 0 | 0 | 100 | 37.3 |
+| 25 | 100 | 0 | 0 | 0 |
+| 30 | 64.0 | 9.3 | 26.7 | 1.3 |
+| **35** | **90.7** | **9.3** | **0** | **0** |
+| 45–60 | ~90.7 | ~9.3 | 0 | 0 |
+
+Schedulability "knee" is at D=30 ms. From D=35 ms onward the system is fully schedulable with no forced exits.
 
 ---
 
@@ -212,6 +242,12 @@ python evaluate_tail_latency.py
 ```bash
 python deadline_sweep.py
 # → sweep_results.json, deadline_tradeoff.png
+```
+
+### Exit-layer ablation study
+```bash
+python exit_layer_ablation.py
+# → ablation_results.json, exit_layer_ablation.png
 ```
 
 ### Static vs dynamic scheduler comparison
