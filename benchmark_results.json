@@ -1,0 +1,1567 @@
+{
+  "global_metrics": {
+    "n_queries": 10,
+    "deadline_ms": 45.0,
+    "accuracy": 33.3,
+    "n_correct": 1,
+    "n_scored": 3,
+    "full_pass_pct": 90.0,
+    "early_thresh_pct": 10.0,
+    "forced_exit_pct": 0.0,
+    "deadline_miss_pct": 2.0,
+    "global_mean_tpot_ms": 27.571,
+    "global_p99_tpot_ms": 40.722
+  },
+  "query_results": [
+    {
+      "query_id": 1,
+      "question": "Do mitochondria play a role in remodelling lace plant leaves during programmed cell death?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "yes,mitochondriaplayaroleinremodelinglace",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "yes",
+          "time_ms": 172.151,
+          "exit_type": "Early (Thresh: 0.39)",
+          "confidence": 0.4922,
+          "threshold": 0.3891,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ",",
+          "time_ms": 97.949,
+          "exit_type": "Full Pass",
+          "confidence": 0.0757,
+          "threshold": 0.3571,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "mit",
+          "time_ms": 47.673,
+          "exit_type": "Full Pass",
+          "confidence": 0.0503,
+          "threshold": 0.3323,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "och",
+          "time_ms": 27.145,
+          "exit_type": "Full Pass",
+          "confidence": 0.054,
+          "threshold": 0.5847,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "ond",
+          "time_ms": 26.937,
+          "exit_type": "Full Pass",
+          "confidence": 0.2256,
+          "threshold": 0.5869,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 6,
+          "token": "ria",
+          "time_ms": 27.085,
+          "exit_type": "Full Pass",
+          "confidence": 0.0742,
+          "threshold": 0.5864,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 7,
+          "token": "play",
+          "time_ms": 27.242,
+          "exit_type": "Full Pass",
+          "confidence": 0.0693,
+          "threshold": 0.5839,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 8,
+          "token": "a",
+          "time_ms": 27.288,
+          "exit_type": "Full Pass",
+          "confidence": 0.0432,
+          "threshold": 0.5842,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 9,
+          "token": "role",
+          "time_ms": 27.239,
+          "exit_type": "Full Pass",
+          "confidence": 0.5195,
+          "threshold": 0.5842,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 10,
+          "token": "in",
+          "time_ms": 27.757,
+          "exit_type": "Full Pass",
+          "confidence": 0.2236,
+          "threshold": 0.579,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 11,
+          "token": "rem",
+          "time_ms": 27.149,
+          "exit_type": "Full Pass",
+          "confidence": 0.0334,
+          "threshold": 0.584,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 12,
+          "token": "od",
+          "time_ms": 26.955,
+          "exit_type": "Full Pass",
+          "confidence": 0.1396,
+          "threshold": 0.5872,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 13,
+          "token": "eling",
+          "time_ms": 11.595,
+          "exit_type": "Early (Thresh: 0.59)",
+          "confidence": 0.8125,
+          "threshold": 0.5869,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 14,
+          "token": "la",
+          "time_ms": 27.165,
+          "exit_type": "Full Pass",
+          "confidence": 0.0212,
+          "threshold": 0.5869,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 15,
+          "token": "ce",
+          "time_ms": 26.976,
+          "exit_type": "Full Pass",
+          "confidence": 0.0359,
+          "threshold": 0.5856,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 15,
+        "full_pass_pct": 86.7,
+        "early_thresh_pct": 13.3,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 20.0,
+        "mean_tpot_ms": 32.583,
+        "p99_tpot_ms": 91.413,
+        "max_tpot_ms": 97.949
+      }
+    },
+    {
+      "query_id": 2,
+      "question": "Landolt C and snellen e acuity: differences in strabismus amblyopia?",
+      "ground_truth": "no",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "TheLandoltCacuityisastandardizedvisualacuity",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "The",
+          "time_ms": 27.236,
+          "exit_type": "Full Pass",
+          "confidence": 0.1045,
+          "threshold": 0.5848,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": "Land",
+          "time_ms": 27.268,
+          "exit_type": "Full Pass",
+          "confidence": 0.3066,
+          "threshold": 0.5841,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "olt",
+          "time_ms": 26.967,
+          "exit_type": "Full Pass",
+          "confidence": 0.0095,
+          "threshold": 0.5867,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "C",
+          "time_ms": 27.03,
+          "exit_type": "Full Pass",
+          "confidence": 0.0566,
+          "threshold": 0.5863,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "ac",
+          "time_ms": 27.398,
+          "exit_type": "Full Pass",
+          "confidence": 0.0114,
+          "threshold": 0.5817,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 6,
+          "token": "u",
+          "time_ms": 27.124,
+          "exit_type": "Full Pass",
+          "confidence": 0.0889,
+          "threshold": 0.5826,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 7,
+          "token": "ity",
+          "time_ms": 11.55,
+          "exit_type": "Early (Thresh: 0.59)",
+          "confidence": 0.8438,
+          "threshold": 0.5877,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 8,
+          "token": "is",
+          "time_ms": 26.868,
+          "exit_type": "Full Pass",
+          "confidence": 0.0253,
+          "threshold": 0.5874,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 9,
+          "token": "a",
+          "time_ms": 26.895,
+          "exit_type": "Full Pass",
+          "confidence": 0.0236,
+          "threshold": 0.5871,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 10,
+          "token": "standard",
+          "time_ms": 27.188,
+          "exit_type": "Full Pass",
+          "confidence": 0.0175,
+          "threshold": 0.5859,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 11,
+          "token": "ized",
+          "time_ms": 11.902,
+          "exit_type": "Early (Thresh: 0.58)",
+          "confidence": 0.875,
+          "threshold": 0.5812,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 12,
+          "token": "visual",
+          "time_ms": 27.301,
+          "exit_type": "Full Pass",
+          "confidence": 0.0117,
+          "threshold": 0.581,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 13,
+          "token": "ac",
+          "time_ms": 26.978,
+          "exit_type": "Full Pass",
+          "confidence": 0.1689,
+          "threshold": 0.587,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 14,
+          "token": "u",
+          "time_ms": 27.797,
+          "exit_type": "Full Pass",
+          "confidence": 0.016,
+          "threshold": 0.5806,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 15,
+          "token": "ity",
+          "time_ms": 11.776,
+          "exit_type": "Early (Thresh: 0.58)",
+          "confidence": 0.6602,
+          "threshold": 0.5834,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 15,
+        "full_pass_pct": 80.0,
+        "early_thresh_pct": 20.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 23.86,
+        "p99_tpot_ms": 27.745,
+        "max_tpot_ms": 27.797
+      }
+    },
+    {
+      "query_id": 3,
+      "question": "Syncope during bathing in infants, a pediatric form of water-induced urticaria?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Syncopeduringbathingininfantsisapediatricformof",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Syn",
+          "time_ms": 27.368,
+          "exit_type": "Full Pass",
+          "confidence": 0.3105,
+          "threshold": 0.5844,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": "cope",
+          "time_ms": 27.59,
+          "exit_type": "Full Pass",
+          "confidence": 0.0186,
+          "threshold": 0.5831,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "during",
+          "time_ms": 27.106,
+          "exit_type": "Full Pass",
+          "confidence": 0.3496,
+          "threshold": 0.5844,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "bath",
+          "time_ms": 27.927,
+          "exit_type": "Full Pass",
+          "confidence": 0.0209,
+          "threshold": 0.5857,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "ing",
+          "time_ms": 12.341,
+          "exit_type": "Early (Thresh: 0.57)",
+          "confidence": 0.9922,
+          "threshold": 0.5733,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 6,
+          "token": "in",
+          "time_ms": 12.512,
+          "exit_type": "Early (Thresh: 0.57)",
+          "confidence": 0.7852,
+          "threshold": 0.5699,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 7,
+          "token": "inf",
+          "time_ms": 28.952,
+          "exit_type": "Full Pass",
+          "confidence": 0.0447,
+          "threshold": 0.5685,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 8,
+          "token": "ants",
+          "time_ms": 28.881,
+          "exit_type": "Full Pass",
+          "confidence": 0.0427,
+          "threshold": 0.5726,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 9,
+          "token": "is",
+          "time_ms": 28.734,
+          "exit_type": "Full Pass",
+          "confidence": 0.1367,
+          "threshold": 0.5731,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 10,
+          "token": "a",
+          "time_ms": 28.66,
+          "exit_type": "Full Pass",
+          "confidence": 0.1187,
+          "threshold": 0.5737,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 11,
+          "token": "ped",
+          "time_ms": 28.595,
+          "exit_type": "Full Pass",
+          "confidence": 0.1826,
+          "threshold": 0.5746,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 12,
+          "token": "iat",
+          "time_ms": 29.013,
+          "exit_type": "Full Pass",
+          "confidence": 0.1367,
+          "threshold": 0.5726,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 13,
+          "token": "ric",
+          "time_ms": 28.928,
+          "exit_type": "Full Pass",
+          "confidence": 0.2617,
+          "threshold": 0.5714,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 14,
+          "token": "form",
+          "time_ms": 28.647,
+          "exit_type": "Full Pass",
+          "confidence": 0.0403,
+          "threshold": 0.5742,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 15,
+          "token": "of",
+          "time_ms": 12.357,
+          "exit_type": "Early (Thresh: 0.57)",
+          "confidence": 0.9336,
+          "threshold": 0.5728,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 15,
+        "full_pass_pct": 80.0,
+        "early_thresh_pct": 20.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 25.017,
+        "p99_tpot_ms": 29.005,
+        "max_tpot_ms": 29.013
+      }
+    },
+    {
+      "query_id": 4,
+      "question": "Are the long-term results of the transanal pull-through equal to those of the transabdominal pull-through?",
+      "ground_truth": "no",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Theresultsofbothproceduresaresimilarintermsofthelong-termoutcome",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "The",
+          "time_ms": 28.764,
+          "exit_type": "Full Pass",
+          "confidence": 0.457,
+          "threshold": 0.5743,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": "results",
+          "time_ms": 28.844,
+          "exit_type": "Full Pass",
+          "confidence": 0.2559,
+          "threshold": 0.5716,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "of",
+          "time_ms": 28.605,
+          "exit_type": "Full Pass",
+          "confidence": 0.2812,
+          "threshold": 0.5751,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "both",
+          "time_ms": 12.29,
+          "exit_type": "Early (Thresh: 0.57)",
+          "confidence": 0.6055,
+          "threshold": 0.5741,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "procedures",
+          "time_ms": 28.439,
+          "exit_type": "Full Pass",
+          "confidence": 0.3379,
+          "threshold": 0.5754,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 6,
+          "token": "are",
+          "time_ms": 28.669,
+          "exit_type": "Full Pass",
+          "confidence": 0.0366,
+          "threshold": 0.5734,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 7,
+          "token": "similar",
+          "time_ms": 28.374,
+          "exit_type": "Full Pass",
+          "confidence": 0.0234,
+          "threshold": 0.5767,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 8,
+          "token": "in",
+          "time_ms": 28.435,
+          "exit_type": "Full Pass",
+          "confidence": 0.0933,
+          "threshold": 0.5753,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 9,
+          "token": "terms",
+          "time_ms": 12.182,
+          "exit_type": "Early (Thresh: 0.58)",
+          "confidence": 0.7617,
+          "threshold": 0.576,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 10,
+          "token": "of",
+          "time_ms": 28.56,
+          "exit_type": "Full Pass",
+          "confidence": 0.0378,
+          "threshold": 0.5716,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 11,
+          "token": "the",
+          "time_ms": 28.74,
+          "exit_type": "Full Pass",
+          "confidence": 0.1436,
+          "threshold": 0.5707,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 12,
+          "token": "long",
+          "time_ms": 28.483,
+          "exit_type": "Full Pass",
+          "confidence": 0.0449,
+          "threshold": 0.5746,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 13,
+          "token": "-",
+          "time_ms": 28.373,
+          "exit_type": "Full Pass",
+          "confidence": 0.2246,
+          "threshold": 0.5761,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 14,
+          "token": "term",
+          "time_ms": 28.426,
+          "exit_type": "Full Pass",
+          "confidence": 0.3535,
+          "threshold": 0.5756,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 15,
+          "token": "outcome",
+          "time_ms": 28.291,
+          "exit_type": "Full Pass",
+          "confidence": 0.043,
+          "threshold": 0.5768,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 15,
+        "full_pass_pct": 86.7,
+        "early_thresh_pct": 13.3,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 26.194,
+        "p99_tpot_ms": 28.83,
+        "max_tpot_ms": 28.844
+      }
+    },
+    {
+      "query_id": 5,
+      "question": "Can tailored interventions increase mammography use among HMO women?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "TailoredinterventionsincreasedmammographyuseamongHMOwomen",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "T",
+          "time_ms": 28.659,
+          "exit_type": "Full Pass",
+          "confidence": 0.5234,
+          "threshold": 0.5743,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": "ail",
+          "time_ms": 28.45,
+          "exit_type": "Full Pass",
+          "confidence": 0.0317,
+          "threshold": 0.5748,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "ored",
+          "time_ms": 28.379,
+          "exit_type": "Full Pass",
+          "confidence": 0.5742,
+          "threshold": 0.5768,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "inter",
+          "time_ms": 28.385,
+          "exit_type": "Full Pass",
+          "confidence": 0.0439,
+          "threshold": 0.5757,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "vent",
+          "time_ms": 28.856,
+          "exit_type": "Full Pass",
+          "confidence": 0.0342,
+          "threshold": 0.5751,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 6,
+          "token": "ions",
+          "time_ms": 29.1,
+          "exit_type": "Full Pass",
+          "confidence": 0.0708,
+          "threshold": 0.5711,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 7,
+          "token": "increased",
+          "time_ms": 28.516,
+          "exit_type": "Full Pass",
+          "confidence": 0.0237,
+          "threshold": 0.5755,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 8,
+          "token": "m",
+          "time_ms": 28.914,
+          "exit_type": "Full Pass",
+          "confidence": 0.0972,
+          "threshold": 0.5729,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 9,
+          "token": "amm",
+          "time_ms": 28.695,
+          "exit_type": "Full Pass",
+          "confidence": 0.0388,
+          "threshold": 0.5715,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 10,
+          "token": "ography",
+          "time_ms": 28.57,
+          "exit_type": "Full Pass",
+          "confidence": 0.1143,
+          "threshold": 0.5749,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 11,
+          "token": "use",
+          "time_ms": 28.579,
+          "exit_type": "Full Pass",
+          "confidence": 0.0342,
+          "threshold": 0.5746,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 12,
+          "token": "among",
+          "time_ms": 28.479,
+          "exit_type": "Full Pass",
+          "confidence": 0.0145,
+          "threshold": 0.5757,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 13,
+          "token": "H",
+          "time_ms": 28.914,
+          "exit_type": "Full Pass",
+          "confidence": 0.082,
+          "threshold": 0.5725,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 14,
+          "token": "MO",
+          "time_ms": 28.646,
+          "exit_type": "Full Pass",
+          "confidence": 0.0596,
+          "threshold": 0.573,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 15,
+          "token": "women",
+          "time_ms": 28.682,
+          "exit_type": "Full Pass",
+          "confidence": 0.064,
+          "threshold": 0.5736,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 15,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 28.655,
+        "p99_tpot_ms": 29.076,
+        "max_tpot_ms": 29.1
+      }
+    },
+    {
+      "query_id": 6,
+      "question": "Double balloon enteroscopy: is it efficacious and safe in a community setting?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Doubleballoonenteroscopy(DBE)isaminimally",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Double",
+          "time_ms": 28.801,
+          "exit_type": "Full Pass",
+          "confidence": 0.1924,
+          "threshold": 0.5728,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": "bal",
+          "time_ms": 28.751,
+          "exit_type": "Full Pass",
+          "confidence": 0.028,
+          "threshold": 0.5727,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "lo",
+          "time_ms": 28.561,
+          "exit_type": "Full Pass",
+          "confidence": 0.1045,
+          "threshold": 0.575,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "on",
+          "time_ms": 28.505,
+          "exit_type": "Full Pass",
+          "confidence": 0.0664,
+          "threshold": 0.5756,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "enter",
+          "time_ms": 29.411,
+          "exit_type": "Full Pass",
+          "confidence": 0.0388,
+          "threshold": 0.571,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 6,
+          "token": "os",
+          "time_ms": 29.501,
+          "exit_type": "Full Pass",
+          "confidence": 0.1445,
+          "threshold": 0.5688,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 7,
+          "token": "copy",
+          "time_ms": 29.31,
+          "exit_type": "Full Pass",
+          "confidence": 0.0649,
+          "threshold": 0.5657,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 8,
+          "token": "(",
+          "time_ms": 28.417,
+          "exit_type": "Full Pass",
+          "confidence": 0.4336,
+          "threshold": 0.5769,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 9,
+          "token": "DB",
+          "time_ms": 29.208,
+          "exit_type": "Full Pass",
+          "confidence": 0.061,
+          "threshold": 0.5748,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 10,
+          "token": "E",
+          "time_ms": 29.216,
+          "exit_type": "Full Pass",
+          "confidence": 0.1367,
+          "threshold": 0.5703,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 11,
+          "token": ")",
+          "time_ms": 29.321,
+          "exit_type": "Full Pass",
+          "confidence": 0.0275,
+          "threshold": 0.5678,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 12,
+          "token": "is",
+          "time_ms": 28.946,
+          "exit_type": "Full Pass",
+          "confidence": 0.027,
+          "threshold": 0.5693,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 13,
+          "token": "a",
+          "time_ms": 28.761,
+          "exit_type": "Full Pass",
+          "confidence": 0.017,
+          "threshold": 0.5726,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 14,
+          "token": "minim",
+          "time_ms": 28.893,
+          "exit_type": "Full Pass",
+          "confidence": 0.0238,
+          "threshold": 0.5721,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 15,
+          "token": "ally",
+          "time_ms": 28.608,
+          "exit_type": "Full Pass",
+          "confidence": 0.0703,
+          "threshold": 0.5751,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 15,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 28.958,
+        "p99_tpot_ms": 29.489,
+        "max_tpot_ms": 29.501
+      }
+    },
+    {
+      "query_id": 7,
+      "question": "30-Day and 1-year mortality in emergency general surgery laparotomies: an area of concern and need for improvement?",
+      "ground_truth": "maybe",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "The30-daymortalityinemergencygeneralsurgeryla",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "The",
+          "time_ms": 28.613,
+          "exit_type": "Full Pass",
+          "confidence": 0.0928,
+          "threshold": 0.5729,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": "",
+          "time_ms": 28.541,
+          "exit_type": "Full Pass",
+          "confidence": 0.1465,
+          "threshold": 0.574,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "3",
+          "time_ms": 28.588,
+          "exit_type": "Full Pass",
+          "confidence": 0.2734,
+          "threshold": 0.5743,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "0",
+          "time_ms": 12.31,
+          "exit_type": "Early (Thresh: 0.57)",
+          "confidence": 0.8281,
+          "threshold": 0.5739,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "-",
+          "time_ms": 29.189,
+          "exit_type": "Full Pass",
+          "confidence": 0.5586,
+          "threshold": 0.5725,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 6,
+          "token": "day",
+          "time_ms": 29.075,
+          "exit_type": "Full Pass",
+          "confidence": 0.3516,
+          "threshold": 0.5664,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 7,
+          "token": "mort",
+          "time_ms": 28.575,
+          "exit_type": "Full Pass",
+          "confidence": 0.0542,
+          "threshold": 0.5753,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 8,
+          "token": "ality",
+          "time_ms": 29.017,
+          "exit_type": "Full Pass",
+          "confidence": 0.0325,
+          "threshold": 0.5736,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 9,
+          "token": "in",
+          "time_ms": 29.34,
+          "exit_type": "Full Pass",
+          "confidence": 0.1309,
+          "threshold": 0.5651,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 10,
+          "token": "emer",
+          "time_ms": 28.561,
+          "exit_type": "Full Pass",
+          "confidence": 0.1797,
+          "threshold": 0.5744,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 11,
+          "token": "gency",
+          "time_ms": 28.588,
+          "exit_type": "Full Pass",
+          "confidence": 0.0184,
+          "threshold": 0.574,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 12,
+          "token": "general",
+          "time_ms": 28.601,
+          "exit_type": "Full Pass",
+          "confidence": 0.0479,
+          "threshold": 0.575,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 13,
+          "token": "surg",
+          "time_ms": 28.611,
+          "exit_type": "Full Pass",
+          "confidence": 0.0767,
+          "threshold": 0.5743,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 14,
+          "token": "ery",
+          "time_ms": 29.293,
+          "exit_type": "Full Pass",
+          "confidence": 0.0913,
+          "threshold": 0.5721,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 15,
+          "token": "la",
+          "time_ms": 29.5,
+          "exit_type": "Full Pass",
+          "confidence": 0.0219,
+          "threshold": 0.5678,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 15,
+        "full_pass_pct": 93.3,
+        "early_thresh_pct": 6.7,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 27.699,
+        "p99_tpot_ms": 29.479,
+        "max_tpot_ms": 29.5
+      }
+    },
+    {
+      "query_id": 8,
+      "question": "Is adjustment for reporting heterogeneity necessary in sleep disorders?",
+      "ground_truth": "no",
+      "predicted": "yes",
+      "correct": false,
+      "generated_text": "yes,adjustmentforreportingheterogeneityisnecessaryinsleepdisorders",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "yes",
+          "time_ms": 12.573,
+          "exit_type": "Early (Thresh: 0.57)",
+          "confidence": 0.75,
+          "threshold": 0.5688,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ",",
+          "time_ms": 28.471,
+          "exit_type": "Full Pass",
+          "confidence": 0.0598,
+          "threshold": 0.5759,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "adjust",
+          "time_ms": 28.812,
+          "exit_type": "Full Pass",
+          "confidence": 0.2793,
+          "threshold": 0.5724,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "ment",
+          "time_ms": 28.762,
+          "exit_type": "Full Pass",
+          "confidence": 0.1875,
+          "threshold": 0.5725,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "for",
+          "time_ms": 12.345,
+          "exit_type": "Early (Thresh: 0.57)",
+          "confidence": 0.6758,
+          "threshold": 0.5731,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 6,
+          "token": "reporting",
+          "time_ms": 28.678,
+          "exit_type": "Full Pass",
+          "confidence": 0.0306,
+          "threshold": 0.5739,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 7,
+          "token": "heter",
+          "time_ms": 28.803,
+          "exit_type": "Full Pass",
+          "confidence": 0.0369,
+          "threshold": 0.5728,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 8,
+          "token": "ogene",
+          "time_ms": 28.749,
+          "exit_type": "Full Pass",
+          "confidence": 0.4531,
+          "threshold": 0.5741,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 9,
+          "token": "ity",
+          "time_ms": 29.246,
+          "exit_type": "Full Pass",
+          "confidence": 0.2129,
+          "threshold": 0.5693,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 10,
+          "token": "is",
+          "time_ms": 28.772,
+          "exit_type": "Full Pass",
+          "confidence": 0.0222,
+          "threshold": 0.5737,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 11,
+          "token": "necessary",
+          "time_ms": 28.454,
+          "exit_type": "Full Pass",
+          "confidence": 0.1396,
+          "threshold": 0.5748,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 12,
+          "token": "in",
+          "time_ms": 28.399,
+          "exit_type": "Full Pass",
+          "confidence": 0.2852,
+          "threshold": 0.5759,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 13,
+          "token": "sleep",
+          "time_ms": 28.794,
+          "exit_type": "Full Pass",
+          "confidence": 0.0322,
+          "threshold": 0.5739,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 14,
+          "token": "dis",
+          "time_ms": 28.494,
+          "exit_type": "Full Pass",
+          "confidence": 0.0845,
+          "threshold": 0.5742,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 15,
+          "token": "orders",
+          "time_ms": 28.301,
+          "exit_type": "Full Pass",
+          "confidence": 0.0869,
+          "threshold": 0.5766,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 15,
+        "full_pass_pct": 86.7,
+        "early_thresh_pct": 13.3,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 27.506,
+        "p99_tpot_ms": 29.19,
+        "max_tpot_ms": 29.246
+      }
+    },
+    {
+      "query_id": 9,
+      "question": "Do mutations causing low HDL-C promote increased carotid intima-media thickness?",
+      "ground_truth": "no",
+      "predicted": "yes",
+      "correct": false,
+      "generated_text": "Yes,mutationscausinglowHDL-Careassociatedwithincreasedcar",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Yes",
+          "time_ms": 28.604,
+          "exit_type": "Full Pass",
+          "confidence": 0.5352,
+          "threshold": 0.5757,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ",",
+          "time_ms": 28.845,
+          "exit_type": "Full Pass",
+          "confidence": 0.167,
+          "threshold": 0.5735,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "mut",
+          "time_ms": 28.804,
+          "exit_type": "Full Pass",
+          "confidence": 0.0972,
+          "threshold": 0.5737,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "ations",
+          "time_ms": 28.464,
+          "exit_type": "Full Pass",
+          "confidence": 0.016,
+          "threshold": 0.576,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "causing",
+          "time_ms": 28.59,
+          "exit_type": "Full Pass",
+          "confidence": 0.0223,
+          "threshold": 0.5763,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 6,
+          "token": "low",
+          "time_ms": 28.391,
+          "exit_type": "Full Pass",
+          "confidence": 0.0262,
+          "threshold": 0.5762,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 7,
+          "token": "HD",
+          "time_ms": 28.481,
+          "exit_type": "Full Pass",
+          "confidence": 0.1099,
+          "threshold": 0.5748,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 8,
+          "token": "L",
+          "time_ms": 28.449,
+          "exit_type": "Full Pass",
+          "confidence": 0.0693,
+          "threshold": 0.5758,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 9,
+          "token": "-",
+          "time_ms": 12.245,
+          "exit_type": "Early (Thresh: 0.57)",
+          "confidence": 0.9102,
+          "threshold": 0.5749,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 10,
+          "token": "C",
+          "time_ms": 28.522,
+          "exit_type": "Full Pass",
+          "confidence": 0.2871,
+          "threshold": 0.5753,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 11,
+          "token": "are",
+          "time_ms": 28.458,
+          "exit_type": "Full Pass",
+          "confidence": 0.0106,
+          "threshold": 0.5753,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 12,
+          "token": "associated",
+          "time_ms": 28.59,
+          "exit_type": "Full Pass",
+          "confidence": 0.2578,
+          "threshold": 0.575,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 13,
+          "token": "with",
+          "time_ms": 28.516,
+          "exit_type": "Full Pass",
+          "confidence": 0.4453,
+          "threshold": 0.5754,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 14,
+          "token": "increased",
+          "time_ms": 29.849,
+          "exit_type": "Full Pass",
+          "confidence": 0.1309,
+          "threshold": 0.5678,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 15,
+          "token": "car",
+          "time_ms": 29.098,
+          "exit_type": "Full Pass",
+          "confidence": 0.0996,
+          "threshold": 0.564,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 15,
+        "full_pass_pct": 93.3,
+        "early_thresh_pct": 6.7,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 27.522,
+        "p99_tpot_ms": 29.751,
+        "max_tpot_ms": 29.849
+      }
+    },
+    {
+      "query_id": 10,
+      "question": "A short stay or 23-hour ward in a general and academic children's hospital: are they effective?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Theshortstayor23-hourwardinageneraland",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "The",
+          "time_ms": 28.914,
+          "exit_type": "Full Pass",
+          "confidence": 0.291,
+          "threshold": 0.5762,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": "short",
+          "time_ms": 29.498,
+          "exit_type": "Full Pass",
+          "confidence": 0.1963,
+          "threshold": 0.5665,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "stay",
+          "time_ms": 28.904,
+          "exit_type": "Full Pass",
+          "confidence": 0.3594,
+          "threshold": 0.5728,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "or",
+          "time_ms": 28.834,
+          "exit_type": "Full Pass",
+          "confidence": 0.3203,
+          "threshold": 0.5716,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "",
+          "time_ms": 29.419,
+          "exit_type": "Full Pass",
+          "confidence": 0.5664,
+          "threshold": 0.5682,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 6,
+          "token": "2",
+          "time_ms": 28.883,
+          "exit_type": "Full Pass",
+          "confidence": 0.1387,
+          "threshold": 0.568,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 7,
+          "token": "3",
+          "time_ms": 28.546,
+          "exit_type": "Full Pass",
+          "confidence": 0.4512,
+          "threshold": 0.5754,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 8,
+          "token": "-",
+          "time_ms": 12.371,
+          "exit_type": "Early (Thresh: 0.57)",
+          "confidence": 0.8672,
+          "threshold": 0.5726,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 9,
+          "token": "hour",
+          "time_ms": 29.342,
+          "exit_type": "Full Pass",
+          "confidence": 0.1118,
+          "threshold": 0.5657,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 10,
+          "token": "w",
+          "time_ms": 28.583,
+          "exit_type": "Full Pass",
+          "confidence": 0.0334,
+          "threshold": 0.5739,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 11,
+          "token": "ard",
+          "time_ms": 28.512,
+          "exit_type": "Full Pass",
+          "confidence": 0.0261,
+          "threshold": 0.5759,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 12,
+          "token": "in",
+          "time_ms": 28.532,
+          "exit_type": "Full Pass",
+          "confidence": 0.0952,
+          "threshold": 0.5747,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 13,
+          "token": "a",
+          "time_ms": 28.68,
+          "exit_type": "Full Pass",
+          "confidence": 0.3535,
+          "threshold": 0.5759,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 14,
+          "token": "general",
+          "time_ms": 28.948,
+          "exit_type": "Full Pass",
+          "confidence": 0.0151,
+          "threshold": 0.5715,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 15,
+          "token": "and",
+          "time_ms": 29.041,
+          "exit_type": "Full Pass",
+          "confidence": 0.1289,
+          "threshold": 0.5699,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 15,
+        "full_pass_pct": 93.3,
+        "early_thresh_pct": 6.7,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 27.721,
+        "p99_tpot_ms": 29.488,
+        "max_tpot_ms": 29.498
+      }
+    }
+  ]
+}
