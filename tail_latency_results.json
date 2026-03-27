@@ -1,0 +1,31 @@
+{
+  "deadline_ms": 45.0,
+  "n_prompts": 3,
+  "prompts": [
+    "The clinical presentation of acute myocardial infarction typically includes",
+    "Antibiotic resistance mechanisms in gram-negative bacteria involve",
+    "The pathophysiology of type 2 diabetes mellitus is characterized by"
+  ],
+  "baseline": {
+    "label": "Baseline (Standard Autoregressive)",
+    "n": 72,
+    "p50_ms": 19.983,
+    "p95_ms": 22.187,
+    "p99_ms": 36.713,
+    "max_ms": 53.48,
+    "miss_pct": 1.389,
+    "util_ratio": 0.8159,
+    "schedulable": true
+  },
+  "anytime": {
+    "label": "Anytime Scheduler (Dynamic Threshold Decay)",
+    "n": 72,
+    "p50_ms": 34.528,
+    "p95_ms": 37.225,
+    "p99_ms": 37.986,
+    "max_ms": 38.046,
+    "miss_pct": 0.0,
+    "util_ratio": 0.8441,
+    "schedulable": true
+  }
+}

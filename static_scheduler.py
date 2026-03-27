@@ -1,9 +1,31 @@
+import json
+import os
 import torch
 from early_exit_model import EarlyExitTinyLlama
 
+
+def _load_full_pass_wcet(safety_factor=1.10, fallback_ms=18.5):
+    """
+    Load the measured full-pass WCET from wcet_results.json and apply a
+    safety margin.  Falls back to `fallback_ms` if the file is missing.
+    """
+    wcet_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "wcet_results.json")
+    try:
+        with open(wcet_file) as f:
+            data = json.load(f)
+        max_wcet = max(
+            v["None"]["wcet_ms"]
+            for v in data["results"].values()
+            if "None" in v
+        )
+        return round(max_wcet * safety_factor, 2)
+    except (FileNotFoundError, KeyError, ValueError):
+        return fallback_ms
+
+
 # Safety margin: minimum remaining budget needed to safely attempt a full pass.
-# Set from profiling; full pass on this hardware averages ~24 ms.
-FULL_PASS_SAFETY_MS = 25.0
+# Loaded from wcet_results.json (max observed WCET × 1.10 safety factor).
+FULL_PASS_SAFETY_MS = _load_full_pass_wcet()
 
 
 def generate_with_deadline(model, prompt, max_new_tokens=15,

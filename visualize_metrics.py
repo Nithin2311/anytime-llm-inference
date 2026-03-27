@@ -132,21 +132,24 @@ def plot_exit_distribution(data):
     forced_pct = [q["metrics"]["forced_exit_pct"]  for q in queries]
 
     x = np.arange(len(labels))
-    fig, ax = plt.subplots(figsize=(8, 4))
+    n_queries = len(labels)
+    fig_w = max(8, n_queries * 0.35)   # scale width with query count
+    fig, ax = plt.subplots(figsize=(fig_w, 4))
 
-    ax.bar(x, full_pct,   color=C_FULL,   edgecolor="black", linewidth=0.5, label="Full Pass")
-    ax.bar(x, thresh_pct, color=C_THRESH, edgecolor="black", linewidth=0.5, label="Early (Thresh)",
+    ax.bar(x, full_pct,   color=C_FULL,   edgecolor="black", linewidth=0.4, label="Full Pass")
+    ax.bar(x, thresh_pct, color=C_THRESH, edgecolor="black", linewidth=0.4, label="Early (Thresh)",
            bottom=full_pct)
     bottom2 = [f + t for f, t in zip(full_pct, thresh_pct)]
-    ax.bar(x, forced_pct, color=C_FORCED, edgecolor="black", linewidth=0.5, label="Early (Forced)",
+    ax.bar(x, forced_pct, color=C_FORCED, edgecolor="black", linewidth=0.4, label="Early (Forced)",
            bottom=bottom2)
 
     ax.set_xticks(x)
-    ax.set_xticklabels(labels)
+    tick_fs = max(5, 9 - n_queries // 10)   # shrink font for many queries
+    ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=tick_fs)
     ax.set_ylabel("Percentage of Tokens (%)")
     ax.set_xlabel("Clinical Query")
-    ax.set_title("Exit-Type Distribution per Clinical Query")
-    ax.set_ylim(0, 110)
+    ax.set_title(f"Exit-Type Distribution per Clinical Query  (n={n_queries})")
+    ax.set_ylim(0, 115)
     ax.legend(loc="upper right")
 
     plt.tight_layout()
@@ -155,30 +158,85 @@ def plot_exit_distribution(data):
     print("Saved 'exit_distribution.png'")
 
 
-# ── Figure 4: Accuracy & Schedulability Summary Bar ──────────────────────────
+# ── Figure 4: Comprehensive Metrics Dashboard ─────────────────────────────────
 def plot_accuracy_summary(data):
     gm       = data["global_metrics"]
     deadline = gm["deadline_ms"]
 
-    categories = ["Accuracy (%)", "Deadline\nCompliance (%)"]
-    values = [
-        gm["accuracy"] if gm["accuracy"] is not None else 0.0,
-        100.0 - gm["deadline_miss_pct"],
+    accuracy      = gm["accuracy"] if gm["accuracy"] is not None else 0.0
+    compliance    = 100.0 - gm["deadline_miss_pct"]
+    throughput    = gm.get("throughput_tps") or round(1000.0 / gm["global_mean_tpot_ms"], 2)
+    util_ratio    = gm.get("util_ratio") or round(gm["global_p99_tpot_ms"] / deadline, 4)
+    mean_tpot     = gm["global_mean_tpot_ms"]
+    p99_tpot      = gm["global_p99_tpot_ms"]
+
+    fig = plt.figure(figsize=(12, 4.5))
+    fig.suptitle(
+        f"Anytime Scheduler — Benchmark Dashboard  |  D={deadline:.0f} ms  |  n={gm['n_queries']} queries",
+        fontsize=13,
+    )
+
+    # ── Panel A: Accuracy & Compliance bars ─────────────────────────────────
+    ax1 = fig.add_subplot(1, 3, 1)
+    cats   = ["Accuracy\n(scored)", "Deadline\nCompliance"]
+    vals   = [accuracy, compliance]
+    colors = ["#5b8db8", "#2e8b57"]
+    bars   = ax1.bar(cats, vals, color=colors, edgecolor="black", linewidth=0.7, width=0.5)
+    for bar, val in zip(bars, vals):
+        ax1.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1.5,
+                 f"{val:.1f}%", ha="center", va="bottom", fontsize=10, fontweight="bold")
+    ax1.axhline(y=100, color="grey", linestyle=":", linewidth=1.0)
+    ax1.set_ylim(0, 118)
+    ax1.set_ylabel("Percentage (%)")
+    ax1.set_title("Quality & Compliance")
+    ax1.text(0.5, -0.18,
+             f"Scored: {gm['n_scored']}/{gm['n_queries']}  |  Misses: {gm['deadline_miss_pct']}%",
+             ha="center", transform=ax1.transAxes, fontsize=8, color="grey")
+
+    # ── Panel B: TPOT latency summary ───────────────────────────────────────
+    ax2 = fig.add_subplot(1, 3, 2)
+    tpot_cats  = ["Mean\nTPOT", "P99\nTPOT", "Deadline"]
+    tpot_vals  = [mean_tpot, p99_tpot, deadline]
+    tpot_colors= ["#5b8db8", "#2b5b84", "#d9534f"]
+    bars2 = ax2.bar(tpot_cats, tpot_vals, color=tpot_colors, edgecolor="black", linewidth=0.7, width=0.5)
+    for bar, val in zip(bars2, tpot_vals):
+        ax2.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5,
+                 f"{val:.1f}", ha="center", va="bottom", fontsize=10, fontweight="bold")
+    ax2.set_ylabel("Latency (ms)")
+    ax2.set_title("Token Latency (TPOT)")
+    sched_str = f"SCHEDULABLE  (U={util_ratio:.3f})" if util_ratio < 1.0 else f"NOT SCHED.  (U={util_ratio:.3f})"
+    ax2.text(0.5, -0.18, sched_str,
+             ha="center", transform=ax2.transAxes, fontsize=8,
+             color="#2e8b57" if util_ratio < 1.0 else "#d9534f", fontweight="bold")
+
+    # ── Panel C: Exit distribution + throughput ─────────────────────────────
+    ax3 = fig.add_subplot(1, 3, 3)
+    ax3.axis("off")
+    rows = [
+        ["Exit: Full Pass",   f"{gm['full_pass_pct']}%"],
+        ["Exit: Thresh",      f"{gm['early_thresh_pct']}%"],
+        ["Exit: Forced",      f"{gm['forced_exit_pct']}%"],
+        ["Throughput",        f"{throughput} tok/s"],
+        ["Util (P99/D)",      f"{util_ratio:.4f}"],
+        ["Schedulable?",      "YES" if util_ratio < 1.0 else "NO"],
     ]
-    colors_bar = ["#5b8db8", "#2e8b57"]
-
-    fig, ax = plt.subplots(figsize=(5, 4))
-    bars = ax.bar(categories, values, color=colors_bar, edgecolor="black", linewidth=0.7, width=0.5)
-
-    # Annotate values
-    for bar, val in zip(bars, values):
-        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1.5,
-                f"{val:.1f}%", ha="center", va="bottom", fontsize=10, fontweight="bold")
-
-    ax.axhline(y=100, color="grey", linestyle=":", linewidth=1.0)
-    ax.set_ylim(0, 115)
-    ax.set_ylabel("Percentage (%)")
-    ax.set_title(f"Benchmark Summary  |  deadline={deadline:.0f} ms  |  n={gm['n_queries']} queries")
+    table = ax3.table(
+        cellText=rows,
+        colLabels=["Metric", "Value"],
+        cellLoc="center", loc="center",
+        bbox=[0.05, 0.0, 0.95, 1.0],
+    )
+    table.auto_set_font_size(False)
+    table.set_fontsize(9.5)
+    for j in range(2):
+        table[0, j].set_facecolor("#2b5b84")
+        table[0, j].set_text_props(color="white", fontweight="bold")
+    # Colour-code schedulable row
+    sched_row = len(rows)
+    sched_color = "#2e8b57" if util_ratio < 1.0 else "#d9534f"
+    table[sched_row, 1].set_facecolor(sched_color)
+    table[sched_row, 1].set_text_props(color="white", fontweight="bold")
+    ax3.set_title("Scheduling Metrics", pad=10)
 
     plt.tight_layout()
     plt.savefig("accuracy_summary.png", dpi=300, bbox_inches="tight")

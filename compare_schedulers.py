@@ -33,7 +33,9 @@ def aggregate(all_records, deadline_ms):
         if r["token_idx"] > 1:          # skip first token per query
             tpot_records.append(r["time_ms"])
 
-    tpot_arr = np.array(tpot_records) if tpot_records else np.array([0.0])
+    tpot_arr  = np.array(tpot_records) if tpot_records else np.array([0.0])
+    mean_tpot = float(np.mean(tpot_arr))
+    p99_tpot  = float(np.percentile(tpot_arr, 99))
     n = len(all_records)
     return {
         "n_tokens":          n,
@@ -45,8 +47,10 @@ def aggregate(all_records, deadline_ms):
                                              if "Forced" in r["exit_type"]
                                              or "Deadline" in r["exit_type"]) / n, 1),
         "deadline_miss_pct": round(100 * sum(1 for r in all_records if r["time_ms"] > deadline_ms) / n, 1),
-        "mean_tpot_ms":      round(float(np.mean(tpot_arr)), 3),
-        "p99_tpot_ms":       round(float(np.percentile(tpot_arr, 99)), 3),
+        "mean_tpot_ms":      round(mean_tpot, 3),
+        "p99_tpot_ms":       round(p99_tpot, 3),
+        "throughput_tps":    round(1000.0 / mean_tpot, 2) if mean_tpot > 0 else None,
+        "util_ratio":        round(p99_tpot / deadline_ms, 4),
         "tpot_samples":      tpot_arr.tolist(),
     }
 
@@ -169,6 +173,8 @@ def plot_comparison(static_metrics, dynamic_metrics):
     rows = [
         ["Mean TPOT (ms)",    f"{static_metrics['mean_tpot_ms']:.1f}",  f"{dynamic_metrics['mean_tpot_ms']:.1f}"],
         ["P99 TPOT (ms)",     f"{static_metrics['p99_tpot_ms']:.1f}",   f"{dynamic_metrics['p99_tpot_ms']:.1f}"],
+        ["Throughput (tok/s)",f"{static_metrics['throughput_tps']}",    f"{dynamic_metrics['throughput_tps']}"],
+        ["Util (P99/D)",      f"{static_metrics['util_ratio']:.4f}",    f"{dynamic_metrics['util_ratio']:.4f}"],
         ["Deadline Miss (%)", f"{static_metrics['deadline_miss_pct']}", f"{dynamic_metrics['deadline_miss_pct']}"],
         ["Full Pass (%)",     f"{static_metrics['full_pass_pct']}",     f"{dynamic_metrics['full_pass_pct']}"],
         ["Early Exit (%)",    f"{static_metrics['early_conf_pct']}",    f"{dynamic_metrics['early_conf_pct']}"],
@@ -209,6 +215,7 @@ if __name__ == "__main__":
                     ("Dynamic (L16, decay thresh)", dynamic_metrics)]:
         print(f"\n{name}")
         print(f"  Mean TPOT:    {m['mean_tpot_ms']:.2f} ms  |  P99: {m['p99_tpot_ms']:.2f} ms")
+        print(f"  Throughput:   {m['throughput_tps']} tok/s  |  Util (P99/D): {m['util_ratio']:.4f}")
         print(f"  Full Pass:    {m['full_pass_pct']}%  |  Early: {m['early_conf_pct']}%  "
               f"|  Forced: {m['forced_exit_pct']}%")
         print(f"  Missed deadlines: {m['deadline_miss_pct']}%")
