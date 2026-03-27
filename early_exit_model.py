@@ -1,3 +1,4 @@
+import warnings
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -21,12 +22,14 @@ class EarlyExitTinyLlama(torch.nn.Module):
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-        # dtype= is the correct kwarg in transformers >= 5.x (torch_dtype deprecated)
-        self.base_model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            dtype=torch.bfloat16,
-            device_map="cuda",
-        )
+        # Suppress the transformers 5.4 internal deprecation noise for dtype kwarg
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", message=".*torch_dtype.*deprecated.*")
+            self.base_model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                dtype=torch.bfloat16,
+                device_map="cuda",
+            )
 
         self._m = self.base_model.model          # LlamaModel internals
         self.lm_head = self.base_model.lm_head

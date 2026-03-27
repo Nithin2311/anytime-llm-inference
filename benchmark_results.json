@@ -5,12 +5,14 @@
     "accuracy": 69.2,
     "n_correct": 9,
     "n_scored": 13,
-    "full_pass_pct": 88.2,
-    "early_thresh_pct": 11.6,
-    "forced_exit_pct": 0.2,
+    "full_pass_pct": 88.9,
+    "early_thresh_pct": 11.1,
+    "forced_exit_pct": 0.0,
     "deadline_miss_pct": 0.2,
-    "global_mean_tpot_ms": 30.142,
-    "global_p99_tpot_ms": 43.968
+    "global_mean_tpot_ms": 28.634,
+    "global_p99_tpot_ms": 35.127,
+    "throughput_tps": 34.92,
+    "util_ratio": 0.7806
   },
   "query_results": [
     {
@@ -24,136 +26,136 @@
         {
           "token_idx": 1,
           "token": "Answer",
-          "time_ms": 97.903,
+          "time_ms": 174.255,
           "exit_type": "Full Pass",
           "confidence": 0.2949,
-          "threshold": 0.5214,
+          "threshold": 0.4605,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 42.334,
+          "time_ms": 42.965,
           "exit_type": "Full Pass",
           "confidence": 0.2051,
-          "threshold": 0.4544,
+          "threshold": 0.3436,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "yes",
-          "time_ms": 19.599,
-          "exit_type": "Early (Thresh: 0.45)",
+          "time_ms": 12.888,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.6992,
-          "threshold": 0.4457,
+          "threshold": 0.5586,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": ",",
-          "time_ms": 35.02,
+          "time_ms": 30.135,
           "exit_type": "Full Pass",
           "confidence": 0.0532,
-          "threshold": 0.4493,
+          "threshold": 0.5587,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "mit",
-          "time_ms": 32.484,
+          "time_ms": 30.588,
           "exit_type": "Full Pass",
           "confidence": 0.0193,
-          "threshold": 0.5621,
+          "threshold": 0.5534,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "och",
-          "time_ms": 34.309,
+          "time_ms": 30.613,
           "exit_type": "Full Pass",
           "confidence": 0.0378,
-          "threshold": 0.5828,
+          "threshold": 0.5513,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "ond",
-          "time_ms": 42.698,
+          "time_ms": 30.387,
           "exit_type": "Full Pass",
           "confidence": 0.2041,
-          "threshold": 0.4396,
+          "threshold": 0.5573,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "ria",
-          "time_ms": 42.651,
+          "time_ms": 30.865,
           "exit_type": "Full Pass",
           "confidence": 0.0297,
-          "threshold": 0.4653,
+          "threshold": 0.5524,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "play",
-          "time_ms": 42.843,
+          "time_ms": 30.592,
           "exit_type": "Full Pass",
           "confidence": 0.1465,
-          "threshold": 0.4641,
+          "threshold": 0.552,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "a",
-          "time_ms": 41.989,
+          "time_ms": 29.964,
           "exit_type": "Full Pass",
           "confidence": 0.043,
-          "threshold": 0.4775,
+          "threshold": 0.5599,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "role",
-          "time_ms": 42.604,
+          "time_ms": 30.548,
           "exit_type": "Full Pass",
           "confidence": 0.3633,
-          "threshold": 0.4699,
+          "threshold": 0.5541,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "in",
-          "time_ms": 42.586,
+          "time_ms": 30.601,
           "exit_type": "Full Pass",
           "confidence": 0.1543,
-          "threshold": 0.4647,
+          "threshold": 0.5526,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "rem",
-          "time_ms": 42.707,
+          "time_ms": 30.305,
           "exit_type": "Full Pass",
           "confidence": 0.0166,
-          "threshold": 0.4643,
+          "threshold": 0.5512,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "od",
-          "time_ms": 42.684,
+          "time_ms": 30.646,
           "exit_type": "Full Pass",
           "confidence": 0.1279,
-          "threshold": 0.4648,
+          "threshold": 0.5538,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "eling",
-          "time_ms": 19.785,
-          "exit_type": "Early (Thresh: 0.46)",
+          "time_ms": 13.137,
+          "exit_type": "Early (Thresh: 0.55)",
           "confidence": 0.6953,
-          "threshold": 0.4632,
+          "threshold": 0.5539,
           "deadline_ms": 45.0
         }
       ],
@@ -163,9 +165,10 @@
         "early_thresh_pct": 13.3,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 6.7,
-        "mean_tpot_ms": 37.449,
-        "p99_tpot_ms": 42.825,
-        "max_tpot_ms": 42.843
+        "mean_tpot_ms": 28.874,
+        "p99_tpot_ms": 41.392,
+        "max_tpot_ms": 42.965,
+        "throughput_tps": 34.63
       }
     },
     {
@@ -174,153 +177,154 @@
       "ground_truth": "no",
       "predicted": "unknown",
       "correct": false,
-      "generated_text": "Question:Whichofthefollowingmeasuresofvisualacuity,namelyLand",
+      "generated_text": "Question:Whichofthefollowingmeasuresofvisualacuity,Landolt",
       "token_records": [
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 40.442,
+          "time_ms": 30.209,
           "exit_type": "Full Pass",
           "confidence": 0.0317,
-          "threshold": 0.4868,
+          "threshold": 0.5518,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 43.89,
+          "time_ms": 29.793,
           "exit_type": "Full Pass",
           "confidence": 0.2373,
-          "threshold": 0.4213,
+          "threshold": 0.5586,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Which",
-          "time_ms": 44.231,
+          "time_ms": 29.729,
           "exit_type": "Full Pass",
           "confidence": 0.041,
-          "threshold": 0.4191,
+          "threshold": 0.5563,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "of",
-          "time_ms": 43.58,
+          "time_ms": 30.36,
           "exit_type": "Full Pass",
           "confidence": 0.0703,
-          "threshold": 0.4225,
+          "threshold": 0.5612,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "the",
-          "time_ms": 43.618,
+          "time_ms": 29.829,
           "exit_type": "Full Pass",
           "confidence": 0.1104,
-          "threshold": 0.4229,
+          "threshold": 0.5588,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "following",
-          "time_ms": 43.727,
+          "time_ms": 29.329,
           "exit_type": "Full Pass",
           "confidence": 0.0879,
-          "threshold": 0.4216,
+          "threshold": 0.56,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "measures",
-          "time_ms": 43.856,
+          "time_ms": 29.314,
           "exit_type": "Full Pass",
           "confidence": 0.1807,
-          "threshold": 0.4222,
+          "threshold": 0.5644,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "of",
-          "time_ms": 41.537,
+          "time_ms": 31.798,
           "exit_type": "Full Pass",
           "confidence": 0.0294,
-          "threshold": 0.4715,
+          "threshold": 0.5275,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "visual",
-          "time_ms": 42.275,
+          "time_ms": 30.042,
           "exit_type": "Full Pass",
           "confidence": 0.0405,
-          "threshold": 0.4681,
+          "threshold": 0.5568,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "ac",
-          "time_ms": 42.363,
+          "time_ms": 29.733,
           "exit_type": "Full Pass",
           "confidence": 0.1309,
-          "threshold": 0.4753,
+          "threshold": 0.5631,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "u",
-          "time_ms": 42.944,
+          "time_ms": 30.232,
           "exit_type": "Full Pass",
           "confidence": 0.032,
-          "threshold": 0.4637,
+          "threshold": 0.5562,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "ity",
-          "time_ms": 19.749,
-          "exit_type": "Early (Thresh: 0.46)",
+          "time_ms": 13.059,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.793,
-          "threshold": 0.4647,
+          "threshold": 0.5553,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": ",",
-          "time_ms": 42.726,
+          "time_ms": 30.648,
           "exit_type": "Full Pass",
           "confidence": 0.0214,
-          "threshold": 0.4634,
+          "threshold": 0.5513,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
-          "token": "namely",
-          "time_ms": 19.619,
-          "exit_type": "Early (Thresh: 0.47)",
+          "token": "Land",
+          "time_ms": 30.069,
+          "exit_type": "Full Pass",
           "confidence": 0.4863,
-          "threshold": 0.4654,
+          "threshold": 0.5577,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
-          "token": "Land",
-          "time_ms": 42.337,
+          "token": "olt",
+          "time_ms": 30.275,
           "exit_type": "Full Pass",
-          "confidence": 0.0198,
-          "threshold": 0.4678,
+          "confidence": 0.0339,
+          "threshold": 0.5559,
           "deadline_ms": 45.0
         }
       ],
       "metrics": {
         "n_tokens": 15,
-        "full_pass_pct": 86.7,
-        "early_thresh_pct": 13.3,
+        "full_pass_pct": 93.3,
+        "early_thresh_pct": 6.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 39.747,
-        "p99_tpot_ms": 44.187,
-        "max_tpot_ms": 44.231
+        "mean_tpot_ms": 28.872,
+        "p99_tpot_ms": 31.648,
+        "max_tpot_ms": 31.798,
+        "throughput_tps": 34.64
       }
     },
     {
@@ -334,136 +338,136 @@
         {
           "token_idx": 1,
           "token": "Yes",
-          "time_ms": 42.317,
+          "time_ms": 29.466,
           "exit_type": "Full Pass",
           "confidence": 0.033,
-          "threshold": 0.4664,
+          "threshold": 0.5609,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ",",
-          "time_ms": 42.521,
+          "time_ms": 29.583,
           "exit_type": "Full Pass",
           "confidence": 0.051,
-          "threshold": 0.4662,
+          "threshold": 0.5616,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "yes",
-          "time_ms": 42.332,
+          "time_ms": 29.482,
           "exit_type": "Full Pass",
           "confidence": 0.028,
-          "threshold": 0.4412,
+          "threshold": 0.5614,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": ",",
-          "time_ms": 42.605,
+          "time_ms": 29.486,
           "exit_type": "Full Pass",
           "confidence": 0.0145,
-          "threshold": 0.4725,
+          "threshold": 0.5617,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "and",
-          "time_ms": 42.669,
+          "time_ms": 29.265,
           "exit_type": "Full Pass",
           "confidence": 0.0549,
-          "threshold": 0.4723,
+          "threshold": 0.5664,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "maybe",
-          "time_ms": 26.214,
+          "time_ms": 29.929,
           "exit_type": "Full Pass",
           "confidence": 0.5547,
-          "threshold": 0.5874,
+          "threshold": 0.5588,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": ".",
-          "time_ms": 26.211,
+          "time_ms": 29.766,
           "exit_type": "Full Pass",
           "confidence": 0.0559,
-          "threshold": 0.5882,
+          "threshold": 0.5599,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "\n",
-          "time_ms": 26.224,
+          "time_ms": 29.662,
           "exit_type": "Full Pass",
           "confidence": 0.1328,
-          "threshold": 0.5879,
+          "threshold": 0.5612,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "\n",
-          "time_ms": 26.187,
+          "time_ms": 30.303,
           "exit_type": "Full Pass",
           "confidence": 0.1602,
-          "threshold": 0.5882,
+          "threshold": 0.5553,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "Syn",
-          "time_ms": 26.205,
+          "time_ms": 30.375,
           "exit_type": "Full Pass",
           "confidence": 0.0344,
-          "threshold": 0.5883,
+          "threshold": 0.5539,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "cope",
-          "time_ms": 26.217,
+          "time_ms": 29.549,
           "exit_type": "Full Pass",
           "confidence": 0.0244,
-          "threshold": 0.5889,
+          "threshold": 0.5586,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "during",
-          "time_ms": 26.228,
+          "time_ms": 29.666,
           "exit_type": "Full Pass",
           "confidence": 0.2207,
-          "threshold": 0.5876,
+          "threshold": 0.5619,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "bath",
-          "time_ms": 26.283,
+          "time_ms": 29.614,
           "exit_type": "Full Pass",
           "confidence": 0.0291,
-          "threshold": 0.5878,
+          "threshold": 0.5618,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "ing",
-          "time_ms": 11.253,
-          "exit_type": "Early (Thresh: 0.59)",
+          "time_ms": 12.892,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.9648,
-          "threshold": 0.5888,
+          "threshold": 0.5588,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "in",
-          "time_ms": 11.302,
-          "exit_type": "Early (Thresh: 0.59)",
+          "time_ms": 13.056,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.7344,
-          "threshold": 0.5879,
+          "threshold": 0.5556,
           "deadline_ms": 45.0
         }
       ],
@@ -473,9 +477,10 @@
         "early_thresh_pct": 13.3,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 28.747,
-        "p99_tpot_ms": 42.661,
-        "max_tpot_ms": 42.669
+        "mean_tpot_ms": 27.331,
+        "p99_tpot_ms": 30.366,
+        "max_tpot_ms": 30.375,
+        "throughput_tps": 36.59
       }
     },
     {
@@ -489,136 +494,136 @@
         {
           "token_idx": 1,
           "token": "Yes",
-          "time_ms": 26.506,
+          "time_ms": 30.25,
           "exit_type": "Full Pass",
           "confidence": 0.1592,
-          "threshold": 0.587,
+          "threshold": 0.5529,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ",",
-          "time_ms": 26.579,
+          "time_ms": 28.981,
           "exit_type": "Full Pass",
           "confidence": 0.0131,
-          "threshold": 0.5842,
+          "threshold": 0.5629,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "the",
-          "time_ms": 26.43,
+          "time_ms": 28.122,
           "exit_type": "Full Pass",
           "confidence": 0.0579,
-          "threshold": 0.5865,
+          "threshold": 0.5717,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "long",
-          "time_ms": 26.263,
+          "time_ms": 28.725,
           "exit_type": "Full Pass",
           "confidence": 0.2393,
-          "threshold": 0.5879,
+          "threshold": 0.5712,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "-",
-          "time_ms": 26.418,
+          "time_ms": 29.261,
           "exit_type": "Full Pass",
           "confidence": 0.1924,
-          "threshold": 0.5877,
+          "threshold": 0.5631,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "term",
-          "time_ms": 26.683,
+          "time_ms": 29.466,
           "exit_type": "Full Pass",
           "confidence": 0.0791,
-          "threshold": 0.5844,
+          "threshold": 0.5628,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "results",
-          "time_ms": 26.294,
+          "time_ms": 29.131,
           "exit_type": "Full Pass",
           "confidence": 0.0693,
-          "threshold": 0.5869,
+          "threshold": 0.5671,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "of",
-          "time_ms": 27.148,
+          "time_ms": 30.597,
           "exit_type": "Full Pass",
           "confidence": 0.3105,
-          "threshold": 0.5881,
+          "threshold": 0.5535,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "the",
-          "time_ms": 11.36,
-          "exit_type": "Early (Thresh: 0.59)",
+          "time_ms": 13.059,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.918,
-          "threshold": 0.5868,
+          "threshold": 0.5556,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "trans",
-          "time_ms": 26.373,
+          "time_ms": 30.007,
           "exit_type": "Full Pass",
           "confidence": 0.0337,
-          "threshold": 0.5875,
+          "threshold": 0.5566,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "anal",
-          "time_ms": 26.265,
+          "time_ms": 29.119,
           "exit_type": "Full Pass",
           "confidence": 0.042,
-          "threshold": 0.5876,
+          "threshold": 0.5661,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "pull",
-          "time_ms": 26.315,
+          "time_ms": 29.548,
           "exit_type": "Full Pass",
           "confidence": 0.0669,
-          "threshold": 0.5877,
+          "threshold": 0.563,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "-",
-          "time_ms": 26.232,
+          "time_ms": 29.595,
           "exit_type": "Full Pass",
           "confidence": 0.1582,
-          "threshold": 0.5885,
+          "threshold": 0.5616,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "through",
-          "time_ms": 26.28,
+          "time_ms": 29.774,
           "exit_type": "Full Pass",
           "confidence": 0.0322,
-          "threshold": 0.5876,
+          "threshold": 0.5564,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "(",
-          "time_ms": 26.22,
+          "time_ms": 29.596,
           "exit_type": "Full Pass",
           "confidence": 0.2559,
-          "threshold": 0.588,
+          "threshold": 0.5618,
           "deadline_ms": 45.0
         }
       ],
@@ -628,9 +633,10 @@
         "early_thresh_pct": 6.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 25.347,
-        "p99_tpot_ms": 27.088,
-        "max_tpot_ms": 27.148
+        "mean_tpot_ms": 28.213,
+        "p99_tpot_ms": 30.52,
+        "max_tpot_ms": 30.597,
+        "throughput_tps": 35.44
       }
     },
     {
@@ -644,136 +650,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 26.656,
+          "time_ms": 29.637,
           "exit_type": "Full Pass",
           "confidence": 0.0991,
-          "threshold": 0.5838,
+          "threshold": 0.5619,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 26.359,
+          "time_ms": 29.054,
           "exit_type": "Full Pass",
           "confidence": 0.0986,
-          "threshold": 0.5882,
+          "threshold": 0.567,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Can",
-          "time_ms": 26.174,
+          "time_ms": 29.611,
           "exit_type": "Full Pass",
           "confidence": 0.0222,
-          "threshold": 0.5888,
+          "threshold": 0.5612,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "tail",
-          "time_ms": 26.266,
+          "time_ms": 29.923,
           "exit_type": "Full Pass",
           "confidence": 0.1484,
-          "threshold": 0.5881,
+          "threshold": 0.5576,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "ored",
-          "time_ms": 26.144,
+          "time_ms": 29.266,
           "exit_type": "Full Pass",
           "confidence": 0.373,
-          "threshold": 0.5895,
+          "threshold": 0.5614,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "tele",
-          "time_ms": 26.216,
+          "time_ms": 29.441,
           "exit_type": "Full Pass",
           "confidence": 0.0229,
-          "threshold": 0.5883,
+          "threshold": 0.5645,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "phone",
-          "time_ms": 26.245,
+          "time_ms": 30.011,
           "exit_type": "Full Pass",
           "confidence": 0.334,
-          "threshold": 0.5886,
+          "threshold": 0.5583,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "coun",
-          "time_ms": 26.62,
+          "time_ms": 30.517,
           "exit_type": "Full Pass",
           "confidence": 0.0245,
-          "threshold": 0.5854,
+          "threshold": 0.5539,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "sel",
-          "time_ms": 26.581,
+          "time_ms": 29.69,
           "exit_type": "Full Pass",
           "confidence": 0.1177,
-          "threshold": 0.5849,
+          "threshold": 0.5634,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "ing",
-          "time_ms": 11.465,
-          "exit_type": "Early (Thresh: 0.58)",
+          "time_ms": 13.058,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.8594,
-          "threshold": 0.585,
+          "threshold": 0.5553,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "increase",
-          "time_ms": 26.671,
+          "time_ms": 30.411,
           "exit_type": "Full Pass",
           "confidence": 0.1777,
-          "threshold": 0.5847,
+          "threshold": 0.5557,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "m",
-          "time_ms": 26.737,
+          "time_ms": 30.135,
           "exit_type": "Full Pass",
           "confidence": 0.0364,
-          "threshold": 0.5846,
+          "threshold": 0.5563,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "amm",
-          "time_ms": 26.795,
+          "time_ms": 30.232,
           "exit_type": "Full Pass",
           "confidence": 0.021,
-          "threshold": 0.585,
+          "threshold": 0.5575,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "ography",
-          "time_ms": 26.921,
+          "time_ms": 30.358,
           "exit_type": "Full Pass",
           "confidence": 0.1865,
-          "threshold": 0.581,
+          "threshold": 0.5548,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "use",
-          "time_ms": 26.752,
+          "time_ms": 30.585,
           "exit_type": "Full Pass",
           "confidence": 0.02,
-          "threshold": 0.5851,
+          "threshold": 0.5527,
           "deadline_ms": 45.0
         }
       ],
@@ -783,9 +789,10 @@
         "early_thresh_pct": 6.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 25.425,
-        "p99_tpot_ms": 26.905,
-        "max_tpot_ms": 26.921
+        "mean_tpot_ms": 28.735,
+        "p99_tpot_ms": 30.576,
+        "max_tpot_ms": 30.585,
+        "throughput_tps": 34.8
       }
     },
     {
@@ -799,136 +806,136 @@
         {
           "token_idx": 1,
           "token": "Answer",
-          "time_ms": 26.066,
+          "time_ms": 29.711,
           "exit_type": "Full Pass",
           "confidence": 0.1279,
-          "threshold": 0.5881,
+          "threshold": 0.5612,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 26.146,
+          "time_ms": 29.804,
           "exit_type": "Full Pass",
           "confidence": 0.1738,
-          "threshold": 0.5907,
+          "threshold": 0.5596,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Yes",
-          "time_ms": 25.978,
+          "time_ms": 29.712,
           "exit_type": "Full Pass",
           "confidence": 0.377,
-          "threshold": 0.5902,
+          "threshold": 0.5598,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": ",",
-          "time_ms": 25.999,
+          "time_ms": 29.517,
           "exit_type": "Full Pass",
           "confidence": 0.0369,
-          "threshold": 0.5902,
+          "threshold": 0.565,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "double",
-          "time_ms": 26.088,
+          "time_ms": 29.66,
           "exit_type": "Full Pass",
           "confidence": 0.0172,
-          "threshold": 0.5876,
+          "threshold": 0.5612,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "bal",
-          "time_ms": 25.66,
+          "time_ms": 30.276,
           "exit_type": "Full Pass",
           "confidence": 0.0508,
-          "threshold": 0.5935,
+          "threshold": 0.5586,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "lo",
-          "time_ms": 25.98,
+          "time_ms": 28.909,
           "exit_type": "Full Pass",
           "confidence": 0.0364,
-          "threshold": 0.5919,
+          "threshold": 0.5677,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "on",
-          "time_ms": 26.557,
+          "time_ms": 29.888,
           "exit_type": "Full Pass",
           "confidence": 0.0493,
-          "threshold": 0.5771,
+          "threshold": 0.5608,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "enter",
-          "time_ms": 26.059,
+          "time_ms": 30.627,
           "exit_type": "Full Pass",
           "confidence": 0.0569,
-          "threshold": 0.591,
+          "threshold": 0.5511,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "os",
-          "time_ms": 25.819,
+          "time_ms": 29.097,
           "exit_type": "Full Pass",
           "confidence": 0.1426,
-          "threshold": 0.5921,
+          "threshold": 0.5603,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "copy",
-          "time_ms": 25.845,
+          "time_ms": 29.898,
           "exit_type": "Full Pass",
           "confidence": 0.0481,
-          "threshold": 0.5898,
+          "threshold": 0.5636,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "(",
-          "time_ms": 11.063,
-          "exit_type": "Early (Thresh: 0.59)",
+          "time_ms": 12.912,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.6094,
-          "threshold": 0.5926,
+          "threshold": 0.5584,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "DB",
-          "time_ms": 25.845,
+          "time_ms": 30.572,
           "exit_type": "Full Pass",
           "confidence": 0.084,
-          "threshold": 0.5905,
+          "threshold": 0.5593,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "E",
-          "time_ms": 25.753,
+          "time_ms": 30.706,
           "exit_type": "Full Pass",
           "confidence": 0.1318,
-          "threshold": 0.5935,
+          "threshold": 0.5447,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": ")",
-          "time_ms": 26.386,
+          "time_ms": 32.553,
           "exit_type": "Full Pass",
           "confidence": 0.0222,
-          "threshold": 0.5888,
+          "threshold": 0.5368,
           "deadline_ms": 45.0
         }
       ],
@@ -938,9 +945,10 @@
         "early_thresh_pct": 6.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 24.941,
-        "p99_tpot_ms": 26.535,
-        "max_tpot_ms": 26.557
+        "mean_tpot_ms": 28.867,
+        "p99_tpot_ms": 32.313,
+        "max_tpot_ms": 32.553,
+        "throughput_tps": 34.64
       }
     },
     {
@@ -954,136 +962,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 27.217,
+          "time_ms": 32.226,
           "exit_type": "Full Pass",
           "confidence": 0.0251,
-          "threshold": 0.5814,
+          "threshold": 0.5421,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 27.207,
+          "time_ms": 31.853,
           "exit_type": "Full Pass",
           "confidence": 0.063,
-          "threshold": 0.5807,
+          "threshold": 0.5538,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "",
-          "time_ms": 27.096,
+          "time_ms": 31.789,
           "exit_type": "Full Pass",
           "confidence": 0.0288,
-          "threshold": 0.5808,
+          "threshold": 0.5346,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "3",
-          "time_ms": 27.097,
+          "time_ms": 32.306,
           "exit_type": "Full Pass",
           "confidence": 0.0942,
-          "threshold": 0.5808,
+          "threshold": 0.5458,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "0",
-          "time_ms": 26.778,
+          "time_ms": 30.406,
           "exit_type": "Full Pass",
           "confidence": 0.2793,
-          "threshold": 0.5834,
+          "threshold": 0.573,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "-",
-          "time_ms": 11.542,
-          "exit_type": "Early (Thresh: 0.58)",
+          "time_ms": 14.289,
+          "exit_type": "Early (Thresh: 0.53)",
           "confidence": 0.7148,
-          "threshold": 0.5834,
+          "threshold": 0.5323,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "Day",
-          "time_ms": 26.758,
+          "time_ms": 33.162,
           "exit_type": "Full Pass",
           "confidence": 0.3477,
-          "threshold": 0.5834,
+          "threshold": 0.5301,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "and",
-          "time_ms": 26.825,
+          "time_ms": 31.281,
           "exit_type": "Full Pass",
           "confidence": 0.4258,
-          "threshold": 0.5831,
+          "threshold": 0.5327,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "",
-          "time_ms": 26.718,
+          "time_ms": 32.261,
           "exit_type": "Full Pass",
           "confidence": 0.2451,
-          "threshold": 0.5841,
+          "threshold": 0.5476,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "1",
-          "time_ms": 26.757,
+          "time_ms": 31.157,
           "exit_type": "Full Pass",
           "confidence": 0.0767,
-          "threshold": 0.5842,
+          "threshold": 0.5481,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "-",
-          "time_ms": 11.476,
-          "exit_type": "Early (Thresh: 0.58)",
+          "time_ms": 14.147,
+          "exit_type": "Early (Thresh: 0.54)",
           "confidence": 0.5938,
-          "threshold": 0.5846,
+          "threshold": 0.5354,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "year",
-          "time_ms": 26.742,
+          "time_ms": 30.174,
           "exit_type": "Full Pass",
           "confidence": 0.0962,
-          "threshold": 0.5845,
+          "threshold": 0.5502,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "mort",
-          "time_ms": 34.885,
+          "time_ms": 33.146,
           "exit_type": "Full Pass",
           "confidence": 0.0198,
-          "threshold": 0.5166,
+          "threshold": 0.5332,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "ality",
-          "time_ms": 28.787,
+          "time_ms": 31.629,
           "exit_type": "Full Pass",
           "confidence": 0.0182,
-          "threshold": 0.5463,
+          "threshold": 0.5441,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "in",
-          "time_ms": 40.063,
+          "time_ms": 31.455,
           "exit_type": "Full Pass",
           "confidence": 0.0518,
-          "threshold": 0.5092,
+          "threshold": 0.5327,
           "deadline_ms": 45.0
         }
       ],
@@ -1093,9 +1101,10 @@
         "early_thresh_pct": 13.3,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 26.338,
-        "p99_tpot_ms": 39.39,
-        "max_tpot_ms": 40.063
+        "mean_tpot_ms": 29.218,
+        "p99_tpot_ms": 33.16,
+        "max_tpot_ms": 33.162,
+        "throughput_tps": 34.23
       }
     },
     {
@@ -1109,136 +1118,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 42.112,
+          "time_ms": 33.349,
           "exit_type": "Full Pass",
           "confidence": 0.1436,
-          "threshold": 0.5192,
+          "threshold": 0.5312,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 42.581,
+          "time_ms": 30.576,
           "exit_type": "Full Pass",
           "confidence": 0.0273,
-          "threshold": 0.4722,
+          "threshold": 0.549,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Is",
-          "time_ms": 44.442,
+          "time_ms": 29.469,
           "exit_type": "Full Pass",
           "confidence": 0.0293,
-          "threshold": 0.4703,
+          "threshold": 0.576,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "adjust",
-          "time_ms": 40.598,
+          "time_ms": 32.813,
           "exit_type": "Full Pass",
           "confidence": 0.1011,
-          "threshold": 0.4796,
+          "threshold": 0.5352,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "ment",
-          "time_ms": 40.072,
+          "time_ms": 31.252,
           "exit_type": "Full Pass",
           "confidence": 0.2266,
-          "threshold": 0.5193,
+          "threshold": 0.5499,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "for",
-          "time_ms": 42.388,
+          "time_ms": 30.059,
           "exit_type": "Full Pass",
           "confidence": 0.0728,
-          "threshold": 0.5197,
+          "threshold": 0.5582,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "reporting",
-          "time_ms": 42.458,
+          "time_ms": 32.83,
           "exit_type": "Full Pass",
           "confidence": 0.0776,
-          "threshold": 0.4844,
+          "threshold": 0.5362,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "heter",
-          "time_ms": 44.985,
+          "time_ms": 32.593,
           "exit_type": "Full Pass",
           "confidence": 0.0708,
-          "threshold": 0.4634,
+          "threshold": 0.5404,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "ogene",
-          "time_ms": 42.936,
+          "time_ms": 30.375,
           "exit_type": "Full Pass",
           "confidence": 0.4082,
-          "threshold": 0.4772,
+          "threshold": 0.5517,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "ity",
-          "time_ms": 43.191,
+          "time_ms": 32.311,
           "exit_type": "Full Pass",
           "confidence": 0.0708,
-          "threshold": 0.5048,
+          "threshold": 0.536,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "necessary",
-          "time_ms": 43.115,
+          "time_ms": 30.724,
           "exit_type": "Full Pass",
           "confidence": 0.0243,
-          "threshold": 0.4613,
+          "threshold": 0.5518,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "in",
-          "time_ms": 44.346,
+          "time_ms": 30.698,
           "exit_type": "Full Pass",
           "confidence": 0.0192,
-          "threshold": 0.4731,
+          "threshold": 0.5415,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "sleep",
-          "time_ms": 40.562,
+          "time_ms": 31.949,
           "exit_type": "Full Pass",
           "confidence": 0.0216,
-          "threshold": 0.4766,
+          "threshold": 0.5512,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "dis",
-          "time_ms": 40.303,
+          "time_ms": 32.056,
           "exit_type": "Full Pass",
           "confidence": 0.1167,
-          "threshold": 0.5191,
+          "threshold": 0.5348,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "orders",
-          "time_ms": 42.987,
+          "time_ms": 30.961,
           "exit_type": "Full Pass",
           "confidence": 0.0444,
-          "threshold": 0.5175,
+          "threshold": 0.5391,
           "deadline_ms": 45.0
         }
       ],
@@ -1248,9 +1257,10 @@
         "early_thresh_pct": 0.0,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 42.497,
-        "p99_tpot_ms": 44.914,
-        "max_tpot_ms": 44.985
+        "mean_tpot_ms": 31.333,
+        "p99_tpot_ms": 32.828,
+        "max_tpot_ms": 32.83,
+        "throughput_tps": 31.91
       }
     },
     {
@@ -1264,136 +1274,136 @@
         {
           "token_idx": 1,
           "token": "Answer",
-          "time_ms": 41.764,
+          "time_ms": 32.489,
           "exit_type": "Full Pass",
           "confidence": 0.1289,
-          "threshold": 0.5191,
+          "threshold": 0.5388,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 39.408,
+          "time_ms": 32.595,
           "exit_type": "Full Pass",
           "confidence": 0.249,
-          "threshold": 0.4892,
+          "threshold": 0.5423,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "yes",
-          "time_ms": 18.611,
-          "exit_type": "Early (Thresh: 0.46)",
+          "time_ms": 11.921,
+          "exit_type": "Early (Thresh: 0.58)",
           "confidence": 0.5938,
-          "threshold": 0.4625,
+          "threshold": 0.5767,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "\n",
-          "time_ms": 38.248,
+          "time_ms": 29.58,
           "exit_type": "Full Pass",
           "confidence": 0.0417,
-          "threshold": 0.5033,
+          "threshold": 0.5736,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "\n",
-          "time_ms": 39.044,
+          "time_ms": 29.843,
           "exit_type": "Full Pass",
           "confidence": 0.0103,
-          "threshold": 0.5229,
+          "threshold": 0.5589,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "Ex",
-          "time_ms": 39.117,
+          "time_ms": 29.485,
           "exit_type": "Full Pass",
           "confidence": 0.0179,
-          "threshold": 0.528,
+          "threshold": 0.5623,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "plan",
-          "time_ms": 39.939,
+          "time_ms": 27.691,
           "exit_type": "Full Pass",
           "confidence": 0.0444,
-          "threshold": 0.5236,
+          "threshold": 0.5816,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "ation",
-          "time_ms": 42.372,
+          "time_ms": 31.396,
           "exit_type": "Full Pass",
           "confidence": 0.2129,
-          "threshold": 0.4375,
+          "threshold": 0.5501,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": ":",
-          "time_ms": 19.34,
-          "exit_type": "Early (Thresh: 0.48)",
+          "time_ms": 12.914,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.8711,
-          "threshold": 0.4762,
+          "threshold": 0.5581,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "Mut",
-          "time_ms": 42.058,
+          "time_ms": 29.808,
           "exit_type": "Full Pass",
           "confidence": 0.0283,
-          "threshold": 0.4872,
+          "threshold": 0.5618,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "ations",
-          "time_ms": 42.396,
+          "time_ms": 28.154,
           "exit_type": "Full Pass",
           "confidence": 0.0088,
-          "threshold": 0.4376,
+          "threshold": 0.5802,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "causing",
-          "time_ms": 42.234,
+          "time_ms": 31.958,
           "exit_type": "Full Pass",
           "confidence": 0.0179,
-          "threshold": 0.4697,
+          "threshold": 0.5417,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "low",
-          "time_ms": 43.223,
+          "time_ms": 31.912,
           "exit_type": "Full Pass",
           "confidence": 0.042,
-          "threshold": 0.4755,
+          "threshold": 0.5398,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "HD",
-          "time_ms": 39.641,
+          "time_ms": 28.264,
           "exit_type": "Full Pass",
           "confidence": 0.0491,
-          "threshold": 0.5231,
+          "threshold": 0.5674,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "L",
-          "time_ms": 40.485,
+          "time_ms": 30.119,
           "exit_type": "Full Pass",
           "confidence": 0.0566,
-          "threshold": 0.5198,
+          "threshold": 0.5565,
           "deadline_ms": 45.0
         }
       ],
@@ -1403,9 +1413,10 @@
         "early_thresh_pct": 13.3,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 37.58,
-        "p99_tpot_ms": 43.115,
-        "max_tpot_ms": 43.223
+        "mean_tpot_ms": 27.546,
+        "p99_tpot_ms": 32.512,
+        "max_tpot_ms": 32.595,
+        "throughput_tps": 36.3
       }
     },
     {
@@ -1419,136 +1430,136 @@
         {
           "token_idx": 1,
           "token": "Response",
-          "time_ms": 42.855,
+          "time_ms": 30.844,
           "exit_type": "Full Pass",
           "confidence": 0.0457,
-          "threshold": 0.5027,
+          "threshold": 0.551,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 42.637,
+          "time_ms": 30.435,
           "exit_type": "Full Pass",
           "confidence": 0.2656,
-          "threshold": 0.4755,
+          "threshold": 0.5763,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "\n",
-          "time_ms": 43.927,
+          "time_ms": 33.304,
           "exit_type": "Full Pass",
           "confidence": 0.1826,
-          "threshold": 0.4738,
+          "threshold": 0.53,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "\n",
-          "time_ms": 40.16,
+          "time_ms": 31.534,
           "exit_type": "Full Pass",
           "confidence": 0.0439,
-          "threshold": 0.483,
+          "threshold": 0.5457,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "Yes",
-          "time_ms": 39.95,
+          "time_ms": 31.833,
           "exit_type": "Full Pass",
           "confidence": 0.0233,
-          "threshold": 0.522,
+          "threshold": 0.568,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": ",",
-          "time_ms": 41.944,
+          "time_ms": 34.281,
           "exit_type": "Full Pass",
           "confidence": 0.0417,
-          "threshold": 0.5248,
+          "threshold": 0.5215,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "short",
-          "time_ms": 39.792,
+          "time_ms": 36.428,
           "exit_type": "Full Pass",
           "confidence": 0.0167,
-          "threshold": 0.4903,
+          "threshold": 0.5177,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "stay",
-          "time_ms": 40.691,
+          "time_ms": 37.101,
           "exit_type": "Full Pass",
           "confidence": 0.1914,
-          "threshold": 0.4638,
+          "threshold": 0.474,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "or",
-          "time_ms": 43.978,
+          "time_ms": 32.442,
           "exit_type": "Full Pass",
           "confidence": 0.2734,
-          "threshold": 0.475,
+          "threshold": 0.5426,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "",
-          "time_ms": 40.211,
+          "time_ms": 32.278,
           "exit_type": "Full Pass",
           "confidence": 0.3926,
-          "threshold": 0.4844,
+          "threshold": 0.5271,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "2",
-          "time_ms": 40.965,
+          "time_ms": 31.125,
           "exit_type": "Full Pass",
           "confidence": 0.1348,
-          "threshold": 0.4325,
+          "threshold": 0.565,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "3",
-          "time_ms": 39.979,
+          "time_ms": 33.745,
           "exit_type": "Full Pass",
           "confidence": 0.126,
-          "threshold": 0.4755,
+          "threshold": 0.5298,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "-",
-          "time_ms": 19.554,
-          "exit_type": "Early (Thresh: 0.47)",
+          "time_ms": 13.587,
+          "exit_type": "Early (Thresh: 0.55)",
           "confidence": 0.8516,
-          "threshold": 0.4736,
+          "threshold": 0.5457,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "hour",
-          "time_ms": 41.981,
+          "time_ms": 30.017,
           "exit_type": "Full Pass",
           "confidence": 0.0723,
-          "threshold": 0.494,
+          "threshold": 0.5458,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "w",
-          "time_ms": 43.037,
+          "time_ms": 32.93,
           "exit_type": "Full Pass",
           "confidence": 0.016,
-          "threshold": 0.4336,
+          "threshold": 0.5398,
           "deadline_ms": 45.0
         }
       ],
@@ -1558,9 +1569,10 @@
         "early_thresh_pct": 6.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 39.915,
-        "p99_tpot_ms": 43.971,
-        "max_tpot_ms": 43.978
+        "mean_tpot_ms": 31.503,
+        "p99_tpot_ms": 37.014,
+        "max_tpot_ms": 37.101,
+        "throughput_tps": 31.74
       }
     },
     {
@@ -1574,136 +1586,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 38.988,
+          "time_ms": 30.901,
           "exit_type": "Full Pass",
           "confidence": 0.1699,
-          "threshold": 0.498,
+          "threshold": 0.5473,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 39.335,
+          "time_ms": 28.925,
           "exit_type": "Full Pass",
           "confidence": 0.052,
-          "threshold": 0.4793,
+          "threshold": 0.573,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Did",
-          "time_ms": 39.222,
+          "time_ms": 32.017,
           "exit_type": "Full Pass",
           "confidence": 0.0167,
-          "threshold": 0.4808,
+          "threshold": 0.5475,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "the",
-          "time_ms": 42.243,
+          "time_ms": 30.775,
           "exit_type": "Full Pass",
           "confidence": 0.0287,
-          "threshold": 0.4819,
+          "threshold": 0.5456,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "reduction",
-          "time_ms": 38.824,
+          "time_ms": 29.132,
           "exit_type": "Full Pass",
           "confidence": 0.1235,
-          "threshold": 0.4956,
+          "threshold": 0.5582,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "of",
-          "time_ms": 39.66,
+          "time_ms": 31.891,
           "exit_type": "Full Pass",
           "confidence": 0.3574,
-          "threshold": 0.5157,
+          "threshold": 0.5223,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "Chile",
-          "time_ms": 36.432,
+          "time_ms": 29.572,
           "exit_type": "Full Pass",
           "confidence": 0.0693,
-          "threshold": 0.5288,
+          "threshold": 0.5625,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "'",
-          "time_ms": 19.01,
-          "exit_type": "Early (Thresh: 0.48)",
+          "time_ms": 12.987,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.9336,
-          "threshold": 0.4839,
+          "threshold": 0.5568,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "s",
-          "time_ms": 19.315,
-          "exit_type": "Early (Thresh: 0.45)",
+          "time_ms": 12.351,
+          "exit_type": "Early (Thresh: 0.57)",
           "confidence": 0.5781,
-          "threshold": 0.4517,
+          "threshold": 0.5683,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "traffic",
-          "time_ms": 42.067,
+          "time_ms": 29.314,
           "exit_type": "Full Pass",
           "confidence": 0.0835,
-          "threshold": 0.4746,
+          "threshold": 0.572,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "fatal",
-          "time_ms": 41.601,
+          "time_ms": 30.376,
           "exit_type": "Full Pass",
           "confidence": 0.032,
-          "threshold": 0.5238,
+          "threshold": 0.5555,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "ities",
-          "time_ms": 41.853,
+          "time_ms": 30.133,
           "exit_type": "Full Pass",
           "confidence": 0.1338,
-          "threshold": 0.4785,
+          "threshold": 0.5576,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "and",
-          "time_ms": 17.332,
-          "exit_type": "Early (Thresh: 0.52)",
+          "time_ms": 11.873,
+          "exit_type": "Early (Thresh: 0.58)",
           "confidence": 0.8203,
-          "threshold": 0.5156,
+          "threshold": 0.5775,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "/",
-          "time_ms": 18.918,
-          "exit_type": "Early (Thresh: 0.49)",
+          "time_ms": 12.175,
+          "exit_type": "Early (Thresh: 0.57)",
           "confidence": 0.6758,
-          "threshold": 0.4856,
+          "threshold": 0.5717,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "or",
-          "time_ms": 17.957,
-          "exit_type": "Early (Thresh: 0.50)",
+          "time_ms": 12.853,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.8906,
-          "threshold": 0.5039,
+          "threshold": 0.559,
           "deadline_ms": 45.0
         }
       ],
@@ -1713,9 +1725,10 @@
         "early_thresh_pct": 33.3,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 32.412,
-        "p99_tpot_ms": 42.22,
-        "max_tpot_ms": 42.243
+        "mean_tpot_ms": 23.884,
+        "p99_tpot_ms": 32.001,
+        "max_tpot_ms": 32.017,
+        "throughput_tps": 41.87
       }
     },
     {
@@ -1729,136 +1742,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 44.72,
+          "time_ms": 30.273,
           "exit_type": "Full Pass",
           "confidence": 0.0254,
-          "threshold": 0.4592,
+          "threshold": 0.5568,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 40.442,
+          "time_ms": 28.415,
           "exit_type": "Full Pass",
           "confidence": 0.0537,
-          "threshold": 0.4813,
+          "threshold": 0.558,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "(",
-          "time_ms": 37.68,
+          "time_ms": 29.651,
           "exit_type": "Full Pass",
           "confidence": 0.0967,
-          "threshold": 0.521,
+          "threshold": 0.5641,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "1",
-          "time_ms": 26.82,
+          "time_ms": 30.498,
           "exit_type": "Full Pass",
           "confidence": 0.0513,
-          "threshold": 0.5833,
+          "threshold": 0.5547,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": ")",
-          "time_ms": 26.429,
+          "time_ms": 30.035,
           "exit_type": "Full Pass",
           "confidence": 0.0869,
-          "threshold": 0.5871,
+          "threshold": 0.5553,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "Is",
-          "time_ms": 26.353,
+          "time_ms": 30.157,
           "exit_type": "Full Pass",
           "confidence": 0.1621,
-          "threshold": 0.5862,
+          "threshold": 0.5739,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "the",
-          "time_ms": 26.192,
+          "time_ms": 30.278,
           "exit_type": "Full Pass",
           "confidence": 0.1514,
-          "threshold": 0.5883,
+          "threshold": 0.5517,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "inc",
-          "time_ms": 26.265,
+          "time_ms": 29.917,
           "exit_type": "Full Pass",
           "confidence": 0.024,
-          "threshold": 0.5886,
+          "threshold": 0.5589,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "idence",
-          "time_ms": 26.326,
+          "time_ms": 28.461,
           "exit_type": "Full Pass",
           "confidence": 0.0723,
-          "threshold": 0.5885,
+          "threshold": 0.5725,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "of",
-          "time_ms": 11.367,
-          "exit_type": "Early (Thresh: 0.59)",
+          "time_ms": 12.869,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.8516,
-          "threshold": 0.5866,
+          "threshold": 0.5591,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "comp",
-          "time_ms": 26.188,
+          "time_ms": 29.954,
           "exit_type": "Full Pass",
           "confidence": 0.0176,
-          "threshold": 0.5892,
+          "threshold": 0.5585,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "lications",
-          "time_ms": 26.181,
+          "time_ms": 29.995,
           "exit_type": "Full Pass",
           "confidence": 0.0232,
-          "threshold": 0.5892,
+          "threshold": 0.5588,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "using",
-          "time_ms": 26.186,
+          "time_ms": 28.209,
           "exit_type": "Full Pass",
           "confidence": 0.0156,
-          "threshold": 0.5893,
+          "threshold": 0.5752,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "th",
-          "time_ms": 26.308,
+          "time_ms": 29.948,
           "exit_type": "Full Pass",
           "confidence": 0.0155,
-          "threshold": 0.587,
+          "threshold": 0.5595,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "era",
-          "time_ms": 26.343,
+          "time_ms": 29.66,
           "exit_type": "Full Pass",
           "confidence": 0.041,
-          "threshold": 0.5897,
+          "threshold": 0.5622,
           "deadline_ms": 45.0
         }
       ],
@@ -1868,9 +1881,10 @@
         "early_thresh_pct": 6.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 27.077,
-        "p99_tpot_ms": 40.083,
-        "max_tpot_ms": 40.442
+        "mean_tpot_ms": 28.432,
+        "p99_tpot_ms": 30.469,
+        "max_tpot_ms": 30.498,
+        "throughput_tps": 35.17
       }
     },
     {
@@ -1884,136 +1898,136 @@
         {
           "token_idx": 1,
           "token": "Response",
-          "time_ms": 26.788,
+          "time_ms": 28.533,
           "exit_type": "Full Pass",
           "confidence": 0.2432,
-          "threshold": 0.5831,
+          "threshold": 0.5787,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 26.725,
+          "time_ms": 29.68,
           "exit_type": "Full Pass",
           "confidence": 0.2041,
-          "threshold": 0.5841,
+          "threshold": 0.5599,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "\n",
-          "time_ms": 26.583,
+          "time_ms": 29.628,
           "exit_type": "Full Pass",
           "confidence": 0.3066,
-          "threshold": 0.5848,
+          "threshold": 0.5604,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "\n",
-          "time_ms": 26.485,
+          "time_ms": 28.092,
           "exit_type": "Full Pass",
           "confidence": 0.0225,
-          "threshold": 0.5868,
+          "threshold": 0.5696,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "1",
-          "time_ms": 26.408,
+          "time_ms": 29.619,
           "exit_type": "Full Pass",
           "confidence": 0.0136,
-          "threshold": 0.5873,
+          "threshold": 0.5636,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": ".",
-          "time_ms": 26.467,
+          "time_ms": 29.797,
           "exit_type": "Full Pass",
           "confidence": 0.2617,
-          "threshold": 0.5871,
+          "threshold": 0.5605,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "Yes",
-          "time_ms": 26.313,
+          "time_ms": 28.979,
           "exit_type": "Full Pass",
           "confidence": 0.019,
-          "threshold": 0.5878,
+          "threshold": 0.5609,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": ",",
-          "time_ms": 26.379,
+          "time_ms": 29.161,
           "exit_type": "Full Pass",
           "confidence": 0.0234,
-          "threshold": 0.5875,
+          "threshold": 0.5708,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "routine",
-          "time_ms": 26.42,
+          "time_ms": 29.763,
           "exit_type": "Full Pass",
           "confidence": 0.0129,
-          "threshold": 0.5873,
+          "threshold": 0.5592,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "labor",
-          "time_ms": 26.63,
+          "time_ms": 29.93,
           "exit_type": "Full Pass",
           "confidence": 0.0294,
-          "threshold": 0.5831,
+          "threshold": 0.5614,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "atory",
-          "time_ms": 11.189,
-          "exit_type": "Early (Thresh: 0.59)",
+          "time_ms": 12.187,
+          "exit_type": "Early (Thresh: 0.57)",
           "confidence": 0.9688,
-          "threshold": 0.59,
+          "threshold": 0.5716,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "markers",
-          "time_ms": 26.463,
+          "time_ms": 29.424,
           "exit_type": "Full Pass",
           "confidence": 0.0286,
-          "threshold": 0.5877,
+          "threshold": 0.5653,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "such",
-          "time_ms": 27.117,
+          "time_ms": 29.996,
           "exit_type": "Full Pass",
           "confidence": 0.0099,
-          "threshold": 0.5832,
+          "threshold": 0.5598,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "as",
-          "time_ms": 28.889,
+          "time_ms": 29.286,
           "exit_type": "Full Pass",
           "confidence": 0.0479,
-          "threshold": 0.5694,
+          "threshold": 0.5609,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "al",
-          "time_ms": 28.824,
+          "time_ms": 28.703,
           "exit_type": "Full Pass",
           "confidence": 0.0115,
-          "threshold": 0.5673,
+          "threshold": 0.5697,
           "deadline_ms": 45.0
         }
       ],
@@ -2023,9 +2037,10 @@
         "early_thresh_pct": 6.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 25.778,
-        "p99_tpot_ms": 28.881,
-        "max_tpot_ms": 28.889
+        "mean_tpot_ms": 28.16,
+        "p99_tpot_ms": 29.987,
+        "max_tpot_ms": 29.996,
+        "throughput_tps": 35.51
       }
     },
     {
@@ -2039,136 +2054,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 28.575,
+          "time_ms": 29.004,
           "exit_type": "Full Pass",
           "confidence": 0.0208,
-          "threshold": 0.5719,
+          "threshold": 0.5627,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 28.758,
+          "time_ms": 28.18,
           "exit_type": "Full Pass",
           "confidence": 0.0615,
-          "threshold": 0.5693,
+          "threshold": 0.5703,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Does",
-          "time_ms": 28.916,
+          "time_ms": 28.8,
           "exit_type": "Full Pass",
           "confidence": 0.0588,
-          "threshold": 0.5691,
+          "threshold": 0.5683,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "autom",
-          "time_ms": 28.872,
+          "time_ms": 28.195,
           "exit_type": "Full Pass",
           "confidence": 0.0249,
-          "threshold": 0.5696,
+          "threshold": 0.5756,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "ated",
-          "time_ms": 30.002,
+          "time_ms": 29.448,
           "exit_type": "Full Pass",
           "confidence": 0.3867,
-          "threshold": 0.5608,
+          "threshold": 0.5634,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": ",",
-          "time_ms": 30.376,
+          "time_ms": 29.17,
           "exit_type": "Full Pass",
           "confidence": 0.0254,
-          "threshold": 0.5483,
+          "threshold": 0.562,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "at",
-          "time_ms": 28.351,
+          "time_ms": 29.73,
           "exit_type": "Full Pass",
           "confidence": 0.0239,
-          "threshold": 0.573,
+          "threshold": 0.5635,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "-",
-          "time_ms": 12.628,
+          "time_ms": 12.994,
           "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.8672,
-          "threshold": 0.5631,
+          "threshold": 0.5568,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "the",
-          "time_ms": 29.398,
+          "time_ms": 29.854,
           "exit_type": "Full Pass",
           "confidence": 0.0464,
-          "threshold": 0.5628,
+          "threshold": 0.5596,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "-",
-          "time_ms": 13.866,
-          "exit_type": "Early (Thresh: 0.54)",
+          "time_ms": 12.737,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.582,
-          "threshold": 0.5407,
+          "threshold": 0.5614,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "vis",
-          "time_ms": 31.233,
+          "time_ms": 29.918,
           "exit_type": "Full Pass",
           "confidence": 0.0234,
-          "threshold": 0.5468,
+          "threshold": 0.5606,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "it",
-          "time_ms": 30.705,
+          "time_ms": 30.052,
           "exit_type": "Full Pass",
           "confidence": 0.0427,
-          "threshold": 0.5487,
+          "threshold": 0.5588,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "tail",
-          "time_ms": 30.461,
+          "time_ms": 29.985,
           "exit_type": "Full Pass",
           "confidence": 0.0198,
-          "threshold": 0.5566,
+          "threshold": 0.5579,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "ored",
-          "time_ms": 30.432,
+          "time_ms": 30.374,
           "exit_type": "Full Pass",
           "confidence": 0.3848,
-          "threshold": 0.5551,
+          "threshold": 0.5496,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "prompt",
-          "time_ms": 30.085,
+          "time_ms": 30.241,
           "exit_type": "Full Pass",
           "confidence": 0.0145,
-          "threshold": 0.5587,
+          "threshold": 0.5533,
           "deadline_ms": 45.0
         }
       ],
@@ -2178,9 +2193,10 @@
         "early_thresh_pct": 13.3,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 27.434,
-        "p99_tpot_ms": 31.164,
-        "max_tpot_ms": 31.233
+        "mean_tpot_ms": 27.12,
+        "p99_tpot_ms": 30.357,
+        "max_tpot_ms": 30.374,
+        "throughput_tps": 36.87
       }
     },
     {
@@ -2194,136 +2210,136 @@
         {
           "token_idx": 1,
           "token": "Method",
-          "time_ms": 29.412,
+          "time_ms": 29.827,
           "exit_type": "Full Pass",
           "confidence": 0.2061,
-          "threshold": 0.5667,
+          "threshold": 0.5604,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 29.213,
+          "time_ms": 29.51,
           "exit_type": "Full Pass",
           "confidence": 0.2617,
-          "threshold": 0.5681,
+          "threshold": 0.5645,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "A",
-          "time_ms": 30.769,
+          "time_ms": 30.739,
           "exit_type": "Full Pass",
           "confidence": 0.0654,
-          "threshold": 0.5564,
+          "threshold": 0.5516,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "cross",
-          "time_ms": 31.946,
+          "time_ms": 30.464,
           "exit_type": "Full Pass",
           "confidence": 0.1289,
-          "threshold": 0.5521,
+          "threshold": 0.5538,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "-",
-          "time_ms": 30.74,
+          "time_ms": 29.811,
           "exit_type": "Full Pass",
           "confidence": 0.0491,
-          "threshold": 0.5506,
+          "threshold": 0.5604,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "section",
-          "time_ms": 31.345,
+          "time_ms": 29.961,
           "exit_type": "Full Pass",
           "confidence": 0.0815,
-          "threshold": 0.5438,
+          "threshold": 0.5601,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "al",
-          "time_ms": 12.946,
+          "time_ms": 13.056,
           "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.8203,
-          "threshold": 0.5571,
+          "threshold": 0.5556,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "study",
-          "time_ms": 28.666,
+          "time_ms": 29.707,
           "exit_type": "Full Pass",
           "confidence": 0.2354,
-          "threshold": 0.5692,
+          "threshold": 0.5595,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "conducted",
-          "time_ms": 12.268,
+          "time_ms": 12.445,
           "exit_type": "Early (Thresh: 0.57)",
           "confidence": 0.5781,
-          "threshold": 0.5698,
+          "threshold": 0.5667,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "at",
-          "time_ms": 30.281,
+          "time_ms": 29.634,
           "exit_type": "Full Pass",
           "confidence": 0.0253,
-          "threshold": 0.5546,
+          "threshold": 0.5621,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "a",
-          "time_ms": 30.587,
+          "time_ms": 32.77,
           "exit_type": "Full Pass",
           "confidence": 0.0535,
-          "threshold": 0.5537,
+          "threshold": 0.5395,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "single",
-          "time_ms": 30.775,
+          "time_ms": 30.43,
           "exit_type": "Full Pass",
           "confidence": 0.1338,
-          "threshold": 0.5549,
+          "threshold": 0.5522,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "academic",
-          "time_ms": 30.485,
+          "time_ms": 30.339,
           "exit_type": "Full Pass",
           "confidence": 0.127,
-          "threshold": 0.5549,
+          "threshold": 0.5581,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "medical",
-          "time_ms": 30.439,
+          "time_ms": 30.5,
           "exit_type": "Full Pass",
           "confidence": 0.063,
-          "threshold": 0.5553,
+          "threshold": 0.5525,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "center",
-          "time_ms": 31.131,
+          "time_ms": 31.095,
           "exit_type": "Full Pass",
           "confidence": 0.0869,
-          "threshold": 0.5553,
+          "threshold": 0.5558,
           "deadline_ms": 45.0
         }
       ],
@@ -2333,9 +2349,10 @@
         "early_thresh_pct": 13.3,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 27.971,
-        "p99_tpot_ms": 31.868,
-        "max_tpot_ms": 31.946
+        "mean_tpot_ms": 27.89,
+        "p99_tpot_ms": 32.552,
+        "max_tpot_ms": 32.77,
+        "throughput_tps": 35.86
       }
     },
     {
@@ -2349,136 +2366,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 30.437,
+          "time_ms": 30.993,
           "exit_type": "Full Pass",
           "confidence": 0.0376,
-          "threshold": 0.5514,
+          "threshold": 0.5604,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 30.535,
+          "time_ms": 30.18,
           "exit_type": "Full Pass",
           "confidence": 0.127,
-          "threshold": 0.5555,
+          "threshold": 0.5573,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Is",
-          "time_ms": 30.707,
+          "time_ms": 30.54,
           "exit_type": "Full Pass",
           "confidence": 0.0669,
-          "threshold": 0.5525,
+          "threshold": 0.5496,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "patient",
-          "time_ms": 30.772,
+          "time_ms": 30.57,
           "exit_type": "Full Pass",
           "confidence": 0.0588,
-          "threshold": 0.5518,
+          "threshold": 0.5541,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "-",
-          "time_ms": 13.142,
-          "exit_type": "Early (Thresh: 0.55)",
+          "time_ms": 13.718,
+          "exit_type": "Early (Thresh: 0.54)",
           "confidence": 0.9336,
-          "threshold": 0.5533,
+          "threshold": 0.5431,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "control",
-          "time_ms": 30.808,
+          "time_ms": 32.722,
           "exit_type": "Full Pass",
           "confidence": 0.0474,
-          "threshold": 0.5514,
+          "threshold": 0.5399,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "led",
-          "time_ms": 13.354,
-          "exit_type": "Early (Thresh: 0.55)",
+          "time_ms": 14.069,
+          "exit_type": "Early (Thresh: 0.54)",
           "confidence": 0.9883,
-          "threshold": 0.5494,
+          "threshold": 0.5365,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "ther",
-          "time_ms": 30.94,
+          "time_ms": 32.718,
           "exit_type": "Full Pass",
           "confidence": 0.064,
-          "threshold": 0.5502,
+          "threshold": 0.5408,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "apy",
-          "time_ms": 30.698,
+          "time_ms": 31.028,
           "exit_type": "Full Pass",
           "confidence": 0.051,
-          "threshold": 0.553,
+          "threshold": 0.5488,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "(",
-          "time_ms": 30.826,
+          "time_ms": 32.507,
           "exit_type": "Full Pass",
           "confidence": 0.3926,
-          "threshold": 0.5521,
+          "threshold": 0.542,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "P",
-          "time_ms": 30.137,
+          "time_ms": 30.2,
           "exit_type": "Full Pass",
           "confidence": 0.2461,
-          "threshold": 0.5548,
+          "threshold": 0.5587,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "CT",
-          "time_ms": 28.709,
+          "time_ms": 31.251,
           "exit_type": "Full Pass",
           "confidence": 0.248,
-          "threshold": 0.561,
+          "threshold": 0.5519,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": ")",
-          "time_ms": 29.341,
+          "time_ms": 30.666,
           "exit_type": "Full Pass",
           "confidence": 0.0236,
-          "threshold": 0.5628,
+          "threshold": 0.5481,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "a",
-          "time_ms": 30.507,
+          "time_ms": 31.507,
           "exit_type": "Full Pass",
           "confidence": 0.0194,
-          "threshold": 0.5563,
+          "threshold": 0.5483,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "new",
-          "time_ms": 30.69,
+          "time_ms": 30.286,
           "exit_type": "Full Pass",
           "confidence": 0.0498,
-          "threshold": 0.5503,
+          "threshold": 0.5586,
           "deadline_ms": 45.0
         }
       ],
@@ -2488,9 +2505,10 @@
         "early_thresh_pct": 13.3,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 27.94,
-        "p99_tpot_ms": 30.925,
-        "max_tpot_ms": 30.94
+        "mean_tpot_ms": 28.712,
+        "p99_tpot_ms": 32.721,
+        "max_tpot_ms": 32.722,
+        "throughput_tps": 34.83
       }
     },
     {
@@ -2504,136 +2522,136 @@
         {
           "token_idx": 1,
           "token": "Answer",
-          "time_ms": 28.533,
+          "time_ms": 31.207,
           "exit_type": "Full Pass",
           "confidence": 0.3613,
-          "threshold": 0.5705,
+          "threshold": 0.5507,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 28.707,
+          "time_ms": 30.255,
           "exit_type": "Full Pass",
           "confidence": 0.2441,
-          "threshold": 0.5681,
+          "threshold": 0.5624,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "No",
-          "time_ms": 28.397,
+          "time_ms": 29.479,
           "exit_type": "Full Pass",
           "confidence": 0.5547,
-          "threshold": 0.5703,
+          "threshold": 0.5614,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "pe",
-          "time_ms": 12.203,
-          "exit_type": "Early (Thresh: 0.57)",
+          "time_ms": 12.731,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.7695,
-          "threshold": 0.571,
+          "threshold": 0.5616,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": ",",
-          "time_ms": 28.652,
+          "time_ms": 29.205,
           "exit_type": "Full Pass",
           "confidence": 0.1738,
-          "threshold": 0.5688,
+          "threshold": 0.5629,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "there",
-          "time_ms": 28.605,
+          "time_ms": 29.922,
           "exit_type": "Full Pass",
           "confidence": 0.064,
-          "threshold": 0.5687,
+          "threshold": 0.5663,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "is",
-          "time_ms": 28.322,
+          "time_ms": 29.723,
           "exit_type": "Full Pass",
           "confidence": 0.0801,
-          "threshold": 0.5717,
+          "threshold": 0.5593,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "no",
-          "time_ms": 12.267,
-          "exit_type": "Early (Thresh: 0.57)",
+          "time_ms": 13.293,
+          "exit_type": "Early (Thresh: 0.55)",
           "confidence": 0.582,
-          "threshold": 0.5698,
+          "threshold": 0.5511,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "need",
-          "time_ms": 29.288,
+          "time_ms": 28.913,
           "exit_type": "Full Pass",
           "confidence": 0.2256,
-          "threshold": 0.5679,
+          "threshold": 0.5632,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "for",
-          "time_ms": 12.507,
-          "exit_type": "Early (Thresh: 0.57)",
+          "time_ms": 13.11,
+          "exit_type": "Early (Thresh: 0.55)",
           "confidence": 0.5781,
-          "threshold": 0.5654,
+          "threshold": 0.5547,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "living",
-          "time_ms": 28.733,
+          "time_ms": 29.761,
           "exit_type": "Full Pass",
           "confidence": 0.0183,
-          "threshold": 0.5682,
+          "threshold": 0.5523,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "-",
-          "time_ms": 12.23,
-          "exit_type": "Early (Thresh: 0.57)",
+          "time_ms": 13.244,
+          "exit_type": "Early (Thresh: 0.55)",
           "confidence": 0.9102,
-          "threshold": 0.5705,
+          "threshold": 0.5521,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "related",
-          "time_ms": 28.619,
+          "time_ms": 31.545,
           "exit_type": "Full Pass",
           "confidence": 0.0845,
-          "threshold": 0.5704,
+          "threshold": 0.546,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "li",
-          "time_ms": 28.682,
+          "time_ms": 28.45,
           "exit_type": "Full Pass",
           "confidence": 0.0234,
-          "threshold": 0.5676,
+          "threshold": 0.5746,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "ver",
-          "time_ms": 28.789,
+          "time_ms": 29.774,
           "exit_type": "Full Pass",
           "confidence": 0.03,
-          "threshold": 0.5675,
+          "threshold": 0.5601,
           "deadline_ms": 45.0
         }
       ],
@@ -2643,9 +2661,10 @@
         "early_thresh_pct": 26.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 24.0,
-        "p99_tpot_ms": 29.223,
-        "max_tpot_ms": 29.288
+        "mean_tpot_ms": 24.957,
+        "p99_tpot_ms": 31.377,
+        "max_tpot_ms": 31.545,
+        "throughput_tps": 40.07
       }
     },
     {
@@ -2659,136 +2678,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 29.191,
+          "time_ms": 31.509,
           "exit_type": "Full Pass",
           "confidence": 0.1338,
-          "threshold": 0.5704,
+          "threshold": 0.5435,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 32.169,
+          "time_ms": 30.899,
           "exit_type": "Full Pass",
           "confidence": 0.0898,
-          "threshold": 0.5542,
+          "threshold": 0.5602,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Do",
-          "time_ms": 32.556,
+          "time_ms": 32.277,
           "exit_type": "Full Pass",
           "confidence": 0.0332,
-          "threshold": 0.5321,
+          "threshold": 0.5386,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "patterns",
-          "time_ms": 31.882,
+          "time_ms": 31.369,
           "exit_type": "Full Pass",
           "confidence": 0.0171,
-          "threshold": 0.5418,
+          "threshold": 0.5559,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "of",
-          "time_ms": 30.679,
+          "time_ms": 28.661,
           "exit_type": "Full Pass",
           "confidence": 0.1758,
-          "threshold": 0.5534,
+          "threshold": 0.5803,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "knowledge",
-          "time_ms": 30.556,
+          "time_ms": 30.392,
           "exit_type": "Full Pass",
           "confidence": 0.0166,
-          "threshold": 0.551,
+          "threshold": 0.555,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "and",
-          "time_ms": 30.098,
+          "time_ms": 30.11,
           "exit_type": "Full Pass",
           "confidence": 0.2656,
-          "threshold": 0.5582,
+          "threshold": 0.5564,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "att",
-          "time_ms": 30.019,
+          "time_ms": 28.0,
           "exit_type": "Full Pass",
           "confidence": 0.459,
-          "threshold": 0.5587,
+          "threshold": 0.5687,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "itudes",
-          "time_ms": 30.153,
+          "time_ms": 31.264,
           "exit_type": "Full Pass",
           "confidence": 0.0562,
-          "threshold": 0.5579,
+          "threshold": 0.5609,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "exist",
-          "time_ms": 29.929,
+          "time_ms": 31.964,
           "exit_type": "Full Pass",
           "confidence": 0.0056,
-          "threshold": 0.5579,
+          "threshold": 0.5449,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "among",
-          "time_ms": 30.221,
+          "time_ms": 30.154,
           "exit_type": "Full Pass",
           "confidence": 0.0481,
-          "threshold": 0.5576,
+          "threshold": 0.5438,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "un",
-          "time_ms": 30.287,
+          "time_ms": 31.217,
           "exit_type": "Full Pass",
           "confidence": 0.0342,
-          "threshold": 0.5556,
+          "threshold": 0.5505,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "v",
-          "time_ms": 30.005,
+          "time_ms": 29.509,
           "exit_type": "Full Pass",
           "confidence": 0.0217,
-          "threshold": 0.5589,
+          "threshold": 0.5626,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "acc",
-          "time_ms": 30.287,
+          "time_ms": 28.884,
           "exit_type": "Full Pass",
           "confidence": 0.025,
-          "threshold": 0.5558,
+          "threshold": 0.566,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "in",
-          "time_ms": 30.268,
+          "time_ms": 28.081,
           "exit_type": "Full Pass",
           "confidence": 0.063,
-          "threshold": 0.5576,
+          "threshold": 0.5837,
           "deadline_ms": 45.0
         }
       ],
@@ -2798,9 +2817,10 @@
         "early_thresh_pct": 0.0,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 30.651,
-        "p99_tpot_ms": 32.506,
-        "max_tpot_ms": 32.556
+        "mean_tpot_ms": 30.199,
+        "p99_tpot_ms": 32.236,
+        "max_tpot_ms": 32.277,
+        "throughput_tps": 33.11
       }
     },
     {
@@ -2814,136 +2834,136 @@
         {
           "token_idx": 1,
           "token": "Answer",
-          "time_ms": 28.344,
+          "time_ms": 29.391,
           "exit_type": "Full Pass",
           "confidence": 0.293,
-          "threshold": 0.571,
+          "threshold": 0.5645,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 28.48,
+          "time_ms": 28.637,
           "exit_type": "Full Pass",
           "confidence": 0.1318,
-          "threshold": 0.5711,
+          "threshold": 0.5607,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Yes",
-          "time_ms": 29.366,
+          "time_ms": 28.518,
           "exit_type": "Full Pass",
           "confidence": 0.4492,
-          "threshold": 0.5705,
+          "threshold": 0.5787,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": ",",
-          "time_ms": 30.217,
+          "time_ms": 29.702,
           "exit_type": "Full Pass",
           "confidence": 0.1455,
-          "threshold": 0.5575,
+          "threshold": 0.5609,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "there",
-          "time_ms": 30.02,
+          "time_ms": 29.41,
           "exit_type": "Full Pass",
           "confidence": 0.1641,
-          "threshold": 0.559,
+          "threshold": 0.5636,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "is",
-          "time_ms": 30.04,
+          "time_ms": 27.855,
           "exit_type": "Full Pass",
           "confidence": 0.0221,
-          "threshold": 0.56,
+          "threshold": 0.5795,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "a",
-          "time_ms": 12.882,
+          "time_ms": 12.684,
           "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.6641,
-          "threshold": 0.5583,
+          "threshold": 0.5624,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "model",
-          "time_ms": 29.934,
+          "time_ms": 29.693,
           "exit_type": "Full Pass",
           "confidence": 0.0376,
-          "threshold": 0.5576,
+          "threshold": 0.56,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "to",
-          "time_ms": 30.427,
+          "time_ms": 29.999,
           "exit_type": "Full Pass",
           "confidence": 0.0923,
-          "threshold": 0.5558,
+          "threshold": 0.559,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "teach",
-          "time_ms": 32.704,
+          "time_ms": 27.928,
           "exit_type": "Full Pass",
           "confidence": 0.1777,
-          "threshold": 0.5336,
+          "threshold": 0.5803,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "and",
-          "time_ms": 13.978,
-          "exit_type": "Early (Thresh: 0.54)",
+          "time_ms": 13.087,
+          "exit_type": "Early (Thresh: 0.55)",
           "confidence": 0.8125,
-          "threshold": 0.5377,
+          "threshold": 0.5549,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "practice",
-          "time_ms": 30.881,
+          "time_ms": 30.494,
           "exit_type": "Full Pass",
           "confidence": 0.0693,
-          "threshold": 0.5563,
+          "threshold": 0.5556,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "retro",
-          "time_ms": 32.862,
+          "time_ms": 30.851,
           "exit_type": "Full Pass",
           "confidence": 0.0315,
-          "threshold": 0.5317,
+          "threshold": 0.5533,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "per",
-          "time_ms": 34.103,
+          "time_ms": 29.03,
           "exit_type": "Full Pass",
           "confidence": 0.0581,
-          "threshold": 0.513,
+          "threshold": 0.5822,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "it",
-          "time_ms": 32.934,
+          "time_ms": 31.987,
           "exit_type": "Full Pass",
           "confidence": 0.2236,
-          "threshold": 0.5394,
+          "threshold": 0.5405,
           "deadline_ms": 45.0
         }
       ],
@@ -2953,9 +2973,10 @@
         "early_thresh_pct": 13.3,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 28.488,
-        "p99_tpot_ms": 33.951,
-        "max_tpot_ms": 34.103
+        "mean_tpot_ms": 27.134,
+        "p99_tpot_ms": 31.839,
+        "max_tpot_ms": 31.987,
+        "throughput_tps": 36.85
       }
     },
     {
@@ -2969,136 +2990,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 35.895,
+          "time_ms": 29.847,
           "exit_type": "Full Pass",
           "confidence": 0.0422,
-          "threshold": 0.508,
+          "threshold": 0.5469,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 38.402,
+          "time_ms": 31.689,
           "exit_type": "Full Pass",
           "confidence": 0.0972,
-          "threshold": 0.4845,
+          "threshold": 0.5552,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Is",
-          "time_ms": 36.406,
+          "time_ms": 32.575,
           "exit_type": "Full Pass",
           "confidence": 0.0361,
-          "threshold": 0.4968,
+          "threshold": 0.5378,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "rest",
-          "time_ms": 36.085,
+          "time_ms": 31.728,
           "exit_type": "Full Pass",
           "confidence": 0.1299,
-          "threshold": 0.5105,
+          "threshold": 0.538,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "ing",
-          "time_ms": 36.311,
+          "time_ms": 30.582,
           "exit_type": "Full Pass",
           "confidence": 0.0757,
-          "threshold": 0.5009,
+          "threshold": 0.5658,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "heart",
-          "time_ms": 36.133,
+          "time_ms": 32.171,
           "exit_type": "Full Pass",
           "confidence": 0.0193,
-          "threshold": 0.5035,
+          "threshold": 0.545,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "rate",
-          "time_ms": 36.586,
+          "time_ms": 34.681,
           "exit_type": "Full Pass",
           "confidence": 0.0303,
-          "threshold": 0.507,
+          "threshold": 0.5139,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "also",
-          "time_ms": 36.621,
+          "time_ms": 32.018,
           "exit_type": "Full Pass",
           "confidence": 0.0249,
-          "threshold": 0.5068,
+          "threshold": 0.5586,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "relevant",
-          "time_ms": 35.918,
+          "time_ms": 34.512,
           "exit_type": "Full Pass",
           "confidence": 0.0219,
-          "threshold": 0.5143,
+          "threshold": 0.524,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "in",
-          "time_ms": 35.749,
+          "time_ms": 35.991,
           "exit_type": "Full Pass",
           "confidence": 0.0786,
-          "threshold": 0.5035,
+          "threshold": 0.5269,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "determ",
-          "time_ms": 36.194,
+          "time_ms": 35.232,
           "exit_type": "Full Pass",
           "confidence": 0.027,
-          "threshold": 0.5114,
+          "threshold": 0.506,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "ining",
-          "time_ms": 38.076,
+          "time_ms": 32.129,
           "exit_type": "Full Pass",
           "confidence": 0.1611,
-          "threshold": 0.5017,
+          "threshold": 0.5393,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "card",
-          "time_ms": 39.339,
+          "time_ms": 31.136,
           "exit_type": "Full Pass",
           "confidence": 0.0264,
-          "threshold": 0.4756,
+          "threshold": 0.5447,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "i",
-          "time_ms": 40.162,
+          "time_ms": 31.556,
           "exit_type": "Full Pass",
           "confidence": 0.1025,
-          "threshold": 0.4722,
+          "threshold": 0.5542,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "ov",
-          "time_ms": 38.717,
+          "time_ms": 31.613,
           "exit_type": "Full Pass",
           "confidence": 0.0437,
-          "threshold": 0.4829,
+          "threshold": 0.5445,
           "deadline_ms": 45.0
         }
       ],
@@ -3108,9 +3129,10 @@
         "early_thresh_pct": 0.0,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 37.193,
-        "p99_tpot_ms": 40.055,
-        "max_tpot_ms": 40.162
+        "mean_tpot_ms": 32.687,
+        "p99_tpot_ms": 35.892,
+        "max_tpot_ms": 35.991,
+        "throughput_tps": 30.59
       }
     },
     {
@@ -3119,153 +3141,154 @@
       "ground_truth": "yes",
       "predicted": "unknown",
       "correct": false,
-      "generated_text": "Question:CanthesurgecapacityANDinjuryseveritydistributionofIsraeli",
+      "generated_text": "Question:CanthesurgecapacityandinjuryseveritydistributionofIsraeli",
       "token_records": [
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 36.116,
+          "time_ms": 29.089,
           "exit_type": "Full Pass",
           "confidence": 0.0415,
-          "threshold": 0.5015,
+          "threshold": 0.5655,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 43.885,
-          "exit_type": "Early (Forced)",
+          "time_ms": 30.744,
+          "exit_type": "Full Pass",
           "confidence": 0.0942,
-          "threshold": 0.0,
+          "threshold": 0.5504,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Can",
-          "time_ms": 34.932,
+          "time_ms": 30.897,
           "exit_type": "Full Pass",
           "confidence": 0.0713,
-          "threshold": 0.5294,
+          "threshold": 0.5468,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "the",
-          "time_ms": 39.663,
+          "time_ms": 29.067,
           "exit_type": "Full Pass",
           "confidence": 0.0693,
-          "threshold": 0.4408,
+          "threshold": 0.5553,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "sur",
-          "time_ms": 34.65,
+          "time_ms": 31.86,
           "exit_type": "Full Pass",
           "confidence": 0.0513,
-          "threshold": 0.5068,
+          "threshold": 0.5484,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "ge",
-          "time_ms": 36.705,
+          "time_ms": 30.248,
           "exit_type": "Full Pass",
           "confidence": 0.0281,
-          "threshold": 0.5099,
+          "threshold": 0.5543,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "capacity",
-          "time_ms": 16.121,
-          "exit_type": "Early (Thresh: 0.50)",
+          "time_ms": 13.043,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.8516,
-          "threshold": 0.4983,
+          "threshold": 0.5559,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
-          "token": "AND",
-          "time_ms": 16.984,
-          "exit_type": "Early (Thresh: 0.48)",
+          "token": "and",
+          "time_ms": 28.996,
+          "exit_type": "Full Pass",
           "confidence": 0.5273,
-          "threshold": 0.4815,
+          "threshold": 0.5577,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "injury",
-          "time_ms": 34.791,
+          "time_ms": 31.963,
           "exit_type": "Full Pass",
-          "confidence": 0.1216,
-          "threshold": 0.5043,
+          "confidence": 0.0962,
+          "threshold": 0.5478,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "sever",
-          "time_ms": 38.945,
+          "time_ms": 31.081,
           "exit_type": "Full Pass",
-          "confidence": 0.2578,
-          "threshold": 0.4965,
+          "confidence": 0.1641,
+          "threshold": 0.5477,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "ity",
-          "time_ms": 38.505,
+          "time_ms": 29.852,
           "exit_type": "Full Pass",
-          "confidence": 0.0835,
-          "threshold": 0.4755,
+          "confidence": 0.0586,
+          "threshold": 0.5516,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "distribution",
-          "time_ms": 34.785,
+          "time_ms": 31.127,
           "exit_type": "Full Pass",
-          "confidence": 0.0159,
-          "threshold": 0.5352,
+          "confidence": 0.0135,
+          "threshold": 0.5465,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "of",
-          "time_ms": 32.655,
+          "time_ms": 30.837,
           "exit_type": "Full Pass",
-          "confidence": 0.043,
-          "threshold": 0.5339,
+          "confidence": 0.0337,
+          "threshold": 0.5514,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "Isra",
-          "time_ms": 32.323,
+          "time_ms": 31.014,
           "exit_type": "Full Pass",
-          "confidence": 0.0435,
-          "threshold": 0.5397,
+          "confidence": 0.0325,
+          "threshold": 0.5518,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "eli",
-          "time_ms": 30.894,
+          "time_ms": 31.215,
           "exit_type": "Full Pass",
-          "confidence": 0.168,
-          "threshold": 0.5631,
+          "confidence": 0.1748,
+          "threshold": 0.5583,
           "deadline_ms": 45.0
         }
       ],
       "metrics": {
         "n_tokens": 15,
-        "full_pass_pct": 80.0,
-        "early_thresh_pct": 13.3,
-        "forced_exit_pct": 6.7,
+        "full_pass_pct": 93.3,
+        "early_thresh_pct": 6.7,
+        "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 33.274,
-        "p99_tpot_ms": 43.336,
-        "max_tpot_ms": 43.885
+        "mean_tpot_ms": 29.425,
+        "p99_tpot_ms": 31.95,
+        "max_tpot_ms": 31.963,
+        "throughput_tps": 33.99
       }
     },
     {
@@ -3279,136 +3302,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 31.692,
+          "time_ms": 31.683,
           "exit_type": "Full Pass",
           "confidence": 0.019,
-          "threshold": 0.5471,
+          "threshold": 0.5418,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 30.309,
+          "time_ms": 29.324,
           "exit_type": "Full Pass",
           "confidence": 0.0364,
-          "threshold": 0.5439,
+          "threshold": 0.559,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Can",
-          "time_ms": 31.245,
+          "time_ms": 31.442,
           "exit_type": "Full Pass",
           "confidence": 0.0542,
-          "threshold": 0.5522,
+          "threshold": 0.5491,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "early",
-          "time_ms": 28.874,
+          "time_ms": 31.351,
           "exit_type": "Full Pass",
           "confidence": 0.0684,
-          "threshold": 0.5634,
+          "threshold": 0.5467,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "resp",
-          "time_ms": 28.009,
+          "time_ms": 30.278,
           "exit_type": "Full Pass",
           "confidence": 0.0635,
-          "threshold": 0.5739,
+          "threshold": 0.5501,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "ir",
-          "time_ms": 28.825,
+          "time_ms": 31.249,
           "exit_type": "Full Pass",
           "confidence": 0.0306,
-          "threshold": 0.5728,
+          "threshold": 0.5552,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "atory",
-          "time_ms": 29.622,
+          "time_ms": 30.558,
           "exit_type": "Full Pass",
           "confidence": 0.0835,
-          "threshold": 0.5611,
+          "threshold": 0.5464,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "predict",
-          "time_ms": 30.832,
+          "time_ms": 30.262,
           "exit_type": "Full Pass",
           "confidence": 0.0233,
-          "threshold": 0.5576,
+          "threshold": 0.5595,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "ors",
-          "time_ms": 29.038,
+          "time_ms": 29.338,
           "exit_type": "Full Pass",
           "confidence": 0.4551,
-          "threshold": 0.5663,
+          "threshold": 0.5791,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "of",
-          "time_ms": 30.067,
+          "time_ms": 31.944,
           "exit_type": "Full Pass",
           "confidence": 0.0171,
-          "threshold": 0.5629,
+          "threshold": 0.5417,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "mort",
-          "time_ms": 31.716,
+          "time_ms": 30.252,
           "exit_type": "Full Pass",
           "confidence": 0.0317,
-          "threshold": 0.5464,
+          "threshold": 0.5606,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "ality",
-          "time_ms": 31.235,
+          "time_ms": 30.03,
           "exit_type": "Full Pass",
           "confidence": 0.0186,
-          "threshold": 0.5473,
+          "threshold": 0.5588,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "in",
-          "time_ms": 31.861,
+          "time_ms": 31.958,
           "exit_type": "Full Pass",
           "confidence": 0.0635,
-          "threshold": 0.5436,
+          "threshold": 0.5449,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "children",
-          "time_ms": 31.961,
+          "time_ms": 31.954,
           "exit_type": "Full Pass",
           "confidence": 0.0776,
-          "threshold": 0.5437,
+          "threshold": 0.5449,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "with",
-          "time_ms": 13.565,
+          "time_ms": 13.506,
           "exit_type": "Early (Thresh: 0.55)",
           "confidence": 0.8867,
-          "threshold": 0.5463,
+          "threshold": 0.5469,
           "deadline_ms": 45.0
         }
       ],
@@ -3418,9 +3441,10 @@
         "early_thresh_pct": 6.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 29.083,
-        "p99_tpot_ms": 31.948,
-        "max_tpot_ms": 31.961
+        "mean_tpot_ms": 29.532,
+        "p99_tpot_ms": 31.957,
+        "max_tpot_ms": 31.958,
+        "throughput_tps": 33.86
       }
     },
     {
@@ -3434,136 +3458,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 32.367,
+          "time_ms": 30.551,
           "exit_type": "Full Pass",
           "confidence": 0.0549,
-          "threshold": 0.5441,
+          "threshold": 0.5549,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 32.641,
+          "time_ms": 32.459,
           "exit_type": "Full Pass",
           "confidence": 0.1396,
-          "threshold": 0.5387,
+          "threshold": 0.5384,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Is",
-          "time_ms": 31.839,
+          "time_ms": 30.803,
           "exit_type": "Full Pass",
           "confidence": 0.0552,
-          "threshold": 0.5381,
+          "threshold": 0.5378,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "there",
-          "time_ms": 32.162,
+          "time_ms": 32.829,
           "exit_type": "Full Pass",
           "confidence": 0.1035,
-          "threshold": 0.5429,
+          "threshold": 0.5371,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "a",
-          "time_ms": 31.991,
+          "time_ms": 31.265,
           "exit_type": "Full Pass",
           "confidence": 0.014,
-          "threshold": 0.5421,
+          "threshold": 0.5526,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "significant",
-          "time_ms": 31.928,
+          "time_ms": 30.826,
           "exit_type": "Full Pass",
           "confidence": 0.0474,
-          "threshold": 0.5417,
+          "threshold": 0.5508,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "association",
-          "time_ms": 31.502,
+          "time_ms": 32.484,
           "exit_type": "Full Pass",
           "confidence": 0.0771,
-          "threshold": 0.5484,
+          "threshold": 0.5447,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "between",
-          "time_ms": 32.247,
+          "time_ms": 31.484,
           "exit_type": "Full Pass",
           "confidence": 0.0159,
-          "threshold": 0.5428,
+          "threshold": 0.537,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "second",
-          "time_ms": 32.209,
+          "time_ms": 31.393,
           "exit_type": "Full Pass",
           "confidence": 0.1865,
-          "threshold": 0.5399,
+          "threshold": 0.5376,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "hand",
-          "time_ms": 31.206,
+          "time_ms": 32.099,
           "exit_type": "Full Pass",
           "confidence": 0.3574,
-          "threshold": 0.5532,
+          "threshold": 0.5503,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "smoke",
-          "time_ms": 32.06,
+          "time_ms": 31.507,
           "exit_type": "Full Pass",
           "confidence": 0.1543,
-          "threshold": 0.5425,
+          "threshold": 0.5497,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "expos",
-          "time_ms": 32.748,
+          "time_ms": 28.747,
           "exit_type": "Full Pass",
           "confidence": 0.051,
-          "threshold": 0.5347,
+          "threshold": 0.57,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "ure",
-          "time_ms": 30.808,
+          "time_ms": 29.217,
           "exit_type": "Full Pass",
           "confidence": 0.0408,
-          "threshold": 0.5572,
+          "threshold": 0.5761,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "(",
-          "time_ms": 33.558,
+          "time_ms": 30.826,
           "exit_type": "Full Pass",
           "confidence": 0.4824,
-          "threshold": 0.5342,
+          "threshold": 0.5498,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "SH",
-          "time_ms": 33.045,
+          "time_ms": 30.002,
           "exit_type": "Full Pass",
           "confidence": 0.0476,
-          "threshold": 0.5303,
+          "threshold": 0.5541,
           "deadline_ms": 45.0
         }
       ],
@@ -3573,9 +3597,10 @@
         "early_thresh_pct": 0.0,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 32.139,
-        "p99_tpot_ms": 33.491,
-        "max_tpot_ms": 33.558
+        "mean_tpot_ms": 31.139,
+        "p99_tpot_ms": 32.784,
+        "max_tpot_ms": 32.829,
+        "throughput_tps": 32.11
       }
     },
     {
@@ -3589,136 +3614,136 @@
         {
           "token_idx": 1,
           "token": "answer",
-          "time_ms": 13.871,
-          "exit_type": "Early (Thresh: 0.54)",
+          "time_ms": 12.876,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.6406,
-          "threshold": 0.5403,
+          "threshold": 0.559,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 32.842,
+          "time_ms": 29.64,
           "exit_type": "Full Pass",
           "confidence": 0.0304,
-          "threshold": 0.5338,
+          "threshold": 0.5594,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "YES",
-          "time_ms": 14.327,
-          "exit_type": "Early (Thresh: 0.53)",
+          "time_ms": 13.05,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.5664,
-          "threshold": 0.532,
+          "threshold": 0.5556,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "\n",
-          "time_ms": 31.733,
+          "time_ms": 31.981,
           "exit_type": "Full Pass",
           "confidence": 0.041,
-          "threshold": 0.5322,
+          "threshold": 0.5495,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "\n",
-          "time_ms": 31.98,
+          "time_ms": 30.634,
           "exit_type": "Full Pass",
           "confidence": 0.0233,
-          "threshold": 0.5502,
+          "threshold": 0.5521,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "The",
-          "time_ms": 33.038,
+          "time_ms": 32.042,
           "exit_type": "Full Pass",
           "confidence": 0.016,
-          "threshold": 0.5336,
+          "threshold": 0.5423,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "study",
-          "time_ms": 32.33,
+          "time_ms": 32.736,
           "exit_type": "Full Pass",
           "confidence": 0.3281,
-          "threshold": 0.5309,
+          "threshold": 0.5367,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "by",
-          "time_ms": 31.974,
+          "time_ms": 32.216,
           "exit_type": "Full Pass",
           "confidence": 0.0791,
-          "threshold": 0.5498,
+          "threshold": 0.5345,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "the",
-          "time_ms": 33.194,
+          "time_ms": 32.006,
           "exit_type": "Full Pass",
           "confidence": 0.0588,
-          "threshold": 0.5337,
+          "threshold": 0.5416,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "previous",
-          "time_ms": 32.301,
+          "time_ms": 32.854,
           "exit_type": "Full Pass",
           "confidence": 0.2832,
-          "threshold": 0.5343,
+          "threshold": 0.5373,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "mentioned",
-          "time_ms": 13.024,
-          "exit_type": "Early (Thresh: 0.56)",
+          "time_ms": 13.65,
+          "exit_type": "Early (Thresh: 0.54)",
           "confidence": 0.9023,
-          "threshold": 0.5563,
+          "threshold": 0.5442,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "author",
-          "time_ms": 33.169,
+          "time_ms": 31.412,
           "exit_type": "Full Pass",
           "confidence": 0.02,
-          "threshold": 0.534,
+          "threshold": 0.5441,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "showed",
-          "time_ms": 33.027,
+          "time_ms": 32.428,
           "exit_type": "Full Pass",
           "confidence": 0.0879,
-          "threshold": 0.5326,
+          "threshold": 0.5363,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "that",
-          "time_ms": 31.664,
+          "time_ms": 31.197,
           "exit_type": "Full Pass",
           "confidence": 0.0231,
-          "threshold": 0.5328,
+          "threshold": 0.5551,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "several",
-          "time_ms": 33.333,
+          "time_ms": 30.905,
           "exit_type": "Full Pass",
           "confidence": 0.0162,
-          "threshold": 0.5312,
+          "threshold": 0.5591,
           "deadline_ms": 45.0
         }
       ],
@@ -3728,9 +3753,10 @@
         "early_thresh_pct": 20.0,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 29.853,
-        "p99_tpot_ms": 33.315,
-        "max_tpot_ms": 33.333
+        "mean_tpot_ms": 29.054,
+        "p99_tpot_ms": 32.839,
+        "max_tpot_ms": 32.854,
+        "throughput_tps": 34.42
       }
     },
     {
@@ -3744,136 +3770,136 @@
         {
           "token_idx": 1,
           "token": "(",
-          "time_ms": 32.307,
+          "time_ms": 31.872,
           "exit_type": "Full Pass",
           "confidence": 0.2109,
-          "threshold": 0.5346,
+          "threshold": 0.5418,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": "i",
-          "time_ms": 30.825,
+          "time_ms": 30.697,
           "exit_type": "Full Pass",
           "confidence": 0.1846,
-          "threshold": 0.5652,
+          "threshold": 0.5376,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": ")",
-          "time_ms": 32.389,
+          "time_ms": 31.686,
           "exit_type": "Full Pass",
           "confidence": 0.0471,
-          "threshold": 0.5381,
+          "threshold": 0.5519,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "Yes",
-          "time_ms": 33.135,
+          "time_ms": 31.847,
           "exit_type": "Full Pass",
           "confidence": 0.0243,
-          "threshold": 0.5385,
+          "threshold": 0.5418,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": ",",
-          "time_ms": 32.246,
+          "time_ms": 28.81,
           "exit_type": "Full Pass",
           "confidence": 0.0564,
-          "threshold": 0.5594,
+          "threshold": 0.5604,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "reports",
-          "time_ms": 33.541,
+          "time_ms": 31.719,
           "exit_type": "Full Pass",
           "confidence": 0.0425,
-          "threshold": 0.5313,
+          "threshold": 0.5613,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "of",
-          "time_ms": 14.28,
+          "time_ms": 14.38,
           "exit_type": "Early (Thresh: 0.53)",
           "confidence": 0.6133,
-          "threshold": 0.5327,
+          "threshold": 0.5307,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "mechanical",
-          "time_ms": 30.281,
+          "time_ms": 32.623,
           "exit_type": "Full Pass",
           "confidence": 0.0894,
-          "threshold": 0.5274,
+          "threshold": 0.5324,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "d",
-          "time_ms": 28.986,
+          "time_ms": 31.047,
           "exit_type": "Full Pass",
           "confidence": 0.0114,
-          "threshold": 0.5752,
+          "threshold": 0.5372,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "ys",
-          "time_ms": 29.584,
+          "time_ms": 31.981,
           "exit_type": "Full Pass",
           "confidence": 0.0466,
-          "threshold": 0.5614,
+          "threshold": 0.5408,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "function",
-          "time_ms": 29.509,
+          "time_ms": 29.819,
           "exit_type": "Full Pass",
           "confidence": 0.166,
-          "threshold": 0.5642,
+          "threshold": 0.5607,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "in",
-          "time_ms": 28.736,
+          "time_ms": 30.306,
           "exit_type": "Full Pass",
           "confidence": 0.3477,
-          "threshold": 0.5847,
+          "threshold": 0.5487,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "chron",
-          "time_ms": 30.551,
+          "time_ms": 31.098,
           "exit_type": "Full Pass",
           "confidence": 0.2119,
-          "threshold": 0.552,
+          "threshold": 0.5575,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "ic",
-          "time_ms": 30.365,
+          "time_ms": 31.783,
           "exit_type": "Full Pass",
           "confidence": 0.2734,
-          "threshold": 0.5546,
+          "threshold": 0.5411,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "oro",
-          "time_ms": 29.031,
+          "time_ms": 30.41,
           "exit_type": "Full Pass",
           "confidence": 0.1338,
-          "threshold": 0.5629,
+          "threshold": 0.5604,
           "deadline_ms": 45.0
         }
       ],
@@ -3883,9 +3909,10 @@
         "early_thresh_pct": 6.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 29.533,
-        "p99_tpot_ms": 33.488,
-        "max_tpot_ms": 33.541
+        "mean_tpot_ms": 29.872,
+        "p99_tpot_ms": 32.54,
+        "max_tpot_ms": 32.623,
+        "throughput_tps": 33.48
       }
     },
     {
@@ -3899,43 +3926,43 @@
         {
           "token_idx": 1,
           "token": "Answer",
-          "time_ms": 30.007,
+          "time_ms": 32.367,
           "exit_type": "Full Pass",
           "confidence": 0.061,
-          "threshold": 0.5597,
+          "threshold": 0.537,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 31.131,
+          "time_ms": 32.771,
           "exit_type": "Full Pass",
           "confidence": 0.4512,
-          "threshold": 0.5544,
+          "threshold": 0.5389,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "yes",
-          "time_ms": 13.576,
-          "exit_type": "Early (Thresh: 0.55)",
+          "time_ms": 12.808,
+          "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.6484,
-          "threshold": 0.5461,
+          "threshold": 0.56,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "\n",
-          "time_ms": 30.239,
+          "time_ms": 30.16,
           "exit_type": "Full Pass",
           "confidence": 0.0352,
-          "threshold": 0.5558,
+          "threshold": 0.5773,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "\n",
-          "time_ms": 30.382,
+          "time_ms": 30.196,
           "exit_type": "Full Pass",
           "confidence": 0.0267,
           "threshold": 0.5561,
@@ -3944,91 +3971,91 @@
         {
           "token_idx": 6,
           "token": "Ex",
-          "time_ms": 30.224,
+          "time_ms": 30.324,
           "exit_type": "Full Pass",
           "confidence": 0.0317,
-          "threshold": 0.5527,
+          "threshold": 0.5546,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "plan",
-          "time_ms": 29.311,
+          "time_ms": 29.424,
           "exit_type": "Full Pass",
           "confidence": 0.0491,
-          "threshold": 0.5727,
+          "threshold": 0.5688,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "ation",
-          "time_ms": 30.495,
+          "time_ms": 32.322,
           "exit_type": "Full Pass",
           "confidence": 0.2168,
-          "threshold": 0.554,
+          "threshold": 0.5391,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": ":",
-          "time_ms": 13.377,
-          "exit_type": "Early (Thresh: 0.55)",
+          "time_ms": 13.944,
+          "exit_type": "Early (Thresh: 0.54)",
           "confidence": 0.8711,
-          "threshold": 0.5499,
+          "threshold": 0.5388,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "Amb",
-          "time_ms": 30.006,
+          "time_ms": 31.908,
           "exit_type": "Full Pass",
           "confidence": 0.0352,
-          "threshold": 0.5508,
+          "threshold": 0.5421,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "ly",
-          "time_ms": 30.693,
+          "time_ms": 30.455,
           "exit_type": "Full Pass",
           "confidence": 0.2285,
-          "threshold": 0.5585,
+          "threshold": 0.5722,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "op",
-          "time_ms": 30.806,
+          "time_ms": 30.345,
           "exit_type": "Full Pass",
           "confidence": 0.0679,
-          "threshold": 0.5522,
+          "threshold": 0.5555,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "ia",
-          "time_ms": 13.082,
-          "exit_type": "Early (Thresh: 0.55)",
+          "time_ms": 13.912,
+          "exit_type": "Early (Thresh: 0.54)",
           "confidence": 0.7188,
-          "threshold": 0.5547,
+          "threshold": 0.5397,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "is",
-          "time_ms": 29.048,
+          "time_ms": 31.327,
           "exit_type": "Full Pass",
           "confidence": 0.0903,
-          "threshold": 0.5557,
+          "threshold": 0.5408,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "a",
-          "time_ms": 30.303,
+          "time_ms": 30.766,
           "exit_type": "Full Pass",
           "confidence": 0.0256,
-          "threshold": 0.5613,
+          "threshold": 0.5505,
           "deadline_ms": 45.0
         }
       ],
@@ -4038,9 +4065,10 @@
         "early_thresh_pct": 20.0,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 26.619,
-        "p99_tpot_ms": 31.089,
-        "max_tpot_ms": 31.131
+        "mean_tpot_ms": 27.19,
+        "p99_tpot_ms": 32.713,
+        "max_tpot_ms": 32.771,
+        "throughput_tps": 36.78
       }
     },
     {
@@ -4054,136 +4082,136 @@
         {
           "token_idx": 1,
           "token": "Response",
-          "time_ms": 30.219,
+          "time_ms": 30.562,
           "exit_type": "Full Pass",
           "confidence": 0.0219,
-          "threshold": 0.558,
+          "threshold": 0.5452,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 28.215,
+          "time_ms": 30.041,
           "exit_type": "Full Pass",
           "confidence": 0.1904,
-          "threshold": 0.568,
+          "threshold": 0.5604,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "The",
-          "time_ms": 30.0,
+          "time_ms": 30.03,
           "exit_type": "Full Pass",
           "confidence": 0.1504,
-          "threshold": 0.5619,
+          "threshold": 0.5558,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "answer",
-          "time_ms": 13.082,
+          "time_ms": 13.362,
           "exit_type": "Early (Thresh: 0.55)",
           "confidence": 0.6602,
-          "threshold": 0.5548,
+          "threshold": 0.5499,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "to",
-          "time_ms": 29.881,
+          "time_ms": 31.777,
           "exit_type": "Full Pass",
           "confidence": 0.418,
-          "threshold": 0.5605,
+          "threshold": 0.5424,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "question",
-          "time_ms": 12.058,
-          "exit_type": "Early (Thresh: 0.57)",
+          "time_ms": 11.968,
+          "exit_type": "Early (Thresh: 0.58)",
           "confidence": 0.7188,
-          "threshold": 0.5738,
+          "threshold": 0.5756,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "",
-          "time_ms": 29.419,
+          "time_ms": 30.555,
           "exit_type": "Full Pass",
           "confidence": 0.3105,
-          "threshold": 0.5794,
+          "threshold": 0.5629,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "1",
-          "time_ms": 31.595,
+          "time_ms": 32.772,
           "exit_type": "Full Pass",
           "confidence": 0.2451,
-          "threshold": 0.5437,
+          "threshold": 0.5346,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "is",
-          "time_ms": 31.508,
+          "time_ms": 31.976,
           "exit_type": "Full Pass",
           "confidence": 0.0237,
-          "threshold": 0.5459,
+          "threshold": 0.5442,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "\"",
-          "time_ms": 29.887,
+          "time_ms": 31.942,
           "exit_type": "Full Pass",
           "confidence": 0.3574,
-          "threshold": 0.5642,
+          "threshold": 0.5523,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "yes",
-          "time_ms": 13.434,
-          "exit_type": "Early (Thresh: 0.55)",
+          "time_ms": 14.383,
+          "exit_type": "Early (Thresh: 0.53)",
           "confidence": 0.7695,
-          "threshold": 0.5483,
+          "threshold": 0.5308,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "\"",
-          "time_ms": 31.055,
+          "time_ms": 33.937,
           "exit_type": "Full Pass",
           "confidence": 0.0304,
-          "threshold": 0.5501,
+          "threshold": 0.5266,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "as",
-          "time_ms": 30.593,
+          "time_ms": 32.717,
           "exit_type": "Full Pass",
           "confidence": 0.1318,
-          "threshold": 0.5515,
+          "threshold": 0.5213,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "the",
-          "time_ms": 30.037,
+          "time_ms": 32.505,
           "exit_type": "Full Pass",
           "confidence": 0.0299,
-          "threshold": 0.563,
+          "threshold": 0.5489,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "implementation",
-          "time_ms": 31.116,
+          "time_ms": 32.023,
           "exit_type": "Full Pass",
           "confidence": 0.0674,
-          "threshold": 0.5465,
+          "threshold": 0.5423,
           "deadline_ms": 45.0
         }
       ],
@@ -4193,9 +4221,10 @@
         "early_thresh_pct": 20.0,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 26.563,
-        "p99_tpot_ms": 31.584,
-        "max_tpot_ms": 31.595
+        "mean_tpot_ms": 27.856,
+        "p99_tpot_ms": 33.786,
+        "max_tpot_ms": 33.937,
+        "throughput_tps": 35.9
       }
     },
     {
@@ -4209,136 +4238,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 29.192,
+          "time_ms": 29.881,
           "exit_type": "Full Pass",
           "confidence": 0.416,
-          "threshold": 0.5597,
+          "threshold": 0.5615,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 29.456,
+          "time_ms": 32.281,
           "exit_type": "Full Pass",
           "confidence": 0.0747,
-          "threshold": 0.5657,
+          "threshold": 0.5401,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Does",
-          "time_ms": 29.718,
+          "time_ms": 32.954,
           "exit_type": "Full Pass",
           "confidence": 0.0391,
-          "threshold": 0.5584,
+          "threshold": 0.5365,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "H",
-          "time_ms": 29.418,
+          "time_ms": 29.965,
           "exit_type": "Full Pass",
           "confidence": 0.0168,
-          "threshold": 0.5619,
+          "threshold": 0.5692,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "ER",
-          "time_ms": 28.877,
+          "time_ms": 32.27,
           "exit_type": "Full Pass",
           "confidence": 0.032,
-          "threshold": 0.5689,
+          "threshold": 0.5386,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "2",
-          "time_ms": 29.905,
+          "time_ms": 32.233,
           "exit_type": "Full Pass",
           "confidence": 0.0173,
-          "threshold": 0.5652,
+          "threshold": 0.543,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "imm",
-          "time_ms": 30.302,
+          "time_ms": 30.436,
           "exit_type": "Full Pass",
           "confidence": 0.0201,
-          "threshold": 0.554,
+          "threshold": 0.553,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "un",
-          "time_ms": 29.375,
+          "time_ms": 30.82,
           "exit_type": "Full Pass",
           "confidence": 0.053,
-          "threshold": 0.5653,
+          "threshold": 0.5424,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "ore",
-          "time_ms": 29.717,
+          "time_ms": 30.748,
           "exit_type": "Full Pass",
           "confidence": 0.2256,
-          "threshold": 0.5593,
+          "threshold": 0.5636,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "activity",
-          "time_ms": 29.086,
+          "time_ms": 31.057,
           "exit_type": "Full Pass",
           "confidence": 0.0278,
-          "threshold": 0.5628,
+          "threshold": 0.5469,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "provide",
-          "time_ms": 28.184,
+          "time_ms": 32.108,
           "exit_type": "Full Pass",
           "confidence": 0.0498,
-          "threshold": 0.5714,
+          "threshold": 0.5418,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "pro",
-          "time_ms": 28.141,
+          "time_ms": 30.085,
           "exit_type": "Full Pass",
           "confidence": 0.0236,
-          "threshold": 0.5724,
+          "threshold": 0.5589,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "gn",
-          "time_ms": 27.929,
+          "time_ms": 31.686,
           "exit_type": "Full Pass",
           "confidence": 0.017,
-          "threshold": 0.576,
+          "threshold": 0.5401,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "ost",
-          "time_ms": 29.135,
+          "time_ms": 31.874,
           "exit_type": "Full Pass",
           "confidence": 0.0654,
-          "threshold": 0.5655,
+          "threshold": 0.54,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "ic",
-          "time_ms": 12.264,
-          "exit_type": "Early (Thresh: 0.57)",
+          "time_ms": 13.66,
+          "exit_type": "Early (Thresh: 0.54)",
           "confidence": 0.75,
-          "threshold": 0.5699,
+          "threshold": 0.5441,
           "deadline_ms": 45.0
         }
       ],
@@ -4348,9 +4377,10 @@
         "early_thresh_pct": 6.7,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 27.965,
-        "p99_tpot_ms": 30.25,
-        "max_tpot_ms": 30.302
+        "mean_tpot_ms": 30.155,
+        "p99_tpot_ms": 32.867,
+        "max_tpot_ms": 32.954,
+        "throughput_tps": 33.16
       }
     },
     {
@@ -4364,136 +4394,136 @@
         {
           "token_idx": 1,
           "token": "Answer",
-          "time_ms": 28.659,
+          "time_ms": 30.28,
           "exit_type": "Full Pass",
           "confidence": 0.3125,
-          "threshold": 0.5715,
+          "threshold": 0.5578,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 28.778,
+          "time_ms": 31.233,
           "exit_type": "Full Pass",
           "confidence": 0.2559,
-          "threshold": 0.5693,
+          "threshold": 0.5532,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "yes",
-          "time_ms": 12.538,
-          "exit_type": "Early (Thresh: 0.56)",
+          "time_ms": 13.562,
+          "exit_type": "Early (Thresh: 0.55)",
           "confidence": 0.6016,
-          "threshold": 0.5647,
+          "threshold": 0.546,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "\n",
-          "time_ms": 28.532,
+          "time_ms": 30.821,
           "exit_type": "Full Pass",
           "confidence": 0.0537,
-          "threshold": 0.5712,
+          "threshold": 0.5629,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "\n",
-          "time_ms": 29.181,
+          "time_ms": 31.558,
           "exit_type": "Full Pass",
           "confidence": 0.0177,
-          "threshold": 0.5674,
+          "threshold": 0.5435,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "Ex",
-          "time_ms": 29.438,
+          "time_ms": 29.504,
           "exit_type": "Full Pass",
           "confidence": 0.012,
-          "threshold": 0.5625,
+          "threshold": 0.5621,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "plan",
-          "time_ms": 28.572,
+          "time_ms": 31.638,
           "exit_type": "Full Pass",
           "confidence": 0.0393,
-          "threshold": 0.5635,
+          "threshold": 0.5481,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "ation",
-          "time_ms": 28.95,
+          "time_ms": 30.252,
           "exit_type": "Full Pass",
           "confidence": 0.2344,
-          "threshold": 0.5732,
+          "threshold": 0.5603,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": ":",
-          "time_ms": 12.667,
-          "exit_type": "Early (Thresh: 0.56)",
+          "time_ms": 13.33,
+          "exit_type": "Early (Thresh: 0.55)",
           "confidence": 0.8828,
-          "threshold": 0.5623,
+          "threshold": 0.5507,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "\n",
-          "time_ms": 30.564,
+          "time_ms": 29.41,
           "exit_type": "Full Pass",
           "confidence": 0.04,
-          "threshold": 0.5546,
+          "threshold": 0.5638,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "\n",
-          "time_ms": 29.207,
+          "time_ms": 29.532,
           "exit_type": "Full Pass",
           "confidence": 0.1846,
-          "threshold": 0.5552,
+          "threshold": 0.5619,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "H",
-          "time_ms": 29.008,
+          "time_ms": 29.379,
           "exit_type": "Full Pass",
           "confidence": 0.0457,
-          "threshold": 0.5694,
+          "threshold": 0.5588,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "al",
-          "time_ms": 29.61,
+          "time_ms": 29.324,
           "exit_type": "Full Pass",
           "confidence": 0.0193,
-          "threshold": 0.5597,
+          "threshold": 0.5659,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": "of",
-          "time_ms": 30.417,
+          "time_ms": 32.348,
           "exit_type": "Full Pass",
           "confidence": 0.0337,
-          "threshold": 0.5565,
+          "threshold": 0.5454,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "ant",
-          "time_ms": 28.68,
+          "time_ms": 31.807,
           "exit_type": "Full Pass",
           "confidence": 0.0654,
-          "threshold": 0.5707,
+          "threshold": 0.5438,
           "deadline_ms": 45.0
         }
       ],
@@ -4503,9 +4533,10 @@
         "early_thresh_pct": 13.3,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 26.867,
-        "p99_tpot_ms": 30.545,
-        "max_tpot_ms": 30.564
+        "mean_tpot_ms": 28.121,
+        "p99_tpot_ms": 32.278,
+        "max_tpot_ms": 32.348,
+        "throughput_tps": 35.56
       }
     },
     {
@@ -4519,136 +4550,136 @@
         {
           "token_idx": 1,
           "token": "Question",
-          "time_ms": 29.515,
+          "time_ms": 32.394,
           "exit_type": "Full Pass",
           "confidence": 0.1211,
-          "threshold": 0.5627,
+          "threshold": 0.5473,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 2,
           "token": ":",
-          "time_ms": 28.84,
+          "time_ms": 33.348,
           "exit_type": "Full Pass",
           "confidence": 0.1484,
-          "threshold": 0.5615,
+          "threshold": 0.5289,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 3,
           "token": "Vis",
-          "time_ms": 28.618,
+          "time_ms": 32.242,
           "exit_type": "Full Pass",
           "confidence": 0.0698,
-          "threshold": 0.5764,
+          "threshold": 0.5377,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 4,
           "token": "cer",
-          "time_ms": 29.536,
+          "time_ms": 32.092,
           "exit_type": "Full Pass",
           "confidence": 0.0444,
-          "threshold": 0.5625,
+          "threshold": 0.5573,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 5,
           "token": "al",
-          "time_ms": 12.657,
-          "exit_type": "Early (Thresh: 0.56)",
+          "time_ms": 14.34,
+          "exit_type": "Early (Thresh: 0.53)",
           "confidence": 0.7656,
-          "threshold": 0.5624,
+          "threshold": 0.5316,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 6,
           "token": "ad",
-          "time_ms": 28.628,
+          "time_ms": 31.471,
           "exit_type": "Full Pass",
           "confidence": 0.0139,
-          "threshold": 0.563,
+          "threshold": 0.5503,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 7,
           "token": "ip",
-          "time_ms": 28.588,
+          "time_ms": 28.906,
           "exit_type": "Full Pass",
           "confidence": 0.0708,
-          "threshold": 0.5784,
+          "threshold": 0.5695,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 8,
           "token": "ose",
-          "time_ms": 29.331,
+          "time_ms": 29.584,
           "exit_type": "Full Pass",
           "confidence": 0.1777,
-          "threshold": 0.5638,
+          "threshold": 0.5619,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 9,
           "token": "t",
-          "time_ms": 29.418,
+          "time_ms": 30.022,
           "exit_type": "Full Pass",
           "confidence": 0.0287,
-          "threshold": 0.5626,
+          "threshold": 0.563,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 10,
           "token": "issue",
-          "time_ms": 27.649,
+          "time_ms": 29.278,
           "exit_type": "Full Pass",
           "confidence": 0.0535,
-          "threshold": 0.5791,
+          "threshold": 0.5596,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 11,
           "token": "(",
-          "time_ms": 12.623,
+          "time_ms": 12.578,
           "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.8828,
-          "threshold": 0.5631,
+          "threshold": 0.5644,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 12,
           "token": "V",
-          "time_ms": 29.599,
+          "time_ms": 31.488,
           "exit_type": "Full Pass",
           "confidence": 0.1914,
-          "threshold": 0.5632,
+          "threshold": 0.5485,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 13,
           "token": "AT",
-          "time_ms": 12.78,
+          "time_ms": 12.89,
           "exit_type": "Early (Thresh: 0.56)",
           "confidence": 0.918,
-          "threshold": 0.5602,
+          "threshold": 0.5585,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 14,
           "token": ")",
-          "time_ms": 28.765,
+          "time_ms": 30.268,
           "exit_type": "Full Pass",
           "confidence": 0.082,
-          "threshold": 0.5596,
+          "threshold": 0.5444,
           "deadline_ms": 45.0
         },
         {
           "token_idx": 15,
           "token": "area",
-          "time_ms": 28.871,
+          "time_ms": 29.707,
           "exit_type": "Full Pass",
           "confidence": 0.0396,
-          "threshold": 0.5762,
+          "threshold": 0.5724,
           "deadline_ms": 45.0
         }
       ],
@@ -4658,9 +4689,10 @@
         "early_thresh_pct": 20.0,
         "forced_exit_pct": 0.0,
         "deadline_miss_pct": 0.0,
-        "mean_tpot_ms": 25.422,
-        "p99_tpot_ms": 29.591,
-        "max_tpot_ms": 29.599
+        "mean_tpot_ms": 27.015,
+        "p99_tpot_ms": 33.204,
+        "max_tpot_ms": 33.348,
+        "throughput_tps": 37.02
       }
     }
   ]
