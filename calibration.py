@@ -26,8 +26,10 @@ import numpy as np
 import torch
 import matplotlib.pyplot as plt
 from datasets import load_dataset
+from transformers import AutoTokenizer
 
 from early_exit_model import EarlyExitTinyLlama
+from benchmark import _build_prompt
 
 RESULTS_FILE = "calibration_results.json"
 FIGURE_FILE  = "calibration.png"
@@ -228,9 +230,10 @@ def plot_calibration(records):
 
 if __name__ == "__main__":
     print("Loading PubMedQA Dataset...")
-    dataset = load_dataset("pubmed_qa", "pqa_labeled", split=f"train[:{N_SAMPLES}]")
+    dataset   = load_dataset("pubmed_qa", "pqa_labeled", split=f"train[:{N_SAMPLES}]")
+    tokenizer = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
     prompts = [
-        f"Context: {item['context']['contexts'][0]}\nQuestion: {item['question']}\nAnswer:"
+        _build_prompt(tokenizer, item["context"]["contexts"][0], item["question"])
         for item in dataset
     ]
 

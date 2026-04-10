@@ -4,28 +4,50 @@ import torch
 from early_exit_model import EarlyExitTinyLlama
 
 
-def _load_full_pass_wcet(safety_factor=1.10, fallback_ms=18.5):
+def _load_wcet_table(safety_factor=1.10, fallback_ms=18.5):
     """
-    Load the measured full-pass WCET from wcet_results.json and apply a
-    safety margin.  Falls back to `fallback_ms` if the file is missing.
+    Load the full-pass WCET table from wcet_results.json and apply a safety
+    margin to every entry.
+
+    Args:
+        safety_factor: Multiplier applied to all measured WCET values.
+                       1.10 = 10% headroom above the measured worst-case,
+                       chosen empirically to absorb GPU clock variation and
+                       OS scheduling jitter while staying well below D=45ms.
+        fallback_ms:   Value used when wcet_results.json is missing or corrupt.
+
+    Returns a sorted list of (seq_len: int, wcet_ms: float) pairs.
+    Falls back to a single sentinel entry if the file is missing.
     """
     wcet_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "wcet_results.json")
     try:
         with open(wcet_file) as f:
             data = json.load(f)
-        max_wcet = max(
-            v["None"]["wcet_ms"]
-            for v in data["results"].values()
+        table = sorted(
+            (int(seq_len), round(v["None"]["wcet_ms"] * safety_factor, 2))
+            for seq_len, v in data["results"].items()
             if "None" in v
         )
-        return round(max_wcet * safety_factor, 2)
+        return table
     except (FileNotFoundError, KeyError, ValueError):
-        return fallback_ms
+        return [(0, fallback_ms)]
 
 
-# Safety margin: minimum remaining budget needed to safely attempt a full pass.
-# Loaded from wcet_results.json (max observed WCET × 1.10 safety factor).
-FULL_PASS_SAFETY_MS = _load_full_pass_wcet()
+def _wcet_for_seq_len(seq_len: int, table) -> float:
+    """
+    Return the safety-margined full-pass WCET for the given sequence length.
+
+    Ceiling lookup: returns the WCET of the smallest profiled bin >= seq_len.
+    If seq_len exceeds all profiled bins, returns the largest bin's value.
+    """
+    for profiled_len, wcet_ms in table:
+        if seq_len <= profiled_len:
+            return wcet_ms
+    return table[-1][1]
+
+
+# Loaded once at import time.
+_WCET_TABLE = _load_wcet_table()
 
 
 def generate_with_deadline(model, prompt, max_new_tokens=15,
@@ -33,7 +55,7 @@ def generate_with_deadline(model, prompt, max_new_tokens=15,
     """
     Phase 1 static anytime scheduler.
 
-    Uses a fixed confidence threshold (no decay) and a Layer-5 early exit.
+    Uses a fixed confidence threshold (no decay) and a Layer-16 early exit.
     If the early exit confidence exceeds the threshold, the token is committed
     immediately. If the budget is nearly exhausted, a forced early exit is taken.
     Otherwise the full 22-layer pass is executed.
@@ -51,7 +73,9 @@ def generate_with_deadline(model, prompt, max_new_tokens=15,
 
     print("Warming up GPU kernels...")
     with torch.inference_mode():
-        _ = model(input_ids)
+        _ = model(input_ids)                          # warm full-pass path
+        _ = model(input_ids, exit_layer=16, use_cache=False)  # warm L16 path
+        _ = model(input_ids, exit_layer=16, use_cache=False)  # second L16 pass
     torch.cuda.synchronize()
     print("Warm-up complete. Starting strict timing.\n")
 
@@ -66,8 +90,10 @@ def generate_with_deadline(model, prompt, max_new_tokens=15,
 
             start_event.record()
 
-            # --- Stage 1: Early evaluation at Layer 5 ---
-            logits_early, _ = model(input_ids, exit_layer=5, use_cache=False)
+            # --- Stage 1: Early evaluation at Layer 16 ---
+            # Layer 16 is used (not 5) so this comparison isolates scheduling
+            # policy (fixed vs decaying threshold) rather than exit-layer choice.
+            logits_early, _ = model(input_ids, exit_layer=16, use_cache=False)
             mid_event.record()
             torch.cuda.synchronize()
 
@@ -78,13 +104,16 @@ def generate_with_deadline(model, prompt, max_new_tokens=15,
 
             remaining_budget = deadline_ms - elapsed_early_ms
 
+            # Look up WCET for the current input length.
+            full_pass_safety_ms = _wcet_for_seq_len(input_ids.shape[1], _WCET_TABLE)
+
             # --- Stage 2: Static threshold decision ---
             if conf_val >= conf_threshold:
                 next_token = next_token_early
                 exit_type  = "Early (High Conf)"
                 end_event.record()
 
-            elif remaining_budget < FULL_PASS_SAFETY_MS:
+            elif remaining_budget < full_pass_safety_ms:
                 next_token = next_token_early
                 exit_type  = "Early (Deadline)"
                 end_event.record()

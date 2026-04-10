@@ -17,18 +17,27 @@ import matplotlib.pyplot as plt
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from early_exit_model import EarlyExitTinyLlama
-from dynamic_scheduler import generate_stateless_anytime
+from dynamic_scheduler import generate_anytime_with_kv
 
 FIGURE_FILE  = "schedulability_proof.png"
 RESULTS_FILE = "tail_latency_results.json"
 DEADLINE_MS  = 45.0
-MAX_TOKENS   = 25   # enough tokens for a well-sampled CDF per prompt
+MAX_TOKENS   = 25   # tokens per prompt; 10 prompts × 24 TPOT ≈ 240 samples for P99
 
-# Three clinically diverse prompts (different lengths and domains)
+# Ten clinically diverse prompts spanning cardiology, oncology, neurology,
+# infectious disease, and metabolism — varied lengths to stress the scheduler
+# across different context sizes.
 PROMPTS = [
     "The clinical presentation of acute myocardial infarction typically includes",
     "Antibiotic resistance mechanisms in gram-negative bacteria involve",
     "The pathophysiology of type 2 diabetes mellitus is characterized by",
+    "Diagnosis and management of septic shock in the intensive care unit requires",
+    "The molecular mechanisms underlying Alzheimer's disease neurodegeneration include",
+    "Chemotherapy-induced peripheral neuropathy is caused by",
+    "Risk factors for venous thromboembolism in hospitalized patients include",
+    "The renin-angiotensin-aldosterone system regulates blood pressure through",
+    "Chronic kidney disease progression is accelerated by",
+    "The role of regulatory T cells in autoimmune disease suppression involves",
 ]
 
 
@@ -91,10 +100,11 @@ def get_anytime_latencies(anytime_model, prompts, deadline_ms=DEADLINE_MS):
 
     for p_idx, prompt in enumerate(prompts):
         print(f"  Anytime prompt {p_idx+1}/{len(prompts)} ...", end=" ", flush=True)
-        records = generate_stateless_anytime(
+        records = generate_anytime_with_kv(
             anytime_model, prompt,
             max_new_tokens=MAX_TOKENS,
             deadline_ms=deadline_ms,
+            verbose=False,
         )
         tpot = [r["time_ms"] for r in records[1:]]   # skip TTFT
         all_latencies.extend(tpot)

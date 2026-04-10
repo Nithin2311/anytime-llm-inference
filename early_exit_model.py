@@ -22,9 +22,10 @@ class EarlyExitTinyLlama(torch.nn.Module):
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-        # Suppress the transformers 5.4 internal deprecation noise for dtype kwarg
+        # Suppress the transformers deprecation noise for dtype/torch_dtype kwarg
         with warnings.catch_warnings():
-            warnings.filterwarnings("ignore", message=".*torch_dtype.*deprecated.*")
+            warnings.filterwarnings("ignore", message=".*torch_dtype.*")
+            warnings.filterwarnings("ignore", message=".*dtype.*deprecated.*")
             self.base_model = AutoModelForCausalLM.from_pretrained(
                 model_name,
                 dtype=torch.bfloat16,
@@ -67,14 +68,17 @@ class EarlyExitTinyLlama(torch.nn.Module):
 
         # 4. Run transformer layers up to exit point
         #    attention_mask=None → SDPA uses is_causal=True internally (FlashAttention path)
+        #    LlamaDecoderLayer may return a 1-tuple (hidden_states,) in some transformers
+        #    versions, so we always unpack to keep hidden_states as a plain tensor.
         for layer in self._m.layers[:n_layers]:
-            hidden_states = layer(
+            out = layer(
                 hidden_states,
                 attention_mask=None,
                 position_ids=position_ids,
                 position_embeddings=position_embeddings,
                 use_cache=False,
             )
+            hidden_states = out[0] if isinstance(out, tuple) else out
 
         # 5. Apply RMSNorm at the exit point (always, at every exit depth)
         hidden_states = self._m.norm(hidden_states)
@@ -82,6 +86,61 @@ class EarlyExitTinyLlama(torch.nn.Module):
         # 6. Project to vocabulary
         logits = self.lm_head(hidden_states)
         return logits, None
+
+
+    def forward_cached(self, input_ids, past_key_values=None):
+        """
+        KV-cached forward pass that returns both L16 and full-pass logits.
+
+        Design rationale
+        ----------------
+        The two-pass stateless scheduler runs L16 then (optionally) a full
+        pass, recomputing all attention from scratch every token — O(n²) cost.
+        KV-cache reduces this to O(n) per token, but maintaining *separate*
+        caches per exit depth causes desynchronisation: if a token exits at L16
+        the full-pass cache never receives its layers 16–21 KV states, so the
+        next full-pass token attends to an incomplete history.
+
+        Solution: always run all 22 layers in a single pass, capture the hidden
+        state at layer 15 (0-indexed = "Layer 16" in 1-indexed notation) via a
+        forward hook, and apply the shared RMSNorm + lm_head at that point to
+        produce approximate L16 logits.  This guarantees a consistent KV cache
+        while giving the scheduler both logits to choose from.
+
+        Args:
+            input_ids:        LongTensor [batch, seq_len]
+                              First call: the full prompt.
+                              Subsequent calls: single new token [batch, 1].
+            past_key_values:  KV cache returned from the previous call (None on
+                              the first call).
+
+        Returns:
+            l16_logits:       FloatTensor [batch, seq_len, vocab]
+            full_logits:      FloatTensor [batch, seq_len, vocab]
+            past_key_values:  Updated KV cache; pass back on the next call.
+        """
+        captured = {}
+
+        def _hook(module, input, output):
+            # LlamaDecoderLayer may return a tuple; index 0 is always hidden_states.
+            captured["h16"] = output[0] if isinstance(output, tuple) else output
+
+        handle = self._m.layers[15].register_forward_hook(_hook)
+        try:
+            with warnings.catch_warnings():
+                warnings.filterwarnings("ignore")
+                out = self.base_model(
+                    input_ids,
+                    past_key_values=past_key_values,
+                    use_cache=True,
+                )
+        finally:
+            handle.remove()
+
+        full_logits = out.logits
+        l16_logits  = self.lm_head(self._m.norm(captured["h16"]))
+
+        return l16_logits, full_logits, out.past_key_values
 
 
 # --- Verification ---
@@ -93,15 +152,15 @@ if __name__ == "__main__":
 
     with torch.inference_mode():
         # Full pass (22 layers)
-        logits_full, _ = model(inputs.input_ids)
+        logits_full, _ = model(inputs.input_ids, use_cache=False)
         print(f"Full pass  logits shape : {logits_full.shape}")
 
         # Early exit at layer 16
-        logits_l16, _ = model(inputs.input_ids, exit_layer=16)
+        logits_l16, _ = model(inputs.input_ids, exit_layer=16, use_cache=False)
         print(f"Exit@L16   logits shape : {logits_l16.shape}")
 
         # Early exit at layer 5
-        logits_l5, _ = model(inputs.input_ids, exit_layer=5)
+        logits_l5, _ = model(inputs.input_ids, exit_layer=5, use_cache=False)
         print(f"Exit@L5    logits shape : {logits_l5.shape}")
 
         # Sanity: top-1 token for each depth

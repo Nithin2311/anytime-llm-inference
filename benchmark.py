@@ -5,7 +5,7 @@ import numpy as np
 from datasets import load_dataset
 from transformers import AutoTokenizer
 from early_exit_model import EarlyExitTinyLlama
-from dynamic_scheduler import generate_stateless_anytime
+from dynamic_scheduler import generate_anytime_with_kv
 
 RESULTS_FILE = "benchmark_results.json"
 CSV_FILE     = "benchmark_results.csv"
@@ -119,10 +119,11 @@ def run_pubmed_benchmark(n_samples=30, deadline_ms=45.0, max_new_tokens=15):
         print(f"Ground truth : {ground_truth}")
         print(f"Prompt length: {len(prompt.split())} words")
 
-        token_records = generate_stateless_anytime(
+        token_records = generate_anytime_with_kv(
             model, prompt,
             max_new_tokens=max_new_tokens,
             deadline_ms=deadline_ms,
+            verbose=False,
         )
 
         generated_text = "".join(r["token"] for r in token_records)
@@ -236,4 +237,6 @@ def run_pubmed_benchmark(n_samples=30, deadline_ms=45.0, max_new_tokens=15):
 
 
 if __name__ == "__main__":
-    run_pubmed_benchmark(n_samples=30, deadline_ms=45.0, max_new_tokens=15)
+    # max_new_tokens=5: forces the model to commit to a short answer immediately,
+    # improving yes/no/maybe label extraction rate vs the original 15-token budget.
+    run_pubmed_benchmark(n_samples=30, deadline_ms=45.0, max_new_tokens=5)

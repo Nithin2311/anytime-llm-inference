@@ -141,8 +141,10 @@ def plot_wcet_profile(results, seq_lengths, exit_layers, deadline_ms=45.0):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    # Sequence lengths covering the realistic prompt+generation context range
-    SEQ_LENGTHS  = [32, 64, 128, 256]
+    # Sequence lengths covering the realistic prompt+generation context range.
+    # 512 and 1024 are added to cover PubMedQA clinical prompts (chat-template
+    # formatted context+question is typically 300–700 tokens).
+    SEQ_LENGTHS  = [32, 64, 128, 256, 512, 1024]
     # Exit layers: sparse probe (5), mid (11), pre-final (16), full pass (None=22)
     EXIT_LAYERS  = [5, 11, 16, None]
 

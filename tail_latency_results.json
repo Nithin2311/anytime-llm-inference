@@ -1,31 +1,38 @@
 {
   "deadline_ms": 45.0,
-  "n_prompts": 3,
+  "n_prompts": 10,
   "prompts": [
     "The clinical presentation of acute myocardial infarction typically includes",
     "Antibiotic resistance mechanisms in gram-negative bacteria involve",
-    "The pathophysiology of type 2 diabetes mellitus is characterized by"
+    "The pathophysiology of type 2 diabetes mellitus is characterized by",
+    "Diagnosis and management of septic shock in the intensive care unit requires",
+    "The molecular mechanisms underlying Alzheimer's disease neurodegeneration include",
+    "Chemotherapy-induced peripheral neuropathy is caused by",
+    "Risk factors for venous thromboembolism in hospitalized patients include",
+    "The renin-angiotensin-aldosterone system regulates blood pressure through",
+    "Chronic kidney disease progression is accelerated by",
+    "The role of regulatory T cells in autoimmune disease suppression involves"
   ],
   "baseline": {
     "label": "Baseline (Standard Autoregressive)",
-    "n": 72,
-    "p50_ms": 19.983,
-    "p95_ms": 22.187,
-    "p99_ms": 36.713,
-    "max_ms": 53.48,
-    "miss_pct": 1.389,
-    "util_ratio": 0.8159,
+    "n": 240,
+    "p50_ms": 18.799,
+    "p95_ms": 21.648,
+    "p99_ms": 22.958,
+    "max_ms": 23.425,
+    "miss_pct": 0.0,
+    "util_ratio": 0.5102,
     "schedulable": true
   },
   "anytime": {
     "label": "Anytime Scheduler (Dynamic Threshold Decay)",
-    "n": 72,
-    "p50_ms": 34.528,
-    "p95_ms": 37.225,
-    "p99_ms": 37.986,
-    "max_ms": 38.046,
+    "n": 240,
+    "p50_ms": 19.05,
+    "p95_ms": 19.294,
+    "p99_ms": 19.444,
+    "max_ms": 19.726,
     "miss_pct": 0.0,
-    "util_ratio": 0.8441,
+    "util_ratio": 0.4321,
     "schedulable": true
   }
 }

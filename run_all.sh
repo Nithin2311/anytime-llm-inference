@@ -6,7 +6,7 @@
 #
 # Usage:
 #   source venv/bin/activate
-#   bash run_all.sh            # full pipeline
+#   bash run_all.sh              # full pipeline
 #   bash run_all.sh --skip-slow  # skip benchmark (30q) and sweep (8×5q)
 
 set -euo pipefail
@@ -24,7 +24,7 @@ log "0/7  Environment check"
 python verify_env.py || die "Environment check failed. Fix the issues above before proceeding."
 
 # ── 1. WCET profiling ────────────────────────────────────────────────────────
-log "1/7  WCET profiling (seq lengths: 32/64/128/256 × exit layers: 5/11/16/full, 50 runs each)"
+log "1/7  WCET profiling (seq lengths: 32/64/128/256/512/1024 × exit layers: 5/11/16/full, 50 runs each)"
 python profile_wcet.py
 echo "Output: wcet_results.json, wcet_profile.png"
 
@@ -34,25 +34,25 @@ python calibration.py
 echo "Output: calibration_results.json, calibration.png"
 
 # ── 3. Exit-layer ablation ───────────────────────────────────────────────────
-log "3/7  Exit-layer ablation study (L5 / L11 / L16 vs oracle L22)"
+log "3/7  Exit-layer ablation study (L5/L11/L16/L17/L18/L19/L20 vs oracle L22)"
 python exit_layer_ablation.py
 echo "Output: ablation_results.json, exit_layer_ablation.png"
 
 # ── 4. Tail-latency schedulability proof ─────────────────────────────────────
-log "4/7  Tail-latency schedulability proof (3 clinical prompts, D=45 ms)"
+log "4/7  Tail-latency schedulability proof (10 clinical prompts, KV-cached, D=45 ms)"
 python evaluate_tail_latency.py
 echo "Output: tail_latency_results.json, schedulability_proof.png"
 
-# ── 5. Static vs Dynamic scheduler comparison ────────────────────────────────
-log "5/7  Scheduler comparison (static L5 vs dynamic L16, 5 queries)"
+# ── 5. Stateless vs KV-cached scheduler comparison ───────────────────────────
+log "5/7  Scheduler comparison (stateless dynamic vs KV-cached, both L16, 5 queries)"
 python compare_schedulers.py
 echo "Output: scheduler_comparison.json, scheduler_comparison.png"
 
-# ── 6. Deadline sweep ────────────────────────────────────────────────────────
+# ── 6. Deadline sweep (stateless — shows forced-exit adaptation behavior) ────
 if [[ "$SKIP_SLOW" == "true" ]]; then
   log "6/7  Deadline sweep [SKIPPED — --skip-slow]"
 else
-  log "6/7  Deadline sweep (deadlines 20–60 ms, 5 queries each)"
+  log "6/7  Deadline sweep (deadlines 20–60 ms, stateless scheduler, 5 queries each)"
   python deadline_sweep.py
   echo "Output: sweep_results.json, deadline_tradeoff.png"
 fi
@@ -61,7 +61,7 @@ fi
 if [[ "$SKIP_SLOW" == "true" ]]; then
   log "7/7  PubMedQA benchmark [SKIPPED — --skip-slow]"
 else
-  log "7/7  PubMedQA benchmark (30 queries, dynamic scheduler, D=45 ms)"
+  log "7/7  PubMedQA benchmark (30 queries, KV-cached scheduler, D=45 ms)"
   python benchmark.py
   echo "Output: benchmark_results.json, benchmark_results.csv"
 fi

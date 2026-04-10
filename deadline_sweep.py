@@ -40,6 +40,7 @@ def run_one_deadline(model, prompts, ground_truths, deadline_ms):
             model, prompt,
             max_new_tokens=MAX_TOKENS,
             deadline_ms=deadline_ms,
+            verbose=False,
         )
         all_records.extend(records)
 

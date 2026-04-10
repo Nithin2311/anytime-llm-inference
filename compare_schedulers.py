@@ -1,5 +1,5 @@
 """
-compare_schedulers.py — Static vs. Dynamic scheduler head-to-head comparison.
+compare_schedulers.py — Stateless vs. KV-Cached scheduler head-to-head comparison.
 
 Runs both schedulers on the same set of PubMedQA prompts and produces:
   scheduler_comparison.json   — raw per-token records for both schedulers
@@ -9,13 +9,11 @@ Runs both schedulers on the same set of PubMedQA prompts and produces:
 import json
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 from datasets import load_dataset
 from transformers import AutoTokenizer
 
 from early_exit_model import EarlyExitTinyLlama
-from static_scheduler import generate_with_deadline
-from dynamic_scheduler import generate_stateless_anytime
+from dynamic_scheduler import generate_stateless_anytime, generate_anytime_with_kv
 
 RESULTS_FILE = "scheduler_comparison.json"
 FIGURE_FILE  = "scheduler_comparison.png"
@@ -27,11 +25,9 @@ MAX_TOKENS   = 15
 
 def aggregate(all_records, deadline_ms):
     """Compute summary metrics from a flat list of token_records."""
-    tpot = [r["time_ms"] for r in all_records[1::MAX_TOKENS + 1] or all_records]
-    # Proper TPOT: skip index 0 (TTFT) within each query
     tpot_records = []
-    for i, r in enumerate(all_records):
-        if r["token_idx"] > 1:          # skip first token per query
+    for r in all_records:
+        if r["token_idx"] > 1:          # skip first token per query (TTFT)
             tpot_records.append(r["time_ms"])
 
     tpot_arr  = np.array(tpot_records) if tpot_records else np.array([0.0])
@@ -83,8 +79,8 @@ def run_comparison():
     model     = EarlyExitTinyLlama()
     tokenizer = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 
-    static_all_records  = []
-    dynamic_all_records = []
+    stateless_all_records = []
+    kvcached_all_records  = []
 
     for i, item in enumerate(dataset):
         context  = item["context"]["contexts"][0]
@@ -95,41 +91,42 @@ def run_comparison():
         print(f"Query {i+1}/{N_SAMPLES} | GT: {item['final_decision']}")
         print("=" * 60)
 
-        print("\n--- Static Scheduler (Layer 5, fixed threshold=0.8) ---")
-        static_records = generate_with_deadline(
+        print("\n--- Stateless Scheduler (L16, threshold decay 0.8→0.3, WCET forced exit) ---")
+        stateless_records = generate_stateless_anytime(
             model, prompt,
             max_new_tokens=MAX_TOKENS,
             deadline_ms=DEADLINE_MS,
-            conf_threshold=0.8,
+            verbose=False,
         )
-        static_all_records.extend(static_records)
+        stateless_all_records.extend(stateless_records)
 
-        print("\n--- Dynamic Scheduler (Layer 16, threshold decay 0.8→0.3) ---")
-        dynamic_records = generate_stateless_anytime(
+        print("\n--- KV-Cached Scheduler (L16, fixed threshold 0.55, single-pass) ---")
+        kvcached_records = generate_anytime_with_kv(
             model, prompt,
             max_new_tokens=MAX_TOKENS,
             deadline_ms=DEADLINE_MS,
+            verbose=False,
         )
-        dynamic_all_records.extend(dynamic_records)
+        kvcached_all_records.extend(kvcached_records)
 
-    static_metrics  = aggregate(static_all_records,  DEADLINE_MS)
-    dynamic_metrics = aggregate(dynamic_all_records, DEADLINE_MS)
+    stateless_metrics = aggregate(stateless_all_records, DEADLINE_MS)
+    kvcached_metrics  = aggregate(kvcached_all_records,  DEADLINE_MS)
 
     output = {
-        "n_samples":       N_SAMPLES,
-        "deadline_ms":     DEADLINE_MS,
-        "max_tokens":      MAX_TOKENS,
-        "static_metrics":  static_metrics,
-        "dynamic_metrics": dynamic_metrics,
+        "n_samples":          N_SAMPLES,
+        "deadline_ms":        DEADLINE_MS,
+        "max_tokens":         MAX_TOKENS,
+        "stateless_metrics":  stateless_metrics,
+        "kvcached_metrics":   kvcached_metrics,
     }
     with open(RESULTS_FILE, "w") as f:
         json.dump(output, f, indent=2)
     print(f"\nResults saved to '{RESULTS_FILE}'")
 
-    return static_metrics, dynamic_metrics, static_all_records, dynamic_all_records
+    return stateless_metrics, kvcached_metrics, stateless_all_records, kvcached_all_records
 
 
-def plot_comparison(static_metrics, dynamic_metrics):
+def plot_comparison(stateless_metrics, kvcached_metrics):
     plt.style.use("seaborn-v0_8-whitegrid")
     plt.rcParams.update({
         "font.family": "serif", "font.size": 10,
@@ -137,17 +134,17 @@ def plot_comparison(static_metrics, dynamic_metrics):
         "legend.fontsize": 9,
     })
 
-    C_STATIC  = "#d62728"   # red
-    C_DYNAMIC = "#2b5b84"   # dark blue
-    DEAD_C    = "black"
+    C_STATELESS = "#d62728"   # red
+    C_KVCACHED  = "#2b5b84"   # dark blue
+    DEAD_C      = "black"
 
     fig, axes = plt.subplots(1, 3, figsize=(14, 4))
 
     # ── Panel 1: TPOT CDF ─────────────────────────────────────────────────────
     ax = axes[0]
     for label, metrics, colour in [
-        ("Static (L5, fixed)", static_metrics,  C_STATIC),
-        ("Dynamic (L16, decay)", dynamic_metrics, C_DYNAMIC),
+        ("Stateless (L16, decay)",  stateless_metrics, C_STATELESS),
+        ("KV-Cached (L16, fixed)",  kvcached_metrics,  C_KVCACHED),
     ]:
         samples = np.sort(metrics["tpot_samples"])
         cdf     = np.arange(1, len(samples) + 1) / len(samples)
@@ -162,12 +159,11 @@ def plot_comparison(static_metrics, dynamic_metrics):
     ax.legend(fontsize=8)
 
     # ── Panel 2: Exit-Type Distribution ───────────────────────────────────────
-    ax      = axes[1]
-    labels  = ["Static\n(L5, fixed)", "Dynamic\n(L16, decay)"]
-    metrics_list = [static_metrics, dynamic_metrics]
-    x       = np.arange(len(labels))
-    width   = 0.5
-    colours_bar = {"Full Pass": "#2b5b84", "Early Conf/Thresh": "#2e8b57", "Forced/Deadline": "#d9534f"}
+    ax     = axes[1]
+    labels = ["Stateless\n(L16, decay)", "KV-Cached\n(L16, fixed)"]
+    metrics_list = [stateless_metrics, kvcached_metrics]
+    x      = np.arange(len(labels))
+    width  = 0.5
 
     full_vals   = [m["full_pass_pct"]   for m in metrics_list]
     conf_vals   = [m["early_conf_pct"]  for m in metrics_list]
@@ -190,16 +186,16 @@ def plot_comparison(static_metrics, dynamic_metrics):
     # ── Panel 3: Key Metric Table ──────────────────────────────────────────────
     ax = axes[2]
     ax.axis("off")
-    col_labels = ["Metric", "Static", "Dynamic"]
+    col_labels = ["Metric", "Stateless", "KV-Cached"]
     rows = [
-        ["Mean TPOT (ms)",    f"{static_metrics['mean_tpot_ms']:.1f}",  f"{dynamic_metrics['mean_tpot_ms']:.1f}"],
-        ["P99 TPOT (ms)",     f"{static_metrics['p99_tpot_ms']:.1f}",   f"{dynamic_metrics['p99_tpot_ms']:.1f}"],
-        ["Throughput (tok/s)",f"{static_metrics['throughput_tps']}",    f"{dynamic_metrics['throughput_tps']}"],
-        ["Util (P99/D)",      f"{static_metrics['util_ratio']:.4f}",    f"{dynamic_metrics['util_ratio']:.4f}"],
-        ["Deadline Miss (%)", f"{static_metrics['deadline_miss_pct']}", f"{dynamic_metrics['deadline_miss_pct']}"],
-        ["Full Pass (%)",     f"{static_metrics['full_pass_pct']}",     f"{dynamic_metrics['full_pass_pct']}"],
-        ["Early Exit (%)",    f"{static_metrics['early_conf_pct']}",    f"{dynamic_metrics['early_conf_pct']}"],
-        ["Forced Exit (%)",   f"{static_metrics['forced_exit_pct']}",   f"{dynamic_metrics['forced_exit_pct']}"],
+        ["Mean TPOT (ms)",    f"{stateless_metrics['mean_tpot_ms']:.1f}",  f"{kvcached_metrics['mean_tpot_ms']:.1f}"],
+        ["P99 TPOT (ms)",     f"{stateless_metrics['p99_tpot_ms']:.1f}",   f"{kvcached_metrics['p99_tpot_ms']:.1f}"],
+        ["Throughput (tok/s)",f"{stateless_metrics['throughput_tps']}",    f"{kvcached_metrics['throughput_tps']}"],
+        ["Util (P99/D)",      f"{stateless_metrics['util_ratio']:.4f}",    f"{kvcached_metrics['util_ratio']:.4f}"],
+        ["Deadline Miss (%)", f"{stateless_metrics['deadline_miss_pct']}", f"{kvcached_metrics['deadline_miss_pct']}"],
+        ["Full Pass (%)",     f"{stateless_metrics['full_pass_pct']}",     f"{kvcached_metrics['full_pass_pct']}"],
+        ["Early Exit (%)",    f"{stateless_metrics['early_conf_pct']}",    f"{kvcached_metrics['early_conf_pct']}"],
+        ["Forced Exit (%)",   f"{stateless_metrics['forced_exit_pct']}",   f"{kvcached_metrics['forced_exit_pct']}"],
     ]
     table = ax.table(
         cellText=rows,
@@ -210,14 +206,13 @@ def plot_comparison(static_metrics, dynamic_metrics):
     )
     table.auto_set_font_size(False)
     table.set_fontsize(9)
-    # Style header
     for j in range(len(col_labels)):
         table[0, j].set_facecolor("#2b5b84")
         table[0, j].set_text_props(color="white", fontweight="bold")
     ax.set_title("Summary Metrics", pad=12)
 
     fig.suptitle(
-        f"Static vs. Dynamic Scheduler  |  deadline={DEADLINE_MS:.0f} ms  |  n={N_SAMPLES} queries",
+        f"Stateless (decay thresh) vs. KV-Cached (fixed thresh)  —  both L16  |  deadline={DEADLINE_MS:.0f} ms  |  n={N_SAMPLES} queries",
         fontsize=12, y=1.02,
     )
     plt.tight_layout()
@@ -227,13 +222,13 @@ def plot_comparison(static_metrics, dynamic_metrics):
 
 
 if __name__ == "__main__":
-    static_metrics, dynamic_metrics, static_records, dynamic_records = run_comparison()
+    stateless_metrics, kvcached_metrics, stateless_records, kvcached_records = run_comparison()
 
     print("\n" + "=" * 55)
     print("COMPARISON SUMMARY")
     print("=" * 55)
-    for name, m in [("Static  (L5, fixed thresh)", static_metrics),
-                    ("Dynamic (L16, decay thresh)", dynamic_metrics)]:
+    for name, m in [("Stateless  (L16, decay thresh)", stateless_metrics),
+                    ("KV-Cached  (L16, fixed thresh)", kvcached_metrics)]:
         print(f"\n{name}")
         print(f"  Mean TPOT:    {m['mean_tpot_ms']:.2f} ms  |  P99: {m['p99_tpot_ms']:.2f} ms")
         print(f"  Throughput:   {m['throughput_tps']} tok/s  |  Util (P99/D): {m['util_ratio']:.4f}")
@@ -241,4 +236,4 @@ if __name__ == "__main__":
               f"|  Forced: {m['forced_exit_pct']}%")
         print(f"  Missed deadlines: {m['deadline_miss_pct']}%")
 
-    plot_comparison(static_metrics, dynamic_metrics)
+    plot_comparison(stateless_metrics, kvcached_metrics)

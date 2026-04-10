@@ -7,8 +7,11 @@ Validates:
   3. GPU timing precision (async event timers)
   4. Model loadability (EarlyExitTinyLlama)
   5. Early-exit forward pass correctness (L16 vs full pass shape)
-  6. WCET data availability and loaded safety margin
-  7. PubMedQA dataset accessibility
+  6. forward_cached() KV-cache path works correctly
+  7. WCET data availability and per-seq-len table loaded
+  8. Dynamic scheduler WCET table integrity
+  9. PubMedQA dataset accessibility
+  10. Chat-template prompt format (_build_prompt)
 
 Exit code 0 = all checks passed.
 Exit code 1 = one or more checks failed.
@@ -105,7 +108,7 @@ def _early_exit_shapes():
     ids   = tok("Hello world", return_tensors="pt").input_ids.to("cuda")
     with torch.inference_mode():
         logits_l16, _ = model(ids, exit_layer=16, use_cache=False)
-        logits_full, _= model(ids, use_cache=False)
+        logits_full, _ = model(ids, use_cache=False)
     assert logits_l16.shape == logits_full.shape, \
         f"Shape mismatch: L16={logits_l16.shape} full={logits_full.shape}"
     return f"logits shape {tuple(logits_full.shape)} — consistent at L16 and full pass"
@@ -128,12 +131,31 @@ def _wcet_data():
 check("wcet_results.json present and valid", _wcet_data)
 
 def _scheduler_wcet():
-    from dynamic_scheduler import _FULL_PASS_WCET_MS
-    if _FULL_PASS_WCET_MS <= 0:
-        raise RuntimeError(f"Unexpected WCET value: {_FULL_PASS_WCET_MS}")
-    return f"_FULL_PASS_WCET_MS = {_FULL_PASS_WCET_MS} ms"
+    from dynamic_scheduler import _WCET_TABLE, _wcet_for_seq_len
+    if not _WCET_TABLE:
+        raise RuntimeError("_WCET_TABLE is empty")
+    sample = _wcet_for_seq_len(256, _WCET_TABLE)
+    if sample <= 0:
+        raise RuntimeError(f"Unexpected WCET value: {sample}")
+    return f"{len(_WCET_TABLE)} seq-len bins loaded | WCET@256={sample} ms"
 
-check("Dynamic scheduler loaded WCET from JSON", _scheduler_wcet)
+check("Dynamic scheduler loaded WCET table from JSON", _scheduler_wcet)
+
+
+def _kv_cache_forward():
+    import torch
+    from early_exit_model import EarlyExitTinyLlama
+    model = EarlyExitTinyLlama()
+    ids = model.tokenizer("Hello", return_tensors="pt").input_ids.to("cuda")
+    with torch.inference_mode():
+        l16, full, past_kv = model.forward_cached(ids)
+        new_tok = torch.tensor([[full[0, -1, :].argmax().item()]], device="cuda")
+        l16_2, full_2, _ = model.forward_cached(new_tok, past_key_values=past_kv)
+    assert l16.shape[-1] == full.shape[-1], "vocab dim mismatch"
+    assert l16_2.shape[1] == 1, "second call should return 1 token"
+    return f"forward_cached OK — L16 {tuple(l16.shape)}, full {tuple(full.shape)}"
+
+check("forward_cached() KV-cache path works", _kv_cache_forward)
 
 
 # ── 5. Dataset ────────────────────────────────────────────────────────────────

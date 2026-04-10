@@ -23,12 +23,13 @@ from datasets import load_dataset
 from transformers import AutoTokenizer
 
 from early_exit_model import EarlyExitTinyLlama
+from benchmark import _build_prompt
 
 RESULTS_FILE = "ablation_results.json"
 FIGURE_FILE  = "exit_layer_ablation.png"
 N_SAMPLES    = 10
 MAX_TOKENS   = 15
-EXIT_LAYERS  = [5, 11, 16]       # candidates; L22 is the full-pass oracle
+EXIT_LAYERS  = [5, 11, 16, 17, 18, 19, 20]   # candidates; L22 is the full-pass oracle
 
 
 def collect_ablation_data(model, prompts):
@@ -129,10 +130,11 @@ def plot_ablation(records, summaries):
         "legend.fontsize": 9,
     })
 
-    colours = {5: "#d62728", 11: "#ff7f0e", 16: "#2b5b84"}
+    colours = {5: "#d62728", 11: "#ff7f0e", 16: "#2b5b84",
+               17: "#9467bd", 18: "#8c564b", 19: "#e377c2", 20: "#17becf"}
     layers  = EXIT_LAYERS
 
-    fig, axes = plt.subplots(1, 3, figsize=(14, 4.5))
+    fig, axes = plt.subplots(1, 3, figsize=(18, 4.5))
 
     # ── Panel 1: Agreement rate vs confidence threshold ──────────────────────
     ax = axes[0]
@@ -181,15 +183,15 @@ def plot_ablation(records, summaries):
     ax = axes[2]
     ax.axis("off")
 
-    col_labels = ["Metric"] + [f"Layer {l}" for l in layers]
+    col_labels = ["Metric"] + [f"L{l}" for l in layers]
     rows = [
-        ["Agreement (%)",      *[f"{s['agree_pct']}"    for s in summaries]],
-        ["Agree @ conf≥0.5", *[f"{s['agree_hc_pct']}"  for s in summaries]],
-        ["Mean conf",          *[f"{s['mean_conf']:.3f}" for s in summaries]],
-        ["Mean TPOT (ms)",     *[f"{s['mean_time_ms']}"  for s in summaries]],
-        ["P99 TPOT (ms)",      *[f"{s['p99_time_ms']}"   for s in summaries]],
-        ["WCET (ms)",          *[f"{s['wcet_ms']}"        for s in summaries]],
-        ["conf≥0.5 tokens (%)",*[f"{s['hc_sample_pct']}" for s in summaries]],
+        ["Agreement (%)",       *[f"{s['agree_pct']}"    for s in summaries]],
+        ["Agree @ conf≥0.5",  *[f"{s['agree_hc_pct']}"  for s in summaries]],
+        ["Mean conf",           *[f"{s['mean_conf']:.3f}" for s in summaries]],
+        ["Mean TPOT (ms)",      *[f"{s['mean_time_ms']}"  for s in summaries]],
+        ["P99 TPOT (ms)",       *[f"{s['p99_time_ms']}"   for s in summaries]],
+        ["WCET (ms)",           *[f"{s['wcet_ms']}"        for s in summaries]],
+        ["conf≥0.5 tok (%)",   *[f"{s['hc_sample_pct']}" for s in summaries]],
     ]
     table = ax.table(
         cellText=rows, colLabels=col_labels,
@@ -197,14 +199,15 @@ def plot_ablation(records, summaries):
         bbox=[0, 0.05, 1, 0.92],
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(9)
+    table.set_fontsize(8)
     for j in range(len(col_labels)):
         table[0, j].set_facecolor("#2b5b84")
         table[0, j].set_text_props(color="white", fontweight="bold")
     # Highlight the chosen layer (L16)
-    chosen_col = layers.index(16) + 1
-    for row_i in range(1, len(rows) + 1):
-        table[row_i, chosen_col].set_facecolor("#dce9f5")
+    if 16 in layers:
+        chosen_col = layers.index(16) + 1
+        for row_i in range(1, len(rows) + 1):
+            table[row_i, chosen_col].set_facecolor("#dce9f5")
     ax.set_title("Exit Layer Comparison (L16 highlighted)", pad=10)
 
     fig.suptitle(
@@ -222,13 +225,7 @@ if __name__ == "__main__":
     dataset   = load_dataset("pubmed_qa", "pqa_labeled", split=f"train[:{N_SAMPLES}]")
     tokenizer = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
     prompts   = [
-        tokenizer.apply_chat_template(
-            [
-                {"role": "system",  "content": "You are a biomedical expert. Answer with only yes, no, or maybe."},
-                {"role": "user",    "content": f"Context: {item['context']['contexts'][0]}\n\nQuestion: {item['question']}"},
-            ],
-            tokenize=False, add_generation_prompt=True,
-        )
+        _build_prompt(tokenizer, item["context"]["contexts"][0], item["question"])
         for item in dataset
     ]
 
@@ -247,8 +244,9 @@ if __name__ == "__main__":
     print(f"\n{'='*60}")
     print("ABLATION SUMMARY")
     print("=" * 60)
-    print(f"{'':30s}  {'L5':>8}  {'L11':>8}  {'L16':>8}")
-    print("-" * 60)
+    header = "  ".join(f"L{l:>2}" for l in EXIT_LAYERS)
+    print(f"{'':30s}  {header}")
+    print("-" * (32 + 10 * len(EXIT_LAYERS)))
     for key, label in [
         ("agree_pct",     "Overall agreement (%)"),
         ("agree_hc_pct",  "Agree @ conf>=0.5 (%)"),
@@ -256,8 +254,8 @@ if __name__ == "__main__":
         ("mean_time_ms",  "Mean TPOT (ms)"),
         ("wcet_ms",       "WCET (ms)"),
     ]:
-        vals = [str(s[key]) for s in summaries]
-        print(f"{label:30s}  {vals[0]:>8}  {vals[1]:>8}  {vals[2]:>8}")
+        vals = "  ".join(f"{str(s[key]):>8}" for s in summaries)
+        print(f"{label:30s}  {vals}")
     print("=" * 60)
 
     with open(RESULTS_FILE, "w") as f:
