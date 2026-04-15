@@ -179,33 +179,41 @@ def plot_comparison(stateless_metrics, kvcached_metrics):
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
     ax.set_ylabel("Percentage of Tokens (%)")
-    ax.set_ylim(0, 115)
+    ax.set_ylim(0, 130)
     ax.set_title("Exit-Type Distribution")
-    ax.legend(fontsize=8)
+    ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, 1.0),
+              ncol=1, framealpha=0.9)
 
     # ── Panel 3: Key Metric Table ──────────────────────────────────────────────
     ax = axes[2]
     ax.axis("off")
     col_labels = ["Metric", "Stateless", "KV-Cached"]
     rows = [
-        ["Mean TPOT (ms)",    f"{stateless_metrics['mean_tpot_ms']:.1f}",  f"{kvcached_metrics['mean_tpot_ms']:.1f}"],
-        ["P99 TPOT (ms)",     f"{stateless_metrics['p99_tpot_ms']:.1f}",   f"{kvcached_metrics['p99_tpot_ms']:.1f}"],
-        ["Throughput (tok/s)",f"{stateless_metrics['throughput_tps']}",    f"{kvcached_metrics['throughput_tps']}"],
-        ["Util (P99/D)",      f"{stateless_metrics['util_ratio']:.4f}",    f"{kvcached_metrics['util_ratio']:.4f}"],
-        ["Deadline Miss (%)", f"{stateless_metrics['deadline_miss_pct']}", f"{kvcached_metrics['deadline_miss_pct']}"],
-        ["Full Pass (%)",     f"{stateless_metrics['full_pass_pct']}",     f"{kvcached_metrics['full_pass_pct']}"],
-        ["Early Exit (%)",    f"{stateless_metrics['early_conf_pct']}",    f"{kvcached_metrics['early_conf_pct']}"],
-        ["Forced Exit (%)",   f"{stateless_metrics['forced_exit_pct']}",   f"{kvcached_metrics['forced_exit_pct']}"],
+        ["Mean TPOT (ms)",  f"{stateless_metrics['mean_tpot_ms']:.1f}",  f"{kvcached_metrics['mean_tpot_ms']:.1f}"],
+        ["P99 TPOT (ms)",   f"{stateless_metrics['p99_tpot_ms']:.1f}",   f"{kvcached_metrics['p99_tpot_ms']:.1f}"],
+        ["Throughput (t/s)",f"{stateless_metrics['throughput_tps']}",    f"{kvcached_metrics['throughput_tps']}"],
+        ["Util (P99/D)",    f"{stateless_metrics['util_ratio']:.4f}",    f"{kvcached_metrics['util_ratio']:.4f}"],
+        ["Miss Rate (%)",   f"{stateless_metrics['deadline_miss_pct']}", f"{kvcached_metrics['deadline_miss_pct']}"],
+        ["Full Pass (%)",   f"{stateless_metrics['full_pass_pct']}",     f"{kvcached_metrics['full_pass_pct']}"],
+        ["Early Exit (%)",  f"{stateless_metrics['early_conf_pct']}",    f"{kvcached_metrics['early_conf_pct']}"],
+        ["Forced Exit (%)", f"{stateless_metrics['forced_exit_pct']}",   f"{kvcached_metrics['forced_exit_pct']}"],
     ]
     table = ax.table(
         cellText=rows,
         colLabels=col_labels,
         cellLoc="center",
         loc="center",
-        bbox=[0, 0.05, 1, 0.9],
+        bbox=[0, 0.02, 1, 0.96],
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(9)
+    table.set_fontsize(8.5)
+    # Widen first column relative to the other two
+    col_widths = [0.44, 0.28, 0.28]
+    n_rows = len(rows) + 1  # +1 for header
+    for row_idx in range(n_rows):
+        for col_idx, w in enumerate(col_widths):
+            table[row_idx, col_idx].set_width(w)
+        table[row_idx, 0].set_text_props(ha="left")
     for j in range(len(col_labels)):
         table[0, j].set_facecolor("#2b5b84")
         table[0, j].set_text_props(color="white", fontweight="bold")

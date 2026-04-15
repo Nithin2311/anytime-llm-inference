@@ -1,0 +1,160 @@
+{
+  "hardware": "RTX 4000 Ada",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "num_runs": 200,
+  "seq_lengths": [
+    32,
+    64,
+    128,
+    256,
+    512,
+    1024
+  ],
+  "exit_layers": [
+    "5",
+    "11",
+    "16",
+    "None"
+  ],
+  "fifo_available": false,
+  "normal_sched": {
+    "results": {
+      "32": {
+        "5": {
+          "mean_ms": 4.653,
+          "p99_ms": 4.856,
+          "wcet_ms": 4.918
+        },
+        "11": {
+          "mean_ms": 10.392,
+          "p99_ms": 12.905,
+          "wcet_ms": 13.007
+        },
+        "16": {
+          "mean_ms": 13.804,
+          "p99_ms": 14.138,
+          "wcet_ms": 14.204
+        },
+        "None": {
+          "mean_ms": 18.705,
+          "p99_ms": 19.161,
+          "wcet_ms": 19.358
+        }
+      },
+      "64": {
+        "5": {
+          "mean_ms": 4.754,
+          "p99_ms": 6.074,
+          "wcet_ms": 6.323
+        },
+        "11": {
+          "mean_ms": 9.295,
+          "p99_ms": 9.77,
+          "wcet_ms": 10.081
+        },
+        "16": {
+          "mean_ms": 13.084,
+          "p99_ms": 14.682,
+          "wcet_ms": 14.749
+        },
+        "None": {
+          "mean_ms": 17.74,
+          "p99_ms": 19.281,
+          "wcet_ms": 20.805
+        }
+      },
+      "128": {
+        "5": {
+          "mean_ms": 4.501,
+          "p99_ms": 4.911,
+          "wcet_ms": 5.306
+        },
+        "11": {
+          "mean_ms": 9.55,
+          "p99_ms": 9.916,
+          "wcet_ms": 10.003
+        },
+        "16": {
+          "mean_ms": 13.785,
+          "p99_ms": 14.115,
+          "wcet_ms": 14.786
+        },
+        "None": {
+          "mean_ms": 18.833,
+          "p99_ms": 19.223,
+          "wcet_ms": 20.688
+        }
+      },
+      "256": {
+        "5": {
+          "mean_ms": 4.675,
+          "p99_ms": 5.008,
+          "wcet_ms": 5.066
+        },
+        "11": {
+          "mean_ms": 9.764,
+          "p99_ms": 11.265,
+          "wcet_ms": 11.791
+        },
+        "16": {
+          "mean_ms": 13.795,
+          "p99_ms": 16.591,
+          "wcet_ms": 16.9
+        },
+        "None": {
+          "mean_ms": 17.702,
+          "p99_ms": 19.213,
+          "wcet_ms": 19.668
+        }
+      },
+      "512": {
+        "5": {
+          "mean_ms": 5.954,
+          "p99_ms": 5.976,
+          "wcet_ms": 6.099
+        },
+        "11": {
+          "mean_ms": 11.925,
+          "p99_ms": 11.94,
+          "wcet_ms": 12.475
+        },
+        "16": {
+          "mean_ms": 16.893,
+          "p99_ms": 17.005,
+          "wcet_ms": 17.422
+        },
+        "None": {
+          "mean_ms": 22.856,
+          "p99_ms": 22.896,
+          "wcet_ms": 23.371
+        }
+      },
+      "1024": {
+        "5": {
+          "mean_ms": 11.564,
+          "p99_ms": 11.592,
+          "wcet_ms": 11.853
+        },
+        "11": {
+          "mean_ms": 23.198,
+          "p99_ms": 23.31,
+          "wcet_ms": 23.345
+        },
+        "16": {
+          "mean_ms": 32.92,
+          "p99_ms": 32.983,
+          "wcet_ms": 33.088
+        },
+        "None": {
+          "mean_ms": 44.579,
+          "p99_ms": 44.689,
+          "wcet_ms": 44.715
+        }
+      }
+    }
+  },
+  "fifo_sched": {
+    "results": null,
+    "note": "SCHED_FIFO was not available. Re-run with sudo to collect this data."
+  }
+}

@@ -2,8 +2,14 @@
 evaluate_tail_latency.py — Schedulability proof via tail-latency CDF.
 
 Compares standard full-pass autoregressive baseline against the anytime
-scheduler across 3 diverse clinical prompts, demonstrating hard-deadline
+scheduler across 10 diverse clinical prompts, demonstrating hard-deadline
 compliance through formal P99 analysis.
+
+Prompts use the TinyLlama chat template (identical format to benchmark.py)
+so that measured latencies reflect real deployment conditions, not artificially
+short bare-text inputs.  Chat-template formatted prompts are typically 80–120
+tokens, producing a context of 95–145 tokens by the end of generation — the
+same range seen during the PubMedQA benchmark.
 
 Outputs:
   schedulability_proof.png  — CDF comparison + summary table
@@ -24,32 +30,51 @@ RESULTS_FILE = "tail_latency_results.json"
 DEADLINE_MS  = 45.0
 MAX_TOKENS   = 25   # tokens per prompt; 10 prompts × 24 TPOT ≈ 240 samples for P99
 
-# Ten clinically diverse prompts spanning cardiology, oncology, neurology,
-# infectious disease, and metabolism — varied lengths to stress the scheduler
-# across different context sizes.
-PROMPTS = [
-    "The clinical presentation of acute myocardial infarction typically includes",
-    "Antibiotic resistance mechanisms in gram-negative bacteria involve",
-    "The pathophysiology of type 2 diabetes mellitus is characterized by",
-    "Diagnosis and management of septic shock in the intensive care unit requires",
-    "The molecular mechanisms underlying Alzheimer's disease neurodegeneration include",
-    "Chemotherapy-induced peripheral neuropathy is caused by",
-    "Risk factors for venous thromboembolism in hospitalized patients include",
-    "The renin-angiotensin-aldosterone system regulates blood pressure through",
-    "Chronic kidney disease progression is accelerated by",
-    "The role of regulatory T cells in autoimmune disease suppression involves",
+# Ten clinically diverse questions spanning cardiology, oncology, neurology,
+# infectious disease, and metabolism.  Formatted with the TinyLlama chat
+# template (same system prompt and structure as benchmark.py) so that prompt
+# lengths match the real benchmark workload (~80–120 tokens after encoding).
+_RAW_QUESTIONS = [
+    "Does acute myocardial infarction cause elevated troponin levels within 6 hours of symptom onset?",
+    "Do beta-lactam antibiotics inhibit gram-negative bacterial cell wall synthesis?",
+    "Is insulin resistance the primary driver of hyperglycaemia in type 2 diabetes?",
+    "Does early antibiotic administration reduce mortality in septic shock?",
+    "Do amyloid plaques cause neuronal death in Alzheimer's disease?",
+    "Is cisplatin-induced peripheral neuropathy caused by dorsal root ganglion damage?",
+    "Does prolonged immobilisation increase the risk of deep vein thrombosis?",
+    "Does angiotensin II cause vasoconstriction via AT1 receptor activation?",
+    "Does uncontrolled hypertension accelerate chronic kidney disease progression?",
+    "Do regulatory T cells suppress autoimmune responses via IL-10 secretion?",
 ]
+
+
+def _build_prompt(tokenizer, question: str) -> str:
+    """Format using TinyLlama chat template — identical to benchmark.py."""
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "You are a biomedical expert answering clinical questions. "
+                "Answer each question with exactly one word: 'yes', 'no', or 'maybe'. "
+                "Do not add any explanation."
+            ),
+        },
+        {"role": "user", "content": f"Question: {question}"},
+    ]
+    return tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
 
 
 # ─── Baseline: standard full-pass autoregressive ────────────────────────────
 
-def get_baseline_latencies(prompts, max_tokens=MAX_TOKENS):
+def get_baseline_latencies(prompts, tokenizer, max_tokens=MAX_TOKENS):
     """
     Run the standard HF model (no early exit) on each prompt and return
     all per-token TPOT measurements (first token / TTFT excluded).
+
+    prompts   — list of already-formatted (chat-template) prompt strings
+    tokenizer — shared tokenizer instance (passed in to avoid double-loading)
     """
     print("\nLoading standard HF model for baseline...")
-    tokenizer = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
     model = AutoModelForCausalLM.from_pretrained(
         "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
         dtype=torch.bfloat16,
@@ -91,7 +116,7 @@ def get_baseline_latencies(prompts, max_tokens=MAX_TOKENS):
 
 # ─── Anytime: dynamic scheduler ─────────────────────────────────────────────
 
-def get_anytime_latencies(anytime_model, prompts, deadline_ms=DEADLINE_MS):
+def get_anytime_latencies(anytime_model, prompts, deadline_ms=DEADLINE_MS):  # prompts already chat-template formatted
     """
     Run the anytime scheduler on each prompt and return all per-token
     TPOT measurements (first token / TTFT excluded).
@@ -244,7 +269,7 @@ def plot_schedulability(baseline_lats, anytime_lats, base_stats, any_stats, dead
     ax.set_title(f"Schedulability Analysis  (D = {deadline_ms:.0f} ms)", pad=12)
 
     fig.suptitle(
-        f"Tail-Latency Schedulability Proof  |  {len(PROMPTS)} prompts  "
+        f"Tail-Latency Schedulability Proof  |  10 prompts (chat-template)  "
         f"|  deadline = {deadline_ms:.0f} ms",
         fontsize=12, y=1.02,
     )
@@ -257,13 +282,17 @@ def plot_schedulability(baseline_lats, anytime_lats, base_stats, any_stats, dead
 # ─── Entry point ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    # Build chat-template formatted prompts once (tokenizer needed for apply_chat_template)
+    _tok = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
+    PROMPTS = [_build_prompt(_tok, q) for q in _RAW_QUESTIONS]
+
     print("=" * 60)
     print("SCHEDULABILITY EVALUATION — TAIL LATENCY BENCHMARK")
     print(f"Deadline: {DEADLINE_MS} ms  |  {len(PROMPTS)} prompts  |  {MAX_TOKENS} tokens each")
     print("=" * 60)
 
-    # 1. Baseline
-    baseline_lats = get_baseline_latencies(PROMPTS)
+    # 1. Baseline (re-uses the tokenizer already loaded above)
+    baseline_lats = get_baseline_latencies(PROMPTS, _tok)
 
     # 2. Anytime scheduler
     print("\nLoading anytime model...")
@@ -296,7 +325,7 @@ if __name__ == "__main__":
     results = {
         "deadline_ms": DEADLINE_MS,
         "n_prompts":   len(PROMPTS),
-        "prompts":     PROMPTS,
+        "prompts":     _RAW_QUESTIONS,
         "baseline":    base_stats,
         "anytime":     any_stats,
     }

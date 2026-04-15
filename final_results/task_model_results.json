@@ -1,0 +1,91 @@
+{
+  "task_params": {
+    "C_ms": 19.44,
+    "D_ms": 45.0,
+    "U_single": 0.432
+  },
+  "N_max_round_robin": 2,
+  "rms_analysis": [
+    {
+      "n": 1,
+      "u_actual": 0.432,
+      "u_ll": 1.0,
+      "rms_schedulable": true,
+      "effective_tpot_ms": 19.44
+    },
+    {
+      "n": 2,
+      "u_actual": 0.864,
+      "u_ll": 0.828427,
+      "rms_schedulable": false,
+      "effective_tpot_ms": 38.88
+    },
+    {
+      "n": 3,
+      "u_actual": 1.296,
+      "u_ll": 0.779763,
+      "rms_schedulable": false,
+      "effective_tpot_ms": 58.32
+    },
+    {
+      "n": 4,
+      "u_actual": 1.728,
+      "u_ll": 0.756828,
+      "rms_schedulable": false,
+      "effective_tpot_ms": 77.76
+    },
+    {
+      "n": 5,
+      "u_actual": 2.16,
+      "u_ll": 0.743492,
+      "rms_schedulable": false,
+      "effective_tpot_ms": 97.2
+    },
+    {
+      "n": 6,
+      "u_actual": 2.592,
+      "u_ll": 0.734772,
+      "rms_schedulable": false,
+      "effective_tpot_ms": 116.64
+    },
+    {
+      "n": 7,
+      "u_actual": 3.024,
+      "u_ll": 0.728627,
+      "rms_schedulable": false,
+      "effective_tpot_ms": 136.08
+    }
+  ],
+  "response_times": [
+    {
+      "k_tokens": 5,
+      "n1_ms": 97.2,
+      "n2_ms": 194.4,
+      "n3_ms": 291.6
+    },
+    {
+      "k_tokens": 10,
+      "n1_ms": 194.4,
+      "n2_ms": 388.8,
+      "n3_ms": 583.2
+    },
+    {
+      "k_tokens": 15,
+      "n1_ms": 291.6,
+      "n2_ms": 583.2,
+      "n3_ms": 874.8
+    },
+    {
+      "k_tokens": 25,
+      "n1_ms": 486.0,
+      "n2_ms": 972.0,
+      "n3_ms": 1458.0
+    },
+    {
+      "k_tokens": 50,
+      "n1_ms": 972.0,
+      "n2_ms": 1944.0,
+      "n3_ms": 2916.0
+    }
+  ]
+}
