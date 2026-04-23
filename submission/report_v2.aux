@@ -1,0 +1,154 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{singhal2023large}
+\citation{ouyang2022training}
+\citation{wen2023dilu}
+\citation{boddy1994deliberation,zilberstein1996using}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-A}}Contributions}{1}{subsection.1.1}\protected@file@percent }
+\citation{zilberstein1996using,boddy1994deliberation}
+\citation{teerapittayanon2016branchynet}
+\citation{liu2020fastbert}
+\citation{xin2020deebert}
+\citation{schuster2022confident}
+\citation{elhoushi2024layerskip}
+\citation{bateni2020neuos}
+\citation{xiang2019pipelined}
+\citation{cucu2012measurement}
+\citation{bernat2002wcet}
+\citation{davis2013quantifying}
+\citation{kwon2023efficient}
+\citation{dao2022flashattention,dao2023flashattention2}
+\citation{zhang2024tinyllama}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Anytime Algorithms}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Early Exit in Transformer Models}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Real-Time Scheduling for ML Inference}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}Probabilistic WCET}{2}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-E}}KV Cache Efficiency}{2}{subsection.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}System Architecture}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Hardware and Model}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}EarlyExitTinyLlama and the Post-Hoc Hook}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Three Application-Level Routers}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}1}Stateless Two-Pass Router}{2}{subsubsection.3.3.1}\protected@file@percent }
+\newlabel{eq:decay}{{1}{2}{Stateless Two-Pass Router}{equation.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}2}KV-Cached Single-Pass Router}{2}{subsubsection.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}3}Async-Overlap Router}{3}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}WCET Table and Admission Policy}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{eq:wcet_safe}{{2}{3}{WCET Table and Admission Policy}{equation.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Profiling and Calibration}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}GPU WCET Profiling}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces WCET Profile: RTX\nobreakspace  {}6000\nobreakspace  {}Ada (50\nobreakspace  {}runs/cell)}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:wcet}{{I}{3}{WCET Profile: RTX~6000~Ada (50~runs/cell)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Exit-Layer Ablation}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:ablation}{{\mbox  {IV-B}}{3}{Exit-Layer Ablation}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Exit-Layer Ablation Summary}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:ablation}{{II}{3}{Exit-Layer Ablation Summary}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Confidence Calibration}{3}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Confidence Calibration: Layer\nobreakspace  {}5 vs.\ Layer\nobreakspace  {}16}}{3}{table.3}\protected@file@percent }
+\newlabel{tab:calibration}{{III}{3}{Confidence Calibration: Layer~5 vs.\ Layer~16}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Experimental Results}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}SLO Compliance Proof}{3}{subsection.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces WCET and mean TPOT vs.\ sequence length for exit layers L5, L11, L16, and Full Pass (RTX\nobreakspace  {}6000\nobreakspace  {}Ada, 50\nobreakspace  {}runs/cell). Full-pass latency is approximately flat at 15\nobreakspace  {}ms from 32--512\nobreakspace  {}tokens, rising to 21.8\nobreakspace  {}ms at 1{,}024 tokens.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:wcet_profile}{{1}{4}{WCET and mean TPOT vs.\ sequence length for exit layers L5, L11, L16, and Full Pass (RTX~6000~Ada, 50~runs/cell). Full-pass latency is approximately flat at 15~ms from 32--512~tokens, rising to 21.8~ms at 1{,}024 tokens}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Exit-layer ablation (L5, L11, L16, L20 vs.\ full-pass oracle). Agreement rate vs.\ confidence threshold. Layer\nobreakspace  {}16 is the inflection point where agreement jumps from 2.7\% (L11) to 32.0\% and high-confidence agreement reaches 64.7\%.}}{4}{figure.2}\protected@file@percent }
+\newlabel{fig:ablation}{{2}{4}{Exit-layer ablation (L5, L11, L16, L20 vs.\ full-pass oracle). Agreement rate vs.\ confidence threshold. Layer~16 is the inflection point where agreement jumps from 2.7\% (L11) to 32.0\% and high-confidence agreement reaches 64.7\%}{figure.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces SLO Compliance Proof ($D=30$\nobreakspace  {}ms, $n=240$\nobreakspace  {}TPOT samples)}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:schedulability}{{IV}{4}{SLO Compliance Proof ($D=30$~ms, $n=240$~TPOT samples)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Three-Way Router Comparison}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:comparison}{{\mbox  {V-B}}{4}{Three-Way Router Comparison}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Three-Way Router Comparison ($D=30$\nobreakspace  {}ms, $n=75$\nobreakspace  {}tokens/router)}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:comparison}{{V}{4}{Three-Way Router Comparison ($D=30$~ms, $n=75$~tokens/router)}{table.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Confidence calibration at Layer\nobreakspace  {}5 and Layer\nobreakspace  {}16. \emph  {Left:} calibration curve (oracle agreement vs.\ confidence threshold). \emph  {Right:} softmax confidence distributions for agree/disagree tokens. Layer\nobreakspace  {}5 is uncalibrated; Layer\nobreakspace  {}16 shows monotonically increasing agreement above $c \approx 0.4$, validating threshold-based early exit.}}{5}{figure.3}\protected@file@percent }
+\newlabel{fig:calibration}{{3}{5}{Confidence calibration at Layer~5 and Layer~16. \emph {Left:} calibration curve (oracle agreement vs.\ confidence threshold). \emph {Right:} softmax confidence distributions for agree/disagree tokens. Layer~5 is uncalibrated; Layer~16 shows monotonically increasing agreement above $c \approx 0.4$, validating threshold-based early exit}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Deadline Sensitivity Sweep}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Deadline Sweep Summary (Stateless Router)}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:sweep}{{VI}{5}{Deadline Sweep Summary (Stateless Router)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}30-Query PubMedQA Benchmark}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces 30-Query PubMedQA Benchmark (KV-Cached, $D=30$\nobreakspace  {}ms)}}{5}{table.7}\protected@file@percent }
+\newlabel{tab:benchmark}{{VII}{5}{30-Query PubMedQA Benchmark (KV-Cached, $D=30$~ms)}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Real-Time Systems Analysis}{5}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Heterogeneous Pipeline Decomposition}{5}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:pipeline}{{\mbox  {VI-A}}{5}{Heterogeneous Pipeline Decomposition}{subsection.6.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces Pipeline Component Latencies (200\nobreakspace  {}samples)}}{5}{table.8}\protected@file@percent }
+\newlabel{tab:pipeline}{{VIII}{5}{Pipeline Component Latencies (200~samples)}{table.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Tail-latency comparison: baseline vs.\ KV-cached anytime router ($n=240$ TPOT samples, $D=30$\nobreakspace  {}ms). \emph  {Left:} CDF overlay showing both routers well below the deadline. \emph  {Right:} key metric comparison (P50/P95/P99/Max/Miss\nobreakspace  {}\%). The anytime router's P99 (17.84\nobreakspace  {}ms, $R=0.396$) is 8\% below the baseline P99 (19.37\nobreakspace  {}ms, $R=0.430$).}}{6}{figure.4}\protected@file@percent }
+\newlabel{fig:schedulability}{{4}{6}{Tail-latency comparison: baseline vs.\ KV-cached anytime router ($n=240$ TPOT samples, $D=30$~ms). \emph {Left:} CDF overlay showing both routers well below the deadline. \emph {Right:} key metric comparison (P50/P95/P99/Max/Miss~\%). The anytime router's P99 (17.84~ms, $R=0.396$) is 8\% below the baseline P99 (19.37~ms, $R=0.430$)}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Thermal Stability}{6}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces Thermal Stability Summary (50\nobreakspace  {}tokens/window, RTX\nobreakspace  {}6000\nobreakspace  {}Ada)}}{6}{table.9}\protected@file@percent }
+\newlabel{tab:thermal}{{IX}{6}{Thermal Stability Summary (50~tokens/window, RTX~6000~Ada)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Jitter and Temporal Autocorrelation}{6}{subsection.6.3}\protected@file@percent }
+\citation{bernat2002wcet,coles2001introduction}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Three-way router comparison (5\nobreakspace  {}queries, $D=30$\nobreakspace  {}ms, $n=75$ tokens/router). \emph  {Left:} TPOT CDF. \emph  {Right:} Mean and P99 TPOT per router. Stateless P99 = 30.27\nobreakspace  {}ms exceeds $D$; KV-cached and async-overlap both achieve 0\% misses.}}{7}{figure.5}\protected@file@percent }
+\newlabel{fig:comparison}{{5}{7}{Three-way router comparison (5~queries, $D=30$~ms, $n=75$ tokens/router). \emph {Left:} TPOT CDF. \emph {Right:} Mean and P99 TPOT per router. Stateless P99 = 30.27~ms exceeds $D$; KV-cached and async-overlap both achieve 0\% misses}{figure.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {X}{\ignorespaces Jitter Statistics: KV-Cached Router (30-Query Benchmark)}}{7}{table.10}\protected@file@percent }
+\newlabel{tab:jitter}{{X}{7}{Jitter Statistics: KV-Cached Router (30-Query Benchmark)}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}EVT Probabilistic WCET Bounds}{7}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:evt}{{\mbox  {VI-D}}{7}{EVT Probabilistic WCET Bounds}{subsection.6.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {XI}{\ignorespaces EVT WCET Bounds: Full Pass (500\nobreakspace  {}samples/cell, RTX\nobreakspace  {}6000\nobreakspace  {}Ada)}}{7}{table.11}\protected@file@percent }
+\newlabel{tab:evt}{{XI}{7}{EVT WCET Bounds: Full Pass (500~samples/cell, RTX~6000~Ada)}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-E}}Admission Control}{7}{subsection.6.5}\protected@file@percent }
+\newlabel{eq:admit}{{3}{7}{Admission Control}{equation.6.3}{}}
+\citation{singhal2023large}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Deadline sensitivity sweep (stateless router, 5\nobreakspace  {}queries, $D$ = 20--60\nobreakspace  {}ms). At $D=20$\nobreakspace  {}ms the router forces 100\% early exits with 1.3\% misses; at $D=25$\nobreakspace  {}ms all tokens meet deadline via forced L16 exits; from $D\geq 30$\nobreakspace  {}ms normal routing resumes with 0\% misses.}}{8}{figure.6}\protected@file@percent }
+\newlabel{fig:deadline_tradeoff}{{6}{8}{Deadline sensitivity sweep (stateless router, 5~queries, $D$ = 20--60~ms). At $D=20$~ms the router forces 100\% early exits with 1.3\% misses; at $D=25$~ms all tokens meet deadline via forced L16 exits; from $D\geq 30$~ms normal routing resumes with 0\% misses}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-F}}Multi-Request Capacity Analysis}{8}{subsection.6.6}\protected@file@percent }
+\newlabel{sec:capacity}{{\mbox  {VI-F}}{8}{Multi-Request Capacity Analysis}{subsection.6.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {XII}{\ignorespaces Multi-Request SLO Compliance ($C=15.99$\nobreakspace  {}ms, $D=30$\nobreakspace  {}ms)}}{8}{table.12}\protected@file@percent }
+\newlabel{tab:capacity}{{XII}{8}{Multi-Request SLO Compliance ($C=15.99$~ms, $D=30$~ms)}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Discussion}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}Why KV Caching Is Essential}{8}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-B}}GPU Dominance and the Right Level of Abstraction}{8}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-C}}EVT Framing and Appropriate Confidence Levels}{8}{subsection.7.3}\protected@file@percent }
+\bibstyle{IEEEtran}
+\bibdata{references}
+\bibcite{singhal2023large}{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Benchmark dashboard: 30-query PubMedQA (KV-cached, $D=30$\nobreakspace  {}ms). \emph  {Left:} accuracy and deadline compliance. \emph  {Right:} TPOT latency summary (mean, P99, deadline). Zero deadline misses; $R=0.533$.}}{9}{figure.7}\protected@file@percent }
+\newlabel{fig:benchmark}{{7}{9}{Benchmark dashboard: 30-query PubMedQA (KV-cached, $D=30$~ms). \emph {Left:} accuracy and deadline compliance. \emph {Right:} TPOT latency summary (mean, P99, deadline). Zero deadline misses; $R=0.533$}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-D}}Limitations and Future Work}{9}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Conclusion}{9}{section.8}\protected@file@percent }
+\bibcite{ouyang2022training}{2}
+\bibcite{wen2023dilu}{3}
+\bibcite{boddy1994deliberation}{4}
+\bibcite{zilberstein1996using}{5}
+\bibcite{teerapittayanon2016branchynet}{6}
+\bibcite{liu2020fastbert}{7}
+\bibcite{xin2020deebert}{8}
+\bibcite{schuster2022confident}{9}
+\bibcite{elhoushi2024layerskip}{10}
+\bibcite{bateni2020neuos}{11}
+\bibcite{xiang2019pipelined}{12}
+\bibcite{cucu2012measurement}{13}
+\bibcite{bernat2002wcet}{14}
+\bibcite{davis2013quantifying}{15}
+\bibcite{kwon2023efficient}{16}
+\bibcite{dao2022flashattention}{17}
+\bibcite{dao2023flashattention2}{18}
+\bibcite{zhang2024tinyllama}{19}
+\bibcite{coles2001introduction}{20}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Thermal stability profile (500\nobreakspace  {}consecutive tokens, KV-cached router, RTX\nobreakspace  {}6000\nobreakspace  {}Ada). \emph  {Left:} raw TPOT time series with 50-token rolling mean. \emph  {Right:} per-window summary with drift annotation. No systematic upward trend is observed; isolated spikes return to baseline within the next window.}}{10}{figure.8}\protected@file@percent }
+\newlabel{fig:thermal}{{8}{10}{Thermal stability profile (500~consecutive tokens, KV-cached router, RTX~6000~Ada). \emph {Left:} raw TPOT time series with 50-token rolling mean. \emph {Right:} per-window summary with drift annotation. No systematic upward trend is observed; isolated spikes return to baseline within the next window}{figure.8}{}}
+\@writefile{toc}{\contentsline {section}{References}{10}{section*.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Jitter analysis (KV-cached router, 30-query benchmark). \emph  {Left:} TPOT histogram with $\pm \sigma $ bands. \emph  {Centre:} ACF at lags 1--10 with 95\% CI. \emph  {Right:} per-query box plots. Low lag-1 ACF within queries supports the i.i.d.\ assumption for EVT analysis.}}{11}{figure.9}\protected@file@percent }
+\newlabel{fig:jitter}{{9}{11}{Jitter analysis (KV-cached router, 30-query benchmark). \emph {Left:} TPOT histogram with $\pm \sigma $ bands. \emph {Centre:} ACF at lags 1--10 with 95\% CI. \emph {Right:} per-query box plots. Low lag-1 ACF within queries supports the i.i.d.\ assumption for EVT analysis}{figure.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces EVT WCET analysis (500\nobreakspace  {}samples/cell, RTX\nobreakspace  {}6000\nobreakspace  {}Ada). \emph  {Left:} empirical $\times 1.10$ and Gumbel pWCET bounds ($\varepsilon = 10^{-3}$, $10^{-6}$) vs.\ sequence length. \emph  {Centre:} QQ-plot for Full Pass at seq=256 (Gumbel fit). \emph  {Right:} summary table.}}{11}{figure.10}\protected@file@percent }
+\newlabel{fig:evt}{{10}{11}{EVT WCET analysis (500~samples/cell, RTX~6000~Ada). \emph {Left:} empirical $\times 1.10$ and Gumbel pWCET bounds ($\varepsilon = 10^{-3}$, $10^{-6}$) vs.\ sequence length. \emph {Centre:} QQ-plot for Full Pass at seq=256 (Gumbel fit). \emph {Right:} summary table}{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Admission control analysis. \emph  {Left:} ADMIT/REJECT boundary with WCET annotations. \emph  {Right:} simulation of 200 random requests (seq Uniform[50,800], deadline Uniform[25,65]\nobreakspace  {}ms).}}{12}{figure.11}\protected@file@percent }
+\newlabel{fig:admission}{{11}{12}{Admission control analysis. \emph {Left:} ADMIT/REJECT boundary with WCET annotations. \emph {Right:} simulation of 200 random requests (seq Uniform[50,800], deadline Uniform[25,65]~ms)}{figure.11}{}}
+\gdef \@abspage@last{12}

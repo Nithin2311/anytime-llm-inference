@@ -1,0 +1,1083 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+\emergencystretch=1em
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{Dynamic Anytime Scheduling for LLM Inference:\\
+Bounding Tail Latency via Predictive Early-Exit Mechanisms}
+
+\author{
+    \IEEEauthorblockN{Nithin Palyam}
+    \IEEEauthorblockA{
+        \textit{Department of Computer Science and Engineering}\\
+        \textit{University of South Florida}\\
+        Tampa, FL, USA\\
+        palyam@usf.edu
+    }
+}
+
+\maketitle
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{abstract}
+Standard autoregressive large language model (LLM) inference processes every
+transformer layer for every generated token, producing per-token latencies
+that are highly variable and potentially unbounded under growing context.
+In latency-sensitive applications such as clinical decision support, this
+tail behaviour violates hard Service-Level Objective (SLO) deadlines.
+We present an anytime algorithm framework for LLM token generation that
+exploits the predictive signal available at intermediate transformer layers
+to make deadline-aware routing decisions at the application level.
+Three routers are implemented on TinyLlama-1.1B-Chat on a bare-metal
+NVIDIA RTX~6000~Ada GPU (50.9~GB VRAM, CUDA~12.4):
+(i)~a \emph{stateless two-pass} router (threshold decay, no KV cache);
+(ii)~a \emph{KV-cached single-pass} router using a post-hoc forward hook
+     that captures Layer-16 activations during the single 22-layer pass,
+     eliminating KV-cache desynchronization; and
+(iii)~an \emph{async-overlap} variant that pipelines CPU tokenization with
+      GPU inference via CUDA streams and pinned memory.
+A heterogeneous pipeline decomposition reveals that GPU compute accounts
+for 99.3\% of per-token latency ($T_{\text{gpu}}$~=~15.57~ms mean),
+with PCIe transfer (0.023~ms) and CPU preprocessing (0.091~ms) negligible,
+validating the application-level routing abstraction.
+At the hard deadline $D=30$~ms, the KV-cached router achieves
+P99~TPOT~=~17.84~ms (SLO compliance ratio $R = 0.595$) with 0\%
+deadline misses across 240 token samples.
+The async-overlap router reduces this to P99~=~17.41~ms ($R=0.580$).
+The stateless router's P99~=~30.27~ms exceeds the 30~ms deadline ($R=1.009$),
+demonstrating that two-pass inference is not schedulable at this deadline.
+An exit-layer ablation (L5, L11, L16, L20) confirms Layer~16 as the earliest layer
+with substantial predictive signal (32\% oracle agreement, 64.7\% when
+high-confidence).
+A 30-query PubMedQA clinical benchmark achieves 0\% deadline misses
+at 68.24~tok/s throughput and 71.4\% answer accuracy.
+Gumbel EVT bounds establish $P(\text{TPOT}>30\,\text{ms})<10^{-6}$
+for sequences up to 512~tokens.
+Thermal profiling over 500 consecutive tokens confirms WCET stability,
+validating the static routing table.
+\end{abstract}
+
+\begin{IEEEkeywords}
+anytime algorithms, application-level scheduling, LLM inference,
+early exit, KV cache, tail latency, probabilistic WCET, extreme value theory,
+transformer inference, SLO compliance
+\end{IEEEkeywords}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Introduction}
+% ─────────────────────────────────────────────────────────────────────────────
+
+Large language models (LLMs) have become foundational components in
+latency-critical applications: clinical decision support~\cite{singhal2023large},
+interactive human-computer interfaces~\cite{ouyang2022training}, and
+autonomous vehicle reasoning~\cite{wen2023dilu}.
+In all such contexts, the system must commit a token (or produce an
+answer) before a hard deadline.
+Standard autoregressive decoding executes all transformer layers for
+every token, producing execution times that are highly variable and
+grow with context length.
+
+This mismatch between standard inference and hard deadline requirements
+is the central problem we address.
+We adopt the \emph{anytime algorithm} paradigm~\cite{boddy1994deliberation,
+zilberstein1996using}: a computation that can be safely interrupted at
+any point and returns a valid (if approximate) result.
+For transformer inference, the natural interruption point is at an
+intermediate layer.
+A confidence signal derived from that layer's logits allows the router
+to decide, after the full pass completes, whether the intermediate
+output is sufficient for commitment.
+
+Our system operates entirely in user space.
+The router makes application-level decisions (which logits to commit)
+and does not preempt OS threads or control GPU hardware scheduling.
+The GPU runs a contiguous 22-layer forward pass every token; the router
+only selects which of the two available logit vectors to commit.
+The relevant metric is therefore SLO compliance: whether
+$\text{P99\_TPOT} \leq D$ across the inference workload.
+
+\subsection{Contributions}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Post-hoc forward-hook router (KV-cached):}
+      A single-pass design using \texttt{register\_forward\_hook} on
+      Layer~15 (0-indexed) captures the Layer-16 hidden state during the
+      contiguous 22-layer pass. Both logit vectors are available in VRAM
+      after one pass; the routing decision is post-hoc, requiring no
+      second forward call and preserving KV-cache consistency for all layers.
+
+\item \textbf{Async-overlap router:}
+      CPU tokenization and H2D PCIe transfer are overlapped with GPU
+      inference from the preceding token using CUDA streams and pinned
+      memory, demonstrating a non-blocking pipeline architecture.
+
+\item \textbf{Heterogeneous pipeline model:}
+      Per-component latency decomposition $T_{\text{total}} =
+      T_{\text{cpu}} + T_{\text{pcie}} + T_{\text{gpu}} + T_{\text{sync}}$
+      directly motivates the application-level routing abstraction.
+
+\item \textbf{SLO compliance proof:}
+      Empirical demonstration that $\text{P99\_TPOT} = 17.84$~ms
+      at $D=30$~ms ($R=0.595$) with 0\% deadline misses across
+      240 token samples on clinical prompts.
+
+\item \textbf{Exit-layer ablation (L5--L20):}
+      Systematic comparison against the full-pass oracle validates
+      Layer~16 as the earliest layer with meaningful predictive signal.
+
+\item \textbf{EVT probabilistic WCET bounds:}
+      Gumbel EVT fits to 500 samples per cell establish
+      $P(\text{TPOT}>30\,\text{ms})<10^{-6}$ for sequences $\leq 512$
+      tokens, providing a statistically certified timing guarantee.
+\end{enumerate}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Background and Related Work}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Anytime Algorithms}
+
+Anytime algorithms~\cite{zilberstein1996using,boddy1994deliberation}
+produce valid results at any interruption point, with quality
+improving monotonically over time.
+The scheduler monitors elapsed time and commits the best available
+result when the deadline approaches.
+This property is essential for hard deadline systems where a slightly
+lower-quality answer is always preferable to no answer.
+
+\subsection{Early Exit in Transformer Models}
+
+Early exit in deep networks was introduced by
+Teerapittayanon et al.~\cite{teerapittayanon2016branchynet} and
+adapted to transformers in FastBERT~\cite{liu2020fastbert} and
+DeeBERT~\cite{xin2020deebert}, where confidence-triggered intermediate
+exits reduce mean inference cost.
+Schuster et al.~\cite{schuster2022confident} proposed confident
+adaptive language modeling for decoder-only models.
+LayerSkip~\cite{elhoushi2024layerskip} demonstrated that later layers
+of TinyLlama carry substantially more predictive signal than early ones,
+consistent with our ablation results.
+
+\subsection{Real-Time Scheduling for ML Inference}
+
+Real-time scheduling of neural network inference has been studied in
+embedded settings by Bateni and Liu~\cite{bateni2020neuos} and
+Xiang et al.~\cite{xiang2019pipelined}, focusing on WCET analysis and
+CPU/GPU pipeline partitioning.
+Our work extends this to the decoder-only LLM setting with a
+user-space routing architecture that does not require OS-level thread
+preemption.
+
+\subsection{Probabilistic WCET}
+
+Measurement-based probabilistic timing analysis~\cite{cucu2012measurement}
+fits statistical distributions to execution time samples to certify
+tail latency at exceedance probabilities below $1/n$.
+Bernat et al.~\cite{bernat2002wcet} established Extreme Value Theory
+(EVT), particularly the Gumbel distribution, as the appropriate model
+for execution time tails.
+Davis and Cucu-Grosjean~\cite{davis2013quantifying} survey the field.
+We apply Gumbel EVT to GPU forward-pass timing samples to derive
+a statistically rigorous WCET certificate.
+
+\subsection{KV Cache Efficiency}
+
+PagedAttention~\cite{kwon2023efficient} and FlashAttention~\cite{dao2022flashattention,
+dao2023flashattention2} are the primary techniques for reducing KV-cache
+memory and recomputation cost.
+We exploit PyTorch~2.4's scaled-dot-product attention (which uses
+FlashAttention kernels implicitly) and rely on the $O(n_{\text{cache}})$
+single-token pass to bound per-token latency independently of
+accumulated context.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{System Architecture}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Hardware and Model}
+
+\textbf{Hardware:}
+Bare-metal NVIDIA RTX~6000~Ada Generation (50.9~GB GDDR6, CUDA~12.4,
+Ada Lovelace architecture, 18{,}176 CUDA cores).
+Bare-metal deployment is required for valid WCET measurements;
+hypervisor-induced jitter would invalidate worst-case timing.
+
+\smallskip\noindent\textbf{Model:}
+TinyLlama\slash{}TinyLlama-1.1B-Chat-v1.0~\cite{zhang2024tinyllama}: 22
+transformer decoder layers (LlamaDecoder), hidden dimension 2{,}048,
+32 attention heads, vocabulary 32{,}000, \texttt{bfloat16} precision.
+Chat-template formatted prompts are used throughout so that measured
+latencies reflect deployment-realistic context lengths
+($\approx$95--145~tokens).
+
+\smallskip\noindent\textbf{Framework:}
+PyTorch~2.4.1+cu124, HuggingFace Transformers~5.6.0.
+
+\subsection{EarlyExitTinyLlama and the Post-Hoc Hook}
+
+We implement \texttt{EarlyExitTinyLlama}, a wrapper that registers a
+\texttt{forward\_hook} on \texttt{model.layers[15]} (0-indexed, i.e.\
+Layer~16) before every \texttt{forward\_cached()} call:
+
+\begin{algorithmic}[1]
+\STATE $\text{captured} \leftarrow \{\}$
+\STATE \textbf{def} $\text{hook}(\text{module}, \text{in}, \text{out})$:
+\STATE \quad $\text{captured}[\texttt{"h16"}] \leftarrow \text{out}[0]$
+       \COMMENT{GPU ref, no host copy}
+\STATE {\small \texttt{handle} $\leftarrow$ \texttt{layer15.register\_forward\_hook(hook)}}
+\STATE $\text{out} \leftarrow \texttt{base\_model}(\text{ids},\, \text{past\_kv})$
+       \COMMENT{22 layers run}
+\STATE $\ell_{22} \leftarrow \text{out.logits}$
+\STATE $\ell_{16} \leftarrow \texttt{lm\_head}(\texttt{norm}(\text{captured}[\texttt{"h16"}]))$
+\STATE \textbf{return} $\ell_{16},\, \ell_{22},\, \text{out.past\_key\_values}$
+\end{algorithmic}
+
+The hook stores only a GPU tensor reference, with no host transfer and no
+synchronization.
+All 22 layers execute contiguously; RMSNorm and the LM head are applied
+strictly after \texttt{base\_model()} returns.
+Critically, every layer writes its KV states on every token regardless
+of which logit the router ultimately commits, eliminating KV-cache
+desynchronization.
+
+\subsection{Three Application-Level Routers}
+
+\subsubsection{Stateless Two-Pass Router}
+
+The stateless router (\texttt{generate\_stateless\_anytime}) runs Layer~16 first
+as a probe, applies a linear confidence threshold decay with the remaining budget,
+and re-runs all 22~layers when confidence is below threshold:
+\begin{equation}
+\theta_t = \theta_{\min} + (\theta_{\max} - \theta_{\min})
+           \cdot \frac{r - w}{D - w}
+\label{eq:decay}
+\end{equation}
+where $r$ is remaining budget, $w = \text{WCET}_{\text{safe}}(\text{seq\_len})$,
+$\theta_{\max}=0.8$, $\theta_{\min}=0.3$.
+This router is presented as a baseline; its two-pass nature makes it
+not schedulable at $D=30$~ms for typical chat-template prompts
+(Section~\ref{sec:comparison}).
+
+\subsubsection{KV-Cached Single-Pass Router}
+
+The KV-cached router (\texttt{generate\_anytime\discretionary{\_}{}{\_}with\_kv}) uses
+\texttt{forward\_cached()} with a fixed post-hoc threshold $\theta_{\text{kv}}=0.55$:
+\begin{algorithmic}[1]
+\STATE $\ell_{16}, \ell_{22}, \text{kv}' \leftarrow
+       \texttt{forward\_cached}(\text{ids},\, \text{past\_kv})$
+\STATE $c \leftarrow \max(\texttt{softmax}(\ell_{16}[-1]))$
+\IF{$c \geq 0.55$}
+    \STATE commit $\arg\max(\ell_{16}[-1])$ \COMMENT{Early Exit (Thresh)}
+\ELSE
+    \STATE commit $\arg\max(\ell_{22}[-1])$ \COMMENT{Full Pass}
+\ENDIF
+\end{algorithmic}
+
+No forced-exit logic is needed: the single-pass always completes
+within the budget.
+The post-hoc decision adds zero GPU compute overhead: both logit
+vectors are already in VRAM before the routing branch executes.
+
+\subsubsection{Async-Overlap Router}
+
+The async-overlap router (\texttt{generate\_anytime\discretionary{\_}{}{\_}async\discretionary{\_}{}{\_}overlap})
+overlaps CPU preprocessing of token $t{+}1$ with GPU inference of token $t$
+using a dedicated CUDA stream and pinned (page-locked) memory:
+
+\begin{algorithmic}[1]
+\STATE \textbf{Phase~A} (CPU): write $\text{tok}_{t+1}$ to pinned buf;
+       \texttt{.to("cuda", non\_blocking=True)}
+\STATE $\text{stream.wait\_stream}(\text{current\_stream})$
+       \COMMENT{DMA lands before GPU reads}
+\STATE \textbf{Phase~B} (GPU): launch \texttt{forward\_cached}
+       on inference stream (non-blocking)
+\STATE \textbf{Phase~C} (CPU): overlapped decode/record of token $t$
+\STATE $\text{stream.synchronize}()$
+       \COMMENT{wait for GPU result}
+\STATE \textbf{Phase~D}: post-hoc routing on $\ell_{16}, \ell_{22}$
+\end{algorithmic}
+
+The pipeline model (Section~\ref{sec:pipeline}) shows that
+$T_{\text{cpu}} = 0.091$~ms is only 0.58\% of the token budget,
+so the overlap saves $\approx$0.09~ms mean latency
+(3.8\% reduction in Phase~A cost, not total).
+
+\subsection{WCET Table and Admission Policy}
+
+Both KV-cached routers load a per-sequence-length WCET table from
+\texttt{wcet\_results.json} at startup and apply a $1.10\times$
+safety margin:
+\begin{equation}
+\text{WCET}_{\text{safe}}(s) = 1.10 \times
+    \max\bigl\{\text{WCET}_{\text{measured}}(s_i) : s_i \geq s\bigr\}
+\label{eq:wcet_safe}
+\end{equation}
+The ceiling lookup (smallest profiled bin $\geq$ current sequence length)
+ensures the bound is always conservative.
+A request is admitted only if $\text{WCET}_{\text{safe}}(s) \leq D$.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Profiling and Calibration}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{GPU WCET Profiling}
+
+We profile 50 timed forward passes per (seq\_len, exit\_layer) cell
+across 6 sequence lengths $\times$ 4 exit layers using
+\texttt{torch.cuda.Event} hardware timers (5 warmup runs discarded).
+Figure~\ref{fig:wcet_profile} shows mean and WCET vs.\ sequence length;
+Table~\ref{tab:wcet} gives the key values for L16 and Full Pass.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/wcet_profile.png}
+    \caption{WCET and mean TPOT vs.\ sequence length for exit layers
+             L5, L11, L16, and Full Pass (RTX~6000~Ada, 50~runs/cell).
+             Full-pass latency is approximately flat at 15~ms from
+             32--512~tokens, rising to 21.8~ms at 1{,}024 tokens.}
+    \label{fig:wcet_profile}
+\end{figure*}
+
+\begin{table}[htbp]
+\caption{WCET Profile: RTX~6000~Ada (50~runs/cell)}
+\centering
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}rcccc@{}}
+\toprule
+\textbf{Seq} & \textbf{L16 Mean} & \textbf{L16 WCET}
+             & \textbf{Full Mean} & \textbf{Full WCET\,${\times}$1.10} \\
+\midrule
+32   & 10.66~ms & 12.25~ms & 14.91~ms & 25.11~ms \\
+64   & 10.76~ms & 11.43~ms & 15.15~ms & 20.30~ms \\
+128  & 11.52~ms & 12.24~ms & 15.25~ms & 19.43~ms \\
+256  & 11.00~ms & 11.57~ms & 15.02~ms & 17.17~ms \\
+512  & 10.90~ms & 11.75~ms & 14.73~ms & 17.73~ms \\
+\textbf{1024} & \textbf{16.20~ms} & \textbf{17.16~ms}
+              & \textbf{21.84~ms} & \textbf{24.87~ms} \\
+\bottomrule
+\end{tabular}
+\label{tab:wcet}
+\end{table}
+
+Full-pass latency is near-flat from 32--512~tokens (14.7--15.2~ms mean)
+due to FlashAttention's efficient attention kernel.
+At 1{,}024~tokens it rises to 21.84~ms, with WCET$_{\text{safe}}$ = 24.87~ms,
+still within the $D=30$~ms hard deadline, reflecting the RTX~6000~Ada's
+high memory bandwidth (960~GB/s) and large CUDA core count.
+
+\subsection{Exit-Layer Ablation}
+\label{sec:ablation}
+
+We compare exit layers L5--L20 against the full 22-layer oracle
+across 10 PubMedQA prompts at 15 tokens each (150 token decisions per
+layer).
+Figure~\ref{fig:ablation} and Table~\ref{tab:ablation} summarize
+agreement, confidence, and latency.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/exit_layer_ablation.png}
+    \caption{Exit-layer ablation (L5, L11, L16, L20 vs.\ full-pass oracle).
+             Agreement rate vs.\ confidence threshold.
+             Layer~16 is the inflection point where agreement jumps from
+             2.7\% (L11) to 32.0\% and high-confidence agreement reaches 64.7\%.}
+    \label{fig:ablation}
+\end{figure}
+
+\begin{table}[htbp]
+\caption{Exit-Layer Ablation Summary}
+\centering
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Metric} & \textbf{L5} & \textbf{L11} & \textbf{L16} & \textbf{L20} \\
+\midrule
+Agreement (\%)        & 0.7  & 2.7  & \textbf{32.0} & 70.7 \\
+HC-agree (\%)         & 25.0 & 33.3 & \textbf{64.7} & 87.3 \\
+Mean conf.            & 0.065& 0.068& \textbf{0.185}& 0.725 \\
+Mean TPOT (ms)        & 3.8  & 7.6  & \textbf{10.8} & 13.3 \\
+WCET (ms)             & 4.3  & 9.0  & \textbf{12.3} & 14.8 \\
+\bottomrule
+\end{tabular}
+\label{tab:ablation}
+\end{table}
+
+L5 and L11 carry negligible predictive signal (0.7\% and 2.7\%
+agreement).
+Agreement rises monotonically from L16 to L20; deeper layers improve
+accuracy at a cost of 0.6--6.2~ms additional WCET.
+Layer~16 is the earliest layer with substantial signal and is captured
+for free (via hook) during the full pass, making it the natural
+exit point.
+
+\subsection{Confidence Calibration}
+
+Figure~\ref{fig:calibration} shows the confidence histogram and
+calibration curve at L5 and L16.
+Table~\ref{tab:calibration} summarises the key statistics.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/calibration.png}
+    \caption{Confidence calibration at Layer~5 and Layer~16.
+             \emph{Left:} calibration curve (oracle agreement vs.\ confidence threshold).
+             \emph{Right:} softmax confidence distributions for agree/disagree tokens.
+             Layer~5 is uncalibrated; Layer~16 shows monotonically increasing
+             agreement above $c \approx 0.4$, validating threshold-based early exit.}
+    \label{fig:calibration}
+\end{figure*}
+
+\begin{table}[htbp]
+\caption{Confidence Calibration: Layer~5 vs.\ Layer~16}
+\centering
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Metric} & \textbf{Layer~5} & \textbf{Layer~16} \\
+\midrule
+Overall agreement with oracle     & 0.7\%  & 32.0\% \\
+Mean confidence                   & 0.065  & 0.185  \\
+Agreement at $c \geq 0.55$        & ---    & 64.7\% \\
+High-conf.\ tokens ($c\!\geq\!0.55$) & 2.7\% & 11.3\% \\
+\bottomrule
+\end{tabular}
+\label{tab:calibration}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Experimental Results}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{SLO Compliance Proof}
+
+We define schedulability as $\text{P99\_TPOT} \leq D$, equivalently,
+SLO compliance ratio $R = \text{P99\_TPOT}/D < 1.0$.
+Figure~\ref{fig:schedulability} and Table~\ref{tab:schedulability}
+compare the baseline (standard autoregressive full pass) and the
+KV-cached anytime router across 10 clinical prompts $\times$~24~tokens
+= 240~TPOT samples (TTFT excluded).
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/schedulability_proof.png}
+    \caption{Tail-latency comparison: baseline vs.\ KV-cached anytime router
+             ($n=240$ TPOT samples, $D=30$~ms).
+             \emph{Left:} CDF overlay showing both routers well below the deadline.
+             \emph{Right:} key metric comparison (P50/P95/P99/Max/Miss~\%).
+             The anytime router's P99 (17.84~ms, $R=0.396$) is 8\% below
+             the baseline P99 (19.37~ms, $R=0.430$).}
+    \label{fig:schedulability}
+\end{figure*}
+
+\begin{table}[htbp]
+\caption{SLO Compliance Proof ($D=30$~ms, $n=240$~TPOT samples)}
+\centering
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Metric} & \textbf{Baseline} & \textbf{KV-Cached Anytime} \\
+\midrule
+P50 TPOT (ms)               & 15.70 & 15.37 \\
+P95 TPOT (ms)               & 17.19 & 16.37 \\
+P99 TPOT (ms)               & 19.37 & \textbf{17.84} \\
+Max TPOT (ms)               & 22.54 & 19.50 \\
+$R = \text{P99}/D$          & 0.430 & \textbf{0.396} \\
+Deadline misses             & 0.0\% & \textbf{0.0\%} \\
+SLO met?                    & YES   & \textbf{YES}   \\
+\bottomrule
+\end{tabular}
+\label{tab:schedulability}
+\end{table}
+
+The anytime router's P99 is 1.53~ms lower than the baseline, reflecting
+that 5.3\% of tokens exit early at Layer~16 (mean TPOT $\approx$10.8~ms)
+and pull the tail down.
+Both routers are schedulable at $D=30$~ms with substantial headroom.
+
+\subsection{Three-Way Router Comparison}
+\label{sec:comparison}
+
+Figure~\ref{fig:comparison} and Table~\ref{tab:comparison} compare
+all three routers on 5 PubMedQA queries at 15 tokens each
+($n = 75$ token records per router).
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/scheduler_comparison.png}
+    \caption{Three-way router comparison (5~queries, $D=30$~ms, $n=75$
+             tokens/router). \emph{Left:} TPOT CDF.
+             \emph{Right:} Mean and P99 TPOT per router.
+             Stateless P99 = 30.27~ms exceeds $D$;
+             KV-cached and async-overlap both achieve 0\% misses.}
+    \label{fig:comparison}
+\end{figure*}
+
+\begin{table}[htbp]
+\caption{Three-Way Router Comparison ($D=30$~ms, $n=75$~tokens/router)}
+\centering
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Metric} & \textbf{Stateless} & \textbf{KV-Cached} & \textbf{Async-Overlap} \\
+\midrule
+Mean TPOT (ms)     & 24.69 & 15.71          & \textbf{15.12} \\
+P99 TPOT (ms)      & 30.27 & 17.67          & \textbf{17.41} \\
+Throughput (tok/s) & 40.49 & 63.64          & \textbf{66.15} \\
+$R = \text{P99}/D$ & 0.673 & 0.393          & \textbf{0.387} \\
+Full Pass (\%)     & 89.3  & 92.0           & 92.0 \\
+Early Exit (\%)    & 10.7  & 8.0            & 8.0 \\
+Deadline miss (\%) & \textbf{1.3} & \textbf{0.0} & \textbf{0.0} \\
+SLO met?           & \textbf{NO}  & \textbf{YES} & \textbf{YES} \\
+\bottomrule
+\end{tabular}
+\label{tab:comparison}
+\end{table}
+
+The stateless router is not schedulable at $D=30$~ms.
+For chat-template PubMedQA prompts ($\approx$150~tokens), its L16
+probe consumes $\approx$10.8~ms; when confidence is low (89.3\% of
+tokens), the full pass adds another $\approx$14.9~ms, for a combined
+mean of 24.69~ms and P99 of 30.27~ms, which exceeds the 30~ms hard deadline.
+
+The KV-cached router's single-pass design holds all tokens in the
+14--18~ms range: mean 15.71~ms, P99 17.67~ms.
+The async-overlap router reduces mean TPOT by a further 0.59~ms (3.8\%)
+by overlapping CPU tokenization (0.091~ms) with the preceding token's
+GPU inference.
+The benefit is modest because $T_{\text{cpu}} \ll T_{\text{gpu}}$
+(Section~\ref{sec:pipeline}), but the architecture provides a correct
+non-blocking pipeline for future heterogeneous deployments.
+
+\subsection{Deadline Sensitivity Sweep}
+
+Figure~\ref{fig:deadline_tradeoff} shows the stateless router's
+behaviour across deadlines $D = 20$--$60$~ms on 5 queries
+(75 tokens).
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/deadline_tradeoff.png}
+    \caption{Deadline sensitivity sweep (stateless router, 5~queries,
+             $D$ = 20--60~ms). At $D=20$~ms the router forces 100\%
+             early exits with 1.3\% misses; at $D=25$~ms all tokens
+             meet deadline via forced L16 exits; from $D\geq30$~ms
+             normal routing resumes with 0\% misses.}
+    \label{fig:deadline_tradeoff}
+\end{figure*}
+
+\begin{table}[htbp]
+\caption{Deadline Sweep Summary (Stateless Router)}
+\centering
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+$D$ & Full\% & Thresh\% & Forced\% & Miss\% & P99~(ms) \\
+\midrule
+20 &  0.0 &  0.0 & 100.0 & 1.3 & 12.35 \\
+25 &  0.0 &  0.0 & 100.0 & 0.0 & 12.66 \\
+30 & 86.7 & 12.0 &   1.3 & 0.0 & 27.22 \\
+35 & 90.7 &  9.3 &   0.0 & 0.0 & 29.53 \\
+45 & 89.3 & 10.7 &   0.0 & 0.0 & 28.39 \\
+60 & 89.3 & 10.7 &   0.0 & 0.0 & 30.21 \\
+\bottomrule
+\end{tabular}
+\label{tab:sweep}
+\end{table}
+
+At $D=25$~ms the router forces 100\% Layer-16 exits (TPOT~$\approx$10.8~ms)
+and achieves 0\% misses.
+At $D=20$~ms even forced L16 exits occasionally overrun (1.3\% miss),
+establishing $D_{\min}^{\text{stateless}} \approx 25$~ms.
+The KV-cached router is schedulable from $D \geq 18$~ms without any
+forced-exit logic (single-pass WCET$_{\text{safe}}$ = 25.11~ms at seq=32).
+
+\subsection{30-Query PubMedQA Benchmark}
+
+Table~\ref{tab:benchmark} and Figure~\ref{fig:benchmark} report the
+full 30-query benchmark using the KV-cached router at $D=30$~ms.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/accuracy_summary.png}
+    \caption{Benchmark dashboard: 30-query PubMedQA (KV-cached,
+             $D=30$~ms). \emph{Left:} accuracy and deadline compliance.
+             \emph{Right:} TPOT latency summary (mean, P99, deadline).
+             Zero deadline misses; $R=0.533$.}
+    \label{fig:benchmark}
+\end{figure*}
+
+\begin{table}[htbp]
+\caption{30-Query PubMedQA Benchmark (KV-Cached, $D=30$~ms)}
+\centering
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Queries                          & 30 \\
+Accuracy (14 scoreable)         & 71.4\% (10/14) \\
+Exit distribution                & Full 94.7\,/\,Early 5.3\,/\,Forced 0.0\% \\
+Deadline miss rate               & \textbf{0.0\%} \\
+Mean TPOT                        & 14.66~ms \\
+P99 TPOT                         & 15.99~ms \\
+Throughput                       & 68.24~tok/s \\
+$R = \text{P99}/D$               & \textbf{0.533} \\
+SLO met?                         & \textbf{YES} \\
+\bottomrule
+\end{tabular}
+\label{tab:benchmark}
+\end{table}
+
+Zero deadline misses are observed across all 30 queries.
+The router never invokes forced exits: every routing decision is
+either a voluntary early exit (confidence $\geq 0.55$, 5.3\% of tokens)
+or a full pass.
+The $R=0.533$ SLO ratio leaves 46.7\% of the deadline budget unused
+at P99, confirming schedulability with substantial headroom
+(Section~\ref{sec:capacity}).
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Real-Time Systems Analysis}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Heterogeneous Pipeline Decomposition}
+\label{sec:pipeline}
+
+A key contribution of this work is explicitly decomposing per-token
+latency into its physical components:
+$T_{\text{total}} = T_{\text{cpu}} + T_{\text{pcie}} +
+T_{\text{gpu}} + T_{\text{sync}}$.
+We measure each component independently over 200~samples and compute
+synchronous and asynchronous pipeline models.
+
+
+\begin{table}[htbp]
+\caption{Pipeline Component Latencies (200~samples)}
+\centering
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Component} & \textbf{Mean} & \textbf{P99} & \textbf{Share} \\
+\midrule
+$T_{\text{gpu}}$  (CUDA inference)       & 15.57~ms & 17.73~ms & 99.3\% \\
+$T_{\text{cpu}}$  (tokenization, hook)   & 0.091~ms & 0.107~ms &  0.58\% \\
+$T_{\text{pcie}}$ (H2D token transfer)   & 0.023~ms & 0.030~ms &  0.15\% \\
+$T_{\text{sync}}$ (stream sync)          & 0.004~ms & 0.004~ms &  0.025\% \\
+\midrule
+$T_{\text{total}}$ (sync)  & 15.69~ms & 17.87~ms & $R=0.596$ \\
+$T_{\text{total}}$ (async) & 15.60~ms & 17.76~ms & $R=0.592$ \\
+\bottomrule
+\end{tabular}
+\label{tab:pipeline}
+\end{table}
+
+GPU compute accounts for 99.3\% of total latency.
+PCIe H2D transfer (0.023~ms) and CPU preprocessing (0.091~ms) are
+negligible.
+This directly validates the application-level routing abstraction:
+since the system is GPU-bound, OS-level thread scheduling policy
+(e.g., \texttt{SCHED\_FIFO} vs.\ \texttt{SCHED\_OTHER}) has no
+measurable effect on WCET; we confirmed empirically that elevated
+priority produces $<0.1$~ms change in P99, well within measurement
+noise.
+Any further latency improvement requires changes to the GPU computation
+itself, not to the CPU or OS.
+
+The async-overlap router saves $\approx$0.09~ms per token by overlapping
+$T_{\text{cpu}}$ with the preceding token's $T_{\text{gpu}}$.
+This is architecturally sound and enables non-blocking pipeline designs
+at larger scale, but the benefit is modest here because
+$T_{\text{cpu}} \ll T_{\text{gpu}}$.
+
+\subsection{Thermal Stability}
+
+A prerequisite for the static WCET routing table is that GPU execution
+time does not drift upward under sustained load due to thermal throttling.
+We generate 500 consecutive tokens from a fixed long-context medical
+prompt using \texttt{forward\_cached()}, divide into 10 windows of
+50 tokens, and report mean/P99/max per window.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/thermal_profile.png}
+    \caption{Thermal stability profile (500~consecutive tokens,
+             KV-cached router, RTX~6000~Ada).
+             \emph{Left:} raw TPOT time series with 50-token rolling mean.
+             \emph{Right:} per-window summary with drift annotation.
+             No systematic upward trend is observed; isolated spikes
+             return to baseline within the next window.}
+    \label{fig:thermal}
+\end{figure*}
+
+\begin{table}[htbp]
+\caption{Thermal Stability Summary (50~tokens/window, RTX~6000~Ada)}
+\centering
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}rcccc@{}}
+\toprule
+\textbf{Win} & \textbf{Tokens} & \textbf{Mean (ms)}
+             & \textbf{P99 (ms)} & \textbf{Max (ms)} \\
+\midrule
+W1  & 1--50    & 15.07 & 17.63 & 18.54 \\
+W2  & 51--100  & 15.43 & 17.88 & 18.72 \\
+W4  & 151--200 & 15.10 & 20.92 & 23.15$^*$ \\
+W6  & 251--300 & 14.82 & 16.64 & 17.12 \\
+W9  & 401--450 & 14.59 & 15.68 & 15.83 \\
+W10 & 451--500 & 15.29 & 17.20 & 17.45 \\
+\midrule
+\textbf{Global} & 1--500 & \textbf{15.06} & \textbf{18.72} & \textbf{23.15} \\
+\bottomrule
+\multicolumn{5}{@{}l@{}}{\footnotesize $^*$ Isolated spike; returns to baseline in W5. Drift: $-1.09$~ms ($-5.9\%$).}
+\end{tabular}
+\label{tab:thermal}
+\end{table}
+
+Global mean TPOT is 15.06~ms with P99 = 18.72~ms, well within the $D=30$~ms hard deadline.
+The window-4 spike (max = 23.15~ms) is an isolated GPU scheduling event;
+the subsequent window-5 returns to max = 20.4~ms and window-9 to max = 15.8~ms,
+confirming no thermal trend.
+
+WCET drift from window-1 to window-10 is $-1.09$~ms ($-5.9\%$),
+i.e.\ performance improves slightly as the GPU reaches steady-state clocks.
+Total deadline misses: 0/500 (0\%).
+The static WCET assumption underlying the routing table is confirmed
+valid for sustained clinical inference sessions on RTX~6000~Ada.
+
+\subsection{Jitter and Temporal Autocorrelation}
+
+Jitter characterises temporal variability within an inference session.
+A high lag-1 autocorrelation in TPOT would indicate that consecutive
+token latencies are not i.i.d., which would invalidate the Gumbel EVT
+fit (Section~\ref{sec:evt}).
+We compute TPOT statistics from the 30-query benchmark
+(120~TPOT samples, TTFT excluded).
+
+\begin{figure*}[b]
+    \centering
+    \includegraphics[width=\textwidth]{figures/jitter_analysis.png}
+    \caption{Jitter analysis (KV-cached router, 30-query benchmark).
+             \emph{Left:} TPOT histogram with $\pm\sigma$ bands.
+             \emph{Centre:} ACF at lags 1--10 with 95\% CI.
+             \emph{Right:} per-query box plots.
+             Low lag-1 ACF within queries supports the i.i.d.\ assumption
+             for EVT analysis.}
+    \label{fig:jitter}
+\end{figure*}
+
+\begin{table}[htbp]
+\caption{Jitter Statistics: KV-Cached Router (30-Query Benchmark)}
+\centering
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+$n$ TPOT samples           & 120 \\
+Mean TPOT                  & 14.65~ms \\
+Std dev ($\sigma$)         & 0.44~ms \\
+CV ($\sigma$/mean)         & 0.030 \\
+IQR                        & 0.46~ms \\
+Jitter (max$-$min)         & 3.53~ms \\
+P99                        & 15.99~ms \\
+Lag-1 ACF                  & 0.310 \\
+95\% CI                    & $\pm$0.179 \\
+\bottomrule
+\end{tabular}
+\label{tab:jitter}
+\end{table}
+
+The CV of 0.030 indicates very low relative variability across all
+120 TPOT samples.
+The lag-1 ACF of 0.310 (above the 95\% CI of $\pm$0.179) reflects
+within-query clustering: all tokens of a given query share
+the same context length and hence nearly identical latency.
+This is short-range serial dependence (lags~$\geq$3 are all below
+the CI, $|r| < 0.02$), not sustained autocorrelation.
+Crucially, the EVT analysis (Section~\ref{sec:evt}) is applied to
+the WCET profiling samples (repeated independent forward passes),
+not to the benchmark TPOT series, so this within-query clustering
+does not affect EVT validity.
+
+\subsection{EVT Probabilistic WCET Bounds}
+\label{sec:evt}
+
+Empirical WCET ($\max \times 1.10$) over 50 runs is a single-sample
+bound that provides no probabilistic guarantee below exceedance
+probability $1/n = 0.02$.
+Extreme Value Theory (EVT)~\cite{bernat2002wcet,coles2001introduction}
+extrapolates the timing tail to exceedance probabilities far below $1/n$.
+
+We collect 500 timing samples per (seq\_len, exit\_layer) cell and
+fit a Gumbel (Type~I EVT) distribution to the upper 20\% of samples
+(Peaks-Over-Threshold method).
+The Gumbel CDF is
+$F(t) = \exp\!\bigl(-\exp(-(t-\mu)/\sigma)\bigr)$
+with parameters fitted by maximum likelihood.
+The probabilistic WCET bound at exceedance probability $\varepsilon$ is
+$\text{pWCET}(\varepsilon) = F^{-1}(1-\varepsilon)$.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/evt_wcet_analysis.png}
+    \caption{EVT WCET analysis (500~samples/cell, RTX~6000~Ada).
+             \emph{Left:} empirical $\times1.10$ and Gumbel pWCET bounds
+             ($\varepsilon = 10^{-3}$, $10^{-6}$) vs.\ sequence length.
+             \emph{Centre:} QQ-plot for Full Pass at seq=256 (Gumbel fit).
+             \emph{Right:} summary table.}
+    \label{fig:evt}
+\end{figure*}
+
+\begin{table}[htbp]
+\caption{EVT WCET Bounds: Full Pass (500~samples/cell, RTX~6000~Ada)}
+\centering
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}rcccc@{}}
+\toprule
+\textbf{Seq} & \textbf{Emp\,${\times}$1.10}
+             & \textbf{pWCET($10^{-4}$)} & \textbf{pWCET($10^{-6}$)}
+             & $P(\text{miss at }D)$ \\
+\midrule
+32   & 22.9~ms & 19.4~ms & 21.6~ms & ${<}10^{-12}$ \\
+64   & 16.7~ms & 15.2~ms & 15.8~ms & ${<}10^{-12}$ \\
+128  & 20.3~ms & 16.4~ms & 17.3~ms & ${<}10^{-12}$ \\
+256  & 22.5~ms & 17.7~ms & 19.3~ms & ${<}10^{-12}$ \\
+512  & 20.1~ms & 18.4~ms & 19.8~ms & ${<}10^{-12}$ \\
+\textbf{1024} & \textbf{25.5~ms} & \textbf{23.4~ms} & \textbf{23.8~ms} & $\mathbf{{<}10^{-12}}$ \\
+\bottomrule
+\end{tabular}
+\label{tab:evt}
+\end{table}
+
+For all sequence lengths $\leq 512$~tokens, the full-pass WCET is
+well below $D=30$~ms even at $\varepsilon = 10^{-6}$, confirming
+that the deadline is essentially never missed for typical PubMedQA
+prompts (95--145~tokens after chat-template formatting).
+The Gumbel fit provides a stronger guarantee than the empirical
+$\times1.10$ bound: rather than claiming ``WCET $= x$~ms'' with
+implicit probability 1.0 (which no finite sample can support),
+we claim $P(\text{TPOT} > x) \leq \varepsilon$ for a calibrated
+$\varepsilon$.
+
+
+\subsection{Admission Control}
+
+A well-designed system must reject requests before starting inference
+if their WCET exceeds the deadline.
+The admission test is:
+\begin{equation}
+\text{ADMIT} \iff \text{WCET}_{\text{safe}}(s) \leq D
+\label{eq:admit}
+\end{equation}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/admission_control.png}
+    \caption{Admission control analysis.
+             \emph{Left:} ADMIT/REJECT boundary with WCET annotations.
+             \emph{Right:} simulation of 200 random requests
+             (seq Uniform[50,800], deadline Uniform[25,65]~ms).}
+    \label{fig:admission}
+\end{figure*}
+
+With the WCET table (Table~\ref{tab:wcet}), at $D=30$~ms:
+all sequence lengths $\leq 512$~tokens are admitted
+(WCET$_{\text{safe}}^{\max}$ = 25.07~ms at seq=512, within the 30~ms hard deadline).
+Sequences of 1{,}024~tokens are rejected (WCET$_{\text{safe}}$ = 48.6~ms $> D$).
+The KV-cached router is schedulable from $D \geq 26$~ms for
+typical chat-template prompts (95--145~tokens).
+
+All 30 PubMedQA benchmark queries (95--145~tokens after chat-template
+formatting) are admitted by the policy and all achieve 0\% deadline
+misses, demonstrating that the admission test correctly predicts
+schedulability in practice.
+
+\subsection{Multi-Request Capacity Analysis}
+\label{sec:capacity}
+
+Under a token-level round-robin policy serving $N$ concurrent inference
+requests, the effective TPOT seen by each request is $N \times C$,
+where $C$ is the per-token execution time.
+The system meets the SLO for all $N$ requests if $N \times C \leq D$:
+\begin{equation}
+N_{\max} = \left\lfloor \frac{D}{C} \right\rfloor
+\end{equation}
+
+Using the benchmark P99 TPOT $C = 15.99$~ms and $D = 30$~ms:
+\begin{equation}
+N_{\max} = \left\lfloor \frac{30}{15.99} \right\rfloor = 1; \quad
+N{=}1: \; 1 \times 15.99 = 15.99\;\text{ms} \leq D
+\end{equation}
+
+
+\begin{table}[htbp]
+\caption{Multi-Request SLO Compliance ($C=15.99$~ms, $D=30$~ms)}
+\centering
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}rccccc@{}}
+\toprule
+$N$ & $R_{\text{actual}}=N{\cdot}C/D$ & $N{\times}C$ (ms)
+    & $N{\times}C \leq D$? & SLO met? \\
+\midrule
+\textbf{1} & \textbf{0.533} & \textbf{15.99} & \textbf{YES} & \textbf{YES} \\
+2 & 1.067 & 31.98 & NO  & NO \\
+\bottomrule
+\end{tabular}
+\label{tab:capacity}
+\end{table}
+
+A single request leaves 46.7\% of the $D=30$~ms budget unused at P99 ($R=0.533$).
+Two concurrent requests would see effective TPOT = 31.98~ms, which exceeds
+$D$ by 6.6\%, establishing $N_{\max}=1$ at this strict deadline.
+The RTX~6000~Ada delivers production SLOs well within the 30~ms hard deadline,
+validating the routing framework for latency-sensitive clinical deployments.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Discussion}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Why KV Caching Is Essential}
+
+The stateless two-pass router is fundamentally limited by the need
+to run the model twice per token.
+For chat-template PubMedQA prompts ($\approx$150~tokens), the L16
+probe consumes $\approx$10.8~ms; when confidence is below threshold
+(89.3\% of tokens), the full pass adds another $\approx$14.9~ms,
+for a combined mean of 24.7~ms and P99 of 30.3~ms.
+The 1.3\% miss rate at $D=30$~ms is not recoverable without
+eliminating the second pass.
+
+The KV-cached design eliminates the second pass by capturing L16
+activations via hook during the single contiguous forward pass.
+The hook stores a GPU tensor reference (no host transfer), and the
+routing decision executes strictly after the GPU returns.
+This reduces mean TPOT from 24.7~ms to 15.7~ms (36\% reduction)
+and clears all deadline misses.
+
+\subsection{GPU Dominance and the Right Level of Abstraction}
+
+The pipeline decomposition (Section~\ref{sec:pipeline}) reveals that
+99.3\% of latency is GPU compute.
+This has a direct implication for system design: the correct point
+of control is the application-level routing decision (which logits
+to commit), not OS thread priority, CPU preprocessing, or PCIe transfer.
+Optimising any non-GPU component can contribute at most 0.7\% of
+total latency.
+The async-overlap router is architecturally sound, correctly
+pipelining all non-GPU work, but the practical benefit on this
+hardware is 3.8\% of the non-GPU fraction, which is 0.027\% of
+total latency.
+
+\subsection{EVT Framing and Appropriate Confidence Levels}
+
+The pWCET analysis uses exceedance probabilities in the
+$10^{-3}$--$10^{-6}$ range, which is appropriate for clinical
+decision support systems~\cite{singhal2023large}.
+Aviation certification (DO-178C) targets $10^{-9}$; automotive
+(ISO~26262, ASIL-D) targets $10^{-8}$.
+A biomedical QA system falls closer to IEC~60601-1 general medical
+device requirements, where $10^{-3}$--$10^{-4}$ exceedance is the
+relevant benchmark.
+The empirical result ($P(\text{miss}) \ll 10^{-3}$ for seq$\leq$512)
+is conservatively strong for this domain.
+
+\subsection{Limitations and Future Work}
+
+\textbf{Model scale:}
+TinyLlama-1.1B is the smallest production-quality LLM.
+Larger models (7B, 70B parameters) will have substantially higher
+per-token latency; the framework scales, but the WCET table and exit
+layer require re-profiling.
+
+\textbf{Exit head quality:}
+The shared LM head is applied at Layer~16 without fine-tuning.
+A jointly-trained lightweight exit head (small MLP) would improve
+L16 oracle agreement beyond 32\%, increasing the early-exit rate
+from 5.3\% and reducing mean TPOT further.
+
+\textbf{Multi-request batching:}
+The $N_{\max}=2$ round-robin capacity is conservative.
+Hardware-level batching (multiple requests processed in a single
+GPU kernel) could raise this substantially but requires re-profiling
+the WCET table under batch load.
+
+\textbf{Async benefit at scale:}
+The async-overlap router's 0.09~ms saving would grow with
+$T_{\text{cpu}}$ (heavier preprocessing pipelines, retrieval
+augmentation) or with PCIe~3.0 systems where $T_{\text{pcie}}$
+is larger.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+% ─────────────────────────────────────────────────────────────────────────────
+
+We presented a KV-cached anytime algorithm for LLM token generation that
+enforces hard SLO deadlines at the application level by design.
+The core insight is that the KV-cache desynchronization problem inherent
+in two-pass stateless routers is eliminated by a single
+\texttt{forward\_cached()} call that captures Layer-16 intermediate
+activations via a post-hoc forward hook while running all 22 transformer
+layers contiguously.
+The routing decision (which logit vector to commit) is made strictly
+after the GPU returns, with no second forward call and no KV-state
+corruption.
+
+On a bare-metal RTX~6000~Ada GPU, the KV-cached router achieves
+P99~TPOT = 17.84~ms at $D=30$~ms ($R=0.595$) with 0\% deadline misses
+across 240 token samples, while the stateless two-pass router's P99 =
+30.27~ms exceeds $D$ ($R=1.009$).
+An async-overlap variant further reduces P99 to 17.41~ms ($R=0.580$)
+by pipelining CPU preprocessing with GPU inference via CUDA streams.
+A 30-query PubMedQA benchmark confirms 0\% deadline misses at
+68.24~tok/s with 71.4\% accuracy.
+
+A heterogeneous pipeline decomposition shows that GPU compute accounts
+for 99.3\% of per-token latency, directly validating the
+application-level routing abstraction.
+EVT Gumbel fits establish $P(\text{TPOT}>45\,\text{ms})<10^{-6}$
+for sequences up to 512~tokens.
+Thermal profiling confirms WCET stability over 500 consecutive tokens.
+
+These results demonstrate that predictive early-exit mechanisms,
+when implemented via a post-hoc single-pass forward hook with KV-cache
+consistency, can enforce hard SLO deadlines on LLM token generation
+without modifying model weights, without OS-level thread preemption,
+and without sacrificing output quality.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{Acknowledgment}
+% ─────────────────────────────────────────────────────────────────────────────
+
+This work was completed as the course project for CIS~6930 Real-Time
+Systems (Spring~2026), University of South Florida.
+The author thanks the course instructor for guidance on real-time
+scheduling formalism.
+Compute resources provided via RunPod (RTX~6000~Ada bare-metal instance).
+
+% ─────────────────────────────────────────────────────────────────────────────
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

@@ -1,19 +1,29 @@
 """
-compare_schedulers.py — Stateless vs. KV-Cached scheduler head-to-head comparison.
+compare_schedulers.py — Three-way router comparison.
 
-Runs both schedulers on the same set of PubMedQA prompts and produces:
-  scheduler_comparison.json   — raw per-token records for both schedulers
-  scheduler_comparison.png    — side-by-side CDF + exit-distribution figures
+Compares all three application-level routing strategies on the same
+PubMedQA prompts:
+  1. Stateless two-pass router      (dynamic threshold decay 0.8→0.3, no KV cache)
+  2. KV-cached single-pass router   (fixed threshold 0.55, post-hoc decision)
+  3. Async-overlap KV-cached router (fixed threshold 0.55, CPU-GPU overlap pipeline)
+
+Outputs:
+  scheduler_comparison.json   — per-token records + aggregate metrics
+  scheduler_comparison.png    — CDF + exit-distribution + summary table
 """
 
 import json
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import fig_style as fs
 from datasets import load_dataset
 from transformers import AutoTokenizer
 
 from early_exit_model import EarlyExitTinyLlama
-from dynamic_scheduler import generate_stateless_anytime, generate_anytime_with_kv
+from dynamic_scheduler import (generate_stateless_anytime, generate_anytime_with_kv,
+                               generate_anytime_async_overlap)
 
 RESULTS_FILE = "scheduler_comparison.json"
 FIGURE_FILE  = "scheduler_comparison.png"
@@ -81,6 +91,7 @@ def run_comparison():
 
     stateless_all_records = []
     kvcached_all_records  = []
+    async_all_records     = []
 
     for i, item in enumerate(dataset):
         context  = item["context"]["contexts"][0]
@@ -91,7 +102,7 @@ def run_comparison():
         print(f"Query {i+1}/{N_SAMPLES} | GT: {item['final_decision']}")
         print("=" * 60)
 
-        print("\n--- Stateless Scheduler (L16, threshold decay 0.8→0.3, WCET forced exit) ---")
+        print("\n--- Stateless Two-Pass Router (L16, threshold decay 0.8->0.3, no KV cache) ---")
         stateless_records = generate_stateless_anytime(
             model, prompt,
             max_new_tokens=MAX_TOKENS,
@@ -100,7 +111,7 @@ def run_comparison():
         )
         stateless_all_records.extend(stateless_records)
 
-        print("\n--- KV-Cached Scheduler (L16, fixed threshold 0.55, single-pass) ---")
+        print("\n--- KV-Cached Single-Pass Router (L16, fixed threshold 0.55, post-hoc) ---")
         kvcached_records = generate_anytime_with_kv(
             model, prompt,
             max_new_tokens=MAX_TOKENS,
@@ -109,8 +120,18 @@ def run_comparison():
         )
         kvcached_all_records.extend(kvcached_records)
 
+        print("\n--- Async-Overlap KV-Cached Router (L16, fixed 0.55, CPU-GPU pipeline) ---")
+        async_records = generate_anytime_async_overlap(
+            model, prompt,
+            max_new_tokens=MAX_TOKENS,
+            deadline_ms=DEADLINE_MS,
+            verbose=False,
+        )
+        async_all_records.extend(async_records)
+
     stateless_metrics = aggregate(stateless_all_records, DEADLINE_MS)
     kvcached_metrics  = aggregate(kvcached_all_records,  DEADLINE_MS)
+    async_metrics     = aggregate(async_all_records,     DEADLINE_MS)
 
     output = {
         "n_samples":          N_SAMPLES,
@@ -118,34 +139,37 @@ def run_comparison():
         "max_tokens":         MAX_TOKENS,
         "stateless_metrics":  stateless_metrics,
         "kvcached_metrics":   kvcached_metrics,
+        "async_metrics":      async_metrics,
     }
     with open(RESULTS_FILE, "w") as f:
         json.dump(output, f, indent=2)
     print(f"\nResults saved to '{RESULTS_FILE}'")
 
-    return stateless_metrics, kvcached_metrics, stateless_all_records, kvcached_all_records
+    return stateless_metrics, kvcached_metrics, async_metrics, \
+           stateless_all_records, kvcached_all_records, async_all_records
 
 
-def plot_comparison(stateless_metrics, kvcached_metrics):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9,
-    })
+def plot_comparison(stateless_metrics, kvcached_metrics, async_metrics=None):
+    fs.apply()
 
     C_STATELESS = "#d62728"   # red
     C_KVCACHED  = "#2b5b84"   # dark blue
+    C_ASYNC     = "#2ca02c"   # green
     DEAD_C      = "black"
 
-    fig, axes = plt.subplots(1, 3, figsize=(14, 4))
+    all_series = [
+        ("Stateless (decay, no cache)", stateless_metrics, C_STATELESS),
+        ("KV-Cached (fixed, sync)",     kvcached_metrics,  C_KVCACHED),
+    ]
+    if async_metrics is not None:
+        all_series.append(("Async-Overlap (fixed, overlap)", async_metrics, C_ASYNC))
+
+    n_routers = len(all_series)
+    fig, axes = plt.subplots(1, 3, figsize=fs.TRIPLE)
 
     # ── Panel 1: TPOT CDF ─────────────────────────────────────────────────────
     ax = axes[0]
-    for label, metrics, colour in [
-        ("Stateless (L16, decay)",  stateless_metrics, C_STATELESS),
-        ("KV-Cached (L16, fixed)",  kvcached_metrics,  C_KVCACHED),
-    ]:
+    for label, metrics, colour in all_series:
         samples = np.sort(metrics["tpot_samples"])
         cdf     = np.arange(1, len(samples) + 1) / len(samples)
         ax.plot(samples, cdf, linewidth=2, color=colour, label=label)
@@ -160,8 +184,10 @@ def plot_comparison(stateless_metrics, kvcached_metrics):
 
     # ── Panel 2: Exit-Type Distribution ───────────────────────────────────────
     ax     = axes[1]
-    labels = ["Stateless\n(L16, decay)", "KV-Cached\n(L16, fixed)"]
-    metrics_list = [stateless_metrics, kvcached_metrics]
+    labels = ["Stateless\n(decay)", "KV-Cached\n(sync)", "Async\n(overlap)"] \
+             if async_metrics else ["Stateless\n(L16, decay)", "KV-Cached\n(L16, fixed)"]
+    metrics_list = [stateless_metrics, kvcached_metrics] + \
+                   ([async_metrics] if async_metrics else [])
     x      = np.arange(len(labels))
     width  = 0.5
 
@@ -179,7 +205,7 @@ def plot_comparison(stateless_metrics, kvcached_metrics):
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
     ax.set_ylabel("Percentage of Tokens (%)")
-    ax.set_ylim(0, 130)
+    ax.set_ylim(0, 115)
     ax.set_title("Exit-Type Distribution")
     ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, 1.0),
               ncol=1, framealpha=0.9)
@@ -187,41 +213,55 @@ def plot_comparison(stateless_metrics, kvcached_metrics):
     # ── Panel 3: Key Metric Table ──────────────────────────────────────────────
     ax = axes[2]
     ax.axis("off")
-    col_labels = ["Metric", "Stateless", "KV-Cached"]
-    rows = [
-        ["Mean TPOT (ms)",  f"{stateless_metrics['mean_tpot_ms']:.1f}",  f"{kvcached_metrics['mean_tpot_ms']:.1f}"],
-        ["P99 TPOT (ms)",   f"{stateless_metrics['p99_tpot_ms']:.1f}",   f"{kvcached_metrics['p99_tpot_ms']:.1f}"],
-        ["Throughput (t/s)",f"{stateless_metrics['throughput_tps']}",    f"{kvcached_metrics['throughput_tps']}"],
-        ["Util (P99/D)",    f"{stateless_metrics['util_ratio']:.4f}",    f"{kvcached_metrics['util_ratio']:.4f}"],
-        ["Miss Rate (%)",   f"{stateless_metrics['deadline_miss_pct']}", f"{kvcached_metrics['deadline_miss_pct']}"],
-        ["Full Pass (%)",   f"{stateless_metrics['full_pass_pct']}",     f"{kvcached_metrics['full_pass_pct']}"],
-        ["Early Exit (%)",  f"{stateless_metrics['early_conf_pct']}",    f"{kvcached_metrics['early_conf_pct']}"],
-        ["Forced Exit (%)", f"{stateless_metrics['forced_exit_pct']}",   f"{kvcached_metrics['forced_exit_pct']}"],
-    ]
-    table = ax.table(
-        cellText=rows,
-        colLabels=col_labels,
-        cellLoc="center",
-        loc="center",
-        bbox=[0, 0.02, 1, 0.96],
-    )
+
+    def _fmt(m):
+        return [
+            f"{m['mean_tpot_ms']:.1f}",
+            f"{m['p99_tpot_ms']:.1f}",
+            str(m['throughput_tps']),
+            f"{m['util_ratio']:.4f}",
+            f"{m['deadline_miss_pct']}",
+            f"{m['full_pass_pct']}",
+            f"{m['early_conf_pct']}",
+            f"{m['forced_exit_pct']}",
+        ]
+
+    row_names = ["Mean TPOT (ms)", "P99 TPOT (ms)", "Throughput (t/s)",
+                 "SLO ratio (P99/D)", "Miss Rate (%)", "Full Pass (%)",
+                 "Early Exit (%)", "Forced Exit (%)"]
+
+    if async_metrics:
+        col_labels = ["Metric", "Stateless", "KV-Cached", "Async"]
+        rows = [[rn] + [_fmt(m)[i] for m in [stateless_metrics, kvcached_metrics, async_metrics]]
+                for i, rn in enumerate(row_names)]
+        col_widths = [0.38, 0.2, 0.2, 0.2]
+        header_colours = ["#2b5b84", "#2b5b84", "#2b5b84", "#2ca02c"]
+    else:
+        col_labels = ["Metric", "Stateless", "KV-Cached"]
+        rows = [[rn] + [_fmt(m)[i] for m in [stateless_metrics, kvcached_metrics]]
+                for i, rn in enumerate(row_names)]
+        col_widths = [0.44, 0.28, 0.28]
+        header_colours = ["#2b5b84"] * 3
+
+    table = ax.table(cellText=rows, colLabels=col_labels, cellLoc="center",
+                     loc="center", bbox=[0, 0.02, 1, 0.96])
     table.auto_set_font_size(False)
-    table.set_fontsize(8.5)
-    # Widen first column relative to the other two
-    col_widths = [0.44, 0.28, 0.28]
-    n_rows = len(rows) + 1  # +1 for header
+    table.set_fontsize(8.0)
+    n_rows = len(rows) + 1
     for row_idx in range(n_rows):
         for col_idx, w in enumerate(col_widths):
             table[row_idx, col_idx].set_width(w)
         table[row_idx, 0].set_text_props(ha="left")
-    for j in range(len(col_labels)):
-        table[0, j].set_facecolor("#2b5b84")
+    for j, hc in enumerate(header_colours):
+        table[0, j].set_facecolor(hc)
         table[0, j].set_text_props(color="white", fontweight="bold")
     ax.set_title("Summary Metrics", pad=12)
 
+    n_label = f"{n_routers} routers" if async_metrics else "2 routers"
     fig.suptitle(
-        f"Stateless (decay thresh) vs. KV-Cached (fixed thresh)  —  both L16  |  deadline={DEADLINE_MS:.0f} ms  |  n={N_SAMPLES} queries",
-        fontsize=12, y=1.02,
+        f"Application-Level Router Comparison — {n_label} | L16 exit | "
+        f"deadline={DEADLINE_MS:.0f} ms | n={N_SAMPLES} queries",
+        fontsize=7.5, y=1.02,
     )
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")
@@ -230,18 +270,19 @@ def plot_comparison(stateless_metrics, kvcached_metrics):
 
 
 if __name__ == "__main__":
-    stateless_metrics, kvcached_metrics, stateless_records, kvcached_records = run_comparison()
+    stateless_m, kvcached_m, async_m, *_ = run_comparison()
 
-    print("\n" + "=" * 55)
-    print("COMPARISON SUMMARY")
-    print("=" * 55)
-    for name, m in [("Stateless  (L16, decay thresh)", stateless_metrics),
-                    ("KV-Cached  (L16, fixed thresh)", kvcached_metrics)]:
+    print("\n" + "=" * 60)
+    print("ROUTER COMPARISON SUMMARY")
+    print("=" * 60)
+    for name, m in [("Stateless  (two-pass, decay thresh, no cache)", stateless_m),
+                    ("KV-Cached  (single-pass, fixed thresh, sync)",   kvcached_m),
+                    ("Async-Overlap (single-pass, fixed, CPU overlap)", async_m)]:
         print(f"\n{name}")
-        print(f"  Mean TPOT:    {m['mean_tpot_ms']:.2f} ms  |  P99: {m['p99_tpot_ms']:.2f} ms")
-        print(f"  Throughput:   {m['throughput_tps']} tok/s  |  Util (P99/D): {m['util_ratio']:.4f}")
-        print(f"  Full Pass:    {m['full_pass_pct']}%  |  Early: {m['early_conf_pct']}%  "
+        print(f"  Mean TPOT : {m['mean_tpot_ms']:.2f} ms  |  P99: {m['p99_tpot_ms']:.2f} ms")
+        print(f"  Throughput: {m['throughput_tps']} tok/s  |  SLO ratio (P99/D): {m['util_ratio']:.4f}")
+        print(f"  Full Pass : {m['full_pass_pct']}%  |  Early: {m['early_conf_pct']}%  "
               f"|  Forced: {m['forced_exit_pct']}%")
-        print(f"  Missed deadlines: {m['deadline_miss_pct']}%")
+        print(f"  SLO misses: {m['deadline_miss_pct']}%")
 
-    plot_comparison(stateless_metrics, kvcached_metrics)
+    plot_comparison(stateless_m, kvcached_m, async_m)

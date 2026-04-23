@@ -23,6 +23,7 @@ import numpy as np
 import torch
 import matplotlib
 matplotlib.use("Agg")
+import fig_style as fs
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
@@ -80,14 +81,9 @@ def run_sweep(model, label=""):
 # ── Figure — two-panel ─────────────────────────────────────────────────────────
 
 def plot_comparison(normal_results, fifo_results, deadline_ms=45.0):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9, "xtick.labelsize": 9, "ytick.labelsize": 9,
-    })
+    fs.apply()
 
-    fig, axes = plt.subplots(1, 2, figsize=(13, 5))
+    fig, axes = plt.subplots(1, 2, figsize=fs.DOUBLE)
 
     full_key = "None"   # dict key for the full 22-layer pass
 
@@ -140,7 +136,7 @@ def plot_comparison(normal_results, fifo_results, deadline_ms=45.0):
     ax2.set_ylabel("P99 Latency Reduction (%)")
     ax2.set_title("P99 Latency Reduction with SCHED_FIFO")
 
-    fig.suptitle("SCHED_FIFO Analysis — TinyLlama-1.1B (RTX 4000 Ada)", fontsize=12, y=1.01)
+    fig.suptitle("SCHED_FIFO Analysis — TinyLlama-1.1B (RTX 4000 Ada)", fontsize=7.5, y=1.01)
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")
     plt.close()
@@ -149,14 +145,9 @@ def plot_comparison(normal_results, fifo_results, deadline_ms=45.0):
 
 def plot_normal_only(normal_results, deadline_ms=45.0):
     """Single-panel figure when SCHED_FIFO is not available."""
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9, "xtick.labelsize": 9, "ytick.labelsize": 9,
-    })
+    fs.apply()
 
-    fig, ax = plt.subplots(figsize=(7, 4))
+    fig, ax = plt.subplots(figsize=fs.SINGLE)
     colours = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
 
     for idx, exit_layer in enumerate(EXIT_LAYERS):

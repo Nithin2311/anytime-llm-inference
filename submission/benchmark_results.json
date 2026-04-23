@@ -1,0 +1,1999 @@
+{
+  "global_metrics": {
+    "n_queries": 30,
+    "deadline_ms": 45.0,
+    "accuracy": 71.4,
+    "n_correct": 10,
+    "n_scored": 14,
+    "full_pass_pct": 94.7,
+    "early_thresh_pct": 5.3,
+    "forced_exit_pct": 0.0,
+    "deadline_miss_pct": 0.0,
+    "global_mean_tpot_ms": 14.851,
+    "global_p99_tpot_ms": 20.69,
+    "throughput_tps": 67.34,
+    "util_ratio": 0.4598
+  },
+  "query_results": [
+    {
+      "query_id": 1,
+      "question": "Do mitochondria play a role in remodelling lace plant leaves during programmed cell death?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "Answer:yes,mit",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Answer",
+          "time_ms": 16.607,
+          "exit_type": "Full Pass",
+          "confidence": 0.3027,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 17.579,
+          "exit_type": "Full Pass",
+          "confidence": 0.2061,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "yes",
+          "time_ms": 16.075,
+          "exit_type": "Early (Thresh: 0.55)",
+          "confidence": 0.6719,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": ",",
+          "time_ms": 15.624,
+          "exit_type": "Full Pass",
+          "confidence": 0.0515,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "mit",
+          "time_ms": 15.788,
+          "exit_type": "Full Pass",
+          "confidence": 0.0199,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 80.0,
+        "early_thresh_pct": 20.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 16.267,
+        "p99_tpot_ms": 17.534,
+        "max_tpot_ms": 17.579,
+        "throughput_tps": 61.48
+      }
+    },
+    {
+      "query_id": 2,
+      "question": "Landolt C and snellen e acuity: differences in strabismus amblyopia?",
+      "ground_truth": "no",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:Whichofthe",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 16.08,
+          "exit_type": "Full Pass",
+          "confidence": 0.0344,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 15.181,
+          "exit_type": "Full Pass",
+          "confidence": 0.2373,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Which",
+          "time_ms": 15.625,
+          "exit_type": "Full Pass",
+          "confidence": 0.0405,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "of",
+          "time_ms": 15.241,
+          "exit_type": "Full Pass",
+          "confidence": 0.0708,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "the",
+          "time_ms": 16.709,
+          "exit_type": "Full Pass",
+          "confidence": 0.1113,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 15.689,
+        "p99_tpot_ms": 16.676,
+        "max_tpot_ms": 16.709,
+        "throughput_tps": 63.74
+      }
+    },
+    {
+      "query_id": 3,
+      "question": "Syncope during bathing in infants, a pediatric form of water-induced urticaria?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "Yes,yes,and",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Yes",
+          "time_ms": 15.245,
+          "exit_type": "Full Pass",
+          "confidence": 0.0337,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ",",
+          "time_ms": 15.788,
+          "exit_type": "Full Pass",
+          "confidence": 0.0542,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "yes",
+          "time_ms": 14.688,
+          "exit_type": "Full Pass",
+          "confidence": 0.0286,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": ",",
+          "time_ms": 14.483,
+          "exit_type": "Full Pass",
+          "confidence": 0.0146,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "and",
+          "time_ms": 14.38,
+          "exit_type": "Full Pass",
+          "confidence": 0.052,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.835,
+        "p99_tpot_ms": 15.755,
+        "max_tpot_ms": 15.788,
+        "throughput_tps": 67.41
+      }
+    },
+    {
+      "query_id": 4,
+      "question": "Are the long-term results of the transanal pull-through equal to those of the transabdominal pull-through?",
+      "ground_truth": "no",
+      "predicted": "yes",
+      "correct": false,
+      "generated_text": "Yes,thelong-",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Yes",
+          "time_ms": 15.452,
+          "exit_type": "Full Pass",
+          "confidence": 0.1787,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ",",
+          "time_ms": 14.408,
+          "exit_type": "Full Pass",
+          "confidence": 0.013,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "the",
+          "time_ms": 14.727,
+          "exit_type": "Full Pass",
+          "confidence": 0.0544,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "long",
+          "time_ms": 14.679,
+          "exit_type": "Full Pass",
+          "confidence": 0.252,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "-",
+          "time_ms": 14.333,
+          "exit_type": "Full Pass",
+          "confidence": 0.1826,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.537,
+        "p99_tpot_ms": 14.726,
+        "max_tpot_ms": 14.727,
+        "throughput_tps": 68.79
+      }
+    },
+    {
+      "query_id": 5,
+      "question": "Can tailored interventions increase mammography use among HMO women?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Method:Thestudyinvolved",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Method",
+          "time_ms": 15.439,
+          "exit_type": "Full Pass",
+          "confidence": 0.103,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.29,
+          "exit_type": "Full Pass",
+          "confidence": 0.2969,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "The",
+          "time_ms": 14.799,
+          "exit_type": "Full Pass",
+          "confidence": 0.0312,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "study",
+          "time_ms": 16.272,
+          "exit_type": "Full Pass",
+          "confidence": 0.207,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "involved",
+          "time_ms": 14.305,
+          "exit_type": "Full Pass",
+          "confidence": 0.4727,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.916,
+        "p99_tpot_ms": 16.228,
+        "max_tpot_ms": 16.272,
+        "throughput_tps": 67.04
+      }
+    },
+    {
+      "query_id": 6,
+      "question": "Double balloon enteroscopy: is it efficacious and safe in a community setting?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "Answer:Yes,double",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Answer",
+          "time_ms": 15.042,
+          "exit_type": "Full Pass",
+          "confidence": 0.1357,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.007,
+          "exit_type": "Full Pass",
+          "confidence": 0.1963,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Yes",
+          "time_ms": 14.808,
+          "exit_type": "Full Pass",
+          "confidence": 0.3711,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": ",",
+          "time_ms": 14.437,
+          "exit_type": "Full Pass",
+          "confidence": 0.0388,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "double",
+          "time_ms": 14.903,
+          "exit_type": "Full Pass",
+          "confidence": 0.0167,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.539,
+        "p99_tpot_ms": 14.9,
+        "max_tpot_ms": 14.903,
+        "throughput_tps": 68.78
+      }
+    },
+    {
+      "query_id": 7,
+      "question": "30-Day and 1-year mortality in emergency general surgery laparotomies: an area of concern and need for improvement?",
+      "ground_truth": "maybe",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:30",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 15.572,
+          "exit_type": "Full Pass",
+          "confidence": 0.0231,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.344,
+          "exit_type": "Full Pass",
+          "confidence": 0.063,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "",
+          "time_ms": 16.651,
+          "exit_type": "Full Pass",
+          "confidence": 0.0277,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "3",
+          "time_ms": 14.767,
+          "exit_type": "Full Pass",
+          "confidence": 0.0938,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "0",
+          "time_ms": 14.33,
+          "exit_type": "Full Pass",
+          "confidence": 0.2676,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 15.023,
+        "p99_tpot_ms": 16.594,
+        "max_tpot_ms": 16.651,
+        "throughput_tps": 66.56
+      }
+    },
+    {
+      "query_id": 8,
+      "question": "Is adjustment for reporting heterogeneity necessary in sleep disorders?",
+      "ground_truth": "no",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:Isadjustment",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 16.398,
+          "exit_type": "Full Pass",
+          "confidence": 0.1289,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.769,
+          "exit_type": "Full Pass",
+          "confidence": 0.0275,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Is",
+          "time_ms": 14.329,
+          "exit_type": "Full Pass",
+          "confidence": 0.0295,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "adjust",
+          "time_ms": 14.34,
+          "exit_type": "Full Pass",
+          "confidence": 0.1055,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "ment",
+          "time_ms": 15.09,
+          "exit_type": "Full Pass",
+          "confidence": 0.2275,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.632,
+        "p99_tpot_ms": 15.08,
+        "max_tpot_ms": 15.09,
+        "throughput_tps": 68.34
+      }
+    },
+    {
+      "query_id": 9,
+      "question": "Do mutations causing low HDL-C promote increased carotid intima-media thickness?",
+      "ground_truth": "no",
+      "predicted": "yes",
+      "correct": false,
+      "generated_text": "Answer:yes\n\n",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Answer",
+          "time_ms": 16.363,
+          "exit_type": "Full Pass",
+          "confidence": 0.1318,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 15.228,
+          "exit_type": "Full Pass",
+          "confidence": 0.2773,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "yes",
+          "time_ms": 15.165,
+          "exit_type": "Early (Thresh: 0.55)",
+          "confidence": 0.6016,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "\n",
+          "time_ms": 15.106,
+          "exit_type": "Full Pass",
+          "confidence": 0.0437,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "\n",
+          "time_ms": 15.186,
+          "exit_type": "Full Pass",
+          "confidence": 0.0111,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 80.0,
+        "early_thresh_pct": 20.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 15.171,
+        "p99_tpot_ms": 15.227,
+        "max_tpot_ms": 15.228,
+        "throughput_tps": 65.91
+      }
+    },
+    {
+      "query_id": 10,
+      "question": "A short stay or 23-hour ward in a general and academic children's hospital: are they effective?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "Response:\n\nYes",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Response",
+          "time_ms": 16.393,
+          "exit_type": "Full Pass",
+          "confidence": 0.0408,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 15.014,
+          "exit_type": "Full Pass",
+          "confidence": 0.2637,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "\n",
+          "time_ms": 15.05,
+          "exit_type": "Full Pass",
+          "confidence": 0.2051,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "\n",
+          "time_ms": 14.934,
+          "exit_type": "Full Pass",
+          "confidence": 0.0476,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "Yes",
+          "time_ms": 14.954,
+          "exit_type": "Full Pass",
+          "confidence": 0.024,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.988,
+        "p99_tpot_ms": 15.049,
+        "max_tpot_ms": 15.05,
+        "throughput_tps": 66.72
+      }
+    },
+    {
+      "query_id": 11,
+      "question": "Did Chile's traffic law reform push police enforcement?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:Didthereduction",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 15.863,
+          "exit_type": "Full Pass",
+          "confidence": 0.1582,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.29,
+          "exit_type": "Full Pass",
+          "confidence": 0.0513,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Did",
+          "time_ms": 13.962,
+          "exit_type": "Full Pass",
+          "confidence": 0.0147,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "the",
+          "time_ms": 13.978,
+          "exit_type": "Full Pass",
+          "confidence": 0.0288,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "reduction",
+          "time_ms": 13.906,
+          "exit_type": "Full Pass",
+          "confidence": 0.123,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.034,
+        "p99_tpot_ms": 14.281,
+        "max_tpot_ms": 14.29,
+        "throughput_tps": 71.26
+      }
+    },
+    {
+      "query_id": 12,
+      "question": "Therapeutic anticoagulation in the trauma patient: is it safe?",
+      "ground_truth": "no",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:(1)",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 15.566,
+          "exit_type": "Full Pass",
+          "confidence": 0.0256,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.395,
+          "exit_type": "Full Pass",
+          "confidence": 0.054,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "(",
+          "time_ms": 14.48,
+          "exit_type": "Full Pass",
+          "confidence": 0.0942,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "1",
+          "time_ms": 14.505,
+          "exit_type": "Full Pass",
+          "confidence": 0.0518,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": ")",
+          "time_ms": 14.368,
+          "exit_type": "Full Pass",
+          "confidence": 0.0869,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.437,
+        "p99_tpot_ms": 14.504,
+        "max_tpot_ms": 14.505,
+        "throughput_tps": 69.27
+      }
+    },
+    {
+      "query_id": 13,
+      "question": "Differentiation of nonalcoholic from alcoholic steatohepatitis: are routine laboratory markers useful?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Response:\n\nQuestion",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Response",
+          "time_ms": 15.837,
+          "exit_type": "Full Pass",
+          "confidence": 0.2334,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.554,
+          "exit_type": "Full Pass",
+          "confidence": 0.1816,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "\n",
+          "time_ms": 14.512,
+          "exit_type": "Full Pass",
+          "confidence": 0.3145,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "\n",
+          "time_ms": 21.42,
+          "exit_type": "Full Pass",
+          "confidence": 0.0217,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "Question",
+          "time_ms": 14.636,
+          "exit_type": "Full Pass",
+          "confidence": 0.0137,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 16.28,
+        "p99_tpot_ms": 21.216,
+        "max_tpot_ms": 21.42,
+        "throughput_tps": 61.42
+      }
+    },
+    {
+      "query_id": 14,
+      "question": "Prompting Primary Care Providers about Increased Patient Risk As a Result of Family History: Does It Work?",
+      "ground_truth": "no",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:Doesautomated",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 15.345,
+          "exit_type": "Full Pass",
+          "confidence": 0.0228,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.548,
+          "exit_type": "Full Pass",
+          "confidence": 0.0664,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Does",
+          "time_ms": 14.664,
+          "exit_type": "Full Pass",
+          "confidence": 0.0564,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "autom",
+          "time_ms": 14.826,
+          "exit_type": "Full Pass",
+          "confidence": 0.0251,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "ated",
+          "time_ms": 14.423,
+          "exit_type": "Full Pass",
+          "confidence": 0.3867,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.615,
+        "p99_tpot_ms": 14.821,
+        "max_tpot_ms": 14.826,
+        "throughput_tps": 68.42
+      }
+    },
+    {
+      "query_id": 15,
+      "question": "Do emergency ultrasound fellowship programs impact emergency medicine residents' ultrasound education?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Method:Across-",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Method",
+          "time_ms": 15.605,
+          "exit_type": "Full Pass",
+          "confidence": 0.2021,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.475,
+          "exit_type": "Full Pass",
+          "confidence": 0.2637,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "A",
+          "time_ms": 14.738,
+          "exit_type": "Full Pass",
+          "confidence": 0.0698,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "cross",
+          "time_ms": 15.478,
+          "exit_type": "Full Pass",
+          "confidence": 0.1309,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "-",
+          "time_ms": 14.921,
+          "exit_type": "Full Pass",
+          "confidence": 0.0525,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.903,
+        "p99_tpot_ms": 15.461,
+        "max_tpot_ms": 15.478,
+        "throughput_tps": 67.1
+      }
+    },
+    {
+      "query_id": 16,
+      "question": "Patient-Controlled Therapy of Breathlessness in Palliative Care: A New Therapeutic Concept for Opioid Administration?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "Response:Yes,patient",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Response",
+          "time_ms": 15.233,
+          "exit_type": "Full Pass",
+          "confidence": 0.0381,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.129,
+          "exit_type": "Full Pass",
+          "confidence": 0.1709,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Yes",
+          "time_ms": 14.505,
+          "exit_type": "Full Pass",
+          "confidence": 0.1699,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": ",",
+          "time_ms": 14.513,
+          "exit_type": "Full Pass",
+          "confidence": 0.085,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "patient",
+          "time_ms": 14.607,
+          "exit_type": "Full Pass",
+          "confidence": 0.0337,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.438,
+        "p99_tpot_ms": 14.604,
+        "max_tpot_ms": 14.607,
+        "throughput_tps": 69.26
+      }
+    },
+    {
+      "query_id": 17,
+      "question": "Is there still a need for living-related liver transplantation in children?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "Answer:yes\n\n",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Answer",
+          "time_ms": 16.282,
+          "exit_type": "Full Pass",
+          "confidence": 0.3613,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.546,
+          "exit_type": "Full Pass",
+          "confidence": 0.2402,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "yes",
+          "time_ms": 14.6,
+          "exit_type": "Early (Thresh: 0.55)",
+          "confidence": 0.5586,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "\n",
+          "time_ms": 14.568,
+          "exit_type": "Full Pass",
+          "confidence": 0.0498,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "\n",
+          "time_ms": 14.532,
+          "exit_type": "Full Pass",
+          "confidence": 0.02,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 80.0,
+        "early_thresh_pct": 20.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.561,
+        "p99_tpot_ms": 14.599,
+        "max_tpot_ms": 14.6,
+        "throughput_tps": 68.67
+      }
+    },
+    {
+      "query_id": 18,
+      "question": "Do patterns of knowledge and attitudes exist among unvaccinated seniors?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:Dopatternsof",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 15.953,
+          "exit_type": "Full Pass",
+          "confidence": 0.1357,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 15.244,
+          "exit_type": "Full Pass",
+          "confidence": 0.0952,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Do",
+          "time_ms": 14.392,
+          "exit_type": "Full Pass",
+          "confidence": 0.0325,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "patterns",
+          "time_ms": 14.424,
+          "exit_type": "Full Pass",
+          "confidence": 0.0172,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "of",
+          "time_ms": 14.615,
+          "exit_type": "Full Pass",
+          "confidence": 0.1768,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.669,
+        "p99_tpot_ms": 15.225,
+        "max_tpot_ms": 15.244,
+        "throughput_tps": 68.17
+      }
+    },
+    {
+      "query_id": 19,
+      "question": "Is there a model to teach and practice retroperitoneoscopic nephrectomy?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "Answer:Yes,there",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Answer",
+          "time_ms": 16.814,
+          "exit_type": "Full Pass",
+          "confidence": 0.3066,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.81,
+          "exit_type": "Full Pass",
+          "confidence": 0.1426,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Yes",
+          "time_ms": 14.194,
+          "exit_type": "Full Pass",
+          "confidence": 0.4434,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": ",",
+          "time_ms": 14.149,
+          "exit_type": "Full Pass",
+          "confidence": 0.1465,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "there",
+          "time_ms": 14.063,
+          "exit_type": "Full Pass",
+          "confidence": 0.1631,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.304,
+        "p99_tpot_ms": 14.792,
+        "max_tpot_ms": 14.81,
+        "throughput_tps": 69.91
+      }
+    },
+    {
+      "query_id": 20,
+      "question": "Cardiovascular risk in a rural adult West African population: is resting heart rate also relevant?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:Isresting",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 15.479,
+          "exit_type": "Full Pass",
+          "confidence": 0.0464,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.358,
+          "exit_type": "Full Pass",
+          "confidence": 0.0972,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Is",
+          "time_ms": 14.369,
+          "exit_type": "Full Pass",
+          "confidence": 0.0356,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "rest",
+          "time_ms": 14.431,
+          "exit_type": "Full Pass",
+          "confidence": 0.1221,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "ing",
+          "time_ms": 14.32,
+          "exit_type": "Full Pass",
+          "confidence": 0.0752,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.37,
+        "p99_tpot_ms": 14.429,
+        "max_tpot_ms": 14.431,
+        "throughput_tps": 69.59
+      }
+    },
+    {
+      "query_id": 21,
+      "question": "Israeli hospital preparedness for terrorism-related multiple casualty incidents: can the surge capacity and injury severity distribution be better predicted?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:Canthesur",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 15.873,
+          "exit_type": "Full Pass",
+          "confidence": 0.04,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 16.381,
+          "exit_type": "Full Pass",
+          "confidence": 0.0996,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Can",
+          "time_ms": 15.884,
+          "exit_type": "Full Pass",
+          "confidence": 0.0747,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "the",
+          "time_ms": 14.716,
+          "exit_type": "Full Pass",
+          "confidence": 0.0732,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "sur",
+          "time_ms": 14.667,
+          "exit_type": "Full Pass",
+          "confidence": 0.051,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 15.412,
+        "p99_tpot_ms": 16.366,
+        "max_tpot_ms": 16.381,
+        "throughput_tps": 64.88
+      }
+    },
+    {
+      "query_id": 22,
+      "question": "Acute respiratory distress syndrome in children with malignancy--can we predict outcome?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:Canearlyresp",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 15.965,
+          "exit_type": "Full Pass",
+          "confidence": 0.0197,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.393,
+          "exit_type": "Full Pass",
+          "confidence": 0.0398,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Can",
+          "time_ms": 14.852,
+          "exit_type": "Full Pass",
+          "confidence": 0.0576,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "early",
+          "time_ms": 15.436,
+          "exit_type": "Full Pass",
+          "confidence": 0.0679,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "resp",
+          "time_ms": 14.21,
+          "exit_type": "Full Pass",
+          "confidence": 0.064,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.723,
+        "p99_tpot_ms": 15.418,
+        "max_tpot_ms": 15.436,
+        "throughput_tps": 67.92
+      }
+    },
+    {
+      "query_id": 23,
+      "question": "Secondhand smoke risk in infants discharged from an NICU: potential for significant health disparities?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:Istherea",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 15.402,
+          "exit_type": "Full Pass",
+          "confidence": 0.0496,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.484,
+          "exit_type": "Full Pass",
+          "confidence": 0.1377,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Is",
+          "time_ms": 14.562,
+          "exit_type": "Full Pass",
+          "confidence": 0.0552,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "there",
+          "time_ms": 14.53,
+          "exit_type": "Full Pass",
+          "confidence": 0.104,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "a",
+          "time_ms": 14.536,
+          "exit_type": "Full Pass",
+          "confidence": 0.0154,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.528,
+        "p99_tpot_ms": 14.561,
+        "max_tpot_ms": 14.562,
+        "throughput_tps": 68.83
+      }
+    },
+    {
+      "query_id": 24,
+      "question": "Do nomograms designed to predict biochemical recurrence (BCR) do a better job of predicting more clinically relevant prostate cancer outcomes than BCR?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "answer:YES\n\n",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "answer",
+          "time_ms": 16.279,
+          "exit_type": "Early (Thresh: 0.55)",
+          "confidence": 0.6367,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.595,
+          "exit_type": "Full Pass",
+          "confidence": 0.032,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "YES",
+          "time_ms": 15.074,
+          "exit_type": "Early (Thresh: 0.55)",
+          "confidence": 0.5703,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "\n",
+          "time_ms": 21.485,
+          "exit_type": "Full Pass",
+          "confidence": 0.0435,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "\n",
+          "time_ms": 15.015,
+          "exit_type": "Full Pass",
+          "confidence": 0.0225,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 60.0,
+        "early_thresh_pct": 40.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 16.542,
+        "p99_tpot_ms": 21.293,
+        "max_tpot_ms": 21.485,
+        "throughput_tps": 60.45
+      }
+    },
+    {
+      "query_id": 25,
+      "question": "Are reports of mechanical dysfunction in chronic oro-facial pain related to somatisation?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "(i)Yes,",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "(",
+          "time_ms": 15.194,
+          "exit_type": "Full Pass",
+          "confidence": 0.2061,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": "i",
+          "time_ms": 14.578,
+          "exit_type": "Full Pass",
+          "confidence": 0.167,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": ")",
+          "time_ms": 14.534,
+          "exit_type": "Full Pass",
+          "confidence": 0.0471,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "Yes",
+          "time_ms": 14.704,
+          "exit_type": "Full Pass",
+          "confidence": 0.0231,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": ",",
+          "time_ms": 14.852,
+          "exit_type": "Full Pass",
+          "confidence": 0.0562,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.667,
+        "p99_tpot_ms": 14.848,
+        "max_tpot_ms": 14.852,
+        "throughput_tps": 68.18
+      }
+    },
+    {
+      "query_id": 26,
+      "question": "Amblyopia: is visual loss permanent?",
+      "ground_truth": "no",
+      "predicted": "yes",
+      "correct": false,
+      "generated_text": "Answer:yes\n\n",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Answer",
+          "time_ms": 15.659,
+          "exit_type": "Full Pass",
+          "confidence": 0.0645,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.42,
+          "exit_type": "Full Pass",
+          "confidence": 0.4434,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "yes",
+          "time_ms": 14.427,
+          "exit_type": "Early (Thresh: 0.55)",
+          "confidence": 0.6562,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "\n",
+          "time_ms": 14.379,
+          "exit_type": "Full Pass",
+          "confidence": 0.0376,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "\n",
+          "time_ms": 14.375,
+          "exit_type": "Full Pass",
+          "confidence": 0.0277,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 80.0,
+        "early_thresh_pct": 20.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.4,
+        "p99_tpot_ms": 14.427,
+        "max_tpot_ms": 14.427,
+        "throughput_tps": 69.44
+      }
+    },
+    {
+      "query_id": 27,
+      "question": "Implementation of epidural analgesia for labor: is the standard of effective analgesia reachable in all women?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Response:Theanswerto",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Response",
+          "time_ms": 15.496,
+          "exit_type": "Full Pass",
+          "confidence": 0.0219,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.419,
+          "exit_type": "Full Pass",
+          "confidence": 0.1924,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "The",
+          "time_ms": 14.447,
+          "exit_type": "Full Pass",
+          "confidence": 0.1582,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "answer",
+          "time_ms": 14.369,
+          "exit_type": "Early (Thresh: 0.55)",
+          "confidence": 0.6758,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "to",
+          "time_ms": 14.367,
+          "exit_type": "Full Pass",
+          "confidence": 0.416,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 80.0,
+        "early_thresh_pct": 20.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.401,
+        "p99_tpot_ms": 14.446,
+        "max_tpot_ms": 14.447,
+        "throughput_tps": 69.44
+      }
+    },
+    {
+      "query_id": 28,
+      "question": "Does HER2 immunoreactivity provide prognostic information in locally advanced urothelial carcinoma patients receiving adjuvant M-VEC chemotherapy?",
+      "ground_truth": "maybe",
+      "predicted": "yes",
+      "correct": false,
+      "generated_text": "Yes,HER2",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Yes",
+          "time_ms": 15.893,
+          "exit_type": "Full Pass",
+          "confidence": 0.3984,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ",",
+          "time_ms": 14.458,
+          "exit_type": "Full Pass",
+          "confidence": 0.028,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "H",
+          "time_ms": 14.449,
+          "exit_type": "Full Pass",
+          "confidence": 0.0493,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "ER",
+          "time_ms": 14.455,
+          "exit_type": "Full Pass",
+          "confidence": 0.0264,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "2",
+          "time_ms": 14.446,
+          "exit_type": "Full Pass",
+          "confidence": 0.0109,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.452,
+        "p99_tpot_ms": 14.458,
+        "max_tpot_ms": 14.458,
+        "throughput_tps": 69.19
+      }
+    },
+    {
+      "query_id": 29,
+      "question": "Is halofantrine ototoxic?",
+      "ground_truth": "yes",
+      "predicted": "yes",
+      "correct": true,
+      "generated_text": "Answer:yes\n\n",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Answer",
+          "time_ms": 15.954,
+          "exit_type": "Full Pass",
+          "confidence": 0.3086,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.646,
+          "exit_type": "Full Pass",
+          "confidence": 0.2695,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "yes",
+          "time_ms": 14.244,
+          "exit_type": "Early (Thresh: 0.55)",
+          "confidence": 0.6172,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "\n",
+          "time_ms": 14.892,
+          "exit_type": "Full Pass",
+          "confidence": 0.0518,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "\n",
+          "time_ms": 15.254,
+          "exit_type": "Full Pass",
+          "confidence": 0.0176,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 80.0,
+        "early_thresh_pct": 20.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.759,
+        "p99_tpot_ms": 15.243,
+        "max_tpot_ms": 15.254,
+        "throughput_tps": 67.76
+      }
+    },
+    {
+      "query_id": 30,
+      "question": "Visceral adipose tissue area measurement at a single level: can it represent visceral adipose tissue volume?",
+      "ground_truth": "yes",
+      "predicted": "unknown",
+      "correct": false,
+      "generated_text": "Question:Canthemeasurement",
+      "token_records": [
+        {
+          "token_idx": 1,
+          "token": "Question",
+          "time_ms": 15.636,
+          "exit_type": "Full Pass",
+          "confidence": 0.1167,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 2,
+          "token": ":",
+          "time_ms": 14.411,
+          "exit_type": "Full Pass",
+          "confidence": 0.1475,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 3,
+          "token": "Can",
+          "time_ms": 14.47,
+          "exit_type": "Full Pass",
+          "confidence": 0.0703,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 4,
+          "token": "the",
+          "time_ms": 14.438,
+          "exit_type": "Full Pass",
+          "confidence": 0.0432,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        },
+        {
+          "token_idx": 5,
+          "token": "measurement",
+          "time_ms": 14.41,
+          "exit_type": "Full Pass",
+          "confidence": 0.0664,
+          "threshold": 0.55,
+          "deadline_ms": 45.0
+        }
+      ],
+      "metrics": {
+        "n_tokens": 5,
+        "full_pass_pct": 100.0,
+        "early_thresh_pct": 0.0,
+        "forced_exit_pct": 0.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 14.432,
+        "p99_tpot_ms": 14.469,
+        "max_tpot_ms": 14.47,
+        "throughput_tps": 69.29
+      }
+    }
+  ]
+}

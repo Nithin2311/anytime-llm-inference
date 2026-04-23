@@ -1,91 +1,91 @@
 {
-  "task_params": {
-    "C_ms": 19.44,
+  "router_params": {
+    "C_ms": 15.992,
     "D_ms": 45.0,
-    "U_single": 0.432
+    "R_single": 0.355378
   },
   "N_max_round_robin": 2,
-  "rms_analysis": [
+  "slo_analysis": [
     {
       "n": 1,
-      "u_actual": 0.432,
-      "u_ll": 1.0,
-      "rms_schedulable": true,
-      "effective_tpot_ms": 19.44
+      "r_actual": 0.355378,
+      "r_max": 1.0,
+      "slo_compliant": true,
+      "effective_tpot_ms": 15.992
     },
     {
       "n": 2,
-      "u_actual": 0.864,
-      "u_ll": 0.828427,
-      "rms_schedulable": false,
-      "effective_tpot_ms": 38.88
+      "r_actual": 0.710756,
+      "r_max": 0.828427,
+      "slo_compliant": true,
+      "effective_tpot_ms": 31.984
     },
     {
       "n": 3,
-      "u_actual": 1.296,
-      "u_ll": 0.779763,
-      "rms_schedulable": false,
-      "effective_tpot_ms": 58.32
+      "r_actual": 1.066133,
+      "r_max": 0.779763,
+      "slo_compliant": false,
+      "effective_tpot_ms": 47.976
     },
     {
       "n": 4,
-      "u_actual": 1.728,
-      "u_ll": 0.756828,
-      "rms_schedulable": false,
-      "effective_tpot_ms": 77.76
+      "r_actual": 1.421511,
+      "r_max": 0.756828,
+      "slo_compliant": false,
+      "effective_tpot_ms": 63.968
     },
     {
       "n": 5,
-      "u_actual": 2.16,
-      "u_ll": 0.743492,
-      "rms_schedulable": false,
-      "effective_tpot_ms": 97.2
+      "r_actual": 1.776889,
+      "r_max": 0.743492,
+      "slo_compliant": false,
+      "effective_tpot_ms": 79.96
     },
     {
       "n": 6,
-      "u_actual": 2.592,
-      "u_ll": 0.734772,
-      "rms_schedulable": false,
-      "effective_tpot_ms": 116.64
+      "r_actual": 2.132267,
+      "r_max": 0.734772,
+      "slo_compliant": false,
+      "effective_tpot_ms": 95.952
     },
     {
       "n": 7,
-      "u_actual": 3.024,
-      "u_ll": 0.728627,
-      "rms_schedulable": false,
-      "effective_tpot_ms": 136.08
+      "r_actual": 2.487644,
+      "r_max": 0.728627,
+      "slo_compliant": false,
+      "effective_tpot_ms": 111.944
     }
   ],
   "response_times": [
     {
       "k_tokens": 5,
-      "n1_ms": 97.2,
-      "n2_ms": 194.4,
-      "n3_ms": 291.6
+      "n1_ms": 79.96,
+      "n2_ms": 159.92,
+      "n3_ms": 239.88
     },
     {
       "k_tokens": 10,
-      "n1_ms": 194.4,
-      "n2_ms": 388.8,
-      "n3_ms": 583.2
+      "n1_ms": 159.92,
+      "n2_ms": 319.84,
+      "n3_ms": 479.76
     },
     {
       "k_tokens": 15,
-      "n1_ms": 291.6,
-      "n2_ms": 583.2,
-      "n3_ms": 874.8
+      "n1_ms": 239.88,
+      "n2_ms": 479.76,
+      "n3_ms": 719.64
     },
     {
       "k_tokens": 25,
-      "n1_ms": 486.0,
-      "n2_ms": 972.0,
-      "n3_ms": 1458.0
+      "n1_ms": 399.8,
+      "n2_ms": 799.6,
+      "n3_ms": 1199.4
     },
     {
       "k_tokens": 50,
-      "n1_ms": 972.0,
-      "n2_ms": 1944.0,
-      "n3_ms": 2916.0
+      "n1_ms": 799.6,
+      "n2_ms": 1599.2,
+      "n3_ms": 2398.8
     }
   ]
 }

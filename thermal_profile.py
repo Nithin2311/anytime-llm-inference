@@ -26,6 +26,7 @@ import numpy as np
 import torch
 import matplotlib
 matplotlib.use("Agg")
+import fig_style as fs
 import matplotlib.pyplot as plt
 
 from early_exit_model import EarlyExitTinyLlama
@@ -133,14 +134,9 @@ def analyse_windows(tpot_ms):
 
 
 def plot_thermal(tpot_ms, windows):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9, "xtick.labelsize": 9, "ytick.labelsize": 9,
-    })
+    fs.apply()
 
-    fig, axes = plt.subplots(1, 2, figsize=(13, 5))
+    fig, axes = plt.subplots(1, 2, figsize=fs.DOUBLE)
 
     # ── Panel 1: Raw TPOT time series + rolling mean ──────────────────────────
     ax1 = axes[0]
@@ -181,20 +177,20 @@ def plot_thermal(tpot_ms, windows):
     drift = win_max[-1] - win_max[0]
     ax2.annotate(f"Max drift: {drift:+.2f} ms",
                  xy=(win_nums[-1], win_max[-1]),
-                 xytext=(win_nums[-1] - 2.5, win_max[-1] + 1.0),
-                 fontsize=9, color="#d62728",
+                 xytext=(win_nums[-1] - 4.0, win_max[-1] + 2.5),
+                 fontsize=8, color="#d62728",
                  arrowprops=dict(arrowstyle="->", color="#d62728"))
 
     ax2.set_xticks(win_nums)
     ax2.set_xticklabels([f"W{w}\n({windows[i]['start_tok']}–{windows[i]['end_tok']})"
-                         for i, w in enumerate(win_nums)], fontsize=7)
+                         for i, w in enumerate(win_nums)], fontsize=6, rotation=30, ha='right')
     ax2.set_xlabel(f"Window (each = {WINDOW_SIZE} tokens)")
     ax2.set_ylabel("Latency (ms)")
     ax2.set_title("Thermal Stability: WCET Drift Over Time\n(upward drift → thermal throttle warning)")
     ax2.legend(loc="upper right", fontsize=8)
 
     fig.suptitle(f"Sustained Load Profile — TinyLlama-1.1B  (RTX 4000 Ada, {N_TOKENS} tokens)",
-                 fontsize=12, y=1.01)
+                 fontsize=7.5, y=1.01)
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")
     plt.close()

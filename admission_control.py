@@ -24,6 +24,7 @@ import random
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
+import fig_style as fs
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
@@ -110,14 +111,9 @@ def simulate_requests(table, n=SIM_N_REQUESTS):
 # ── Figure ─────────────────────────────────────────────────────────────────────
 
 def plot_admission(table, sim_events):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9, "xtick.labelsize": 9, "ytick.labelsize": 9,
-    })
+    fs.apply()
 
-    fig, axes = plt.subplots(1, 3, figsize=(16, 5))
+    fig, axes = plt.subplots(1, 3, figsize=fs.TRIPLE)
 
     deadlines_fine   = np.linspace(18, 70, 300)
     seq_lengths_fine = np.arange(20, 1050, 10)
@@ -189,7 +185,7 @@ def plot_admission(table, sim_events):
     ax3.set_ylim(0, 850)
 
     fig.suptitle("Admission Control Analysis — TinyLlama-1.1B (RTX 4000 Ada, WCET_safe = max × 1.10)",
-                 fontsize=12, y=1.01)
+                 fontsize=7.5, y=1.01)
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")
     plt.close()

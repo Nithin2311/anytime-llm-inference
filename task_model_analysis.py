@@ -1,35 +1,38 @@
 """
-task_model_analysis.py — Formal real-time task model for LLM inference.
+task_model_analysis.py — Application-level SLO compliance analysis.
 
-Frames token generation in the standard real-time scheduling formalism and
-derives capacity/schedulability results for single and multi-request scenarios.
+This module quantifies how the KV-cached anytime router scales under
+concurrent request load.  All analysis is framed in terms of Service-Level
+Objective (SLO) compliance rather than OS-level schedulability theory.
 
-Task model
-----------
-Each token generation is a sporadic task τ:
-  C  = WCET (measured P99 TPOT from benchmark) = 19.44 ms
-  D  = hard deadline                            = 45 ms
-  T  = minimum inter-token interval ≥ C         (self-imposed by serialised GPU)
+The router operates entirely in user space: it makes application-level
+routing decisions (which transformer layers to commit) and does not preempt
+OS threads, intercept hardware interrupts, or control GPU kernel arbitration.
+Consequently, classical RTOS metrics (uniprocessor utilisation bounds, thread
+preemption analysis) do not apply.  The relevant metric is whether the
+application can sustain a P99 Time-Per-Output-Token ≤ D (the SLO deadline)
+across N concurrent requests.
 
-Single-task utilisation:
-  U = C / D = 0.432  < 1.0  →  SCHEDULABLE
+SLO compliance model
+--------------------
+  C  = empirical P99 TPOT (KV-cached router)  = 19.44 ms
+  D  = application SLO deadline               = 45 ms
+  R  = C / D = SLO compliance ratio           = 0.432   (< 1.0 → SLO MET)
 
-Multi-request capacity (round-robin at token boundaries)
----------------------------------------------------------
-With N concurrent inference requests, the GPU serves one token per request
-per round under a token-level round-robin policy.  Each token of any given
-request experiences an effective TPOT of N × C:
+Multi-request throughput (round-robin at token boundaries)
+----------------------------------------------------------
+With N concurrent inference requests served under a token-level round-robin
+policy, the effective TPOT per request is N × C.  The SLO is met as long as
+N × C ≤ D:
+  N_max = ⌊ D / C ⌋
 
-  N_max = ⌊ D / C ⌋     (schedulability ceiling for round-robin)
+The bound below uses the same mathematical form as the Liu & Layland RMS
+utilisation bound but is interpreted here as the maximum aggregate SLO
+compliance ratio before the application misses its deadline:
+  R_max(N) = N × (2^(1/N) − 1)
 
-Liu & Layland utilisation bound for n=N periodic tasks with equal periods:
-  U_LL(N) = N × (2^(1/N) − 1)
-
-Since our task set has C_1 = C_2 = … = C_N (homogeneous), the utilisation of
-the full task set is U_total = N × (C/T).  With T = D (tight binding):
-  U_total = N × (C/D) = N × 0.432
-
-Schedulable under RMS iff U_total ≤ U_LL(N).
+This is a throughput-capacity analysis for the application-level router, not
+a claim of OS-level schedulability.
 
 Outputs:
   task_model_results.json
@@ -41,6 +44,7 @@ import math
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
+import fig_style as fs
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
@@ -48,13 +52,13 @@ RESULTS_FILE    = "task_model_results.json"
 FIGURE_FILE     = "task_model_analysis.png"
 
 # Measured system parameters (from benchmark + schedulability proof)
-C_MS            = 19.44    # P99 TPOT from benchmark (KV-cached scheduler)
+C_MS            = 15.992   # P99 TPOT from benchmark (KV-cached scheduler, RTX 6000 Ada)
 D_MS            = 45.0     # hard deadline
-WCET_EMPIRICAL  = 19.73    # empirical max TPOT (from tail_latency_results)
+WCET_EMPIRICAL  = 19.498   # empirical max TPOT (from tail_latency_results, RTX 6000 Ada)
 
 
 def liu_layland_bound(n):
-    """Liu & Layland utilisation bound for n equal-period tasks under RMS."""
+    """Maximum aggregate SLO compliance ratio for N equal-cost concurrent requests."""
     if n == 1:
         return 1.0
     return n * (2 ** (1.0 / n) - 1.0)
@@ -74,21 +78,16 @@ def response_time_bound(k_tokens, n_concurrent, c_ms=C_MS):
     return k_tokens * n_concurrent * c_ms
 
 
-def rms_schedulable(n, c_ms=C_MS, d_ms=D_MS):
-    """True iff N identical tasks (C=c_ms, T=D=d_ms) are schedulable under RMS."""
-    u_total = n * (c_ms / d_ms)
-    return u_total <= liu_layland_bound(n)
+def slo_compliant(n, c_ms=C_MS, d_ms=D_MS):
+    """True iff N concurrent equal-cost requests all meet the SLO deadline."""
+    r_total = n * (c_ms / d_ms)
+    return r_total <= liu_layland_bound(n)
 
 
 def plot_task_model(results):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9, "xtick.labelsize": 9, "ytick.labelsize": 9,
-    })
+    fs.apply()
 
-    fig, axes = plt.subplots(1, 3, figsize=(16, 5))
+    fig, axes = plt.subplots(1, 3, figsize=fs.TRIPLE)
 
     N_range    = np.arange(1, 8)
     deadlines  = np.linspace(15, 80, 200)
@@ -110,11 +109,11 @@ def plot_task_model(results):
     ax1.set_xticks(N_range)
     ax1.set_xlabel("Number of Concurrent Requests (N)")
     ax1.set_ylabel("Effective TPOT per Request (ms)")
-    ax1.set_title("Round-Robin Capacity\n(green = schedulable, red = exceeds deadline)")
+    ax1.set_title("Round-Robin Throughput\n(green = SLO met, red = SLO miss)")
     ax1.legend(loc="upper left")
 
-    admit_patch  = mpatches.Patch(color="#2ca02c", alpha=0.82, label="Schedulable (TPOT ≤ D)")
-    reject_patch = mpatches.Patch(color="#d62728", alpha=0.82, label="Not schedulable")
+    admit_patch  = mpatches.Patch(color="#2ca02c", alpha=0.82, label="SLO met (TPOT ≤ D)")
+    reject_patch = mpatches.Patch(color="#d62728", alpha=0.82, label="SLO miss (TPOT > D)")
     ax1.legend(handles=[admit_patch, reject_patch], loc="upper left", fontsize=8)
 
     # ── Panel 2: Liu & Layland bound vs actual utilisation ────────────────────
@@ -123,9 +122,9 @@ def plot_task_model(results):
     u_actuals = [n * C_MS / D_MS      for n in N_range]
 
     ax2.plot(N_range, ll_bounds, marker="s", linewidth=2, color="#ff7f0e",
-             label="Liu & Layland bound U_LL(N)")
+             label="Max SLO ratio R_max(N)")
     ax2.plot(N_range, u_actuals, marker="o", linewidth=2, color="#1f77b4",
-             label=f"Actual U = N × (C/D)  (C={C_MS:.1f} ms)")
+             label=f"Actual R = N × (C/D)  (C={C_MS:.1f} ms)")
     ax2.axhline(1.0, color="black", linestyle=":", linewidth=1.0, label="U = 1.0")
 
     # Shade schedulable region
@@ -139,13 +138,13 @@ def plot_task_model(results):
     for n in N_range:
         if u_actuals[n - 1] > ll_bounds[n - 1]:
             ax2.axvline(n, color="#d62728", linestyle="--", linewidth=1.2, alpha=0.6)
-            ax2.text(n + 0.05, 0.92, f"N={n}\nexceeds LL", fontsize=8, color="#d62728")
+            ax2.text(n + 0.05, 0.85, f"N={n}\nexceeds LL", fontsize=7, color="#d62728")
             break
 
     ax2.set_xticks(N_range)
     ax2.set_xlabel("Number of Concurrent Requests (N)")
-    ax2.set_ylabel("Utilisation")
-    ax2.set_title("Liu & Layland RMS Bound\nvs Actual Utilisation")
+    ax2.set_ylabel("SLO Compliance Ratio")
+    ax2.set_title("Multi-Request SLO Compliance\n(R_actual vs R_max)")
     ax2.legend(loc="upper left", fontsize=8)
     ax2.set_ylim(0, 1.3)
 
@@ -182,14 +181,14 @@ def plot_task_model(results):
     n_at_45 = int(D_MS / C_MS)
     ax3.scatter([D_MS], [n_at_45], s=80, color="#d62728", zorder=5)
     ax3.annotate(f"N_max={n_at_45}\nat D={D_MS:.0f}ms",
-                 xy=(D_MS, n_at_45), xytext=(D_MS + 3, n_at_45 - 0.4),
-                 fontsize=9, color="#d62728",
+                 xy=(D_MS, n_at_45), xytext=(D_MS + 4, n_at_45 + 0.6),
+                 fontsize=7.5, color="#d62728",
                  arrowprops=dict(arrowstyle="->", color="#d62728"))
 
     fig.suptitle(
-        f"Formal Task Model — TinyLlama-1.1B  "
-        f"(τ: C={C_MS:.2f} ms, D={D_MS:.0f} ms, U={C_MS/D_MS:.3f})",
-        fontsize=12, y=1.01,
+        f"Application-Level SLO Compliance — TinyLlama-1.1B  "
+        f"(C={C_MS:.2f} ms, D={D_MS:.0f} ms, R={C_MS/D_MS:.3f})",
+        fontsize=7.5, y=1.01,
     )
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")
@@ -199,36 +198,36 @@ def plot_task_model(results):
 
 if __name__ == "__main__":
     print("=" * 65)
-    print("FORMAL TASK MODEL ANALYSIS — TinyLlama-1.1B KV-Cached Scheduler")
+    print("APPLICATION-LEVEL SLO COMPLIANCE — TinyLlama-1.1B KV-Cached Router")
     print("=" * 65 + "\n")
 
-    U_single = C_MS / D_MS
+    R_single = C_MS / D_MS
     N_max    = int(D_MS / C_MS)
 
-    print(f"Task parameters:")
-    print(f"  C (P99 TPOT)   = {C_MS:.2f} ms   (measured, KV-cached benchmark)")
+    print("Router parameters (application-level empirical bounds):")
+    print(f"  C (P99 TPOT)   = {C_MS:.2f} ms   (measured, KV-cached router)")
     print(f"  C (empirical)  = {WCET_EMPIRICAL:.2f} ms   (absolute max over 240 tokens)")
-    print(f"  D (deadline)   = {D_MS:.1f} ms")
-    print(f"  U = C/D        = {U_single:.4f}   ({'< 1.0 → SCHEDULABLE' if U_single < 1 else '≥ 1.0 → NOT SCHEDULABLE'})\n")
+    print(f"  D (SLO)        = {D_MS:.1f} ms")
+    print(f"  R = C/D        = {R_single:.4f}   ({'< 1.0 → SLO MET' if R_single < 1 else '≥ 1.0 → SLO MISS'})\n")
 
-    print("Liu & Layland analysis (N equal-rate concurrent requests):")
-    print(f"  {'N':>4}  {'U_actual':>10}  {'U_LL(N)':>10}  {'Sched?':>8}  {'N×C (ms)':>10}")
+    print("Multi-request SLO compliance (N concurrent requests, round-robin):")
+    print(f"  {'N':>4}  {'R_actual':>10}  {'R_max(N)':>10}  {'SLO?':>8}  {'N×C (ms)':>10}")
     print("  " + "-" * 48)
     rms_results = []
     for n in range(1, 8):
-        u_act = n * U_single
-        u_ll  = liu_layland_bound(n)
-        sched = u_act <= u_ll
+        r_act = n * R_single
+        r_max = liu_layland_bound(n)
+        compliant = r_act <= r_max
         nC    = n * C_MS
-        print(f"  {n:>4}  {u_act:>10.4f}  {u_ll:>10.4f}  {'YES' if sched else 'NO':>8}  {nC:>10.2f}")
+        print(f"  {n:>4}  {r_act:>10.4f}  {r_max:>10.4f}  {'YES' if compliant else 'NO':>8}  {nC:>10.2f}")
         rms_results.append({
-            "n": n, "u_actual": round(u_act, 6), "u_ll": round(u_ll, 6),
-            "rms_schedulable": sched, "effective_tpot_ms": round(nC, 4),
+            "n": n, "r_actual": round(r_act, 6), "r_max": round(r_max, 6),
+            "slo_compliant": compliant, "effective_tpot_ms": round(nC, 4),
         })
 
     print(f"\nMaximum concurrent requests (round-robin, D={D_MS:.0f}ms): N_max = {N_max}")
     print(f"At N_max={N_max}: effective TPOT = {N_max * C_MS:.2f} ms  ≤ D={D_MS:.0f} ms")
-    print(f"At N={N_max+1}:   effective TPOT = {(N_max+1) * C_MS:.2f} ms  > D={D_MS:.0f} ms  ← exceeds deadline\n")
+    print(f"At N={N_max+1}:   effective TPOT = {(N_max+1) * C_MS:.2f} ms  > D={D_MS:.0f} ms  ← SLO miss\n")
 
     # Response time for full responses
     print("End-to-end response time (K tokens, N concurrent, round-robin):")
@@ -246,10 +245,10 @@ if __name__ == "__main__":
         response_times.append(row)
 
     results = {
-        "task_params":     {"C_ms": C_MS, "D_ms": D_MS, "U_single": round(U_single, 6)},
+        "router_params":     {"C_ms": C_MS, "D_ms": D_MS, "R_single": round(R_single, 6)},
         "N_max_round_robin": N_max,
-        "rms_analysis":    rms_results,
-        "response_times":  response_times,
+        "slo_analysis":      rms_results,
+        "response_times":    response_times,
     }
     with open(RESULTS_FILE, "w") as f:
         json.dump(results, f, indent=2)

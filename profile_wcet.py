@@ -12,8 +12,11 @@ Outputs:
 import json
 import numpy as np
 import torch
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+import fig_style as fs
 
 from early_exit_model import EarlyExitTinyLlama
 
@@ -102,15 +105,10 @@ def run_wcet_sweep(model, seq_lengths, exit_layers, num_warmup=5, num_runs=50):
 # ── Visualisation ─────────────────────────────────────────────────────────────
 
 def plot_wcet_profile(results, seq_lengths, exit_layers, deadline_ms=45.0):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9,  "xtick.labelsize": 9, "ytick.labelsize": 9,
-    })
+    fs.apply()
 
     colours = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd"]
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4), sharey=False)
+    fig, axes = plt.subplots(1, 2, figsize=fs.DOUBLE, sharey=False)
 
     for ax, metric, metric_label in [
         (axes[0], "mean_ms", "Mean Latency (ms)"),
@@ -129,10 +127,11 @@ def plot_wcet_profile(results, seq_lengths, exit_layers, deadline_ms=45.0):
         ax.set_ylabel(metric_label)
         ax.set_title(metric_label.replace(" (ms)", ""))
         ax.set_xticks(seq_lengths)
+        ax.set_xticklabels([str(s) for s in seq_lengths], rotation=45, ha='right')
         ax.legend(loc="upper left", fontsize=8)
 
-    fig.suptitle("TinyLlama-1.1B WCET Profile  —  RTX 4000 Ada", fontsize=12, y=1.01)
-    plt.tight_layout()
+    fig.suptitle("TinyLlama-1.1B WCET Profile  —  RTX 4000 Ada", fontsize=8, y=1.01)
+    plt.tight_layout(pad=2.0)
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")
     plt.close()
     print(f"Saved '{FIGURE_FILE}'")

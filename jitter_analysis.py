@@ -30,6 +30,7 @@ import json
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
+import fig_style as fs
 import matplotlib.pyplot as plt
 from scipy.stats import pearsonr
 
@@ -102,14 +103,9 @@ def compute_jitter_stats(series):
 
 
 def plot_jitter(all_tpots, per_query, query_ids, stats, acf_lags, acf_vals):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 8.5, "xtick.labelsize": 9, "ytick.labelsize": 9,
-    })
+    fs.apply()
 
-    fig, axes = plt.subplots(1, 3, figsize=(16, 5))
+    fig, axes = plt.subplots(1, 3, figsize=fs.TRIPLE)
 
     # ── Panel 1: Global TPOT distribution with jitter bands ───────────────────
     ax1 = axes[0]
@@ -193,7 +189,7 @@ def plot_jitter(all_tpots, per_query, query_ids, stats, acf_lags, acf_vals):
     ax3.legend(loc="upper right", fontsize=8)
 
     fig.suptitle("Jitter Analysis — KV-Cached Anytime Scheduler (30-query PubMedQA Benchmark)",
-                 fontsize=12, y=1.01)
+                 fontsize=7.5, y=1.01)
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")
     plt.close()

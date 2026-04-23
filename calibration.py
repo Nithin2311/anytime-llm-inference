@@ -24,7 +24,10 @@ Outputs:
 import json
 import numpy as np
 import torch
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import fig_style as fs
 from datasets import load_dataset
 from transformers import AutoTokenizer
 
@@ -127,17 +130,12 @@ def compute_calibration_curve(records, conf_key, agree_key, n_bins=20):
 
 
 def plot_calibration(records):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9,
-    })
+    fs.apply()
 
     C_L5  = "#d62728"   # red
     C_L16 = "#2b5b84"   # blue
 
-    fig, axes = plt.subplots(1, 3, figsize=(14, 4))
+    fig, axes = plt.subplots(1, 3, figsize=(7.0, 5.5))
 
     # ── Panel 1: Calibration curves ──────────────────────────────────────────
     ax = axes[0]
@@ -220,7 +218,7 @@ def plot_calibration(records):
 
     fig.suptitle(
         f"Early-Exit Confidence Calibration  |  {N_SAMPLES} prompts  |  {MAX_TOKENS} tokens each",
-        fontsize=12, y=1.02,
+        fontsize=8, y=1.02,
     )
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")

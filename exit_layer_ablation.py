@@ -18,7 +18,10 @@ Outputs:
 import json
 import numpy as np
 import torch
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import fig_style as fs
 from datasets import load_dataset
 from transformers import AutoTokenizer
 
@@ -123,18 +126,13 @@ def summarise(records, layer):
 
 
 def plot_ablation(records, summaries):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9,
-    })
+    fs.apply()
 
     colours = {5: "#d62728", 11: "#ff7f0e", 16: "#2b5b84",
                17: "#9467bd", 18: "#8c564b", 19: "#e377c2", 20: "#17becf"}
     layers  = EXIT_LAYERS
 
-    fig, axes = plt.subplots(1, 3, figsize=(18, 4.5))
+    fig, axes = plt.subplots(1, 2, figsize=fs.DOUBLE)
 
     # ── Panel 1: Agreement rate vs confidence threshold ──────────────────────
     ax = axes[0]
@@ -179,40 +177,9 @@ def plot_ablation(records, summaries):
         ax.text(i + 1, s["wcet_ms"] + 0.15, f"WCET={s['wcet_ms']:.1f}",
                 ha="center", fontsize=7.5, color=colours[layer])
 
-    # ── Panel 3: Summary table ────────────────────────────────────────────────
-    ax = axes[2]
-    ax.axis("off")
-
-    col_labels = ["Metric"] + [f"L{l}" for l in layers]
-    rows = [
-        ["Agreement (%)",       *[f"{s['agree_pct']}"    for s in summaries]],
-        ["Agree @ conf≥0.5",  *[f"{s['agree_hc_pct']}"  for s in summaries]],
-        ["Mean conf",           *[f"{s['mean_conf']:.3f}" for s in summaries]],
-        ["Mean TPOT (ms)",      *[f"{s['mean_time_ms']}"  for s in summaries]],
-        ["P99 TPOT (ms)",       *[f"{s['p99_time_ms']}"   for s in summaries]],
-        ["WCET (ms)",           *[f"{s['wcet_ms']}"        for s in summaries]],
-        ["conf≥0.5 tok (%)",   *[f"{s['hc_sample_pct']}" for s in summaries]],
-    ]
-    table = ax.table(
-        cellText=rows, colLabels=col_labels,
-        cellLoc="center", loc="center",
-        bbox=[0, 0.05, 1, 0.92],
-    )
-    table.auto_set_font_size(False)
-    table.set_fontsize(8)
-    for j in range(len(col_labels)):
-        table[0, j].set_facecolor("#2b5b84")
-        table[0, j].set_text_props(color="white", fontweight="bold")
-    # Highlight the chosen layer (L16)
-    if 16 in layers:
-        chosen_col = layers.index(16) + 1
-        for row_i in range(1, len(rows) + 1):
-            table[row_i, chosen_col].set_facecolor("#dce9f5")
-    ax.set_title("Exit Layer Comparison (L16 highlighted)", pad=10)
-
     fig.suptitle(
         f"Exit-Layer Ablation Study  |  {N_SAMPLES} prompts  |  {MAX_TOKENS} tokens each",
-        fontsize=12, y=1.02,
+        fontsize=8, y=1.02,
     )
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")

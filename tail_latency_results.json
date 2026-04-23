@@ -16,23 +16,23 @@
   "baseline": {
     "label": "Baseline (Standard Autoregressive)",
     "n": 240,
-    "p50_ms": 18.339,
-    "p95_ms": 19.707,
-    "p99_ms": 19.862,
-    "max_ms": 20.733,
+    "p50_ms": 15.697,
+    "p95_ms": 17.194,
+    "p99_ms": 19.367,
+    "max_ms": 22.54,
     "miss_pct": 0.0,
-    "util_ratio": 0.4414,
+    "util_ratio": 0.4304,
     "schedulable": true
   },
   "anytime": {
     "label": "Anytime Scheduler (Dynamic Threshold Decay)",
     "n": 240,
-    "p50_ms": 18.697,
-    "p95_ms": 21.751,
-    "p99_ms": 25.167,
-    "max_ms": 26.167,
+    "p50_ms": 15.369,
+    "p95_ms": 16.368,
+    "p99_ms": 17.838,
+    "max_ms": 19.498,
     "miss_pct": 0.0,
-    "util_ratio": 0.5593,
+    "util_ratio": 0.3964,
     "schedulable": true
   }
 }

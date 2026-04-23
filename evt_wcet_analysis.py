@@ -25,6 +25,7 @@ import numpy as np
 import torch
 import matplotlib
 matplotlib.use("Agg")
+import fig_style as fs
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from scipy.stats import gumbel_r, probplot
@@ -150,15 +151,10 @@ def run_evt_sweep(model):
 # ── Figure ─────────────────────────────────────────────────────────────────────
 
 def plot_evt(all_results, qq_model=None):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9, "xtick.labelsize": 9, "ytick.labelsize": 9,
-    })
+    fs.apply()
 
     full_key = "None"
-    fig = plt.figure(figsize=(15, 5))
+    fig = plt.figure(figsize=fs.TRIPLE)
     gs  = gridspec.GridSpec(1, 3, figure=fig, wspace=0.35)
 
     ax1 = fig.add_subplot(gs[0])
@@ -282,7 +278,7 @@ def plot_evt(all_results, qq_model=None):
     ax3.set_title("EVT WCET Table — Full Pass", pad=12)
 
     fig.suptitle("Extreme Value Theory WCET Analysis — TinyLlama-1.1B (RTX 4000 Ada)",
-                 fontsize=12, y=1.01)
+                 fontsize=7.5, y=1.01)
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")
     plt.close()
     print(f"Saved '{FIGURE_FILE}'")

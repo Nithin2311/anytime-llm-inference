@@ -20,6 +20,7 @@ import numpy as np
 import torch
 import matplotlib
 matplotlib.use("Agg")
+import fig_style as fs
 import matplotlib.pyplot as plt
 
 from early_exit_model import EarlyExitTinyLlama
@@ -257,14 +258,9 @@ def compute_stats(gpu_list, wall_list):
 # ── Figure ─────────────────────────────────────────────────────────────────────
 
 def plot_overhead(kv_stats, sl_stats):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9,  "xtick.labelsize": 9, "ytick.labelsize": 9,
-    })
+    fs.apply()
 
-    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+    fig, axes = plt.subplots(1, 2, figsize=fs.DOUBLE)
 
     # ── Panel 1: box plot gpu_ms vs wall_ms, both schedulers ──────────────────
     ax1 = axes[0]
@@ -342,7 +338,7 @@ def plot_overhead(kv_stats, sl_stats):
     lines2, labels2 = ax2b.get_legend_handles_labels()
     ax2.legend(lines1 + lines2, labels1 + labels2, loc="upper right", fontsize=8)
 
-    fig.suptitle("CPU Overhead Analysis — TinyLlama-1.1B (RTX 4000 Ada)", fontsize=12, y=1.01)
+    fig.suptitle("CPU Overhead Analysis — TinyLlama-1.1B (RTX 4000 Ada)", fontsize=7.5, y=1.01)
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")
     plt.close()

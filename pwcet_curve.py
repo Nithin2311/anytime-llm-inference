@@ -25,6 +25,7 @@ import json
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
+import fig_style as fs
 import matplotlib.pyplot as plt
 from scipy.stats import gumbel_r
 
@@ -56,14 +57,9 @@ def miss_probability(deadline_range, loc, scale):
 
 
 def plot_pwcet(results_out):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 8.5, "xtick.labelsize": 9, "ytick.labelsize": 9,
-    })
+    fs.apply()
 
-    fig, axes = plt.subplots(1, 2, figsize=(13, 5))
+    fig, axes = plt.subplots(1, 2, figsize=fs.DOUBLE)
     colours = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"]
 
     # ── Panel 1: pWCET vs exceedance probability ──────────────────────────────
@@ -119,7 +115,7 @@ def plot_pwcet(results_out):
     ax2.legend(loc="upper right", fontsize=8)
 
     fig.suptitle("pWCET Analysis — TinyLlama-1.1B  (RTX 4000 Ada, Gumbel EVT fit)",
-                 fontsize=12, y=1.01)
+                 fontsize=7.5, y=1.01)
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")
     plt.close()

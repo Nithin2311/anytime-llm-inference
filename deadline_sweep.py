@@ -12,7 +12,10 @@ Outputs:
 
 import json
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import fig_style as fs
 from datasets import load_dataset
 from transformers import AutoTokenizer
 
@@ -72,12 +75,7 @@ def run_one_deadline(model, prompts, ground_truths, deadline_ms):
 
 
 def plot_tradeoff(sweep_results):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9,
-    })
+    fs.apply()
 
     deadlines    = [r["deadline_ms"]       for r in sweep_results]
     miss_pct     = [r["deadline_miss_pct"] for r in sweep_results]
@@ -87,7 +85,7 @@ def plot_tradeoff(sweep_results):
     mean_tpot    = [r["mean_tpot_ms"]      for r in sweep_results]
     p99_tpot     = [r["p99_tpot_ms"]       for r in sweep_results]
 
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+    fig, axes = plt.subplots(1, 2, figsize=fs.DOUBLE)
 
     # ── Panel 1: Exit-type distribution vs deadline (stacked area) ────────────
     ax = axes[0]
@@ -134,7 +132,7 @@ def plot_tradeoff(sweep_results):
 
     fig.suptitle(
         f"Dynamic Scheduler Deadline Sweep  |  n={N_SAMPLES} queries  |  {MAX_TOKENS} tokens/query",
-        fontsize=12, y=1.02,
+        fontsize=8, y=1.02,
     )
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")

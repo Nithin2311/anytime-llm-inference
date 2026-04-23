@@ -1,0 +1,64 @@
+{
+  "deadline_ms": 45.0,
+  "n_samples": 200,
+  "components": {
+    "T_gpu": {
+      "name": "T_gpu",
+      "mean_ms": 14.4834,
+      "p50_ms": 14.2981,
+      "p99_ms": 20.055,
+      "max_ms": 25.6593,
+      "std_ms": 1.0686
+    },
+    "T_pcie": {
+      "name": "T_pcie",
+      "mean_ms": 0.0208,
+      "p50_ms": 0.0204,
+      "p99_ms": 0.0282,
+      "max_ms": 0.0294,
+      "std_ms": 0.0014
+    },
+    "T_cpu": {
+      "name": "T_cpu",
+      "mean_ms": 0.0929,
+      "p50_ms": 0.0905,
+      "p99_ms": 0.1229,
+      "max_ms": 0.2385,
+      "std_ms": 0.0121
+    },
+    "T_sync": {
+      "name": "T_sync",
+      "mean_ms": 0.0036,
+      "p50_ms": 0.0036,
+      "p99_ms": 0.0039,
+      "max_ms": 0.0042,
+      "std_ms": 0.0001
+    }
+  },
+  "pipeline_models": {
+    "mean_ms": {
+      "T_gpu": 14.4834,
+      "T_pcie": 0.0208,
+      "T_cpu": 0.0929,
+      "T_sync_call": 0.0036,
+      "T_total_sync": 14.6007,
+      "T_total_async": 14.5078,
+      "R_sync": 0.3245,
+      "R_async": 0.3224,
+      "slo_met_sync": true,
+      "slo_met_async": true
+    },
+    "p99_ms": {
+      "T_gpu": 20.055,
+      "T_pcie": 0.0282,
+      "T_cpu": 0.1229,
+      "T_sync_call": 0.0039,
+      "T_total_sync": 20.21,
+      "T_total_async": 20.0871,
+      "R_sync": 0.4491,
+      "R_async": 0.4464,
+      "slo_met_sync": true,
+      "slo_met_async": true
+    }
+  }
+}

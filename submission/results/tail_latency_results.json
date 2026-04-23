@@ -1,0 +1,38 @@
+{
+  "deadline_ms": 45.0,
+  "n_prompts": 10,
+  "prompts": [
+    "Does acute myocardial infarction cause elevated troponin levels within 6 hours of symptom onset?",
+    "Do beta-lactam antibiotics inhibit gram-negative bacterial cell wall synthesis?",
+    "Is insulin resistance the primary driver of hyperglycaemia in type 2 diabetes?",
+    "Does early antibiotic administration reduce mortality in septic shock?",
+    "Do amyloid plaques cause neuronal death in Alzheimer's disease?",
+    "Is cisplatin-induced peripheral neuropathy caused by dorsal root ganglion damage?",
+    "Does prolonged immobilisation increase the risk of deep vein thrombosis?",
+    "Does angiotensin II cause vasoconstriction via AT1 receptor activation?",
+    "Does uncontrolled hypertension accelerate chronic kidney disease progression?",
+    "Do regulatory T cells suppress autoimmune responses via IL-10 secretion?"
+  ],
+  "baseline": {
+    "label": "Baseline (Standard Autoregressive)",
+    "n": 240,
+    "p50_ms": 14.776,
+    "p95_ms": 15.262,
+    "p99_ms": 18.01,
+    "max_ms": 21.751,
+    "miss_pct": 0.0,
+    "util_ratio": 0.4002,
+    "schedulable": true
+  },
+  "anytime": {
+    "label": "Anytime Scheduler (Dynamic Threshold Decay)",
+    "n": 240,
+    "p50_ms": 14.342,
+    "p95_ms": 16.597,
+    "p99_ms": 16.976,
+    "max_ms": 18.977,
+    "miss_pct": 0.0,
+    "util_ratio": 0.3772,
+    "schedulable": true
+  }
+}

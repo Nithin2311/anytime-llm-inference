@@ -12,23 +12,16 @@ import json
 import sys
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use("Agg")
+import fig_style as fs
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
 RESULTS_FILE = "benchmark_results.json"
 
 # ── IEEE Paper Styling ────────────────────────────────────────────────────────
-plt.style.use("seaborn-v0_8-whitegrid")
-plt.rcParams.update({
-    "font.family":      "serif",
-    "font.size":        10,
-    "axes.labelsize":   11,
-    "axes.titlesize":   12,
-    "figure.titlesize": 14,
-    "legend.fontsize":  10,
-    "xtick.labelsize":  9,
-    "ytick.labelsize":  9,
-})
+fs.apply()
 
 # ── Colour palette ────────────────────────────────────────────────────────────
 C_FULL   = "#2b5b84"   # dark blue  — Full Pass
@@ -62,7 +55,7 @@ def plot_execution_timeline(data):
 
     df = pd.DataFrame(records)
 
-    fig, ax = plt.subplots(figsize=(9, 4))
+    fig, ax = plt.subplots(figsize=fs.DOUBLE)
     colors = [exit_color(et) for et in df["exit_type"]]
     ax.bar(df["token_idx"], df["time_ms"], color=colors, edgecolor="black", linewidth=0.5)
 
@@ -114,7 +107,7 @@ def plot_tail_latency_cdf(data):
     p99         = np.percentile(tpot_arr, 99)
     p99_lo, p99_hi = _bootstrap_p99_ci(tpot_arr)
 
-    fig, ax = plt.subplots(figsize=(6, 4))
+    fig, ax = plt.subplots(figsize=fs.SINGLE)
     ax.plot(tpot_sorted, cdf, marker="o", markersize=3, linestyle="-",
             color=C_FULL, linewidth=2, label="Anytime Scheduler")
     ax.axvline(x=deadline, color=C_DEAD, linestyle="--", linewidth=1.5,
@@ -151,8 +144,7 @@ def plot_exit_distribution(data):
 
     x = np.arange(len(labels))
     n_queries = len(labels)
-    fig_w = max(8, n_queries * 0.35)   # scale width with query count
-    fig, ax = plt.subplots(figsize=(fig_w, 4))
+    fig, ax = plt.subplots(figsize=fs.DOUBLE)
 
     ax.bar(x, full_pct,   color=C_FULL,   edgecolor="black", linewidth=0.4, label="Full Pass")
     ax.bar(x, thresh_pct, color=C_THRESH, edgecolor="black", linewidth=0.4, label="Early (Thresh)",
@@ -162,8 +154,7 @@ def plot_exit_distribution(data):
            bottom=bottom2)
 
     ax.set_xticks(x)
-    tick_fs = max(5, 9 - n_queries // 10)   # shrink font for many queries
-    ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=tick_fs)
+    ax.set_xticklabels(labels, rotation=45, ha="right")
     ax.set_ylabel("Percentage of Tokens (%)")
     ax.set_xlabel("Clinical Query")
     ax.set_title(f"Exit-Type Distribution per Clinical Query  (n={n_queries})")
@@ -188,10 +179,10 @@ def plot_accuracy_summary(data):
     mean_tpot     = gm["global_mean_tpot_ms"]
     p99_tpot      = gm["global_p99_tpot_ms"]
 
-    fig = plt.figure(figsize=(12, 4.5))
+    fig = plt.figure(figsize=fs.TRIPLE)
     fig.suptitle(
         f"Anytime Scheduler — Benchmark Dashboard  |  D={deadline:.0f} ms  |  n={gm['n_queries']} queries",
-        fontsize=13,
+        fontsize=8,
     )
 
     # ── Panel A: Accuracy & Compliance bars ─────────────────────────────────
@@ -202,7 +193,7 @@ def plot_accuracy_summary(data):
     bars   = ax1.bar(cats, vals, color=colors, edgecolor="black", linewidth=0.7, width=0.5)
     for bar, val in zip(bars, vals):
         ax1.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1.5,
-                 f"{val:.1f}%", ha="center", va="bottom", fontsize=10, fontweight="bold")
+                 f"{val:.1f}%", ha="center", va="bottom", fontsize=7, fontweight="bold")
     ax1.axhline(y=100, color="grey", linestyle=":", linewidth=1.0)
     ax1.set_ylim(0, 118)
     ax1.set_ylabel("Percentage (%)")
@@ -218,11 +209,13 @@ def plot_accuracy_summary(data):
     tpot_colors= ["#5b8db8", "#2b5b84", "#d9534f"]
     bars2 = ax2.bar(tpot_cats, tpot_vals, color=tpot_colors, edgecolor="black", linewidth=0.7, width=0.5)
     for bar, val in zip(bars2, tpot_vals):
-        ax2.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5,
-                 f"{val:.1f}", ha="center", va="bottom", fontsize=10, fontweight="bold")
+        offset = 1.5 if val > 5 else 0.3
+        ax2.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + offset,
+                 f"{val:.1f}", ha="center", va="bottom", fontsize=7, fontweight="bold")
+    ax2.set_ylim(0, max(tpot_vals) * 1.25)
     ax2.set_ylabel("Latency (ms)")
     ax2.set_title("Token Latency (TPOT)")
-    sched_str = f"SCHEDULABLE  (U={util_ratio:.3f})" if util_ratio < 1.0 else f"NOT SCHED.  (U={util_ratio:.3f})"
+    sched_str = f"SLO MET  (R={util_ratio:.3f})" if util_ratio < 1.0 else f"SLO MISS  (R={util_ratio:.3f})"
     ax2.text(0.5, -0.18, sched_str,
              ha="center", transform=ax2.transAxes, fontsize=8,
              color="#2e8b57" if util_ratio < 1.0 else "#d9534f", fontweight="bold")
@@ -245,7 +238,7 @@ def plot_accuracy_summary(data):
         bbox=[0.05, 0.0, 0.95, 1.0],
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(9.5)
+    table.set_fontsize(7.5)
     for j in range(2):
         table[0, j].set_facecolor("#2b5b84")
         table[0, j].set_text_props(color="white", fontweight="bold")

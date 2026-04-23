@@ -2,23 +2,23 @@
   "safety_factor": 1.1,
   "reference_deadline": 45.0,
   "wcet_safe_table": {
-    "32": 23.807,
-    "64": 21.623,
-    "128": 22.363,
-    "256": 24.911,
-    "512": 25.066,
-    "1024": 48.632
+    "32": 25.113,
+    "64": 20.304,
+    "128": 19.427,
+    "256": 17.175,
+    "512": 17.728,
+    "1024": 24.872
   },
   "simulation": {
     "n_requests": 200,
-    "n_admit": 154,
-    "n_reject": 46,
-    "admit_rate_pct": 77.0,
+    "n_admit": 200,
+    "n_reject": 0,
+    "admit_rate_pct": 100.0,
     "events": [
       {
         "seq_len": 704,
         "deadline_ms": 29.5,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 331,
@@ -38,7 +38,7 @@
       {
         "seq_len": 608,
         "deadline_ms": 28.5,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 482,
@@ -58,7 +58,7 @@
       {
         "seq_len": 624,
         "deadline_ms": 33.0,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 715,
@@ -73,7 +73,7 @@
       {
         "seq_len": 653,
         "deadline_ms": 36.1,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 56,
@@ -118,7 +118,7 @@
       {
         "seq_len": 599,
         "deadline_ms": 30.0,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 437,
@@ -143,12 +143,12 @@
       {
         "seq_len": 771,
         "deadline_ms": 27.8,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 727,
         "deadline_ms": 34.1,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 346,
@@ -188,22 +188,22 @@
       {
         "seq_len": 713,
         "deadline_ms": 27.9,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 700,
         "deadline_ms": 31.8,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 796,
         "deadline_ms": 34.8,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 523,
         "deadline_ms": 40.2,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 705,
@@ -248,12 +248,12 @@
       {
         "seq_len": 561,
         "deadline_ms": 40.8,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 708,
         "deadline_ms": 43.4,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 321,
@@ -263,17 +263,17 @@
       {
         "seq_len": 624,
         "deadline_ms": 46.6,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 648,
         "deadline_ms": 42.1,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 647,
         "deadline_ms": 41.0,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 274,
@@ -313,7 +313,7 @@
       {
         "seq_len": 529,
         "deadline_ms": 46.2,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 616,
@@ -338,7 +338,7 @@
       {
         "seq_len": 706,
         "deadline_ms": 38.6,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 350,
@@ -348,7 +348,7 @@
       {
         "seq_len": 514,
         "deadline_ms": 25.1,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 789,
@@ -398,7 +398,7 @@
       {
         "seq_len": 663,
         "deadline_ms": 38.0,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 69,
@@ -443,7 +443,7 @@
       {
         "seq_len": 612,
         "deadline_ms": 31.6,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 590,
@@ -463,7 +463,7 @@
       {
         "seq_len": 756,
         "deadline_ms": 33.0,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 369,
@@ -508,7 +508,7 @@
       {
         "seq_len": 696,
         "deadline_ms": 27.4,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 119,
@@ -528,7 +528,7 @@
       {
         "seq_len": 547,
         "deadline_ms": 33.6,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 185,
@@ -538,7 +538,7 @@
       {
         "seq_len": 634,
         "deadline_ms": 48.0,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 298,
@@ -573,7 +573,7 @@
       {
         "seq_len": 711,
         "deadline_ms": 28.9,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 462,
@@ -608,7 +608,7 @@
       {
         "seq_len": 613,
         "deadline_ms": 28.9,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 717,
@@ -628,7 +628,7 @@
       {
         "seq_len": 547,
         "deadline_ms": 44.3,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 460,
@@ -648,7 +648,7 @@
       {
         "seq_len": 515,
         "deadline_ms": 36.4,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 763,
@@ -663,7 +663,7 @@
       {
         "seq_len": 548,
         "deadline_ms": 31.2,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 353,
@@ -678,7 +678,7 @@
       {
         "seq_len": 605,
         "deadline_ms": 27.4,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 371,
@@ -688,17 +688,17 @@
       {
         "seq_len": 648,
         "deadline_ms": 44.1,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 593,
         "deadline_ms": 31.3,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 570,
         "deadline_ms": 28.2,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 240,
@@ -718,12 +718,12 @@
       {
         "seq_len": 633,
         "deadline_ms": 34.8,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 658,
         "deadline_ms": 26.6,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 133,
@@ -733,7 +733,7 @@
       {
         "seq_len": 647,
         "deadline_ms": 47.6,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 373,
@@ -758,7 +758,7 @@
       {
         "seq_len": 710,
         "deadline_ms": 37.0,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 373,
@@ -808,12 +808,12 @@
       {
         "seq_len": 770,
         "deadline_ms": 37.1,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 719,
         "deadline_ms": 46.2,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 733,
@@ -848,7 +848,7 @@
       {
         "seq_len": 669,
         "deadline_ms": 33.4,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 401,
@@ -863,7 +863,7 @@
       {
         "seq_len": 567,
         "deadline_ms": 44.5,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 102,
@@ -913,7 +913,7 @@
       {
         "seq_len": 608,
         "deadline_ms": 26.4,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 428,
@@ -943,7 +943,7 @@
       {
         "seq_len": 732,
         "deadline_ms": 29.1,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 623,
@@ -993,7 +993,7 @@
       {
         "seq_len": 768,
         "deadline_ms": 29.3,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 89,
@@ -1008,7 +1008,7 @@
       {
         "seq_len": 521,
         "deadline_ms": 39.0,
-        "admitted": false
+        "admitted": true
       },
       {
         "seq_len": 283,

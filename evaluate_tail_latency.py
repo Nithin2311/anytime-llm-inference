@@ -19,7 +19,10 @@ Outputs:
 import json
 import numpy as np
 import torch
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import fig_style as fs
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from early_exit_model import EarlyExitTinyLlama
@@ -185,18 +188,13 @@ def schedulability_analysis(latencies, deadline_ms, label):
 # ─── Figure ──────────────────────────────────────────────────────────────────
 
 def plot_schedulability(baseline_lats, anytime_lats, base_stats, any_stats, deadline_ms):
-    plt.style.use("seaborn-v0_8-whitegrid")
-    plt.rcParams.update({
-        "font.family": "serif", "font.size": 10,
-        "axes.labelsize": 11, "axes.titlesize": 12,
-        "legend.fontsize": 9,
-    })
+    fs.apply()
 
     C_BASE = "#d9534f"   # red
     C_ANY  = "#2b5b84"   # blue
     C_DEAD = "#2e8b57"   # green
 
-    fig, axes = plt.subplots(1, 2, figsize=(13, 4.5))
+    fig, axes = plt.subplots(1, 2, figsize=fs.DOUBLE)
 
     # ── Panel 1: CDF comparison ─────────────────────────────────────────────
     ax = axes[0]
@@ -271,7 +269,7 @@ def plot_schedulability(baseline_lats, anytime_lats, base_stats, any_stats, dead
     fig.suptitle(
         f"Tail-Latency Schedulability Proof  |  10 prompts (chat-template)  "
         f"|  deadline = {deadline_ms:.0f} ms",
-        fontsize=12, y=1.02,
+        fontsize=7.5, y=1.02,
     )
     plt.tight_layout()
     plt.savefig(FIGURE_FILE, dpi=300, bbox_inches="tight")

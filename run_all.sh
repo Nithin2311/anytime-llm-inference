@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
-# run_all.sh — Full reproduction pipeline for anytime-llm-inference.
-#
-# Runs every experiment in dependency order and regenerates all figures.
-# Expected total runtime: ~45-60 minutes on an RTX 4000 Ada.
+# ============================================================
+#  run_all.sh — Full reproduction pipeline (RTX 6000 Ada)
+#  Dynamic Anytime Scheduling for LLM Inference
+#  CIS 6930 — Real-Time Systems  |  Spring 2026
+# ============================================================
+# Run from /root/anytime-llm-inference/ (project root).
+# All JSON results and PNG figures are written here.
 #
 # Usage:
-#   source venv/bin/activate
-#   bash run_all.sh              # full pipeline
-#   bash run_all.sh --skip-slow  # skip benchmark (30q) and sweep (8×5q)
+#   bash run_all.sh              # full pipeline (~60-80 min)
+#   bash run_all.sh --skip-slow  # skip benchmark/sweep (~20 min)
+# ============================================================
 
 set -euo pipefail
 
@@ -16,68 +19,97 @@ for arg in "$@"; do
   [[ "$arg" == "--skip-slow" ]] && SKIP_SLOW=true
 done
 
-log() { echo ""; echo "========================================"; echo ">>> $*"; echo "========================================"; }
+log() {
+  echo ""
+  echo "================================================================"
+  echo "  $*"
+  echo "================================================================"
+}
 die() { echo "[ERROR] $*" >&2; exit 1; }
 
-# ── 0. Environment check ─────────────────────────────────────────────────────
-log "0/7  Environment check"
-python verify_env.py || die "Environment check failed. Fix the issues above before proceeding."
+START_TIME=$(date +%s)
 
-# ── 1. WCET profiling ────────────────────────────────────────────────────────
-log "1/7  WCET profiling (seq lengths: 32/64/128/256/512/1024 × exit layers: 5/11/16/full, 50 runs each)"
-python profile_wcet.py
-echo "Output: wcet_results.json, wcet_profile.png"
+# ── Stage 0: Environment validation ──────────────────────────────────────────
+log "Stage 0/9 — Environment validation"
+python3 verify_env.py || die "Environment check failed."
 
-# ── 2. Early-exit calibration ────────────────────────────────────────────────
-log "2/7  Early-exit confidence calibration (10 prompts × 20 tokens)"
-python calibration.py
-echo "Output: calibration_results.json, calibration.png"
+# ── Stage 1: GPU WCET profiling ───────────────────────────────────────────────
+log "Stage 1/9 — GPU WCET profiling (6 seq lengths × 4 exit layers, 50 runs each)"
+python3 profile_wcet.py
+echo "  → wcet_results.json  wcet_profile.png"
 
-# ── 3. Exit-layer ablation ───────────────────────────────────────────────────
-log "3/7  Exit-layer ablation study (L5/L11/L16/L17/L18/L19/L20 vs oracle L22)"
-python exit_layer_ablation.py
-echo "Output: ablation_results.json, exit_layer_ablation.png"
+# ── Stage 2: Heterogeneous pipeline latency model ────────────────────────────
+log "Stage 2/9 — Heterogeneous pipeline model (T_cpu + T_pcie + T_gpu)"
+python3 pipeline_latency_model.py
+echo "  → pipeline_latency_results.json  pipeline_latency_model.png"
 
-# ── 4. Tail-latency schedulability proof ─────────────────────────────────────
-log "4/7  Tail-latency schedulability proof (10 clinical prompts, KV-cached, D=45 ms)"
-python evaluate_tail_latency.py
-echo "Output: tail_latency_results.json, schedulability_proof.png"
+# ── Stage 3: Confidence calibration ──────────────────────────────────────────
+log "Stage 3/9 — L16 confidence calibration (10 prompts × 20 tokens)"
+python3 calibration.py
+echo "  → calibration_results.json  calibration.png"
 
-# ── 5. Stateless vs KV-cached scheduler comparison ───────────────────────────
-log "5/7  Scheduler comparison (stateless dynamic vs KV-cached, both L16, 5 queries)"
-python compare_schedulers.py
-echo "Output: scheduler_comparison.json, scheduler_comparison.png"
+# ── Stage 4: Exit-layer ablation ─────────────────────────────────────────────
+log "Stage 4/9 — Exit-layer ablation (L5 / L11 / L16–L20 vs oracle L22)"
+python3 exit_layer_ablation.py
+echo "  → ablation_results.json  exit_layer_ablation.png"
 
-# ── 6. Deadline sweep (stateless — shows forced-exit adaptation behavior) ────
-if [[ "$SKIP_SLOW" == "true" ]]; then
-  log "6/7  Deadline sweep [SKIPPED — --skip-slow]"
+# ── Stage 5: Tail-latency SLO proof ──────────────────────────────────────────
+log "Stage 5/9 — Tail-latency SLO proof (10 clinical prompts, KV-cached, D=45 ms)"
+python3 evaluate_tail_latency.py
+echo "  → tail_latency_results.json  schedulability_proof.png"
+
+# ── Stage 6: Three-way router comparison ─────────────────────────────────────
+log "Stage 6/9 — Router comparison (stateless / KV-cached / async-overlap, 5 queries)"
+python3 compare_schedulers.py
+echo "  → scheduler_comparison.json  scheduler_comparison.png"
+
+# ── Stage 7: Deadline sensitivity sweep ──────────────────────────────────────
+if $SKIP_SLOW; then
+  log "Stage 7/9 — Deadline sweep [SKIPPED — --skip-slow]"
 else
-  log "6/7  Deadline sweep (deadlines 20–60 ms, stateless scheduler, 5 queries each)"
-  python deadline_sweep.py
-  echo "Output: sweep_results.json, deadline_tradeoff.png"
+  log "Stage 7/9 — Deadline sensitivity sweep (D = 20–60 ms, 5 queries each)"
+  python3 deadline_sweep.py
+  echo "  → sweep_results.json  deadline_tradeoff.png"
 fi
 
-# ── 7. Full benchmark ────────────────────────────────────────────────────────
-if [[ "$SKIP_SLOW" == "true" ]]; then
-  log "7/7  PubMedQA benchmark [SKIPPED — --skip-slow]"
+# ── Stage 8: Full clinical benchmark ─────────────────────────────────────────
+if $SKIP_SLOW; then
+  log "Stage 8/9 — PubMedQA benchmark [SKIPPED — --skip-slow]"
 else
-  log "7/7  PubMedQA benchmark (30 queries, KV-cached scheduler, D=45 ms)"
-  python benchmark.py
-  echo "Output: benchmark_results.json, benchmark_results.csv"
+  log "Stage 8/9 — 30-query PubMedQA clinical benchmark (D=45 ms)"
+  python3 benchmark.py
+  echo "  → benchmark_results.json  benchmark_results.csv"
 fi
 
-# ── 8. Regenerate all figures ────────────────────────────────────────────────
-log "Regenerating visualisation figures from benchmark results"
-python visualize_metrics.py
-echo "Output: execution_timeline.png, tail_latency_cdf.png, exit_distribution.png, accuracy_summary.png"
+# ── Stage 9: Regenerate all figures ──────────────────────────────────────────
+log "Stage 9/9 — Regenerate IEEE-format publication figures"
+python3 visualize_metrics.py
+echo "  → execution_timeline.png  tail_latency_cdf.png"
+echo "     exit_distribution.png  accuracy_summary.png"
+
+# ── Copy outputs into submission/ ────────────────────────────────────────────
+log "Copying results and figures into submission/"
+cp -f *.json submission/results/ 2>/dev/null || true
+cp -f *.csv  submission/results/ 2>/dev/null || true
+cp -f *.png  submission/figures/ 2>/dev/null || true
+echo "  → submission/results/  submission/figures/"
+
+END_TIME=$(date +%s)
+ELAPSED=$(( END_TIME - START_TIME ))
+MINS=$(( ELAPSED / 60 ))
+SECS=$(( ELAPSED % 60 ))
 
 echo ""
-echo "========================================"
-echo "All experiments complete."
-echo "Key output files:"
-echo "  wcet_results.json          — WCET measurements"
-echo "  benchmark_results.json/csv — 30-query evaluation"
-echo "  tail_latency_results.json  — schedulability proof data"
-echo "  ablation_results.json      — exit-layer ablation data"
-echo "  *.png                      — all figures"
-echo "========================================"
+echo "================================================================"
+echo "  All stages complete in ${MINS}m ${SECS}s"
+echo ""
+echo "  Key outputs:"
+echo "    wcet_results.json            WCET profile (RTX 6000 Ada)"
+echo "    pipeline_latency_results.json  CPU+PCIe+GPU pipeline model"
+echo "    benchmark_results.json/csv   30-query clinical benchmark"
+echo "    scheduler_comparison.json    3-way router comparison"
+echo "    tail_latency_results.json    SLO schedulability proof"
+echo "    ablation_results.json        Exit-layer ablation L5-L22"
+echo "    submission/results/          All JSON/CSV (submission copy)"
+echo "    submission/figures/          All PNG  (submission copy)"
+echo "================================================================"
