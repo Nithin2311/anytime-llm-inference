@@ -509,3 +509,52 @@ acc=71.4%  forced=0.0%  p99=18.327ms
 2026-04-25T20:12:57 [E6] START
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E6: ACCURACY BOOTSTRAP CI
+D=45.0ms | n=30 | B=1000 bootstraps
+Routers: ['stateless', 'kv_cached']
+Expected runtime: ~30 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E6: ACCURACY BOOTSTRAP CI
+D=45.0ms | n=30 | B=1000 bootstraps
+Routers: ['stateless', 'kv_cached']
+Expected runtime: ~30 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  54%|█████▍    | 109/201 [00:00<00:00, 1088.53it/s]Loading weights:  54%|█████▍    | 109/201 [00:00<00:00, 1088.53it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1102.67it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1102.67it/s]
+2026-04-25T20:13:11 [E6] SUCCESS elapsed=14.1s
+2026-04-25T20:13:11 [E6] SUCCESS elapsed=14.1s
+2026-04-25T20:13:11 [E6] SUCCESS elapsed=14.1s
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  Router: stateless
+  acc=71.4%  95% CI=[50.0, 92.9]%
+
+  Router: kv_cached
+  acc=71.4%  95% CI=[49.8, 92.9]%
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/accuracy_ci_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/accuracy_ci.png
+  LaTeX   --> latex/table_accuracy_ci.tex
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  Router: stateless
+  acc=71.4%  95% CI=[50.0, 92.9]%
+
+  Router: kv_cached
+  acc=71.4%  95% CI=[49.8, 92.9]%
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/accuracy_ci_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/accuracy_ci.png
+  LaTeX   --> latex/table_accuracy_ci.tex
+[2026-04-25T20:13:12] [E6] PASS (0h 0m 18s)
+[2026-04-25T20:13:12] [E6] PASS (0h 0m 18s)
+[2026-04-25T20:13:12] [E7] START → experiments/e7_wcet_ci.py
+[2026-04-25T20:13:12] [E7] START → experiments/e7_wcet_ci.py

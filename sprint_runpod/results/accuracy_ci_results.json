@@ -1,0 +1,46 @@
+{
+  "hardware": "A100 SXM4",
+  "deadline_ms": 45.0,
+  "n_samples": 30,
+  "max_new_tokens": 5,
+  "n_bootstrap": 1000,
+  "alpha": 0.05,
+  "results": {
+    "stateless": {
+      "n_queries": 30,
+      "deadline_ms": 45.0,
+      "n_correct": 10,
+      "n_scored": 14,
+      "accuracy": 71.4,
+      "full_pass_pct": 94.7,
+      "early_thresh_pct": 5.3,
+      "forced_exit_pct": 0.0,
+      "deadline_miss_pct": 0.7,
+      "global_mean_tpot_ms": 29.444,
+      "global_p99_tpot_ms": 31.621,
+      "throughput_tps": 33.96,
+      "util_ratio": 0.7027,
+      "ci_lower": 50.0,
+      "ci_upper": 92.86,
+      "n_bootstrap": 1000
+    },
+    "kv_cached": {
+      "n_queries": 30,
+      "deadline_ms": 45.0,
+      "n_correct": 10,
+      "n_scored": 14,
+      "accuracy": 71.4,
+      "full_pass_pct": 99.3,
+      "early_thresh_pct": 0.7,
+      "forced_exit_pct": 0.0,
+      "deadline_miss_pct": 0.0,
+      "global_mean_tpot_ms": 17.603,
+      "global_p99_tpot_ms": 18.26,
+      "throughput_tps": 56.81,
+      "util_ratio": 0.4058,
+      "ci_lower": 49.82,
+      "ci_upper": 92.86,
+      "n_bootstrap": 1000
+    }
+  }
+}
