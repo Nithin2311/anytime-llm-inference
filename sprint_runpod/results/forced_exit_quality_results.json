@@ -1,0 +1,41 @@
+{
+  "hardware": "A100 SXM4",
+  "tight_deadlines": [
+    20,
+    25
+  ],
+  "ref_deadline_ms": 1000.0,
+  "n_samples": 30,
+  "results": {
+    "20": {
+      "deadline_ms": 20,
+      "n_queries": 30,
+      "n_correct": 9,
+      "n_scored": 12,
+      "accuracy": 75.0,
+      "forced_exit_pct": 100.0,
+      "deadline_miss_pct": 0.0,
+      "mean_tpot_ms": 12.453,
+      "p99_tpot_ms": 13.081,
+      "rougeL_vs_gt_mean": 0.0,
+      "rougeL_vs_gt_std": 0.0,
+      "rougeL_vs_full_mean": 0.08,
+      "rougeL_vs_full_std": 0.16
+    },
+    "25": {
+      "deadline_ms": 25,
+      "n_queries": 30,
+      "n_correct": 9,
+      "n_scored": 12,
+      "accuracy": 75.0,
+      "forced_exit_pct": 100.0,
+      "deadline_miss_pct": 0.0,
+      "mean_tpot_ms": 12.436,
+      "p99_tpot_ms": 12.949,
+      "rougeL_vs_gt_mean": 0.0,
+      "rougeL_vs_gt_std": 0.0,
+      "rougeL_vs_full_mean": 0.08,
+      "rougeL_vs_full_std": 0.16
+    }
+  }
+}

@@ -1,0 +1,384 @@
+[2026-04-25T20:06:07] ===== SPRINT START =====
+[2026-04-25T20:06:07] ===== SPRINT START =====
+[2026-04-25T20:06:09] Hardware: NVIDIA A100-SXM4-80GB
+[2026-04-25T20:06:09] Hardware: NVIDIA A100-SXM4-80GB
+[2026-04-25T20:06:09] [E0] START → experiments/e0_wcet_profile.py
+[2026-04-25T20:06:09] [E0] START → experiments/e0_wcet_profile.py
+2026-04-25T20:06:12 [E0] START
+2026-04-25T20:06:12 [E0] START
+2026-04-25T20:06:12 [E0] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+============================================================
+E0: WCET PROFILE — A100 SXM4
+Seq: [32, 64, 128, 256, 512, 1024] | Layers: [5, 11, 16, None] | 50 runs/cell
+============================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+============================================================
+E0: WCET PROFILE — A100 SXM4
+Seq: [32, 64, 128, 256, 512, 1024] | Layers: [5, 11, 16, None] | 50 runs/cell
+============================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  47%|████▋     | 95/201 [00:00<00:00, 947.86it/s]Loading weights:  47%|████▋     | 95/201 [00:00<00:00, 947.86it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1051.90it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1051.90it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        mean=4.18  p99=4.27  wcet=4.30 ms
+  [ 2/24] seq=  32 exit=L11       mean=4.18  p99=4.27  wcet=4.30 ms
+  [ 2/24] seq=  32 exit=L11       mean=8.65  p99=8.88  wcet=9.04 ms
+  [ 3/24] seq=  32 exit=L16       mean=8.65  p99=8.88  wcet=9.04 ms
+  [ 3/24] seq=  32 exit=L16       mean=12.44  p99=14.18  wcet=15.71 ms
+  [ 4/24] seq=  32 exit=Full(22)  mean=12.44  p99=14.18  wcet=15.71 ms
+  [ 4/24] seq=  32 exit=Full(22)  mean=16.99  p99=20.46  wcet=23.11 ms
+  [ 5/24] seq=  64 exit=L5        mean=16.99  p99=20.46  wcet=23.11 ms
+  [ 5/24] seq=  64 exit=L5        mean=4.18  p99=4.25  wcet=4.28 ms
+  [ 6/24] seq=  64 exit=L11       mean=4.18  p99=4.25  wcet=4.28 ms
+  [ 6/24] seq=  64 exit=L11       mean=8.82  p99=12.54  wcet=15.98 ms
+  [ 7/24] seq=  64 exit=L16       mean=8.82  p99=12.54  wcet=15.98 ms
+  [ 7/24] seq=  64 exit=L16       mean=12.41  p99=12.51  wcet=12.51 ms
+  [ 8/24] seq=  64 exit=Full(22)  mean=12.41  p99=12.51  wcet=12.51 ms
+  [ 8/24] seq=  64 exit=Full(22)  mean=16.89  p99=16.98  wcet=16.98 ms
+  [ 9/24] seq= 128 exit=L5        mean=16.89  p99=16.98  wcet=16.98 ms
+  [ 9/24] seq= 128 exit=L5        mean=4.19  p99=4.26  wcet=4.30 ms
+  [10/24] seq= 128 exit=L11       mean=4.19  p99=4.26  wcet=4.30 ms
+  [10/24] seq= 128 exit=L11       mean=8.70  p99=8.80  wcet=8.81 ms
+  [11/24] seq= 128 exit=L16       mean=8.70  p99=8.80  wcet=8.81 ms
+  [11/24] seq= 128 exit=L16       mean=12.45  p99=12.61  wcet=12.63 ms
+  [12/24] seq= 128 exit=Full(22)  mean=12.45  p99=12.61  wcet=12.63 ms
+  [12/24] seq= 128 exit=Full(22)  mean=16.98  p99=17.14  wcet=17.15 ms
+  [13/24] seq= 256 exit=L5        mean=16.98  p99=17.14  wcet=17.15 ms
+  [13/24] seq= 256 exit=L5        mean=4.18  p99=4.35  wcet=4.35 ms
+  [14/24] seq= 256 exit=L11       mean=4.18  p99=4.35  wcet=4.35 ms
+  [14/24] seq= 256 exit=L11       mean=8.70  p99=9.45  wcet=10.09 ms
+  [15/24] seq= 256 exit=L16       mean=8.70  p99=9.45  wcet=10.09 ms
+  [15/24] seq= 256 exit=L16       mean=12.40  p99=12.56  wcet=12.56 ms
+  [16/24] seq= 256 exit=Full(22)  mean=12.40  p99=12.56  wcet=12.56 ms
+  [16/24] seq= 256 exit=Full(22)  mean=16.89  p99=16.96  wcet=16.97 ms
+  [17/24] seq= 512 exit=L5        mean=16.89  p99=16.96  wcet=16.97 ms
+  [17/24] seq= 512 exit=L5        mean=4.16  p99=4.43  wcet=4.44 ms
+  [18/24] seq= 512 exit=L11       mean=4.16  p99=4.43  wcet=4.44 ms
+  [18/24] seq= 512 exit=L11       mean=8.62  p99=8.79  wcet=8.90 ms
+  [19/24] seq= 512 exit=L16       mean=8.62  p99=8.79  wcet=8.90 ms
+  [19/24] seq= 512 exit=L16       mean=12.36  p99=12.58  wcet=12.68 ms
+  [20/24] seq= 512 exit=Full(22)  mean=12.36  p99=12.58  wcet=12.68 ms
+  [20/24] seq= 512 exit=Full(22)  mean=16.82  p99=17.07  wcet=17.15 ms
+  [21/24] seq=1024 exit=L5        mean=16.82  p99=17.07  wcet=17.15 ms
+  [21/24] seq=1024 exit=L5        mean=4.80  p99=5.01  wcet=5.20 ms
+  [22/24] seq=1024 exit=L11       mean=4.80  p99=5.01  wcet=5.20 ms
+  [22/24] seq=1024 exit=L11       mean=9.76  p99=9.96  wcet=10.15 ms
+  [23/24] seq=1024 exit=L16       mean=9.76  p99=9.96  wcet=10.15 ms
+  [23/24] seq=1024 exit=L16       mean=13.89  p99=14.17  wcet=14.30 ms
+  [24/24] seq=1024 exit=Full(22)  mean=13.89  p99=14.17  wcet=14.30 ms
+  [24/24] seq=1024 exit=Full(22)  2026-04-25T20:06:29 [E0] SUCCESS elapsed=17.4s
+2026-04-25T20:06:29 [E0] SUCCESS elapsed=17.4s
+2026-04-25T20:06:29 [E0] SUCCESS elapsed=17.4s
+mean=18.84  p99=19.07  wcet=19.29 ms
+
+  Results → /root/anytime-llm-inference/sprint_runpod/results/wcet_results.json
+  Figure  → /root/anytime-llm-inference/sprint_runpod/figures/wcet_profile.png
+  LaTeX   → latex/table_ii_wcet.tex
+mean=18.84  p99=19.07  wcet=19.29 ms
+
+  Results → /root/anytime-llm-inference/sprint_runpod/results/wcet_results.json
+  Figure  → /root/anytime-llm-inference/sprint_runpod/figures/wcet_profile.png
+  LaTeX   → latex/table_ii_wcet.tex
+[2026-04-25T20:06:30] [E0] PASS (0h 0m 21s)
+[2026-04-25T20:06:30] [E0] PASS (0h 0m 21s)
+[2026-04-25T20:06:30] [E1] START → experiments/e1_evt_reprofiling.py
+[2026-04-25T20:06:30] [E1] START → experiments/e1_evt_reprofiling.py
+2026-04-25T20:06:33 [E1] START
+2026-04-25T20:06:33 [E1] START
+2026-04-25T20:06:33 [E1] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E1: EVT WCET ANALYSIS — A100 SXM4
+Seq: [32, 64, 128, 256, 512, 1024] | 500 runs/cell | POT top 20%
+Expected runtime: ~2-3 hours
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E1: EVT WCET ANALYSIS — A100 SXM4
+Seq: [32, 64, 128, 256, 512, 1024] | 500 runs/cell | POT top 20%
+Expected runtime: ~2-3 hours
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  56%|█████▌    | 113/201 [00:00<00:00, 1089.33it/s]Loading weights:  56%|█████▌    | 113/201 [00:00<00:00, 1089.33it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1127.83it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1127.83it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        mean=4.07  EVT(1e-4)=4.88  EVT(1e-6)=5.27  ok
+  [ 2/24] seq=  32 exit=L11       mean=4.07  EVT(1e-4)=4.88  EVT(1e-6)=5.27  ok
+  [ 2/24] seq=  32 exit=L11       mean=8.41  EVT(1e-4)=10.37  EVT(1e-6)=11.35  ok
+  [ 3/24] seq=  32 exit=L16       mean=8.41  EVT(1e-4)=10.37  EVT(1e-6)=11.35  ok
+  [ 3/24] seq=  32 exit=L16       mean=11.98  EVT(1e-4)=12.68  EVT(1e-6)=13.02  ok
+  [ 4/24] seq=  32 exit=Full(22)  mean=11.98  EVT(1e-4)=12.68  EVT(1e-6)=13.02  ok
+  [ 4/24] seq=  32 exit=Full(22)  mean=16.31  EVT(1e-4)=17.72  EVT(1e-6)=18.36  ok
+  [ 5/24] seq=  64 exit=L5        mean=16.31  EVT(1e-4)=17.72  EVT(1e-6)=18.36  ok
+  [ 5/24] seq=  64 exit=L5        mean=4.06  EVT(1e-4)=4.84  EVT(1e-6)=5.20  ok
+  [ 6/24] seq=  64 exit=L11       mean=4.06  EVT(1e-4)=4.84  EVT(1e-6)=5.20  ok
+  [ 6/24] seq=  64 exit=L11       mean=8.44  EVT(1e-4)=9.42  EVT(1e-6)=9.84  ok
+  [ 7/24] seq=  64 exit=L16       mean=8.44  EVT(1e-4)=9.42  EVT(1e-6)=9.84  ok
+  [ 7/24] seq=  64 exit=L16       mean=12.08  EVT(1e-4)=13.33  EVT(1e-6)=13.86  ok
+  [ 8/24] seq=  64 exit=Full(22)  mean=12.08  EVT(1e-4)=13.33  EVT(1e-6)=13.86  ok
+  [ 8/24] seq=  64 exit=Full(22)  mean=16.43  EVT(1e-4)=17.72  EVT(1e-6)=18.25  ok
+  [ 9/24] seq= 128 exit=L5        mean=16.43  EVT(1e-4)=17.72  EVT(1e-6)=18.25  ok
+  [ 9/24] seq= 128 exit=L5        mean=4.07  EVT(1e-4)=4.76  EVT(1e-6)=5.08  ok
+  [10/24] seq= 128 exit=L11       mean=4.07  EVT(1e-4)=4.76  EVT(1e-6)=5.08  ok
+  [10/24] seq= 128 exit=L11       mean=8.48  EVT(1e-4)=9.34  EVT(1e-6)=9.69  ok
+  [11/24] seq= 128 exit=L16       mean=8.48  EVT(1e-4)=9.34  EVT(1e-6)=9.69  ok
+  [11/24] seq= 128 exit=L16       mean=12.15  EVT(1e-4)=13.55  EVT(1e-6)=14.15  ok
+  [12/24] seq= 128 exit=Full(22)  mean=12.15  EVT(1e-4)=13.55  EVT(1e-6)=14.15  ok
+  [12/24] seq= 128 exit=Full(22)  mean=16.49  EVT(1e-4)=17.92  EVT(1e-6)=18.50  ok
+  [13/24] seq= 256 exit=L5        mean=16.49  EVT(1e-4)=17.92  EVT(1e-6)=18.50  ok
+  [13/24] seq= 256 exit=L5        mean=4.06  EVT(1e-4)=4.65  EVT(1e-6)=4.93  UNDER ⚠
+  [14/24] seq= 256 exit=L11       mean=4.06  EVT(1e-4)=4.65  EVT(1e-6)=4.93  UNDER ⚠
+  [14/24] seq= 256 exit=L11       mean=8.42  EVT(1e-4)=9.45  EVT(1e-6)=9.91  ok
+  [15/24] seq= 256 exit=L16       mean=8.42  EVT(1e-4)=9.45  EVT(1e-6)=9.91  ok
+  [15/24] seq= 256 exit=L16       mean=12.04  EVT(1e-4)=12.87  EVT(1e-6)=13.21  ok
+  [16/24] seq= 256 exit=Full(22)  mean=12.04  EVT(1e-4)=12.87  EVT(1e-6)=13.21  ok
+  [16/24] seq= 256 exit=Full(22)  mean=16.38  EVT(1e-4)=17.50  EVT(1e-6)=17.97  ok
+  [17/24] seq= 512 exit=L5        mean=16.38  EVT(1e-4)=17.50  EVT(1e-6)=17.97  ok
+  [17/24] seq= 512 exit=L5        mean=4.04  EVT(1e-4)=4.72  EVT(1e-6)=5.04  ok
+  [18/24] seq= 512 exit=L11       mean=4.04  EVT(1e-4)=4.72  EVT(1e-6)=5.04  ok
+  [18/24] seq= 512 exit=L11       mean=8.37  EVT(1e-4)=9.45  EVT(1e-6)=9.93  ok
+  [19/24] seq= 512 exit=L16       mean=8.37  EVT(1e-4)=9.45  EVT(1e-6)=9.93  ok
+  [19/24] seq= 512 exit=L16       mean=11.98  EVT(1e-4)=12.82  EVT(1e-6)=13.18  ok
+  [20/24] seq= 512 exit=Full(22)  mean=11.98  EVT(1e-4)=12.82  EVT(1e-6)=13.18  ok
+  [20/24] seq= 512 exit=Full(22)  mean=16.33  EVT(1e-4)=17.32  EVT(1e-6)=17.70  ok
+  [21/24] seq=1024 exit=L5        mean=16.33  EVT(1e-4)=17.32  EVT(1e-6)=17.70  ok
+  [21/24] seq=1024 exit=L5        mean=4.84  EVT(1e-4)=5.43  EVT(1e-6)=5.70  ok
+  [22/24] seq=1024 exit=L11       mean=4.84  EVT(1e-4)=5.43  EVT(1e-6)=5.70  ok
+  [22/24] seq=1024 exit=L11       mean=9.81  EVT(1e-4)=10.84  EVT(1e-6)=11.32  ok
+  [23/24] seq=1024 exit=L16       mean=9.81  EVT(1e-4)=10.84  EVT(1e-6)=11.32  ok
+  [23/24] seq=1024 exit=L16       mean=13.97  EVT(1e-4)=14.99  EVT(1e-6)=15.42  ok
+  [24/24] seq=1024 exit=Full(22)  mean=13.97  EVT(1e-4)=14.99  EVT(1e-6)=15.42  ok
+  [24/24] seq=1024 exit=Full(22)  2026-04-25T20:08:52 [E1] SUCCESS elapsed=139.3s
+2026-04-25T20:08:52 [E1] SUCCESS elapsed=139.3s
+2026-04-25T20:08:52 [E1] SUCCESS elapsed=139.3s
+mean=18.93  EVT(1e-4)=19.96  EVT(1e-6)=20.38  ok
+
+  Results → /root/anytime-llm-inference/sprint_runpod/results/evt_wcet_results.json
+  Figure  → /root/anytime-llm-inference/sprint_runpod/figures/evt_wcet_analysis.png
+  LaTeX   → latex/table_xi_evt.tex
+
+===========================================================================
+EVT SUMMARY — Full(22) Pass
+   Seq      Mean    EmpMax     ×1.10   EVT(1e-4)   EVT(1e-6)    <D=45?
+---------------------------------------------------------------------------
+    32    16.307    17.572    19.329      17.721      18.357       YES
+    64    16.429    17.165    18.882      17.718      18.247       YES
+   128    16.490    18.322    20.154      17.921      18.499       YES
+   256    16.380    17.207    18.928      17.503      17.970       YES
+   512    16.333    17.084    18.793      17.318      17.703       YES
+  1024    18.930    19.561    21.517      19.955      20.377       YES
+===========================================================================
+mean=18.93  EVT(1e-4)=19.96  EVT(1e-6)=20.38  ok
+
+  Results → /root/anytime-llm-inference/sprint_runpod/results/evt_wcet_results.json
+  Figure  → /root/anytime-llm-inference/sprint_runpod/figures/evt_wcet_analysis.png
+  LaTeX   → latex/table_xi_evt.tex
+
+===========================================================================
+EVT SUMMARY — Full(22) Pass
+   Seq      Mean    EmpMax     ×1.10   EVT(1e-4)   EVT(1e-6)    <D=45?
+---------------------------------------------------------------------------
+    32    16.307    17.572    19.329      17.721      18.357       YES
+    64    16.429    17.165    18.882      17.718      18.247       YES
+   128    16.490    18.322    20.154      17.921      18.499       YES
+   256    16.380    17.207    18.928      17.503      17.970       YES
+   512    16.333    17.084    18.793      17.318      17.703       YES
+  1024    18.930    19.561    21.517      19.955      20.377       YES
+===========================================================================
+[2026-04-25T20:08:53] [E1] PASS (0h 2m 23s)
+[2026-04-25T20:08:53] [E1] PASS (0h 2m 23s)
+[2026-04-25T20:08:53] [E2] START → experiments/e2_threshold_ablation.py
+[2026-04-25T20:08:53] [E2] START → experiments/e2_threshold_ablation.py
+2026-04-25T20:08:56 [E2] START
+2026-04-25T20:08:56 [E2] START
+2026-04-25T20:08:56 [E2] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E2: THRESHOLD ABLATION -- tau in [0.5, 0.6, 0.7, 0.8, 0.9]
+D=45.0ms | n=30 queries | KV-cached router
+Expected runtime: ~45 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E2: THRESHOLD ABLATION -- tau in [0.5, 0.6, 0.7, 0.8, 0.9]
+D=45.0ms | n=30 queries | KV-cached router
+Expected runtime: ~45 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  47%|████▋     | 95/201 [00:00<00:00, 934.43it/s]Loading weights:  47%|████▋     | 95/201 [00:00<00:00, 934.43it/s]Loading weights:  94%|█████████▍| 189/201 [00:00<00:00, 218.24it/s]Loading weights:  94%|█████████▍| 189/201 [00:00<00:00, 218.24it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 258.12it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 258.12it/s]
+2026-04-25T20:09:25 [E2] SUCCESS elapsed=28.6s
+2026-04-25T20:09:25 [E2] SUCCESS elapsed=28.6s
+2026-04-25T20:09:25 [E2] SUCCESS elapsed=28.6s
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+──────────────────────────────────────────────────
+>>> tau = 0.5
+──────────────────────────────────────────────────
+  tau=0.5  acc=71.4%  full=94.7%  mean_tpot=17.439ms  p99=18.831ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.6
+──────────────────────────────────────────────────
+  tau=0.6  acc=64.3%  full=95.3%  mean_tpot=17.484ms  p99=18.068ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.7
+──────────────────────────────────────────────────
+  tau=0.7  acc=71.4%  full=99.3%  mean_tpot=17.478ms  p99=18.057ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.8
+──────────────────────────────────────────────────
+  tau=0.8  acc=71.4%  full=100.0%  mean_tpot=17.558ms  p99=19.253ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.9
+──────────────────────────────────────────────────
+  tau=0.9  acc=71.4%  full=100.0%  mean_tpot=17.543ms  p99=18.477ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/threshold_ablation_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/threshold_ablation.png
+  LaTeX   --> latex/table_threshold_ablation.tex
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+──────────────────────────────────────────────────
+>>> tau = 0.5
+──────────────────────────────────────────────────
+  tau=0.5  acc=71.4%  full=94.7%  mean_tpot=17.439ms  p99=18.831ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.6
+──────────────────────────────────────────────────
+  tau=0.6  acc=64.3%  full=95.3%  mean_tpot=17.484ms  p99=18.068ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.7
+──────────────────────────────────────────────────
+  tau=0.7  acc=71.4%  full=99.3%  mean_tpot=17.478ms  p99=18.057ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.8
+──────────────────────────────────────────────────
+  tau=0.8  acc=71.4%  full=100.0%  mean_tpot=17.558ms  p99=19.253ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.9
+──────────────────────────────────────────────────
+  tau=0.9  acc=71.4%  full=100.0%  mean_tpot=17.543ms  p99=18.477ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/threshold_ablation_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/threshold_ablation.png
+  LaTeX   --> latex/table_threshold_ablation.tex
+[2026-04-25T20:09:26] [E2] PASS (0h 0m 33s)
+[2026-04-25T20:09:26] [E2] PASS (0h 0m 33s)
+[2026-04-25T20:09:26] [E3] START → experiments/e3_forced_exit_quality.py
+[2026-04-25T20:09:26] [E3] START → experiments/e3_forced_exit_quality.py
+2026-04-25T20:09:29 [E3] START
+2026-04-25T20:09:29 [E3] START
+2026-04-25T20:09:29 [E3] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E3: FORCED-EXIT QUALITY VALIDATION
+Tight deadlines: [20, 25] ms | Reference: D=1000 ms
+Metrics: PubMedQA accuracy + ROUGE-L vs full model
+Expected runtime: ~40 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E3: FORCED-EXIT QUALITY VALIDATION
+Tight deadlines: [20, 25] ms | Reference: D=1000 ms
+Metrics: PubMedQA accuracy + ROUGE-L vs full model
+Expected runtime: ~40 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  56%|█████▌    | 112/201 [00:00<00:00, 1099.01it/s]Loading weights:  56%|█████▌    | 112/201 [00:00<00:00, 1099.01it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1110.99it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1110.99it/s]
+
+2026-04-25T20:09:45 [E3] SUCCESS elapsed=15.7s
+2026-04-25T20:09:45 [E3] SUCCESS elapsed=15.7s
+INFO:sprint:[E3] SUCCESS elapsed=15.7s
+2026-04-25T20:09:45 [E3] SUCCESS elapsed=15.7s
+INFO:sprint:[E3] SUCCESS elapsed=15.7s
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Generating reference outputs at D=1000 ms ...
+  Done: 30 reference outputs
+
+[2/3] Generating outputs at D=20 ms ...
+  D=20ms  forced=100.0%  acc=75.0%  ROUGE-L(full)=0.080
+
+[3/3] Generating outputs at D=25 ms ...
+  D=25ms  forced=100.0%  acc=75.0%  ROUGE-L(full)=0.080
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/forced_exit_quality_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/forced_exit_quality.png
+  LaTeX   --> latex/table_forced_exit_quality.tex
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Generating reference outputs at D=1000 ms ...
+  Done: 30 reference outputs
+
+[2/3] Generating outputs at D=20 ms ...
+  D=20ms  forced=100.0%  acc=75.0%  ROUGE-L(full)=0.080
+
+[3/3] Generating outputs at D=25 ms ...
+  D=25ms  forced=100.0%  acc=75.0%  ROUGE-L(full)=0.080
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/forced_exit_quality_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/forced_exit_quality.png
+  LaTeX   --> latex/table_forced_exit_quality.tex
+[2026-04-25T20:09:46] [E3] PASS (0h 0m 20s)
+[2026-04-25T20:09:46] [E3] PASS (0h 0m 20s)
+[2026-04-25T20:09:46] [E4] START → experiments/e4_pot_sensitivity.py
+[2026-04-25T20:09:46] [E4] START → experiments/e4_pot_sensitivity.py
+2026-04-25T20:09:49 [E4] START
+2026-04-25T20:09:49 [E4] START
+2026-04-25T20:09:49 [E4] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E4: POT THRESHOLD SENSITIVITY
+POT fractions: [10, 15, 20, 25]%
+Seq: [32, 64, 128, 256, 512, 1024] | 500 runs/cell
+Expected runtime: ~2-3 hours
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E4: POT THRESHOLD SENSITIVITY
+POT fractions: [10, 15, 20, 25]%
+Seq: [32, 64, 128, 256, 512, 1024] | 500 runs/cell
+Expected runtime: ~2-3 hours
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  56%|█████▌    | 112/201 [00:00<00:00, 1119.54it/s]Loading weights:  56%|█████▌    | 112/201 [00:00<00:00, 1119.54it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1132.89it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1132.89it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        
