@@ -90,3 +90,29 @@ mean=18.84  p99=19.07  wcet=19.29 ms
 [2026-04-25T20:06:30] [E0] PASS (0h 0m 21s)
 [2026-04-25T20:06:30] [E1] START → experiments/e1_evt_reprofiling.py
 [2026-04-25T20:06:30] [E1] START → experiments/e1_evt_reprofiling.py
+2026-04-25T20:06:33 [E1] START
+2026-04-25T20:06:33 [E1] START
+2026-04-25T20:06:33 [E1] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E1: EVT WCET ANALYSIS — A100 SXM4
+Seq: [32, 64, 128, 256, 512, 1024] | 500 runs/cell | POT top 20%
+Expected runtime: ~2-3 hours
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E1: EVT WCET ANALYSIS — A100 SXM4
+Seq: [32, 64, 128, 256, 512, 1024] | 500 runs/cell | POT top 20%
+Expected runtime: ~2-3 hours
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  56%|█████▌    | 113/201 [00:00<00:00, 1089.33it/s]Loading weights:  56%|█████▌    | 113/201 [00:00<00:00, 1089.33it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1127.83it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1127.83it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        
