@@ -25,3 +25,13 @@ To https://github.com/Nithin2311/anytime-llm-inference.git
    928786f..9ce694c  HEAD -> sprint-results-runpod-20260425
 [2026-04-25T20:06:36] E0 pushed to origin
 [2026-04-25T20:08:53] detected PASS for E1 — staging artifacts
+[sprint-results-runpod-20260425 0517ace] sprint: E1 passed — partial results
+ 7 files changed, 384 insertions(+), 1 deletion(-)
+ create mode 100644 sprint_runpod/figures/evt_wcet_analysis.png
+ create mode 100644 sprint_runpod/latex/table_xi_evt.tex
+ create mode 100644 sprint_runpod/results/evt_wcet_results.json
+[2026-04-25T20:08:55] E1 committed locally
+To https://github.com/Nithin2311/anytime-llm-inference.git
+   9ce694c..0517ace  HEAD -> sprint-results-runpod-20260425
+[2026-04-25T20:08:57] E1 pushed to origin
+[2026-04-25T20:08:57] detected PASS for E1 — staging artifacts

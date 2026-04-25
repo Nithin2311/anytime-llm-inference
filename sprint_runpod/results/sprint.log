@@ -202,3 +202,8 @@ EVT SUMMARY — Full(22) Pass
 [2026-04-25T20:08:53] [E1] PASS (0h 2m 23s)
 [2026-04-25T20:08:53] [E2] START → experiments/e2_threshold_ablation.py
 [2026-04-25T20:08:53] [E2] START → experiments/e2_threshold_ablation.py
+2026-04-25T20:08:56 [E2] START
+2026-04-25T20:08:56 [E2] START
+2026-04-25T20:08:56 [E2] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
