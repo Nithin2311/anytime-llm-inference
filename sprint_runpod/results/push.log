@@ -76,3 +76,13 @@ To https://github.com/Nithin2311/anytime-llm-inference.git
    161f898..524afda  HEAD -> sprint-results-runpod-20260425
 [2026-04-25T20:09:52] E3 pushed to origin
 [2026-04-25T20:12:03] detected PASS for E4 — staging artifacts
+[sprint-results-runpod-20260425 771235c] sprint: E4 passed — partial results
+ 7 files changed, 936 insertions(+), 1 deletion(-)
+ create mode 100644 sprint_runpod/figures/pot_sensitivity.png
+ create mode 100644 sprint_runpod/latex/table_pot_sensitivity.tex
+ create mode 100644 sprint_runpod/results/pot_sensitivity_results.json
+[2026-04-25T20:12:05] E4 committed locally
+To https://github.com/Nithin2311/anytime-llm-inference.git
+   524afda..771235c  HEAD -> sprint-results-runpod-20260425
+[2026-04-25T20:12:06] E4 pushed to origin
+[2026-04-25T20:12:06] detected PASS for E4 — staging artifacts

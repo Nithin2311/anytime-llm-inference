@@ -444,3 +444,8 @@ pWCET(1e-6)@20%=19.92 ms
 [2026-04-25T20:12:02] [E4] PASS (0h 2m 16s)
 [2026-04-25T20:12:02] [E5] START → experiments/e5_deadline_sweep_ext.py
 [2026-04-25T20:12:02] [E5] START → experiments/e5_deadline_sweep_ext.py
+2026-04-25T20:12:05 [E5] START
+2026-04-25T20:12:05 [E5] START
+2026-04-25T20:12:05 [E5] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
