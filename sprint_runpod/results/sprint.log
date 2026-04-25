@@ -504,3 +504,8 @@ acc=71.4%  forced=0.0%  p99=18.327ms
 [2026-04-25T20:12:54] [E5] PASS (0h 0m 52s)
 [2026-04-25T20:12:54] [E6] START → experiments/e6_accuracy_ci.py
 [2026-04-25T20:12:54] [E6] START → experiments/e6_accuracy_ci.py
+2026-04-25T20:12:57 [E6] START
+2026-04-25T20:12:57 [E6] START
+2026-04-25T20:12:57 [E6] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
