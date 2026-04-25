@@ -558,3 +558,29 @@ Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
 [2026-04-25T20:13:12] [E6] PASS (0h 0m 18s)
 [2026-04-25T20:13:12] [E7] START → experiments/e7_wcet_ci.py
 [2026-04-25T20:13:12] [E7] START → experiments/e7_wcet_ci.py
+2026-04-25T20:13:15 [E7] START
+2026-04-25T20:13:15 [E7] START
+2026-04-25T20:13:15 [E7] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E7: WCET PARAMETRIC BOOTSTRAP CI
+Seq: [32, 64, 128, 256, 512, 1024] | 500 runs/cell | B=1000 bootstraps
+Expected runtime: ~3-4 hours
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E7: WCET PARAMETRIC BOOTSTRAP CI
+Seq: [32, 64, 128, 256, 512, 1024] | 500 runs/cell | B=1000 bootstraps
+Expected runtime: ~3-4 hours
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  56%|█████▌    | 112/201 [00:00<00:00, 1105.89it/s]Loading weights:  56%|█████▌    | 112/201 [00:00<00:00, 1105.89it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1128.17it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1128.17it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        
