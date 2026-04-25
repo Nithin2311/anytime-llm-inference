@@ -381,4 +381,296 @@ Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
 Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1132.89it/s]
 Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
   [ 1/24] seq=  32 exit=L5        Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
-  [ 1/24] seq=  32 exit=L5        
+  [ 1/24] seq=  32 exit=L5        pWCET(1e-6)@20%=5.83 ms
+  [ 2/24] seq=  32 exit=L11       pWCET(1e-6)@20%=5.83 ms
+  [ 2/24] seq=  32 exit=L11       pWCET(1e-6)@20%=12.05 ms
+  [ 3/24] seq=  32 exit=L16       pWCET(1e-6)@20%=12.05 ms
+  [ 3/24] seq=  32 exit=L16       pWCET(1e-6)@20%=14.52 ms
+  [ 4/24] seq=  32 exit=Full(22)  pWCET(1e-6)@20%=14.52 ms
+  [ 4/24] seq=  32 exit=Full(22)  pWCET(1e-6)@20%=18.60 ms
+  [ 5/24] seq=  64 exit=L5        pWCET(1e-6)@20%=18.60 ms
+  [ 5/24] seq=  64 exit=L5        pWCET(1e-6)@20%=5.35 ms
+  [ 6/24] seq=  64 exit=L11       pWCET(1e-6)@20%=5.35 ms
+  [ 6/24] seq=  64 exit=L11       pWCET(1e-6)@20%=10.12 ms
+  [ 7/24] seq=  64 exit=L16       pWCET(1e-6)@20%=10.12 ms
+  [ 7/24] seq=  64 exit=L16       pWCET(1e-6)@20%=13.98 ms
+  [ 8/24] seq=  64 exit=Full(22)  pWCET(1e-6)@20%=13.98 ms
+  [ 8/24] seq=  64 exit=Full(22)  pWCET(1e-6)@20%=19.25 ms
+  [ 9/24] seq= 128 exit=L5        pWCET(1e-6)@20%=19.25 ms
+  [ 9/24] seq= 128 exit=L5        pWCET(1e-6)@20%=5.35 ms
+  [10/24] seq= 128 exit=L11       pWCET(1e-6)@20%=5.35 ms
+  [10/24] seq= 128 exit=L11       pWCET(1e-6)@20%=9.88 ms
+  [11/24] seq= 128 exit=L16       pWCET(1e-6)@20%=9.88 ms
+  [11/24] seq= 128 exit=L16       pWCET(1e-6)@20%=13.78 ms
+  [12/24] seq= 128 exit=Full(22)  pWCET(1e-6)@20%=13.78 ms
+  [12/24] seq= 128 exit=Full(22)  pWCET(1e-6)@20%=18.21 ms
+  [13/24] seq= 256 exit=L5        pWCET(1e-6)@20%=18.21 ms
+  [13/24] seq= 256 exit=L5        pWCET(1e-6)@20%=5.08 ms
+  [14/24] seq= 256 exit=L11       pWCET(1e-6)@20%=5.08 ms
+  [14/24] seq= 256 exit=L11       pWCET(1e-6)@20%=9.89 ms
+  [15/24] seq= 256 exit=L16       pWCET(1e-6)@20%=9.89 ms
+  [15/24] seq= 256 exit=L16       pWCET(1e-6)@20%=13.57 ms
+  [16/24] seq= 256 exit=Full(22)  pWCET(1e-6)@20%=13.57 ms
+  [16/24] seq= 256 exit=Full(22)  pWCET(1e-6)@20%=18.51 ms
+  [17/24] seq= 512 exit=L5        pWCET(1e-6)@20%=18.51 ms
+  [17/24] seq= 512 exit=L5        pWCET(1e-6)@20%=5.41 ms
+  [18/24] seq= 512 exit=L11       pWCET(1e-6)@20%=5.41 ms
+  [18/24] seq= 512 exit=L11       pWCET(1e-6)@20%=9.81 ms
+  [19/24] seq= 512 exit=L16       pWCET(1e-6)@20%=9.81 ms
+  [19/24] seq= 512 exit=L16       pWCET(1e-6)@20%=14.42 ms
+  [20/24] seq= 512 exit=Full(22)  pWCET(1e-6)@20%=14.42 ms
+  [20/24] seq= 512 exit=Full(22)  pWCET(1e-6)@20%=18.78 ms
+  [21/24] seq=1024 exit=L5        pWCET(1e-6)@20%=18.78 ms
+  [21/24] seq=1024 exit=L5        pWCET(1e-6)@20%=5.68 ms
+  [22/24] seq=1024 exit=L11       pWCET(1e-6)@20%=5.68 ms
+  [22/24] seq=1024 exit=L11       pWCET(1e-6)@20%=11.09 ms
+  [23/24] seq=1024 exit=L16       pWCET(1e-6)@20%=11.09 ms
+  [23/24] seq=1024 exit=L16       pWCET(1e-6)@20%=15.10 ms
+  [24/24] seq=1024 exit=Full(22)  pWCET(1e-6)@20%=15.10 ms
+  [24/24] seq=1024 exit=Full(22)  2026-04-25T20:12:01 [E4] SUCCESS elapsed=132.1s
+2026-04-25T20:12:01 [E4] SUCCESS elapsed=132.1s
+2026-04-25T20:12:01 [E4] SUCCESS elapsed=132.1s
+pWCET(1e-6)@20%=19.92 ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/pot_sensitivity_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/pot_sensitivity.png
+  LaTeX   --> latex/table_pot_sensitivity.tex
+pWCET(1e-6)@20%=19.92 ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/pot_sensitivity_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/pot_sensitivity.png
+  LaTeX   --> latex/table_pot_sensitivity.tex
+[2026-04-25T20:12:02] [E4] PASS (0h 2m 16s)
+[2026-04-25T20:12:02] [E4] PASS (0h 2m 16s)
+[2026-04-25T20:12:02] [E5] START → experiments/e5_deadline_sweep_ext.py
+[2026-04-25T20:12:02] [E5] START → experiments/e5_deadline_sweep_ext.py
+2026-04-25T20:12:05 [E5] START
+2026-04-25T20:12:05 [E5] START
+2026-04-25T20:12:05 [E5] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E5: EXTENDED DEADLINE SWEEP -- KV-CACHED ROUTER
+Deadlines: [20, 25, 30, 35, 40, 45, 50, 60, 75, 100] ms | tau=0.7 | n=30
+Expected runtime: ~60 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E5: EXTENDED DEADLINE SWEEP -- KV-CACHED ROUTER
+Deadlines: [20, 25, 30, 35, 40, 45, 50, 60, 75, 100] ms | tau=0.7 | n=30
+Expected runtime: ~60 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  55%|█████▍    | 110/201 [00:00<00:00, 1076.45it/s]Loading weights:  55%|█████▍    | 110/201 [00:00<00:00, 1076.45it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1121.89it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1121.89it/s]
+
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/10] D=20 ms ...  Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/10] D=20 ms ...  acc=71.4%  forced=0.0%  p99=23.336ms
+  [ 2/10] D=25 ms ...  acc=71.4%  forced=0.0%  p99=23.336ms
+  [ 2/10] D=25 ms ...  acc=71.4%  forced=0.0%  p99=18.476ms
+  [ 3/10] D=30 ms ...  acc=71.4%  forced=0.0%  p99=18.476ms
+  [ 3/10] D=30 ms ...  acc=71.4%  forced=0.0%  p99=18.567ms
+  [ 4/10] D=35 ms ...  acc=71.4%  forced=0.0%  p99=18.567ms
+  [ 4/10] D=35 ms ...  acc=71.4%  forced=0.0%  p99=19.007ms
+  [ 5/10] D=40 ms ...  acc=71.4%  forced=0.0%  p99=19.007ms
+  [ 5/10] D=40 ms ...  acc=71.4%  forced=0.0%  p99=19.488ms
+  [ 6/10] D=45 ms ...  acc=71.4%  forced=0.0%  p99=19.488ms
+  [ 6/10] D=45 ms ...  acc=71.4%  forced=0.0%  p99=18.418ms
+  [ 7/10] D=50 ms ...  acc=71.4%  forced=0.0%  p99=18.418ms
+  [ 7/10] D=50 ms ...  acc=71.4%  forced=0.0%  p99=18.508ms
+  [ 8/10] D=60 ms ...  acc=71.4%  forced=0.0%  p99=18.508ms
+  [ 8/10] D=60 ms ...  acc=71.4%  forced=0.0%  p99=18.345ms
+  [ 9/10] D=75 ms ...  acc=71.4%  forced=0.0%  p99=18.345ms
+  [ 9/10] D=75 ms ...  acc=71.4%  forced=0.0%  p99=18.292ms
+  [10/10] D=100 ms ...  acc=71.4%  forced=0.0%  p99=18.292ms
+  [10/10] D=100 ms ...  2026-04-25T20:12:53 [E5] SUCCESS elapsed=48.1s
+2026-04-25T20:12:53 [E5] SUCCESS elapsed=48.1s
+2026-04-25T20:12:53 [E5] SUCCESS elapsed=48.1s
+acc=71.4%  forced=0.0%  p99=18.327ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/deadline_sweep_ext_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/deadline_sweep_ext.png
+  LaTeX   --> latex/table_deadline_sweep_ext.tex
+acc=71.4%  forced=0.0%  p99=18.327ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/deadline_sweep_ext_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/deadline_sweep_ext.png
+  LaTeX   --> latex/table_deadline_sweep_ext.tex
+[2026-04-25T20:12:54] [E5] PASS (0h 0m 52s)
+[2026-04-25T20:12:54] [E5] PASS (0h 0m 52s)
+[2026-04-25T20:12:54] [E6] START → experiments/e6_accuracy_ci.py
+[2026-04-25T20:12:54] [E6] START → experiments/e6_accuracy_ci.py
+2026-04-25T20:12:57 [E6] START
+2026-04-25T20:12:57 [E6] START
+2026-04-25T20:12:57 [E6] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E6: ACCURACY BOOTSTRAP CI
+D=45.0ms | n=30 | B=1000 bootstraps
+Routers: ['stateless', 'kv_cached']
+Expected runtime: ~30 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E6: ACCURACY BOOTSTRAP CI
+D=45.0ms | n=30 | B=1000 bootstraps
+Routers: ['stateless', 'kv_cached']
+Expected runtime: ~30 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  54%|█████▍    | 109/201 [00:00<00:00, 1088.53it/s]Loading weights:  54%|█████▍    | 109/201 [00:00<00:00, 1088.53it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1102.67it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1102.67it/s]
+2026-04-25T20:13:11 [E6] SUCCESS elapsed=14.1s
+2026-04-25T20:13:11 [E6] SUCCESS elapsed=14.1s
+2026-04-25T20:13:11 [E6] SUCCESS elapsed=14.1s
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  Router: stateless
+  acc=71.4%  95% CI=[50.0, 92.9]%
+
+  Router: kv_cached
+  acc=71.4%  95% CI=[49.8, 92.9]%
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/accuracy_ci_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/accuracy_ci.png
+  LaTeX   --> latex/table_accuracy_ci.tex
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  Router: stateless
+  acc=71.4%  95% CI=[50.0, 92.9]%
+
+  Router: kv_cached
+  acc=71.4%  95% CI=[49.8, 92.9]%
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/accuracy_ci_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/accuracy_ci.png
+  LaTeX   --> latex/table_accuracy_ci.tex
+[2026-04-25T20:13:12] [E6] PASS (0h 0m 18s)
+[2026-04-25T20:13:12] [E6] PASS (0h 0m 18s)
+[2026-04-25T20:13:12] [E7] START → experiments/e7_wcet_ci.py
+[2026-04-25T20:13:12] [E7] START → experiments/e7_wcet_ci.py
+2026-04-25T20:13:15 [E7] START
+2026-04-25T20:13:15 [E7] START
+2026-04-25T20:13:15 [E7] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E7: WCET PARAMETRIC BOOTSTRAP CI
+Seq: [32, 64, 128, 256, 512, 1024] | 500 runs/cell | B=1000 bootstraps
+Expected runtime: ~3-4 hours
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E7: WCET PARAMETRIC BOOTSTRAP CI
+Seq: [32, 64, 128, 256, 512, 1024] | 500 runs/cell | B=1000 bootstraps
+Expected runtime: ~3-4 hours
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  56%|█████▌    | 112/201 [00:00<00:00, 1105.89it/s]Loading weights:  56%|█████▌    | 112/201 [00:00<00:00, 1105.89it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1128.17it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1128.17it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        pWCET(1e-6)=5.48  95%CI=[4.92,6.42]  width=1.50 ms
+  [ 2/24] seq=  32 exit=L11       pWCET(1e-6)=5.48  95%CI=[4.92,6.42]  width=1.50 ms
+  [ 2/24] seq=  32 exit=L11       pWCET(1e-6)=11.65  95%CI=[9.46,14.25]  width=4.79 ms
+  [ 3/24] seq=  32 exit=L16       pWCET(1e-6)=11.65  95%CI=[9.46,14.25]  width=4.79 ms
+  [ 3/24] seq=  32 exit=L16       pWCET(1e-6)=14.12  95%CI=[13.44,15.14]  width=1.70 ms
+  [ 4/24] seq=  32 exit=Full(22)  pWCET(1e-6)=14.12  95%CI=[13.44,15.14]  width=1.70 ms
+  [ 4/24] seq=  32 exit=Full(22)  pWCET(1e-6)=18.62  95%CI=[18.20,19.10]  width=0.90 ms
+  [ 5/24] seq=  64 exit=L5        pWCET(1e-6)=18.62  95%CI=[18.20,19.10]  width=0.90 ms
+  [ 5/24] seq=  64 exit=L5        pWCET(1e-6)=4.99  95%CI=[4.79,5.20]  width=0.41 ms
+  [ 6/24] seq=  64 exit=L11       pWCET(1e-6)=4.99  95%CI=[4.79,5.20]  width=0.41 ms
+  [ 6/24] seq=  64 exit=L11       pWCET(1e-6)=10.01  95%CI=[9.68,10.39]  width=0.71 ms
+  [ 7/24] seq=  64 exit=L16       pWCET(1e-6)=10.01  95%CI=[9.68,10.39]  width=0.71 ms
+  [ 7/24] seq=  64 exit=L16       pWCET(1e-6)=13.68  95%CI=[13.39,14.01]  width=0.62 ms
+  [ 8/24] seq=  64 exit=Full(22)  pWCET(1e-6)=13.68  95%CI=[13.39,14.01]  width=0.62 ms
+  [ 8/24] seq=  64 exit=Full(22)  pWCET(1e-6)=17.90  95%CI=[17.62,18.21]  width=0.59 ms
+  [ 9/24] seq= 128 exit=L5        pWCET(1e-6)=17.90  95%CI=[17.62,18.21]  width=0.59 ms
+  [ 9/24] seq= 128 exit=L5        pWCET(1e-6)=4.86  95%CI=[4.69,5.05]  width=0.36 ms
+  [10/24] seq= 128 exit=L11       pWCET(1e-6)=4.86  95%CI=[4.69,5.05]  width=0.36 ms
+  [10/24] seq= 128 exit=L11       pWCET(1e-6)=9.49  95%CI=[9.31,9.69]  width=0.39 ms
+  [11/24] seq= 128 exit=L16       pWCET(1e-6)=9.49  95%CI=[9.31,9.69]  width=0.39 ms
+  [11/24] seq= 128 exit=L16       pWCET(1e-6)=13.51  95%CI=[13.21,13.87]  width=0.66 ms
+  [12/24] seq= 128 exit=Full(22)  pWCET(1e-6)=13.51  95%CI=[13.21,13.87]  width=0.66 ms
+  [12/24] seq= 128 exit=Full(22)  pWCET(1e-6)=18.09  95%CI=[17.82,18.40]  width=0.58 ms
+  [13/24] seq= 256 exit=L5        pWCET(1e-6)=18.09  95%CI=[17.82,18.40]  width=0.58 ms
+  [13/24] seq= 256 exit=L5        pWCET(1e-6)=5.38  95%CI=[4.84,6.07]  width=1.22 ms
+  [14/24] seq= 256 exit=L11       pWCET(1e-6)=5.38  95%CI=[4.84,6.07]  width=1.22 ms
+  [14/24] seq= 256 exit=L11       pWCET(1e-6)=10.17  95%CI=[9.87,10.48]  width=0.61 ms
+  [15/24] seq= 256 exit=L16       pWCET(1e-6)=10.17  95%CI=[9.87,10.48]  width=0.61 ms
+  [15/24] seq= 256 exit=L16       pWCET(1e-6)=13.65  95%CI=[13.39,13.93]  width=0.54 ms
+  [16/24] seq= 256 exit=Full(22)  pWCET(1e-6)=13.65  95%CI=[13.39,13.93]  width=0.54 ms
+  [16/24] seq= 256 exit=Full(22)  pWCET(1e-6)=18.30  95%CI=[17.89,18.77]  width=0.88 ms
+  [17/24] seq= 512 exit=L5        pWCET(1e-6)=18.30  95%CI=[17.89,18.77]  width=0.88 ms
+  [17/24] seq= 512 exit=L5        pWCET(1e-6)=4.95  95%CI=[4.77,5.15]  width=0.38 ms
+  [18/24] seq= 512 exit=L11       pWCET(1e-6)=4.95  95%CI=[4.77,5.15]  width=0.38 ms
+  [18/24] seq= 512 exit=L11       pWCET(1e-6)=9.58  95%CI=[9.39,9.80]  width=0.41 ms
+  [19/24] seq= 512 exit=L16       pWCET(1e-6)=9.58  95%CI=[9.39,9.80]  width=0.41 ms
+  [19/24] seq= 512 exit=L16       pWCET(1e-6)=13.16  95%CI=[12.98,13.35]  width=0.37 ms
+  [20/24] seq= 512 exit=Full(22)  pWCET(1e-6)=13.16  95%CI=[12.98,13.35]  width=0.37 ms
+  [20/24] seq= 512 exit=Full(22)  pWCET(1e-6)=17.44  95%CI=[17.25,17.63]  width=0.38 ms
+  [21/24] seq=1024 exit=L5        pWCET(1e-6)=17.44  95%CI=[17.25,17.63]  width=0.38 ms
+  [21/24] seq=1024 exit=L5        pWCET(1e-6)=5.66  95%CI=[5.46,5.88]  width=0.42 ms
+  [22/24] seq=1024 exit=L11       pWCET(1e-6)=5.66  95%CI=[5.46,5.88]  width=0.42 ms
+  [22/24] seq=1024 exit=L11       pWCET(1e-6)=11.01  95%CI=[10.83,11.20]  width=0.37 ms
+  [23/24] seq=1024 exit=L16       pWCET(1e-6)=11.01  95%CI=[10.83,11.20]  width=0.37 ms
+  [23/24] seq=1024 exit=L16       pWCET(1e-6)=15.19  95%CI=[15.00,15.35]  width=0.35 ms
+  [24/24] seq=1024 exit=Full(22)  pWCET(1e-6)=15.19  95%CI=[15.00,15.35]  width=0.35 ms
+  [24/24] seq=1024 exit=Full(22)  2026-04-25T20:15:41 [E7] SUCCESS elapsed=145.1s
+2026-04-25T20:15:41 [E7] SUCCESS elapsed=145.1s
+2026-04-25T20:15:41 [E7] SUCCESS elapsed=145.1s
+pWCET(1e-6)=20.23  95%CI=[20.01,20.45]  width=0.44 ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/wcet_ci_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/wcet_ci.png
+  LaTeX   --> latex/table_wcet_ci.tex
+
+======================================================================
+WCET CI SUMMARY -- Full(22) Pass
+   Seq     Point     CI_lo     CI_hi     Width    <D=45?
+----------------------------------------------------------------------
+    32    18.625    18.196    19.096     0.900       YES
+    64    17.899    17.622    18.214     0.593       YES
+   128    18.092    17.821    18.400     0.579       YES
+   256    18.296    17.893    18.774     0.880       YES
+   512    17.437    17.255    17.633     0.378       YES
+  1024    20.226    20.008    20.451     0.443       YES
+======================================================================
+pWCET(1e-6)=20.23  95%CI=[20.01,20.45]  width=0.44 ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/wcet_ci_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/wcet_ci.png
+  LaTeX   --> latex/table_wcet_ci.tex
+
+======================================================================
+WCET CI SUMMARY -- Full(22) Pass
+   Seq     Point     CI_lo     CI_hi     Width    <D=45?
+----------------------------------------------------------------------
+    32    18.625    18.196    19.096     0.900       YES
+    64    17.899    17.622    18.214     0.593       YES
+   128    18.092    17.821    18.400     0.579       YES
+   256    18.296    17.893    18.774     0.880       YES
+   512    17.437    17.255    17.633     0.378       YES
+  1024    20.226    20.008    20.451     0.443       YES
+======================================================================
+[2026-04-25T20:15:42] [E7] PASS (0h 2m 30s)
+[2026-04-25T20:15:42] [E7] PASS (0h 2m 30s)
+[2026-04-25T20:15:42] ===== SPRINT END =====
+[2026-04-25T20:15:42] ===== SPRINT END =====
+[2026-04-25T20:15:42] PASS=8  FAIL=0  SKIP=0
+[2026-04-25T20:15:42] PASS=8  FAIL=0  SKIP=0
+[2026-04-25T20:15:42] Summary → results/SPRINT_SUMMARY.md
+[2026-04-25T20:15:42] Summary → results/SPRINT_SUMMARY.md
