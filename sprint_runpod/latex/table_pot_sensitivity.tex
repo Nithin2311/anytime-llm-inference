@@ -1,0 +1,12 @@
+% E4: POT Threshold Sensitivity -- A100 SXM4, seq=[32-1024], Full(22) pass
+% Justifies choice of 20% POT fraction used in E1/Table XI
+\begin{tabular}{lrrrrrr}
+\toprule
+POT\% & $n_{\text{tail}}$ & $\mu$ & $\sigma$ & pWCET($10^{-4}$) & pWCET($10^{-6}$) & $\Delta_{20\%}$ (ms) \\
+\midrule
+  10\% & 50 & 17.059 & 0.084 & 17.84 & 18.22 & +0.01 \\
+  15\% & 75 & 16.993 & 0.091 & 17.83 & 18.24 & +0.03 \\
+  20\% & 100 & 16.950 & 0.091 & 17.79 & 18.21 & +0.00~$\leftarrow$ paper \\
+  25\% & 125 & 16.907 & 0.102 & 17.84 & 18.31 & +0.10 \\
+\bottomrule
+\end{tabular}

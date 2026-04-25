@@ -381,4 +381,66 @@ Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
 Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1132.89it/s]
 Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
   [ 1/24] seq=  32 exit=L5        Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
-  [ 1/24] seq=  32 exit=L5        
+  [ 1/24] seq=  32 exit=L5        pWCET(1e-6)@20%=5.83 ms
+  [ 2/24] seq=  32 exit=L11       pWCET(1e-6)@20%=5.83 ms
+  [ 2/24] seq=  32 exit=L11       pWCET(1e-6)@20%=12.05 ms
+  [ 3/24] seq=  32 exit=L16       pWCET(1e-6)@20%=12.05 ms
+  [ 3/24] seq=  32 exit=L16       pWCET(1e-6)@20%=14.52 ms
+  [ 4/24] seq=  32 exit=Full(22)  pWCET(1e-6)@20%=14.52 ms
+  [ 4/24] seq=  32 exit=Full(22)  pWCET(1e-6)@20%=18.60 ms
+  [ 5/24] seq=  64 exit=L5        pWCET(1e-6)@20%=18.60 ms
+  [ 5/24] seq=  64 exit=L5        pWCET(1e-6)@20%=5.35 ms
+  [ 6/24] seq=  64 exit=L11       pWCET(1e-6)@20%=5.35 ms
+  [ 6/24] seq=  64 exit=L11       pWCET(1e-6)@20%=10.12 ms
+  [ 7/24] seq=  64 exit=L16       pWCET(1e-6)@20%=10.12 ms
+  [ 7/24] seq=  64 exit=L16       pWCET(1e-6)@20%=13.98 ms
+  [ 8/24] seq=  64 exit=Full(22)  pWCET(1e-6)@20%=13.98 ms
+  [ 8/24] seq=  64 exit=Full(22)  pWCET(1e-6)@20%=19.25 ms
+  [ 9/24] seq= 128 exit=L5        pWCET(1e-6)@20%=19.25 ms
+  [ 9/24] seq= 128 exit=L5        pWCET(1e-6)@20%=5.35 ms
+  [10/24] seq= 128 exit=L11       pWCET(1e-6)@20%=5.35 ms
+  [10/24] seq= 128 exit=L11       pWCET(1e-6)@20%=9.88 ms
+  [11/24] seq= 128 exit=L16       pWCET(1e-6)@20%=9.88 ms
+  [11/24] seq= 128 exit=L16       pWCET(1e-6)@20%=13.78 ms
+  [12/24] seq= 128 exit=Full(22)  pWCET(1e-6)@20%=13.78 ms
+  [12/24] seq= 128 exit=Full(22)  pWCET(1e-6)@20%=18.21 ms
+  [13/24] seq= 256 exit=L5        pWCET(1e-6)@20%=18.21 ms
+  [13/24] seq= 256 exit=L5        pWCET(1e-6)@20%=5.08 ms
+  [14/24] seq= 256 exit=L11       pWCET(1e-6)@20%=5.08 ms
+  [14/24] seq= 256 exit=L11       pWCET(1e-6)@20%=9.89 ms
+  [15/24] seq= 256 exit=L16       pWCET(1e-6)@20%=9.89 ms
+  [15/24] seq= 256 exit=L16       pWCET(1e-6)@20%=13.57 ms
+  [16/24] seq= 256 exit=Full(22)  pWCET(1e-6)@20%=13.57 ms
+  [16/24] seq= 256 exit=Full(22)  pWCET(1e-6)@20%=18.51 ms
+  [17/24] seq= 512 exit=L5        pWCET(1e-6)@20%=18.51 ms
+  [17/24] seq= 512 exit=L5        pWCET(1e-6)@20%=5.41 ms
+  [18/24] seq= 512 exit=L11       pWCET(1e-6)@20%=5.41 ms
+  [18/24] seq= 512 exit=L11       pWCET(1e-6)@20%=9.81 ms
+  [19/24] seq= 512 exit=L16       pWCET(1e-6)@20%=9.81 ms
+  [19/24] seq= 512 exit=L16       pWCET(1e-6)@20%=14.42 ms
+  [20/24] seq= 512 exit=Full(22)  pWCET(1e-6)@20%=14.42 ms
+  [20/24] seq= 512 exit=Full(22)  pWCET(1e-6)@20%=18.78 ms
+  [21/24] seq=1024 exit=L5        pWCET(1e-6)@20%=18.78 ms
+  [21/24] seq=1024 exit=L5        pWCET(1e-6)@20%=5.68 ms
+  [22/24] seq=1024 exit=L11       pWCET(1e-6)@20%=5.68 ms
+  [22/24] seq=1024 exit=L11       pWCET(1e-6)@20%=11.09 ms
+  [23/24] seq=1024 exit=L16       pWCET(1e-6)@20%=11.09 ms
+  [23/24] seq=1024 exit=L16       pWCET(1e-6)@20%=15.10 ms
+  [24/24] seq=1024 exit=Full(22)  pWCET(1e-6)@20%=15.10 ms
+  [24/24] seq=1024 exit=Full(22)  2026-04-25T20:12:01 [E4] SUCCESS elapsed=132.1s
+2026-04-25T20:12:01 [E4] SUCCESS elapsed=132.1s
+2026-04-25T20:12:01 [E4] SUCCESS elapsed=132.1s
+pWCET(1e-6)@20%=19.92 ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/pot_sensitivity_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/pot_sensitivity.png
+  LaTeX   --> latex/table_pot_sensitivity.tex
+pWCET(1e-6)@20%=19.92 ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/pot_sensitivity_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/pot_sensitivity.png
+  LaTeX   --> latex/table_pot_sensitivity.tex
+[2026-04-25T20:12:02] [E4] PASS (0h 2m 16s)
+[2026-04-25T20:12:02] [E4] PASS (0h 2m 16s)
+[2026-04-25T20:12:02] [E5] START → experiments/e5_deadline_sweep_ext.py
+[2026-04-25T20:12:02] [E5] START → experiments/e5_deadline_sweep_ext.py
