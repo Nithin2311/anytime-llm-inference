@@ -207,3 +207,88 @@ EVT SUMMARY — Full(22) Pass
 2026-04-25T20:08:56 [E2] START
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E2: THRESHOLD ABLATION -- tau in [0.5, 0.6, 0.7, 0.8, 0.9]
+D=45.0ms | n=30 queries | KV-cached router
+Expected runtime: ~45 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E2: THRESHOLD ABLATION -- tau in [0.5, 0.6, 0.7, 0.8, 0.9]
+D=45.0ms | n=30 queries | KV-cached router
+Expected runtime: ~45 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  47%|████▋     | 95/201 [00:00<00:00, 934.43it/s]Loading weights:  47%|████▋     | 95/201 [00:00<00:00, 934.43it/s]Loading weights:  94%|█████████▍| 189/201 [00:00<00:00, 218.24it/s]Loading weights:  94%|█████████▍| 189/201 [00:00<00:00, 218.24it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 258.12it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 258.12it/s]
+2026-04-25T20:09:25 [E2] SUCCESS elapsed=28.6s
+2026-04-25T20:09:25 [E2] SUCCESS elapsed=28.6s
+2026-04-25T20:09:25 [E2] SUCCESS elapsed=28.6s
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+──────────────────────────────────────────────────
+>>> tau = 0.5
+──────────────────────────────────────────────────
+  tau=0.5  acc=71.4%  full=94.7%  mean_tpot=17.439ms  p99=18.831ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.6
+──────────────────────────────────────────────────
+  tau=0.6  acc=64.3%  full=95.3%  mean_tpot=17.484ms  p99=18.068ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.7
+──────────────────────────────────────────────────
+  tau=0.7  acc=71.4%  full=99.3%  mean_tpot=17.478ms  p99=18.057ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.8
+──────────────────────────────────────────────────
+  tau=0.8  acc=71.4%  full=100.0%  mean_tpot=17.558ms  p99=19.253ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.9
+──────────────────────────────────────────────────
+  tau=0.9  acc=71.4%  full=100.0%  mean_tpot=17.543ms  p99=18.477ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/threshold_ablation_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/threshold_ablation.png
+  LaTeX   --> latex/table_threshold_ablation.tex
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+──────────────────────────────────────────────────
+>>> tau = 0.5
+──────────────────────────────────────────────────
+  tau=0.5  acc=71.4%  full=94.7%  mean_tpot=17.439ms  p99=18.831ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.6
+──────────────────────────────────────────────────
+  tau=0.6  acc=64.3%  full=95.3%  mean_tpot=17.484ms  p99=18.068ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.7
+──────────────────────────────────────────────────
+  tau=0.7  acc=71.4%  full=99.3%  mean_tpot=17.478ms  p99=18.057ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.8
+──────────────────────────────────────────────────
+  tau=0.8  acc=71.4%  full=100.0%  mean_tpot=17.558ms  p99=19.253ms
+
+──────────────────────────────────────────────────
+>>> tau = 0.9
+──────────────────────────────────────────────────
+  tau=0.9  acc=71.4%  full=100.0%  mean_tpot=17.543ms  p99=18.477ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/threshold_ablation_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/threshold_ablation.png
+  LaTeX   --> latex/table_threshold_ablation.tex
+[2026-04-25T20:09:26] [E2] PASS (0h 0m 33s)
+[2026-04-25T20:09:26] [E2] PASS (0h 0m 33s)
+[2026-04-25T20:09:26] [E3] START → experiments/e3_forced_exit_quality.py
+[2026-04-25T20:09:26] [E3] START → experiments/e3_forced_exit_quality.py

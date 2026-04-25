@@ -8,3 +8,4 @@
 |-----|--------|---------|--------|
 | E0 | **PASS** | 0h 0m 21s | results/wcet_results.json |
 | E1 | **PASS** | 0h 2m 23s | results/evt_wcet_results.json |
+| E2 | **PASS** | 0h 0m 33s | results/threshold_ablation_results.json |

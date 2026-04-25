@@ -1,0 +1,90 @@
+{
+  "hardware": "A100 SXM4",
+  "deadline_ms": 45.0,
+  "n_samples": 30,
+  "max_new_tokens": 5,
+  "thresholds": [
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "results": {
+    "0.5": {
+      "n_queries": 30,
+      "deadline_ms": 45.0,
+      "n_correct": 10,
+      "n_scored": 14,
+      "accuracy": 71.4,
+      "full_pass_pct": 94.7,
+      "early_thresh_pct": 5.3,
+      "forced_exit_pct": 0.0,
+      "deadline_miss_pct": 0.7,
+      "global_mean_tpot_ms": 17.439,
+      "global_p99_tpot_ms": 18.831,
+      "throughput_tps": 57.34,
+      "util_ratio": 0.4185
+    },
+    "0.6": {
+      "n_queries": 30,
+      "deadline_ms": 45.0,
+      "n_correct": 9,
+      "n_scored": 14,
+      "accuracy": 64.3,
+      "full_pass_pct": 95.3,
+      "early_thresh_pct": 4.7,
+      "forced_exit_pct": 0.0,
+      "deadline_miss_pct": 0.0,
+      "global_mean_tpot_ms": 17.484,
+      "global_p99_tpot_ms": 18.068,
+      "throughput_tps": 57.19,
+      "util_ratio": 0.4015
+    },
+    "0.7": {
+      "n_queries": 30,
+      "deadline_ms": 45.0,
+      "n_correct": 10,
+      "n_scored": 14,
+      "accuracy": 71.4,
+      "full_pass_pct": 99.3,
+      "early_thresh_pct": 0.7,
+      "forced_exit_pct": 0.0,
+      "deadline_miss_pct": 0.0,
+      "global_mean_tpot_ms": 17.478,
+      "global_p99_tpot_ms": 18.057,
+      "throughput_tps": 57.21,
+      "util_ratio": 0.4013
+    },
+    "0.8": {
+      "n_queries": 30,
+      "deadline_ms": 45.0,
+      "n_correct": 10,
+      "n_scored": 14,
+      "accuracy": 71.4,
+      "full_pass_pct": 100.0,
+      "early_thresh_pct": 0.0,
+      "forced_exit_pct": 0.0,
+      "deadline_miss_pct": 0.0,
+      "global_mean_tpot_ms": 17.558,
+      "global_p99_tpot_ms": 19.253,
+      "throughput_tps": 56.96,
+      "util_ratio": 0.4278
+    },
+    "0.9": {
+      "n_queries": 30,
+      "deadline_ms": 45.0,
+      "n_correct": 10,
+      "n_scored": 14,
+      "accuracy": 71.4,
+      "full_pass_pct": 100.0,
+      "early_thresh_pct": 0.0,
+      "forced_exit_pct": 0.0,
+      "deadline_miss_pct": 0.0,
+      "global_mean_tpot_ms": 17.543,
+      "global_p99_tpot_ms": 18.477,
+      "throughput_tps": 57.0,
+      "util_ratio": 0.4106
+    }
+  }
+}

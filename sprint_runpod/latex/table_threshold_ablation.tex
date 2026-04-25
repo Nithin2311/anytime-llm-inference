@@ -1,0 +1,13 @@
+% E2: Confidence Threshold Ablation -- A100 SXM4, D=45ms, n=30
+% New table for report_v2.tex: threshold sensitivity of KV-cached router
+\begin{tabular}{lrrrrrr}
+\toprule
+$\tau$ & Acc (\%) & Full (\%) & Early-T (\%) & Mean TPOT (ms) & P99 TPOT (ms) & Tput (tok/s) \\
+\midrule
+  0.5 & 71.4 & 94.7 & 5.3 & 17.44 & 18.83 & 57.34 \\
+  0.6 & 64.3 & 95.3 & 4.7 & 17.48 & 18.07 & 57.19 \\
+  0.7 & 71.4 & 99.3 & 0.7 & 17.48 & 18.06 & 57.21~$\leftarrow$ selected \\
+  0.8 & 71.4 & 100.0 & 0.0 & 17.56 & 19.25 & 56.96 \\
+  0.9 & 71.4 & 100.0 & 0.0 & 17.54 & 18.48 & 57.00 \\
+\bottomrule
+\end{tabular}
