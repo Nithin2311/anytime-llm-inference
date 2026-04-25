@@ -1,0 +1,92 @@
+[2026-04-25T20:06:07] ===== SPRINT START =====
+[2026-04-25T20:06:07] ===== SPRINT START =====
+[2026-04-25T20:06:09] Hardware: NVIDIA A100-SXM4-80GB
+[2026-04-25T20:06:09] Hardware: NVIDIA A100-SXM4-80GB
+[2026-04-25T20:06:09] [E0] START → experiments/e0_wcet_profile.py
+[2026-04-25T20:06:09] [E0] START → experiments/e0_wcet_profile.py
+2026-04-25T20:06:12 [E0] START
+2026-04-25T20:06:12 [E0] START
+2026-04-25T20:06:12 [E0] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+============================================================
+E0: WCET PROFILE — A100 SXM4
+Seq: [32, 64, 128, 256, 512, 1024] | Layers: [5, 11, 16, None] | 50 runs/cell
+============================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+============================================================
+E0: WCET PROFILE — A100 SXM4
+Seq: [32, 64, 128, 256, 512, 1024] | Layers: [5, 11, 16, None] | 50 runs/cell
+============================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  47%|████▋     | 95/201 [00:00<00:00, 947.86it/s]Loading weights:  47%|████▋     | 95/201 [00:00<00:00, 947.86it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1051.90it/s]
+Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1051.90it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 exit=L5        mean=4.18  p99=4.27  wcet=4.30 ms
+  [ 2/24] seq=  32 exit=L11       mean=4.18  p99=4.27  wcet=4.30 ms
+  [ 2/24] seq=  32 exit=L11       mean=8.65  p99=8.88  wcet=9.04 ms
+  [ 3/24] seq=  32 exit=L16       mean=8.65  p99=8.88  wcet=9.04 ms
+  [ 3/24] seq=  32 exit=L16       mean=12.44  p99=14.18  wcet=15.71 ms
+  [ 4/24] seq=  32 exit=Full(22)  mean=12.44  p99=14.18  wcet=15.71 ms
+  [ 4/24] seq=  32 exit=Full(22)  mean=16.99  p99=20.46  wcet=23.11 ms
+  [ 5/24] seq=  64 exit=L5        mean=16.99  p99=20.46  wcet=23.11 ms
+  [ 5/24] seq=  64 exit=L5        mean=4.18  p99=4.25  wcet=4.28 ms
+  [ 6/24] seq=  64 exit=L11       mean=4.18  p99=4.25  wcet=4.28 ms
+  [ 6/24] seq=  64 exit=L11       mean=8.82  p99=12.54  wcet=15.98 ms
+  [ 7/24] seq=  64 exit=L16       mean=8.82  p99=12.54  wcet=15.98 ms
+  [ 7/24] seq=  64 exit=L16       mean=12.41  p99=12.51  wcet=12.51 ms
+  [ 8/24] seq=  64 exit=Full(22)  mean=12.41  p99=12.51  wcet=12.51 ms
+  [ 8/24] seq=  64 exit=Full(22)  mean=16.89  p99=16.98  wcet=16.98 ms
+  [ 9/24] seq= 128 exit=L5        mean=16.89  p99=16.98  wcet=16.98 ms
+  [ 9/24] seq= 128 exit=L5        mean=4.19  p99=4.26  wcet=4.30 ms
+  [10/24] seq= 128 exit=L11       mean=4.19  p99=4.26  wcet=4.30 ms
+  [10/24] seq= 128 exit=L11       mean=8.70  p99=8.80  wcet=8.81 ms
+  [11/24] seq= 128 exit=L16       mean=8.70  p99=8.80  wcet=8.81 ms
+  [11/24] seq= 128 exit=L16       mean=12.45  p99=12.61  wcet=12.63 ms
+  [12/24] seq= 128 exit=Full(22)  mean=12.45  p99=12.61  wcet=12.63 ms
+  [12/24] seq= 128 exit=Full(22)  mean=16.98  p99=17.14  wcet=17.15 ms
+  [13/24] seq= 256 exit=L5        mean=16.98  p99=17.14  wcet=17.15 ms
+  [13/24] seq= 256 exit=L5        mean=4.18  p99=4.35  wcet=4.35 ms
+  [14/24] seq= 256 exit=L11       mean=4.18  p99=4.35  wcet=4.35 ms
+  [14/24] seq= 256 exit=L11       mean=8.70  p99=9.45  wcet=10.09 ms
+  [15/24] seq= 256 exit=L16       mean=8.70  p99=9.45  wcet=10.09 ms
+  [15/24] seq= 256 exit=L16       mean=12.40  p99=12.56  wcet=12.56 ms
+  [16/24] seq= 256 exit=Full(22)  mean=12.40  p99=12.56  wcet=12.56 ms
+  [16/24] seq= 256 exit=Full(22)  mean=16.89  p99=16.96  wcet=16.97 ms
+  [17/24] seq= 512 exit=L5        mean=16.89  p99=16.96  wcet=16.97 ms
+  [17/24] seq= 512 exit=L5        mean=4.16  p99=4.43  wcet=4.44 ms
+  [18/24] seq= 512 exit=L11       mean=4.16  p99=4.43  wcet=4.44 ms
+  [18/24] seq= 512 exit=L11       mean=8.62  p99=8.79  wcet=8.90 ms
+  [19/24] seq= 512 exit=L16       mean=8.62  p99=8.79  wcet=8.90 ms
+  [19/24] seq= 512 exit=L16       mean=12.36  p99=12.58  wcet=12.68 ms
+  [20/24] seq= 512 exit=Full(22)  mean=12.36  p99=12.58  wcet=12.68 ms
+  [20/24] seq= 512 exit=Full(22)  mean=16.82  p99=17.07  wcet=17.15 ms
+  [21/24] seq=1024 exit=L5        mean=16.82  p99=17.07  wcet=17.15 ms
+  [21/24] seq=1024 exit=L5        mean=4.80  p99=5.01  wcet=5.20 ms
+  [22/24] seq=1024 exit=L11       mean=4.80  p99=5.01  wcet=5.20 ms
+  [22/24] seq=1024 exit=L11       mean=9.76  p99=9.96  wcet=10.15 ms
+  [23/24] seq=1024 exit=L16       mean=9.76  p99=9.96  wcet=10.15 ms
+  [23/24] seq=1024 exit=L16       mean=13.89  p99=14.17  wcet=14.30 ms
+  [24/24] seq=1024 exit=Full(22)  mean=13.89  p99=14.17  wcet=14.30 ms
+  [24/24] seq=1024 exit=Full(22)  2026-04-25T20:06:29 [E0] SUCCESS elapsed=17.4s
+2026-04-25T20:06:29 [E0] SUCCESS elapsed=17.4s
+2026-04-25T20:06:29 [E0] SUCCESS elapsed=17.4s
+mean=18.84  p99=19.07  wcet=19.29 ms
+
+  Results → /root/anytime-llm-inference/sprint_runpod/results/wcet_results.json
+  Figure  → /root/anytime-llm-inference/sprint_runpod/figures/wcet_profile.png
+  LaTeX   → latex/table_ii_wcet.tex
+mean=18.84  p99=19.07  wcet=19.29 ms
+
+  Results → /root/anytime-llm-inference/sprint_runpod/results/wcet_results.json
+  Figure  → /root/anytime-llm-inference/sprint_runpod/figures/wcet_profile.png
+  LaTeX   → latex/table_ii_wcet.tex
+[2026-04-25T20:06:30] [E0] PASS (0h 0m 21s)
+[2026-04-25T20:06:30] [E0] PASS (0h 0m 21s)
+[2026-04-25T20:06:30] [E1] START → experiments/e1_evt_reprofiling.py
+[2026-04-25T20:06:30] [E1] START → experiments/e1_evt_reprofiling.py

@@ -1,0 +1,9 @@
+# Sprint Summary
+
+**Started:** 2026-04-25 20:06:07
+**Hardware:** A100 SXM4
+**Experiments:** E0–E7 (8 total)
+
+| Exp | Status | Elapsed | Output |
+|-----|--------|---------|--------|
+| E0 | **PASS** | 0h 0m 21s | results/wcet_results.json |
