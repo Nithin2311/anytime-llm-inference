@@ -42,3 +42,13 @@ To https://github.com/Nithin2311/anytime-llm-inference.git
    0517ace..e6162b8  HEAD -> sprint-results-runpod-20260425
 [2026-04-25T20:08:59] E1 pushed to origin
 [2026-04-25T20:09:26] detected PASS for E2 — staging artifacts
+[sprint-results-runpod-20260425 91364f3] sprint: E2 passed — partial results
+ 7 files changed, 199 insertions(+)
+ create mode 100644 sprint_runpod/figures/threshold_ablation.png
+ create mode 100644 sprint_runpod/latex/table_threshold_ablation.tex
+ create mode 100644 sprint_runpod/results/threshold_ablation_results.json
+[2026-04-25T20:09:28] E2 committed locally
+To https://github.com/Nithin2311/anytime-llm-inference.git
+   e6162b8..91364f3  HEAD -> sprint-results-runpod-20260425
+[2026-04-25T20:09:29] E2 pushed to origin
+[2026-04-25T20:09:29] detected PASS for E2 — staging artifacts

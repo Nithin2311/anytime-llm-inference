@@ -292,3 +292,8 @@ Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
 [2026-04-25T20:09:26] [E2] PASS (0h 0m 33s)
 [2026-04-25T20:09:26] [E3] START → experiments/e3_forced_exit_quality.py
 [2026-04-25T20:09:26] [E3] START → experiments/e3_forced_exit_quality.py
+2026-04-25T20:09:29 [E3] START
+2026-04-25T20:09:29 [E3] START
+2026-04-25T20:09:29 [E3] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
