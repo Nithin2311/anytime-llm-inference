@@ -449,3 +449,58 @@ pWCET(1e-6)@20%=19.92 ms
 2026-04-25T20:12:05 [E5] START
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+=================================================================
+E5: EXTENDED DEADLINE SWEEP -- KV-CACHED ROUTER
+Deadlines: [20, 25, 30, 35, 40, 45, 50, 60, 75, 100] ms | tau=0.7 | n=30
+Expected runtime: ~60 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+
+=================================================================
+E5: EXTENDED DEADLINE SWEEP -- KV-CACHED ROUTER
+Deadlines: [20, 25, 30, 35, 40, 45, 50, 60, 75, 100] ms | tau=0.7 | n=30
+Expected runtime: ~60 min
+=================================================================
+
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  55%|█████▍    | 110/201 [00:00<00:00, 1076.45it/s]Loading weights:  55%|█████▍    | 110/201 [00:00<00:00, 1076.45it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1121.89it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1121.89it/s]
+
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/10] D=20 ms ...  Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/10] D=20 ms ...  acc=71.4%  forced=0.0%  p99=23.336ms
+  [ 2/10] D=25 ms ...  acc=71.4%  forced=0.0%  p99=23.336ms
+  [ 2/10] D=25 ms ...  acc=71.4%  forced=0.0%  p99=18.476ms
+  [ 3/10] D=30 ms ...  acc=71.4%  forced=0.0%  p99=18.476ms
+  [ 3/10] D=30 ms ...  acc=71.4%  forced=0.0%  p99=18.567ms
+  [ 4/10] D=35 ms ...  acc=71.4%  forced=0.0%  p99=18.567ms
+  [ 4/10] D=35 ms ...  acc=71.4%  forced=0.0%  p99=19.007ms
+  [ 5/10] D=40 ms ...  acc=71.4%  forced=0.0%  p99=19.007ms
+  [ 5/10] D=40 ms ...  acc=71.4%  forced=0.0%  p99=19.488ms
+  [ 6/10] D=45 ms ...  acc=71.4%  forced=0.0%  p99=19.488ms
+  [ 6/10] D=45 ms ...  acc=71.4%  forced=0.0%  p99=18.418ms
+  [ 7/10] D=50 ms ...  acc=71.4%  forced=0.0%  p99=18.418ms
+  [ 7/10] D=50 ms ...  acc=71.4%  forced=0.0%  p99=18.508ms
+  [ 8/10] D=60 ms ...  acc=71.4%  forced=0.0%  p99=18.508ms
+  [ 8/10] D=60 ms ...  acc=71.4%  forced=0.0%  p99=18.345ms
+  [ 9/10] D=75 ms ...  acc=71.4%  forced=0.0%  p99=18.345ms
+  [ 9/10] D=75 ms ...  acc=71.4%  forced=0.0%  p99=18.292ms
+  [10/10] D=100 ms ...  acc=71.4%  forced=0.0%  p99=18.292ms
+  [10/10] D=100 ms ...  2026-04-25T20:12:53 [E5] SUCCESS elapsed=48.1s
+2026-04-25T20:12:53 [E5] SUCCESS elapsed=48.1s
+2026-04-25T20:12:53 [E5] SUCCESS elapsed=48.1s
+acc=71.4%  forced=0.0%  p99=18.327ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/deadline_sweep_ext_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/deadline_sweep_ext.png
+  LaTeX   --> latex/table_deadline_sweep_ext.tex
+acc=71.4%  forced=0.0%  p99=18.327ms
+
+  Results --> /root/anytime-llm-inference/sprint_runpod/results/deadline_sweep_ext_results.json
+  Figure  --> /root/anytime-llm-inference/sprint_runpod/figures/deadline_sweep_ext.png
+  LaTeX   --> latex/table_deadline_sweep_ext.tex
+[2026-04-25T20:12:54] [E5] PASS (0h 0m 52s)
+[2026-04-25T20:12:54] [E5] PASS (0h 0m 52s)
+[2026-04-25T20:12:54] [E6] START → experiments/e6_accuracy_ci.py
+[2026-04-25T20:12:54] [E6] START → experiments/e6_accuracy_ci.py
