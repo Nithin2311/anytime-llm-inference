@@ -1,0 +1,14 @@
+2026-04-26T18:04:50 [E03] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  25%|██▍       | 50/201 [00:00<00:00, 478.62it/s]Loading weights:  51%|█████     | 103/201 [00:00<00:00, 501.95it/s]Loading weights:  78%|███████▊  | 157/201 [00:00<00:00, 515.82it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 522.41it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  D= 14ms  stateless acc=65.2% miss=4.9%  kv_acc=50.0% miss=100.0%
+  D= 16ms  stateless acc=65.2% miss=0.6%  kv_acc=50.0% miss=48.4%
+  D= 18ms  stateless acc=65.2% miss=0.6%  kv_acc=50.0% miss=8.0%
+  D= 20ms  stateless acc=65.2% miss=0.0%  kv_acc=50.0% miss=4.3%
+  D= 22ms  stateless acc=65.2% miss=0.0%  kv_acc=50.0% miss=0.4%
+  D= 25ms  stateless acc=65.2% miss=0.0%  kv_acc=50.0% miss=0.0%
+  D= 30ms  2026-04-26T18:07:56 [E03] SUCCESS elapsed=186.3s
+stateless acc=65.2% miss=0.0%  kv_acc=50.0% miss=0.0%
+  Figure → /root/anytime-llm-inference/sprint_final/figures/forced_exit_extended.png

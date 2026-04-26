@@ -1,0 +1,28 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E11  A100 thermal stability (1000 consecutive tokens)
+     seq=128
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  40%|███▉      | 80/201 [00:00<00:00, 799.43it/s]Loading weights:  80%|███████▉  | 160/201 [00:00<00:00, 774.57it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 761.54it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/2] Warmup (20 runs) ...
+[2/2] Sustained run (1000 tokens) ...
+  token  100/1000  p99(last200)=n/a  temp=33°C
+  token  200/1000  p99(last200)=24.01ms  temp=33°C
+  token  300/1000  p99(last200)=24.03ms  temp=33°C
+  token  400/1000  p99(last200)=24.05ms  temp=34°C
+  token  500/1000  p99(last200)=22.47ms  temp=34°C
+  token  600/1000  p99(last200)=23.40ms  temp=34°C
+  token  700/1000  p99(last200)=23.32ms  temp=34°C
+  token  800/1000  p99(last200)=22.95ms  temp=34°C
+  token  900/1000  p99(last200)=23.27ms  temp=34°C
+  token 1000/1000  p99(last200)=22.68ms  temp=34°C
+
+First-200 P99 : 24.013ms
+Last-200  P99 : 22.677ms
+Drift         : -5.56%  OK
+Figure saved: /root/anytime-llm-inference/sprint_final/results/thermal_stability.png
+PASS: E11 complete
+

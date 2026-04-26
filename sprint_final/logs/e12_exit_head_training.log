@@ -1,0 +1,39 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E12  ExitHead MLP training on L16 hidden states
+     train=300 queries, eval=100 queries
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 76/201 [00:00<00:00, 744.44it/s]Loading weights:  75%|███████▌  | 151/201 [00:00<00:00, 659.11it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 666.74it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/4] Loading 400 PubMedQA queries ...
+      Train: 300  Eval: 100
+      Train pairs: 300  Eval pairs: 100
+
+[2/4] Collecting L16 hidden states (300 prompts) ...
+      Collected in 5.9s  hiddens.shape=(300, 2048)
+
+[3/4] Training ExitHead (30 epochs) ...
+    Epoch   5/30  train=55.4%  val=51.7%
+    Epoch  10/30  train=63.3%  val=46.7%
+    Epoch  15/30  train=67.1%  val=46.7%
+    Epoch  20/30  train=73.3%  val=41.7%
+    Epoch  25/30  train=77.9%  val=41.7%
+    Epoch  30/30  train=79.6%  val=35.0%
+      Training done in 0.6s
+      Final val accuracy: 35.0%
+      Checkpoint saved: /root/anytime-llm-inference/sprint_final/results/exit_head.pt
+
+[4/4] Evaluating on 100 held-out prompts ...
+
+──────────────────────────────────────────────────
+  Exit rate          : 79.0%
+  Oracle agreement   : 21.0%
+  Accuracy           : 50.6%
+  N scored           : 79
+──────────────────────────────────────────────────
+
+Figure saved: /root/anytime-llm-inference/sprint_final/results/exit_head_training.png
+PASS: E12 complete
+

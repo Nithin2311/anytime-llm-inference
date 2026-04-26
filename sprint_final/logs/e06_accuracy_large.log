@@ -1,0 +1,64 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E06  Large-scale PubMedQA accuracy evaluation
+     N=500 queries, τ=0.55, D=45.0ms
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 76/201 [00:00<00:00, 744.33it/s]Loading weights:  75%|███████▌  | 151/201 [00:00<00:00, 695.48it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 717.04it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/4] Loading 500 PubMedQA queries ...
+      Loaded 500 queries
+
+[2/4] Collecting raw confidence data (500 KV passes) ...
+      query 1/500
+      query 26/500
+      query 51/500
+      query 76/500
+      query 101/500
+      query 126/500
+      query 151/500
+      query 176/500
+      query 201/500
+      query 226/500
+      query 251/500
+      query 276/500
+      query 301/500
+      query 326/500
+      query 351/500
+      query 376/500
+      query 401/500
+      query 426/500
+      query 451/500
+      query 476/500
+      query 500/500
+      Done in 146.1s  (500 token records)
+
+[3/4] Post-hoc threshold replay τ=0.55 ...
+
+[4/4] Bootstrap CI (n_bootstrap=2000) ...
+
+──────────────────────────────────────────────────
+  Queries total        : 500
+  Scoreable (yes/no/maybe): 240
+  Accuracy             : 54.6%
+  95% CI               : [48.3%, 60.8%]
+  CI width             : 12.5pp
+  Exit rate (τ=0.55)  : 8.5%
+  Deadline miss rate   : 0.0%
+──────────────────────────────────────────────────
+
+  Figure saved: /root/anytime-llm-inference/sprint_final/results/accuracy_large.png
+
+  L16 confidence distribution (0 tokens):
+    c >= 0.40: 0.00% of tokens
+    c >= 0.50: 0.00% of tokens
+    c >= 0.55: 0.00% of tokens
+    c >= 0.60: 0.00% of tokens
+    c >= 0.70: 0.00% of tokens
+    c >= 0.80: 0.00% of tokens
+    c >= 0.90: 0.00% of tokens
+  Confidence histogram saved: /root/anytime-llm-inference/sprint_final/results/confidence_distribution.png
+  LaTeX table: /root/anytime-llm-inference/sprint_final/results/table_accuracy_large.tex
+PASS: E06 complete
+

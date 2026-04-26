@@ -1,0 +1,173 @@
+{
+  "hardware": "A100 SXM4",
+  "n_queries": 50,
+  "deadlines_ms": [
+    14,
+    16,
+    18,
+    20,
+    22,
+    25,
+    30
+  ],
+  "results": {
+    "stateless": {
+      "14": {
+        "n_queries": 50,
+        "deadline_ms": 14,
+        "n_correct": 15,
+        "n_scored": 23,
+        "accuracy": 65.2,
+        "parseable_pct": 46.0,
+        "deadline_miss_pct": 4.9,
+        "mean_tpot_ms": 12.081,
+        "p99_tpot_ms": 16.753
+      },
+      "16": {
+        "n_queries": 50,
+        "deadline_ms": 16,
+        "n_correct": 15,
+        "n_scored": 23,
+        "accuracy": 65.2,
+        "parseable_pct": 46.0,
+        "deadline_miss_pct": 0.6,
+        "mean_tpot_ms": 11.75,
+        "p99_tpot_ms": 15.223
+      },
+      "18": {
+        "n_queries": 50,
+        "deadline_ms": 18,
+        "n_correct": 15,
+        "n_scored": 23,
+        "accuracy": 65.2,
+        "parseable_pct": 46.0,
+        "deadline_miss_pct": 0.6,
+        "mean_tpot_ms": 11.907,
+        "p99_tpot_ms": 15.678
+      },
+      "20": {
+        "n_queries": 50,
+        "deadline_ms": 20,
+        "n_correct": 15,
+        "n_scored": 23,
+        "accuracy": 65.2,
+        "parseable_pct": 46.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 11.851,
+        "p99_tpot_ms": 15.47
+      },
+      "22": {
+        "n_queries": 50,
+        "deadline_ms": 22,
+        "n_correct": 15,
+        "n_scored": 23,
+        "accuracy": 65.2,
+        "parseable_pct": 46.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 11.785,
+        "p99_tpot_ms": 15.455
+      },
+      "25": {
+        "n_queries": 50,
+        "deadline_ms": 25,
+        "n_correct": 15,
+        "n_scored": 23,
+        "accuracy": 65.2,
+        "parseable_pct": 46.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 11.6,
+        "p99_tpot_ms": 13.547
+      },
+      "30": {
+        "n_queries": 50,
+        "deadline_ms": 30,
+        "n_correct": 15,
+        "n_scored": 23,
+        "accuracy": 65.2,
+        "parseable_pct": 46.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 11.63,
+        "p99_tpot_ms": 13.609
+      }
+    },
+    "kv_cached": {
+      "14": {
+        "n_queries": 50,
+        "deadline_ms": 14,
+        "n_correct": 13,
+        "n_scored": 26,
+        "accuracy": 50.0,
+        "parseable_pct": 52.0,
+        "deadline_miss_pct": 100.0,
+        "mean_tpot_ms": 16.332,
+        "p99_tpot_ms": 20.246
+      },
+      "16": {
+        "n_queries": 50,
+        "deadline_ms": 16,
+        "n_correct": 13,
+        "n_scored": 26,
+        "accuracy": 50.0,
+        "parseable_pct": 52.0,
+        "deadline_miss_pct": 48.4,
+        "mean_tpot_ms": 16.039,
+        "p99_tpot_ms": 19.711
+      },
+      "18": {
+        "n_queries": 50,
+        "deadline_ms": 18,
+        "n_correct": 13,
+        "n_scored": 26,
+        "accuracy": 50.0,
+        "parseable_pct": 52.0,
+        "deadline_miss_pct": 8.0,
+        "mean_tpot_ms": 16.368,
+        "p99_tpot_ms": 21.763
+      },
+      "20": {
+        "n_queries": 50,
+        "deadline_ms": 20,
+        "n_correct": 13,
+        "n_scored": 26,
+        "accuracy": 50.0,
+        "parseable_pct": 52.0,
+        "deadline_miss_pct": 4.3,
+        "mean_tpot_ms": 16.303,
+        "p99_tpot_ms": 22.653
+      },
+      "22": {
+        "n_queries": 50,
+        "deadline_ms": 22,
+        "n_correct": 13,
+        "n_scored": 26,
+        "accuracy": 50.0,
+        "parseable_pct": 52.0,
+        "deadline_miss_pct": 0.4,
+        "mean_tpot_ms": 16.06,
+        "p99_tpot_ms": 21.166
+      },
+      "25": {
+        "n_queries": 50,
+        "deadline_ms": 25,
+        "n_correct": 13,
+        "n_scored": 26,
+        "accuracy": 50.0,
+        "parseable_pct": 52.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 16.008,
+        "p99_tpot_ms": 20.16
+      },
+      "30": {
+        "n_queries": 50,
+        "deadline_ms": 30,
+        "n_correct": 13,
+        "n_scored": 26,
+        "accuracy": 50.0,
+        "parseable_pct": 52.0,
+        "deadline_miss_pct": 0.0,
+        "mean_tpot_ms": 15.937,
+        "p99_tpot_ms": 17.821
+      }
+    }
+  }
+}

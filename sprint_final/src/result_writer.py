@@ -40,3 +40,14 @@ def load_json(filename):
 def log_start(eid):   _logger.info(f"[{eid}] START"); return time.time()
 def log_success(eid, t0): _logger.info(f"[{eid}] SUCCESS elapsed={time.time()-t0:.1f}s")
 def log_failure(eid, t0, exc): _logger.error(f"[{eid}] FAILURE elapsed={time.time()-t0:.1f}s error={exc}")
+
+
+def write_results(data, output_path):
+    """Atomic JSON write to an absolute path (Path or str)."""
+    path = str(output_path)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(data, f, indent=2, default=str)
+    os.replace(tmp, path)
+    return path

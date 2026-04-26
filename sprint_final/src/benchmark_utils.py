@@ -11,6 +11,10 @@ New vs v1:
 import re
 import numpy as np
 
+# Module-level tokenizer cache so post-hoc replay can decode without an
+# explicit tokenizer kwarg (used by E06/E10/E13 which only carry queries).
+_LAST_TOKENIZER = None
+
 
 def extract_label(generated_text):
     text = generated_text.strip().lower()
@@ -120,21 +124,47 @@ def run_pubmed_queries(model, tokenizer, dataset, deadline_ms, max_new_tokens,
     return query_results, global_metrics
 
 
-def run_pubmed_queries_raw(model, tokenizer, dataset, max_new_tokens=15, device="cuda"):
+def run_pubmed_queries_raw(model, *args, max_new_tokens=15, device="cuda",
+                           deadline_ms=None, show_progress=False,
+                           forced_exit_layer=None):
     """
-    Run KV-cached forward pass on each query, collecting per-token raw data:
-      - l16_conf     : max softmax confidence at Layer 16
-      - l16_token_id : argmax token at Layer 16
-      - l22_token_id : argmax token at full 22-layer pass (oracle)
-      - time_ms      : CUDA-event-timed forward pass duration
+    Flexible-signature: collects per-token raw data from PubMedQA queries.
 
-    Used by E02 to replay different τ thresholds post-hoc without re-running the model.
+    Supported call shapes:
+      - run_pubmed_queries_raw(model, tokenizer, dataset, max_new_tokens=...)   (E02 legacy)
+      - run_pubmed_queries_raw(model, dataset, deadline_ms=..., max_new_tokens=...,
+                               show_progress=..., forced_exit_layer=...)        (E06/E10/E13)
+
+    Per-token data:
+      - l16_conf, l16_token_id, l22_token_id, time_ms, l16_agrees_l22
+
+    `deadline_ms` is recorded only — deadline filtering is done post-hoc.
+    `forced_exit_layer` (int) forces a partial-depth pass via forward(exit_layer=L);
+    when set, l22 logits are taken from the same partial pass (oracle == forced).
     """
     import torch
+    if len(args) == 2:
+        tokenizer, dataset = args
+    elif len(args) == 1:
+        dataset = args[0]
+        tokenizer = getattr(model, "tokenizer", None)
+        if tokenizer is None:
+            raise TypeError("model has no .tokenizer attribute and tokenizer not provided")
+    else:
+        raise TypeError(
+            f"run_pubmed_queries_raw expects (model, tokenizer, dataset) or "
+            f"(model, dataset); got {len(args)} positional args")
+
+    global _LAST_TOKENIZER
+    _LAST_TOKENIZER = tokenizer
+
     results = []
 
+    n_total = len(dataset)
     with torch.inference_mode():
         for i, item in enumerate(dataset):
+            if show_progress and (i % max(1, n_total // 20) == 0 or i == n_total - 1):
+                print(f"      query {i+1}/{n_total}", flush=True)
             context      = item["context"]["contexts"][0]
             question     = item["question"]
             ground_truth = item["final_decision"]
@@ -142,8 +172,11 @@ def run_pubmed_queries_raw(model, tokenizer, dataset, max_new_tokens=15, device=
 
             input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
 
-            # Warmup
-            _, _, wkv = model.forward_cached(input_ids)
+            # Warmup (skip past_kv when forced exit; we won't reuse the cache)
+            if forced_exit_layer is None:
+                _, _, _ = model.forward_cached(input_ids)
+            else:
+                model.forward_cached(input_ids, exit_layer=forced_exit_layer)
             torch.cuda.synchronize()
 
             token_data = []
@@ -155,7 +188,18 @@ def run_pubmed_queries_raw(model, tokenizer, dataset, max_new_tokens=15, device=
                 end_ev   = torch.cuda.Event(enable_timing=True)
                 start_ev.record()
 
-                if t == 0:
+                if forced_exit_layer is not None:
+                    # Forced-exit path: no KV cache reuse — repeat full prompt + generated
+                    if t == 0:
+                        cur_ids = input_ids
+                    else:
+                        cur_ids = torch.cat([
+                            input_ids,
+                            torch.tensor([generated], dtype=torch.long, device=device)
+                        ], dim=1)
+                    l16_logits, full_logits, past_kv = model.forward_cached(
+                        cur_ids, exit_layer=forced_exit_layer)
+                elif t == 0:
                     l16_logits, full_logits, past_kv = model.forward_cached(input_ids)
                 else:
                     new_tok = torch.tensor([[generated[-1]]], dtype=torch.long, device=device)
@@ -197,54 +241,96 @@ def run_pubmed_queries_raw(model, tokenizer, dataset, max_new_tokens=15, device=
     return results
 
 
-def apply_threshold_posthoc(raw_results, threshold, tokenizer, deadline_ms=45.0):
+def _decode_with_tokenizer(token_ids, tokenizer):
+    return tokenizer.decode(token_ids, skip_special_tokens=True)
+
+
+def apply_threshold_posthoc(raw_results, *args, **kwargs):
     """
-    Replay a threshold decision on raw token data collected by run_pubmed_queries_raw().
-    For each token: if l16_conf >= threshold → commit l16 token; else → commit l22 token.
-    Returns global_metrics dict.
+    Flexible-signature wrapper.
+
+    Legacy (E02): apply_threshold_posthoc(raw_results, threshold, tokenizer, deadline_ms=45.0)
+    New (E06/E10/E13): apply_threshold_posthoc(raw_results, queries, tau=..., deadline_ms=...,
+                                                n_bootstrap=...)
+
+    Both shapes share the same per-token replay; the new shape additionally returns
+    `correct_flags` and `exit_rate_pct` / `miss_rate_pct` / `mean_tpot_ms` / `p99_tpot_ms`.
     """
+    # ── Decide call shape ───────────────────────────────────────────────────
+    if args and isinstance(args[0], (int, float)):
+        threshold   = float(args[0])
+        tokenizer   = args[1] if len(args) > 1 else kwargs.get("tokenizer")
+        deadline_ms = args[2] if len(args) > 2 else kwargs.get("deadline_ms", 45.0)
+        queries     = None
+    else:
+        queries     = args[0] if args else kwargs.get("queries")
+        threshold   = float(kwargs.get("tau", kwargs.get("threshold", 0.55)))
+        deadline_ms = float(kwargs.get("deadline_ms", 45.0))
+        tokenizer   = kwargs.get("tokenizer")
+
+    if tokenizer is None:
+        tokenizer = _LAST_TOKENIZER
+
     n_correct = n_scored = 0
     all_tpot  = []
     all_miss  = []
+    correct_flags = []
+    n_l16_tokens = 0
+    n_tokens = 0
 
     for q in raw_results:
         generated_ids = []
         for td in q["token_data"]:
             if td["l16_conf"] >= threshold:
                 tok_id = td["l16_token_id"]
+                n_l16_tokens += 1
             else:
                 tok_id = td["l22_token_id"]
             generated_ids.append(tok_id)
             all_tpot.append(td["time_ms"])
             all_miss.append(td["time_ms"] > deadline_ms)
+            n_tokens += 1
 
-        generated_text = tokenizer.decode(generated_ids, skip_special_tokens=True)
-        predicted      = extract_label(generated_text)
+        # Decode + score
+        if tokenizer is not None:
+            generated_text = _decode_with_tokenizer(generated_ids, tokenizer)
+            predicted = extract_label(generated_text)
+        else:
+            predicted = "unknown"
+
         if predicted != "unknown":
             n_scored += 1
-            if predicted == q["ground_truth"]:
+            is_correct = (predicted == q["ground_truth"])
+            if is_correct:
                 n_correct += 1
+            correct_flags.append(bool(is_correct))
 
     mean_tpot = float(np.mean(all_tpot)) if all_tpot else 0.0
-    n_tokens  = len(all_tpot)
-
-    n_l16 = sum(
-        1 for q in raw_results for td in q["token_data"]
-        if td["l16_conf"] >= threshold
-    )
+    p99_tpot  = float(np.percentile(all_tpot, 99)) if all_tpot else 0.0
+    miss_rate_pct = 100.0 * sum(all_miss) / max(1, n_tokens)
+    exit_rate_pct = 100.0 * n_l16_tokens / max(1, n_tokens)
+    accuracy_pct  = (100.0 * n_correct / n_scored) if n_scored > 0 else 0.0
 
     return {
         "threshold":           threshold,
+        "tau":                 threshold,
         "deadline_ms":         deadline_ms,
         "n_queries":           len(raw_results),
         "n_correct":           n_correct,
         "n_scored":            n_scored,
-        "accuracy":            round(100.0 * n_correct / n_scored, 1) if n_scored > 0 else None,
-        "early_exit_pct":      round(100.0 * n_l16 / max(1, n_tokens), 1),
-        "deadline_miss_pct":   round(100.0 * sum(all_miss) / max(1, n_tokens), 1),
+        "accuracy":            round(accuracy_pct, 1),
+        "correct_flags":       correct_flags,
+        # legacy field names
+        "early_exit_pct":      round(exit_rate_pct, 1),
+        "deadline_miss_pct":   round(miss_rate_pct, 1),
         "global_mean_tpot_ms": round(mean_tpot, 3),
-        "global_p99_tpot_ms":  round(float(np.percentile(all_tpot, 99)), 3) if all_tpot else 0.0,
+        "global_p99_tpot_ms":  round(p99_tpot, 3),
         "throughput_tps":      round(1000.0 / mean_tpot, 2) if mean_tpot > 0 else None,
+        # new field names expected by E06/E10/E13
+        "exit_rate_pct":       round(exit_rate_pct, 1),
+        "miss_rate_pct":       round(miss_rate_pct, 1),
+        "mean_tpot_ms":        round(mean_tpot, 3),
+        "p99_tpot_ms":         round(p99_tpot, 3),
     }
 
 

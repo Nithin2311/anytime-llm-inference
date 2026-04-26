@@ -1,0 +1,252 @@
+{
+  "experiment": "e09_capacity_empirical",
+  "deadline_ms": 45.0,
+  "seq_len": 128,
+  "n_tokens_each": 30,
+  "n_trials": 5,
+  "n_max_empirical": 1,
+  "n_max_theory": 0,
+  "p99_single_ms": 114.047,
+  "results": {
+    "1": {
+      "n_concurrent": 1,
+      "effective_deadline_ms": 45.0,
+      "avg_p99_ms": 114.047,
+      "avg_miss_rate_pct": 0.67,
+      "avg_throughput_tps": 46.01,
+      "trials": [
+        {
+          "trial": 0,
+          "mean_ms": 39.602,
+          "p99_ms": 469.514,
+          "max_ms": 652.39,
+          "miss_count": 1,
+          "miss_rate_pct": 3.33,
+          "throughput_tps": 25.22,
+          "wall_time_s": 1.19
+        },
+        {
+          "trial": 1,
+          "mean_ms": 19.628,
+          "p99_ms": 28.94,
+          "max_ms": 31.464,
+          "miss_count": 0,
+          "miss_rate_pct": 0.0,
+          "throughput_tps": 50.84,
+          "wall_time_s": 0.59
+        },
+        {
+          "trial": 2,
+          "mean_ms": 19.396,
+          "p99_ms": 24.774,
+          "max_ms": 25.581,
+          "miss_count": 0,
+          "miss_rate_pct": 0.0,
+          "throughput_tps": 51.42,
+          "wall_time_s": 0.58
+        },
+        {
+          "trial": 3,
+          "mean_ms": 20.237,
+          "p99_ms": 23.745,
+          "max_ms": 23.804,
+          "miss_count": 0,
+          "miss_rate_pct": 0.0,
+          "throughput_tps": 49.29,
+          "wall_time_s": 0.61
+        },
+        {
+          "trial": 4,
+          "mean_ms": 18.732,
+          "p99_ms": 23.26,
+          "max_ms": 23.97,
+          "miss_count": 0,
+          "miss_rate_pct": 0.0,
+          "throughput_tps": 53.28,
+          "wall_time_s": 0.56
+        }
+      ],
+      "schedulable": true
+    },
+    "2": {
+      "n_concurrent": 2,
+      "effective_deadline_ms": 22.5,
+      "avg_p99_ms": 24.055,
+      "avg_miss_rate_pct": 1.67,
+      "avg_throughput_tps": 52.88,
+      "trials": [
+        {
+          "trial": 0,
+          "mean_ms": 19.164,
+          "p99_ms": 29.937,
+          "max_ms": 30.478,
+          "miss_count": 3,
+          "miss_rate_pct": 5.0,
+          "throughput_tps": 52.07,
+          "wall_time_s": 1.15
+        },
+        {
+          "trial": 1,
+          "mean_ms": 18.367,
+          "p99_ms": 21.362,
+          "max_ms": 22.422,
+          "miss_count": 0,
+          "miss_rate_pct": 0.0,
+          "throughput_tps": 54.34,
+          "wall_time_s": 1.1
+        },
+        {
+          "trial": 2,
+          "mean_ms": 18.416,
+          "p99_ms": 22.145,
+          "max_ms": 22.377,
+          "miss_count": 0,
+          "miss_rate_pct": 0.0,
+          "throughput_tps": 54.18,
+          "wall_time_s": 1.11
+        },
+        {
+          "trial": 3,
+          "mean_ms": 18.97,
+          "p99_ms": 25.211,
+          "max_ms": 26.948,
+          "miss_count": 2,
+          "miss_rate_pct": 3.33,
+          "throughput_tps": 52.61,
+          "wall_time_s": 1.14
+        },
+        {
+          "trial": 4,
+          "mean_ms": 19.483,
+          "p99_ms": 21.618,
+          "max_ms": 22.428,
+          "miss_count": 0,
+          "miss_rate_pct": 0.0,
+          "throughput_tps": 51.22,
+          "wall_time_s": 1.17
+        }
+      ],
+      "schedulable": false
+    },
+    "3": {
+      "n_concurrent": 3,
+      "effective_deadline_ms": 15.0,
+      "avg_p99_ms": 23.774,
+      "avg_miss_rate_pct": 100.0,
+      "avg_throughput_tps": 53.06,
+      "trials": [
+        {
+          "trial": 0,
+          "mean_ms": 18.606,
+          "p99_ms": 22.302,
+          "max_ms": 24.777,
+          "miss_count": 90,
+          "miss_rate_pct": 100.0,
+          "throughput_tps": 53.64,
+          "wall_time_s": 1.68
+        },
+        {
+          "trial": 1,
+          "mean_ms": 19.028,
+          "p99_ms": 24.093,
+          "max_ms": 26.645,
+          "miss_count": 90,
+          "miss_rate_pct": 100.0,
+          "throughput_tps": 52.44,
+          "wall_time_s": 1.72
+        },
+        {
+          "trial": 2,
+          "mean_ms": 19.126,
+          "p99_ms": 23.966,
+          "max_ms": 24.09,
+          "miss_count": 90,
+          "miss_rate_pct": 100.0,
+          "throughput_tps": 52.18,
+          "wall_time_s": 1.72
+        },
+        {
+          "trial": 3,
+          "mean_ms": 18.886,
+          "p99_ms": 24.175,
+          "max_ms": 24.237,
+          "miss_count": 90,
+          "miss_rate_pct": 100.0,
+          "throughput_tps": 52.85,
+          "wall_time_s": 1.7
+        },
+        {
+          "trial": 4,
+          "mean_ms": 18.424,
+          "p99_ms": 24.336,
+          "max_ms": 25.795,
+          "miss_count": 90,
+          "miss_rate_pct": 100.0,
+          "throughput_tps": 54.17,
+          "wall_time_s": 1.66
+        }
+      ],
+      "schedulable": false
+    },
+    "4": {
+      "n_concurrent": 4,
+      "effective_deadline_ms": 11.25,
+      "avg_p99_ms": 23.876,
+      "avg_miss_rate_pct": 100.0,
+      "avg_throughput_tps": 52.73,
+      "trials": [
+        {
+          "trial": 0,
+          "mean_ms": 18.432,
+          "p99_ms": 23.252,
+          "max_ms": 24.778,
+          "miss_count": 120,
+          "miss_rate_pct": 100.0,
+          "throughput_tps": 54.15,
+          "wall_time_s": 2.22
+        },
+        {
+          "trial": 1,
+          "mean_ms": 18.586,
+          "p99_ms": 24.373,
+          "max_ms": 24.53,
+          "miss_count": 120,
+          "miss_rate_pct": 100.0,
+          "throughput_tps": 53.69,
+          "wall_time_s": 2.24
+        },
+        {
+          "trial": 2,
+          "mean_ms": 19.565,
+          "p99_ms": 23.642,
+          "max_ms": 25.704,
+          "miss_count": 120,
+          "miss_rate_pct": 100.0,
+          "throughput_tps": 51.0,
+          "wall_time_s": 2.35
+        },
+        {
+          "trial": 3,
+          "mean_ms": 19.514,
+          "p99_ms": 24.148,
+          "max_ms": 24.521,
+          "miss_count": 120,
+          "miss_rate_pct": 100.0,
+          "throughput_tps": 51.14,
+          "wall_time_s": 2.35
+        },
+        {
+          "trial": 4,
+          "mean_ms": 18.604,
+          "p99_ms": 23.967,
+          "max_ms": 25.239,
+          "miss_count": 120,
+          "miss_rate_pct": 100.0,
+          "throughput_tps": 53.65,
+          "wall_time_s": 2.24
+        }
+      ],
+      "schedulable": false
+    }
+  }
+}

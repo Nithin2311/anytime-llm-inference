@@ -1,0 +1,69 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E13  Dense layer ablation L5-L22 (every integer L12-L20)
+     seq=128, N_timing=500, N_queries=100
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  34%|███▍      | 69/201 [00:00<00:00, 679.67it/s]Loading weights:  68%|██████▊   | 137/201 [00:00<00:00, 669.87it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 675.21it/s]
+/usr/local/lib/python3.11/dist-packages/numpy/_core/fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/usr/local/lib/python3.11/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/usr/local/lib/python3.11/dist-packages/numpy/_core/fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/usr/local/lib/python3.11/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/usr/local/lib/python3.11/dist-packages/numpy/_core/fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/usr/local/lib/python3.11/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/usr/local/lib/python3.11/dist-packages/numpy/_core/fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/usr/local/lib/python3.11/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 100 PubMedQA queries ...
+
+[2/3] Profiling 12 exit layers ...
+
+  [1/12] L5
+    P99=5.17ms  acc=nan%  miss=0.0%
+
+  [2/12] L11
+    P99=10.64ms  acc=nan%  miss=0.0%
+
+  [3/12] L12
+    P99=11.42ms  acc=nan%  miss=0.0%
+
+  [4/12] L13
+    P99=12.62ms  acc=nan%  miss=0.0%
+
+  [5/12] L14
+    P99=12.82ms  acc=100.0%  miss=0.0%
+
+  [6/12] L15
+    P99=13.99ms  acc=0.0%  miss=0.0%
+
+  [7/12] L16
+    P99=14.23ms  acc=50.0%  miss=0.0%
+
+  [8/12] L17
+    P99=14.62ms  acc=56.9%  miss=0.0%
+
+  [9/12] L18
+    P99=16.92ms  acc=57.6%  miss=0.0%
+
+  [10/12] L19
+    P99=16.97ms  acc=57.3%  miss=0.0%
+
+  [11/12] L20
+    P99=16.54ms  acc=45.8%  miss=0.0%
+
+  [12/12] Full(22)
+    P99=19.41ms  acc=47.4%  miss=0.0%
+
+Figure saved: /root/anytime-llm-inference/sprint_final/results/dense_ablation.png
+LaTeX: /root/anytime-llm-inference/sprint_final/results/table_dense_ablation.tex
+PASS: E13 complete
+

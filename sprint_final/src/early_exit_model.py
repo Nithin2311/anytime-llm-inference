@@ -88,7 +88,7 @@ class EarlyExitTinyLlama(torch.nn.Module):
         return logits, None
 
 
-    def forward_cached(self, input_ids, past_key_values=None):
+    def forward_cached(self, input_ids, past_key_values=None, exit_layer=None):
         """
         Single-pass KV-cached forward returning both intermediate and full logits.
 
@@ -138,6 +138,14 @@ class EarlyExitTinyLlama(torch.nn.Module):
             full_logits:      FloatTensor [batch, seq_len, vocab]
             past_key_values:  Updated KV cache; pass back on the next call.
         """
+        # Profiling shortcut: callers use exit_layer to time a partial-depth
+        # pass without engaging the KV-cached full-depth machinery. Delegate to
+        # the explicit per-layer forward() and reshape the return tuple to
+        # (l_exit_logits, l_exit_logits, None) for signature compatibility.
+        if exit_layer is not None:
+            logits, _ = self.forward(input_ids, exit_layer=exit_layer, use_cache=False)
+            return logits, logits, None
+
         captured = {}
 
         def _hook(module, input, output):
@@ -193,3 +201,11 @@ if __name__ == "__main__":
             print(f"  {name}: top token = '{word}' | conf = {conf.item():.4f}")
 
     print("\nVerification complete.")
+
+
+class EarlyExitModel(EarlyExitTinyLlama):
+    """Compatibility alias accepting `device` kwarg used by E06–E13."""
+
+    def __init__(self, device="cuda", model_name="TinyLlama/TinyLlama-1.1B-Chat-v1.0", **kwargs):
+        super().__init__(model_name=model_name)
+        self.device = device

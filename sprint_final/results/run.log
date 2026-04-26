@@ -1,0 +1,1031 @@
+═══════════════════════════════════════════════════════════
+ Sprint Final  —  Full Experiment Run
+ Started: Sun Apr 26 18:42:37 UTC 2026
+ GPU: NVIDIA A100-SXM4-80GB
+ RESUME=1  ONLY=all  DRY=0
+═══════════════════════════════════════════════════════════
+  [SKIP] e00_wcet_reprofiling  (already done)
+  [SKIP] e01_evt_gev_ad  (already done)
+  [SKIP] e02_threshold_crossval  (already done)
+  [SKIP] e03_forced_exit_extended  (already done)
+  [SKIP] e04_pot_sensitivity  (already done)
+  [SKIP] e05_deadline_sweep_comparison  (already done)
+
+──────────────────────────────────────────────────────────
+  Running: e06_accuracy_large
+  500-query PubMedQA accuracy + conf histogram
+  Sun Apr 26 18:42:37 UTC 2026
+  Attempt 1/3 ...
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e06_accuracy_large.py", line 28, in <module>
+    from result_writer import write_results
+ImportError: cannot import name 'write_results' from 'result_writer' (/root/anytime-llm-inference/sprint_final/src/result_writer.py)
+  Attempt 1 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 2/3 ...
+============================================================
+E06  Large-scale PubMedQA accuracy evaluation
+     N=500 queries, τ=0.55, D=45.0ms
+============================================================
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e06_accuracy_large.py", line 202, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e06_accuracy_large.py", line 50, in main
+    from early_exit_model import EarlyExitModel
+ImportError: cannot import name 'EarlyExitModel' from 'early_exit_model' (/root/anytime-llm-inference/sprint_final/src/early_exit_model.py)
+  Attempt 2 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 3/3 ...
+============================================================
+E06  Large-scale PubMedQA accuracy evaluation
+     N=500 queries, τ=0.55, D=45.0ms
+============================================================
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e06_accuracy_large.py", line 202, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e06_accuracy_large.py", line 50, in main
+    from early_exit_model import EarlyExitModel
+ImportError: cannot import name 'EarlyExitModel' from 'early_exit_model' (/root/anytime-llm-inference/sprint_final/src/early_exit_model.py)
+  Attempt 3 failed (exit 1)
+  [FAIL] e06_accuracy_large  after 3 attempts — see logs/e06_accuracy_large.log
+
+──────────────────────────────────────────────────────────
+  Running: e07_wcet_ci_gev
+  pWCET bootstrap CI, Gumbel vs GEV
+  Sun Apr 26 18:43:52 UTC 2026
+  Attempt 1/3 ...
+============================================================
+E07  WCET bootstrap CI: Gumbel vs GEV comparison
+     N=1000 samples/cell, bootstrap=1000
+============================================================
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e07_wcet_ci_gev.py", line 202, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e07_wcet_ci_gev.py", line 80, in main
+    from early_exit_model import EarlyExitModel
+ImportError: cannot import name 'EarlyExitModel' from 'early_exit_model' (/root/anytime-llm-inference/sprint_final/src/early_exit_model.py)
+  Attempt 1 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 2/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E07  WCET bootstrap CI: Gumbel vs GEV comparison
+     N=1000 samples/cell, bootstrap=1000
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  36%|███▋      | 73/201 [00:00<00:00, 726.24it/s]Loading weights:  74%|███████▍  | 149/201 [00:00<00:00, 745.64it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 760.89it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  [1/16] seq=64, layer=5 ...
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e07_wcet_ci_gev.py", line 202, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e07_wcet_ci_gev.py", line 95, in main
+    samples = profile_cell(model, seq, layer, N_SAMPLES, N_WARMUP)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/anytime-llm-inference/sprint_final/experiments/e07_wcet_ci_gev.py", line 66, in profile_cell
+    model.forward_cached(dummy, exit_layer=exit_layer)
+TypeError: EarlyExitTinyLlama.forward_cached() got an unexpected keyword argument 'exit_layer'
+  Attempt 2 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 3/3 ...
+============================================================
+E07  WCET bootstrap CI: Gumbel vs GEV comparison
+     N=1000 samples/cell, bootstrap=1000
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  24%|██▍       | 49/201 [00:00<00:00, 483.68it/s]Loading weights:  51%|█████     | 103/201 [00:00<00:00, 505.31it/s]Loading weights:  77%|███████▋  | 154/201 [00:00<00:00, 504.33it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 509.43it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  [1/16] seq=64, layer=5 ...
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e07_wcet_ci_gev.py", line 202, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e07_wcet_ci_gev.py", line 95, in main
+    samples = profile_cell(model, seq, layer, N_SAMPLES, N_WARMUP)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/anytime-llm-inference/sprint_final/experiments/e07_wcet_ci_gev.py", line 66, in profile_cell
+    model.forward_cached(dummy, exit_layer=exit_layer)
+TypeError: EarlyExitTinyLlama.forward_cached() got an unexpected keyword argument 'exit_layer'
+  Attempt 3 failed (exit 1)
+  [FAIL] e07_wcet_ci_gev  after 3 attempts — see logs/e07_wcet_ci_gev.log
+
+──────────────────────────────────────────────────────────
+  Running: e08_sample_independence
+  Ljung-Box IID + ACF autocorrelation
+  Sun Apr 26 18:45:16 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E08  WCET sample independence: Ljung-Box + ACF
+     N=1000, max_lag=40
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  34%|███▍      | 68/201 [00:00<00:00, 675.46it/s]Loading weights:  68%|██████▊   | 136/201 [00:00<00:00, 668.64it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 651.65it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  [1/9] seq=64, layer=11 ...
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e08_sample_independence.py", line 195, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e08_sample_independence.py", line 100, in main
+    samples = profile_sequence(model, seq, layer, N_SAMPLES, N_WARMUP)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/anytime-llm-inference/sprint_final/experiments/e08_sample_independence.py", line 60, in profile_sequence
+    model.forward_cached(dummy, exit_layer=exit_layer)
+TypeError: EarlyExitTinyLlama.forward_cached() got an unexpected keyword argument 'exit_layer'
+  Attempt 1 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 2/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E08  WCET sample independence: Ljung-Box + ACF
+     N=1000, max_lag=40
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  33%|███▎      | 67/201 [00:00<00:00, 658.82it/s]Loading weights:  66%|██████▌   | 133/201 [00:00<00:00, 616.57it/s]Loading weights:  97%|█████████▋| 195/201 [00:00<00:00, 606.64it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 625.90it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  [1/9] seq=64, layer=11 ...
+    LB p-value=0.0  independent=False  ACF outside band: 6/40
+
+  [2/9] seq=64, layer=16 ...
+    LB p-value=0.0  independent=False  ACF outside band: 40/40
+
+  [3/9] seq=64, layer=None ...
+    LB p-value=0.0  independent=False  ACF outside band: 40/40
+
+  [4/9] seq=128, layer=11 ...
+    LB p-value=0.0  independent=False  ACF outside band: 9/40
+
+  [5/9] seq=128, layer=16 ...
+    LB p-value=0.0  independent=False  ACF outside band: 5/40
+
+  [6/9] seq=128, layer=None ...
+    LB p-value=0.0  independent=False  ACF outside band: 26/40
+
+  [7/9] seq=512, layer=11 ...
+    LB p-value=0.0  independent=False  ACF outside band: 12/40
+
+  [8/9] seq=512, layer=16 ...
+    LB p-value=0.0  independent=False  ACF outside band: 40/40
+
+  [9/9] seq=512, layer=None ...
+    LB p-value=0.0  independent=False  ACF outside band: 40/40
+
+Figure saved: /root/anytime-llm-inference/sprint_final/results/sample_independence.png
+LaTeX table: /root/anytime-llm-inference/sprint_final/results/table_independence.tex
+PASS: E08 complete
+
+  [PASS] e08_sample_independence  (179s, attempt 2)
+
+──────────────────────────────────────────────────────────
+  Running: e09_capacity_empirical
+  Empirical capacity N=1..4 requests
+  Sun Apr 26 18:48:15 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E09  Empirical multi-request capacity
+     D=45.0ms, seq=128, 30 tokens/request
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  24%|██▍       | 49/201 [00:00<00:00, 485.56it/s]Loading weights:  52%|█████▏    | 104/201 [00:00<00:00, 511.16it/s]Loading weights:  79%|███████▉  | 159/201 [00:00<00:00, 519.60it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 526.30it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  N_concurrent=1  (effective D/token = 45.0ms)
+    trial 0: p99=469.51ms miss=3.3% throughput=25.2t/s
+    trial 1: p99=28.94ms miss=0.0% throughput=50.8t/s
+    trial 2: p99=24.77ms miss=0.0% throughput=51.4t/s
+    trial 3: p99=23.75ms miss=0.0% throughput=49.3t/s
+    trial 4: p99=23.26ms miss=0.0% throughput=53.3t/s
+    AVG: p99=114.05ms  miss=0.7%  schedulable=YES
+
+  N_concurrent=2  (effective D/token = 22.5ms)
+    trial 0: p99=29.94ms miss=5.0% throughput=52.1t/s
+    trial 1: p99=21.36ms miss=0.0% throughput=54.3t/s
+    trial 2: p99=22.14ms miss=0.0% throughput=54.2t/s
+    trial 3: p99=25.21ms miss=3.3% throughput=52.6t/s
+    trial 4: p99=21.62ms miss=0.0% throughput=51.2t/s
+    AVG: p99=24.05ms  miss=1.7%  schedulable=NO
+
+  N_concurrent=3  (effective D/token = 15.0ms)
+    trial 0: p99=22.30ms miss=100.0% throughput=53.6t/s
+    trial 1: p99=24.09ms miss=100.0% throughput=52.4t/s
+    trial 2: p99=23.97ms miss=100.0% throughput=52.2t/s
+    trial 3: p99=24.18ms miss=100.0% throughput=52.9t/s
+    trial 4: p99=24.34ms miss=100.0% throughput=54.2t/s
+    AVG: p99=23.77ms  miss=100.0%  schedulable=NO
+
+  N_concurrent=4  (effective D/token = 11.2ms)
+    trial 0: p99=23.25ms miss=100.0% throughput=54.1t/s
+    trial 1: p99=24.37ms miss=100.0% throughput=53.7t/s
+    trial 2: p99=23.64ms miss=100.0% throughput=51.0t/s
+    trial 3: p99=24.15ms miss=100.0% throughput=51.1t/s
+    trial 4: p99=23.97ms miss=100.0% throughput=53.6t/s
+    AVG: p99=23.88ms  miss=100.0%  schedulable=NO
+
+Empirical N_max = 1
+Theory N_max    = floor(45.0/114.05) = 0
+Figure saved: /root/anytime-llm-inference/sprint_final/results/capacity_empirical.png
+LaTeX: /root/anytime-llm-inference/sprint_final/results/table_capacity.tex
+PASS: E09 complete
+
+  [PASS] e09_capacity_empirical  (36s, attempt 1)
+
+──────────────────────────────────────────────────────────
+  Running: e10_tight_deadline
+  Tight deadline stress D=14-30ms
+  Sun Apr 26 18:48:51 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E10  Tight-deadline regime (D=14-30ms)
+     N=200 queries, τ=0.55
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  36%|███▌      | 72/201 [00:00<00:00, 714.66it/s]Loading weights:  72%|███████▏  | 144/201 [00:00<00:00, 651.87it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 668.33it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 200 PubMedQA queries ...
+
+[2/3] Collecting raw token data (D=45ms collection pass) ...
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e10_tight_deadline.py", line 148, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e10_tight_deadline.py", line 51, in main
+    raw_tokens = run_pubmed_queries_raw(
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_pubmed_queries_raw() got an unexpected keyword argument 'deadline_ms'
+  Attempt 1 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 2/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E10  Tight-deadline regime (D=14-30ms)
+     N=200 queries, τ=0.55
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  18%|█▊        | 37/201 [00:00<00:00, 366.37it/s]Loading weights:  45%|████▍     | 90/201 [00:00<00:00, 462.12it/s]Loading weights:  72%|███████▏  | 145/201 [00:00<00:00, 501.78it/s]Loading weights: 100%|█████████▉| 200/201 [00:00<00:00, 520.33it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 500.40it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 200 PubMedQA queries ...
+
+[2/3] Collecting raw token data (D=45ms collection pass) ...
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e10_tight_deadline.py", line 148, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e10_tight_deadline.py", line 51, in main
+    raw_tokens = run_pubmed_queries_raw(
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_pubmed_queries_raw() got an unexpected keyword argument 'deadline_ms'
+  Attempt 2 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 3/3 ...
+============================================================
+E10  Tight-deadline regime (D=14-30ms)
+     N=200 queries, τ=0.55
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  20%|██        | 41/201 [00:00<00:00, 405.22it/s]Loading weights:  47%|████▋     | 95/201 [00:00<00:00, 480.20it/s]Loading weights:  74%|███████▎  | 148/201 [00:00<00:00, 499.75it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 499.78it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 200 PubMedQA queries ...
+
+[2/3] Collecting raw token data (D=45ms collection pass) ...
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e10_tight_deadline.py", line 148, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e10_tight_deadline.py", line 51, in main
+    raw_tokens = run_pubmed_queries_raw(
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_pubmed_queries_raw() got an unexpected keyword argument 'deadline_ms'
+  Attempt 3 failed (exit 1)
+  [FAIL] e10_tight_deadline  after 3 attempts — see logs/e10_tight_deadline.log
+
+──────────────────────────────────────────────────────────
+  Running: e11_thermal_a100
+  A100 thermal stability 30-min soak
+  Sun Apr 26 18:50:23 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E11  A100 thermal stability (1000 consecutive tokens)
+     seq=128
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 76/201 [00:00<00:00, 748.05it/s]Loading weights:  75%|███████▌  | 151/201 [00:00<00:00, 723.03it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 701.81it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/2] Warmup (20 runs) ...
+[2/2] Sustained run (1000 tokens) ...
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e11_thermal_a100.py", line 174, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e11_thermal_a100.py", line 91, in main
+    print(f"  token {i+1:>4}/{N_TOKENS}  "
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unsupported format string passed to NoneType.__format__
+  Attempt 1 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 2/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E11  A100 thermal stability (1000 consecutive tokens)
+     seq=128
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  34%|███▍      | 68/201 [00:00<00:00, 674.61it/s]Loading weights:  68%|██████▊   | 136/201 [00:00<00:00, 646.94it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 691.75it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/2] Warmup (20 runs) ...
+[2/2] Sustained run (1000 tokens) ...
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e11_thermal_a100.py", line 174, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e11_thermal_a100.py", line 91, in main
+    print(f"  token {i+1:>4}/{N_TOKENS}  "
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unsupported format string passed to NoneType.__format__
+  Attempt 2 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 3/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E11  A100 thermal stability (1000 consecutive tokens)
+     seq=128
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  34%|███▍      | 69/201 [00:00<00:00, 668.21it/s]Loading weights:  69%|██████▉   | 139/201 [00:00<00:00, 684.01it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 668.64it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/2] Warmup (20 runs) ...
+[2/2] Sustained run (1000 tokens) ...
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e11_thermal_a100.py", line 174, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e11_thermal_a100.py", line 91, in main
+    print(f"  token {i+1:>4}/{N_TOKENS}  "
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unsupported format string passed to NoneType.__format__
+  Attempt 3 failed (exit 1)
+  [FAIL] e11_thermal_a100  after 3 attempts — see logs/e11_thermal_a100.log
+
+──────────────────────────────────────────────────────────
+  Running: e12_exit_head_training
+  Exit-head MLP training on L16 hiddens
+  Sun Apr 26 18:51:56 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E12  ExitHead MLP training on L16 hidden states
+     train=300 queries, eval=100 queries
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 76/201 [00:00<00:00, 744.44it/s]Loading weights:  75%|███████▌  | 151/201 [00:00<00:00, 659.11it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 666.74it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/4] Loading 400 PubMedQA queries ...
+      Train: 300  Eval: 100
+      Train pairs: 300  Eval pairs: 100
+
+[2/4] Collecting L16 hidden states (300 prompts) ...
+      Collected in 5.9s  hiddens.shape=(300, 2048)
+
+[3/4] Training ExitHead (30 epochs) ...
+    Epoch   5/30  train=55.4%  val=51.7%
+    Epoch  10/30  train=63.3%  val=46.7%
+    Epoch  15/30  train=67.1%  val=46.7%
+    Epoch  20/30  train=73.3%  val=41.7%
+    Epoch  25/30  train=77.9%  val=41.7%
+    Epoch  30/30  train=79.6%  val=35.0%
+      Training done in 0.6s
+      Final val accuracy: 35.0%
+      Checkpoint saved: /root/anytime-llm-inference/sprint_final/results/exit_head.pt
+
+[4/4] Evaluating on 100 held-out prompts ...
+
+──────────────────────────────────────────────────
+  Exit rate          : 79.0%
+  Oracle agreement   : 21.0%
+  Accuracy           : 50.6%
+  N scored           : 79
+──────────────────────────────────────────────────
+
+Figure saved: /root/anytime-llm-inference/sprint_final/results/exit_head_training.png
+PASS: E12 complete
+
+  [PASS] e12_exit_head_training  (20s, attempt 1)
+
+──────────────────────────────────────────────────────────
+  Running: e13_dense_ablation
+  Dense layer ablation L12-L20
+  Sun Apr 26 18:52:16 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E13  Dense layer ablation L5-L22 (every integer L12-L20)
+     seq=128, N_timing=500, N_queries=100
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 76/201 [00:00<00:00, 739.53it/s]Loading weights:  75%|███████▍  | 150/201 [00:00<00:00, 667.48it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 683.93it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 100 PubMedQA queries ...
+
+[2/3] Profiling 12 exit layers ...
+
+  [1/12] L5
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e13_dense_ablation.py", line 201, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e13_dense_ablation.py", line 97, in main
+    raw_tokens = run_pubmed_queries_raw(
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_pubmed_queries_raw() got an unexpected keyword argument 'deadline_ms'
+  Attempt 1 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 2/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E13  Dense layer ablation L5-L22 (every integer L12-L20)
+     seq=128, N_timing=500, N_queries=100
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  36%|███▌      | 72/201 [00:00<00:00, 718.27it/s]Loading weights:  72%|███████▏  | 144/201 [00:00<00:00, 670.55it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 670.71it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 100 PubMedQA queries ...
+
+[2/3] Profiling 12 exit layers ...
+
+  [1/12] L5
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e13_dense_ablation.py", line 201, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e13_dense_ablation.py", line 97, in main
+    raw_tokens = run_pubmed_queries_raw(
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_pubmed_queries_raw() got an unexpected keyword argument 'deadline_ms'
+  Attempt 2 failed (exit 1)
+  Retrying in 30s  (GPU cache clear) ...
+  Attempt 3/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E13  Dense layer ablation L5-L22 (every integer L12-L20)
+     seq=128, N_timing=500, N_queries=100
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  47%|████▋     | 95/201 [00:00<00:00, 938.93it/s]Loading weights:  97%|█████████▋| 195/201 [00:00<00:00, 963.67it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 977.65it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 100 PubMedQA queries ...
+
+[2/3] Profiling 12 exit layers ...
+
+  [1/12] L5
+Traceback (most recent call last):
+  File "/root/anytime-llm-inference/sprint_final/experiments/e13_dense_ablation.py", line 201, in <module>
+    main()
+  File "/root/anytime-llm-inference/sprint_final/experiments/e13_dense_ablation.py", line 97, in main
+    raw_tokens = run_pubmed_queries_raw(
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_pubmed_queries_raw() got an unexpected keyword argument 'deadline_ms'
+  Attempt 3 failed (exit 1)
+  [FAIL] e13_dense_ablation  after 3 attempts — see logs/e13_dense_ablation.log
+
+──────────────────────────────────────────────────────────
+  Generating consolidated plots ...
+Generating plots from: results
+  saved wcet_heatmap.png
+  saved wcet_cdf.png
+  saved pot_sensitivity.png
+  saved acf_seq128.png
+  saved capacity_miss.png
+  saved capacity_throughput.png
+  saved exit_head_accuracy.png
+  saved exit_head_loss.png
+
+Done — 7 PNG files written to results
+  [PASS] plot_runner
+
+═══════════════════════════════════════════════════════════
+ Sprint Final complete
+ PASS=3  FAIL=5  SKIP=6  TIME=682s
+ Summary: results/SPRINT_SUMMARY.md
+═══════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════
+ Sprint Final  —  Full Experiment Run
+ Started: Sun Apr 26 18:56:19 UTC 2026
+ GPU: NVIDIA A100-SXM4-80GB
+ RESUME=1  ONLY=all  DRY=0
+═══════════════════════════════════════════════════════════
+  [SKIP] e00_wcet_reprofiling  (already done)
+  [SKIP] e01_evt_gev_ad  (already done)
+  [SKIP] e02_threshold_crossval  (already done)
+  [SKIP] e03_forced_exit_extended  (already done)
+  [SKIP] e04_pot_sensitivity  (already done)
+  [SKIP] e05_deadline_sweep_comparison  (already done)
+
+──────────────────────────────────────────────────────────
+  Running: e06_accuracy_large
+  500-query PubMedQA accuracy + conf histogram
+  Sun Apr 26 18:56:19 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E06  Large-scale PubMedQA accuracy evaluation
+     N=500 queries, τ=0.55, D=45.0ms
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 76/201 [00:00<00:00, 744.33it/s]Loading weights:  75%|███████▌  | 151/201 [00:00<00:00, 695.48it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 717.04it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/4] Loading 500 PubMedQA queries ...
+      Loaded 500 queries
+
+[2/4] Collecting raw confidence data (500 KV passes) ...
+      query 1/500
+      query 26/500
+      query 51/500
+      query 76/500
+      query 101/500
+      query 126/500
+      query 151/500
+      query 176/500
+      query 201/500
+      query 226/500
+      query 251/500
+      query 276/500
+      query 301/500
+      query 326/500
+      query 351/500
+      query 376/500
+      query 401/500
+      query 426/500
+      query 451/500
+      query 476/500
+      query 500/500
+      Done in 146.1s  (500 token records)
+
+[3/4] Post-hoc threshold replay τ=0.55 ...
+
+[4/4] Bootstrap CI (n_bootstrap=2000) ...
+
+──────────────────────────────────────────────────
+  Queries total        : 500
+  Scoreable (yes/no/maybe): 240
+  Accuracy             : 54.6%
+  95% CI               : [48.3%, 60.8%]
+  CI width             : 12.5pp
+  Exit rate (τ=0.55)  : 8.5%
+  Deadline miss rate   : 0.0%
+──────────────────────────────────────────────────
+
+  Figure saved: /root/anytime-llm-inference/sprint_final/results/accuracy_large.png
+
+  L16 confidence distribution (0 tokens):
+    c >= 0.40: 0.00% of tokens
+    c >= 0.50: 0.00% of tokens
+    c >= 0.55: 0.00% of tokens
+    c >= 0.60: 0.00% of tokens
+    c >= 0.70: 0.00% of tokens
+    c >= 0.80: 0.00% of tokens
+    c >= 0.90: 0.00% of tokens
+  Confidence histogram saved: /root/anytime-llm-inference/sprint_final/results/confidence_distribution.png
+  LaTeX table: /root/anytime-llm-inference/sprint_final/results/table_accuracy_large.tex
+PASS: E06 complete
+
+  [PASS] e06_accuracy_large  (157s, attempt 1)
+
+──────────────────────────────────────────────────────────
+  Running: e07_wcet_ci_gev
+  pWCET bootstrap CI, Gumbel vs GEV
+  Sun Apr 26 18:58:56 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E07  WCET bootstrap CI: Gumbel vs GEV comparison
+     N=1000 samples/cell, bootstrap=1000
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 75/201 [00:00<00:00, 736.64it/s]Loading weights:  74%|███████▍  | 149/201 [00:00<00:00, 734.87it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 741.57it/s]
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+/root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  [1/16] seq=64, layer=5 ...
+    Collected 1000 samples in 5.3s
+    Gumbel pWCET(1e-6)=6.203ms  GEV xi=0.3368 (INVALID)  AD=FAIL  CI=[5.808,6.780]
+
+  [2/16] seq=64, layer=11 ...
+    Collected 1000 samples in 9.9s
+    Gumbel pWCET(1e-6)=15.976ms  GEV xi=0.5158 (INVALID)  AD=FAIL  CI=[14.778,17.596]
+
+  [3/16] seq=64, layer=16 ...
+    Collected 1000 samples in 13.1s
+    Gumbel pWCET(1e-6)=17.893ms  GEV xi=1.0294 (INVALID)  AD=FAIL  CI=[16.807,19.108]
+
+  [4/16] seq=64, layer=None ...
+    Collected 1000 samples in 20.4s
+    Gumbel pWCET(1e-6)=25.177ms  GEV xi=0.7216 (INVALID)  AD=FAIL  CI=[24.427,26.057]
+
+  [5/16] seq=128, layer=5 ...
+    Collected 1000 samples in 4.9s
+    Gumbel pWCET(1e-6)=7.745ms  GEV xi=1.4337 (INVALID)  AD=FAIL  CI=[7.082,8.468]
+
+  [6/16] seq=128, layer=11 ...
+    Collected 1000 samples in 9.2s
+    Gumbel pWCET(1e-6)=10.818ms  GEV xi=0.6068 (INVALID)  AD=FAIL  CI=[10.265,11.643]
+
+  [7/16] seq=128, layer=16 ...
+    Collected 1000 samples in 13.2s
+    Gumbel pWCET(1e-6)=18.733ms  GEV xi=1.0977 (INVALID)  AD=FAIL  CI=[17.691,19.822]
+
+  [8/16] seq=128, layer=None ...
+    Collected 1000 samples in 19.8s
+    Gumbel pWCET(1e-6)=26.905ms  GEV xi=0.5960 (INVALID)  AD=FAIL  CI=[25.794,28.225]
+
+  [9/16] seq=256, layer=5 ...
+    Collected 1000 samples in 5.0s
+    Gumbel pWCET(1e-6)=6.112ms  GEV xi=0.6027 (INVALID)  AD=FAIL  CI=[5.868,6.424]
+
+  [10/16] seq=256, layer=11 ...
+    Collected 1000 samples in 9.4s
+    Gumbel pWCET(1e-6)=12.485ms  GEV xi=0.8690 (INVALID)  AD=FAIL  CI=[11.779,13.253]
+
+  [11/16] seq=256, layer=16 ...
+    Collected 1000 samples in 13.2s
+    Gumbel pWCET(1e-6)=16.619ms  GEV xi=0.7799 (INVALID)  AD=FAIL  CI=[15.966,17.337]
+
+  [12/16] seq=256, layer=None ...
+    Collected 1000 samples in 19.2s
+    Gumbel pWCET(1e-6)=24.190ms  GEV xi=0.8418 (INVALID)  AD=FAIL  CI=[23.220,25.198]
+
+  [13/16] seq=512, layer=5 ...
+    Collected 1000 samples in 4.9s
+    Gumbel pWCET(1e-6)=5.992ms  GEV xi=1.2563 (INVALID)  AD=FAIL  CI=[5.599,6.506]
+
+  [14/16] seq=512, layer=11 ...
+    Collected 1000 samples in 9.7s
+    Gumbel pWCET(1e-6)=12.055ms  GEV xi=0.5589 (INVALID)  AD=FAIL  CI=[11.456,12.920]
+
+  [15/16] seq=512, layer=16 ...
+    Collected 1000 samples in 13.1s
+    Gumbel pWCET(1e-6)=15.640ms  GEV xi=0.8577 (INVALID)  AD=FAIL  CI=[15.048,16.345]
+
+  [16/16] seq=512, layer=None ...
+    Collected 1000 samples in 19.1s
+    Gumbel pWCET(1e-6)=23.055ms  GEV xi=0.9149 (INVALID)  AD=FAIL  CI=[22.154,24.074]
+
+Figure saved: /root/anytime-llm-inference/sprint_final/results/wcet_ci_gev.png
+LaTeX table: /root/anytime-llm-inference/sprint_final/results/table_wcet_ci_gev.tex
+PASS: E07 complete
+
+  [PASS] e07_wcet_ci_gev  (208s, attempt 1)
+  [SKIP] e08_sample_independence  (already done)
+  [SKIP] e09_capacity_empirical  (already done)
+
+──────────────────────────────────────────────────────────
+  Running: e10_tight_deadline
+  Tight deadline stress D=14-30ms
+  Sun Apr 26 19:02:24 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E10  Tight-deadline regime (D=14-30ms)
+     N=200 queries, τ=0.55
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  39%|███▉      | 78/201 [00:00<00:00, 773.79it/s]Loading weights:  78%|███████▊  | 156/201 [00:00<00:00, 696.45it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 683.95it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 200 PubMedQA queries ...
+
+[2/3] Collecting raw token data (D=45ms collection pass) ...
+      query 1/200
+      query 11/200
+      query 21/200
+      query 31/200
+      query 41/200
+      query 51/200
+      query 61/200
+      query 71/200
+      query 81/200
+      query 91/200
+      query 101/200
+      query 111/200
+      query 121/200
+      query 131/200
+      query 141/200
+      query 151/200
+      query 161/200
+      query 171/200
+      query 181/200
+      query 191/200
+      query 200/200
+
+[3/3] Post-hoc deadline sweep ...
+  D= 14ms  acc=45.7%  exit=9.5%  miss=100.0%
+  D= 15ms  acc=45.7%  exit=9.5%  miss=100.0%
+  D= 16ms  acc=45.7%  exit=9.5%  miss=99.9%
+  D= 17ms  acc=45.7%  exit=9.5%  miss=99.3%
+  D= 18ms  acc=45.7%  exit=9.5%  miss=15.8%
+  D= 19ms  acc=45.7%  exit=9.5%  miss=5.2%
+  D= 20ms  acc=45.7%  exit=9.5%  miss=2.2%
+  D= 21ms  acc=45.7%  exit=9.5%  miss=1.3%
+  D= 22ms  acc=45.7%  exit=9.5%  miss=0.9%
+  D= 23ms  acc=45.7%  exit=9.5%  miss=0.6%
+  D= 25ms  acc=45.7%  exit=9.5%  miss=0.3%
+  D= 27ms  acc=45.7%  exit=9.5%  miss=0.3%
+  D= 30ms  acc=45.7%  exit=9.5%  miss=0.2%
+
+Figure saved: /root/anytime-llm-inference/sprint_final/results/tight_deadline.png
+Minimum schedulable D (< 1% miss): 22ms
+LaTeX: /root/anytime-llm-inference/sprint_final/results/table_tight_deadline.tex
+PASS: E10 complete
+
+  [PASS] e10_tight_deadline  (68s, attempt 1)
+
+──────────────────────────────────────────────────────────
+  Running: e11_thermal_a100
+  A100 thermal stability 30-min soak
+  Sun Apr 26 19:03:32 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E11  A100 thermal stability (1000 consecutive tokens)
+     seq=128
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  40%|███▉      | 80/201 [00:00<00:00, 799.43it/s]Loading weights:  80%|███████▉  | 160/201 [00:00<00:00, 774.57it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 761.54it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/2] Warmup (20 runs) ...
+[2/2] Sustained run (1000 tokens) ...
+  token  100/1000  p99(last200)=n/a  temp=33°C
+  token  200/1000  p99(last200)=24.01ms  temp=33°C
+  token  300/1000  p99(last200)=24.03ms  temp=33°C
+  token  400/1000  p99(last200)=24.05ms  temp=34°C
+  token  500/1000  p99(last200)=22.47ms  temp=34°C
+  token  600/1000  p99(last200)=23.40ms  temp=34°C
+  token  700/1000  p99(last200)=23.32ms  temp=34°C
+  token  800/1000  p99(last200)=22.95ms  temp=34°C
+  token  900/1000  p99(last200)=23.27ms  temp=34°C
+  token 1000/1000  p99(last200)=22.68ms  temp=34°C
+
+First-200 P99 : 24.013ms
+Last-200  P99 : 22.677ms
+Drift         : -5.56%  OK
+Figure saved: /root/anytime-llm-inference/sprint_final/results/thermal_stability.png
+PASS: E11 complete
+
+  [PASS] e11_thermal_a100  (29s, attempt 1)
+  [SKIP] e12_exit_head_training  (already done)
+
+──────────────────────────────────────────────────────────
+  Running: e13_dense_ablation
+  Dense layer ablation L12-L20
+  Sun Apr 26 19:04:01 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E13  Dense layer ablation L5-L22 (every integer L12-L20)
+     seq=128, N_timing=500, N_queries=100
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  34%|███▍      | 69/201 [00:00<00:00, 679.67it/s]Loading weights:  68%|██████▊   | 137/201 [00:00<00:00, 669.87it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 675.21it/s]
+/usr/local/lib/python3.11/dist-packages/numpy/_core/fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/usr/local/lib/python3.11/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/usr/local/lib/python3.11/dist-packages/numpy/_core/fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/usr/local/lib/python3.11/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/usr/local/lib/python3.11/dist-packages/numpy/_core/fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/usr/local/lib/python3.11/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/usr/local/lib/python3.11/dist-packages/numpy/_core/fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/usr/local/lib/python3.11/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 100 PubMedQA queries ...
+
+[2/3] Profiling 12 exit layers ...
+
+  [1/12] L5
+    P99=5.17ms  acc=nan%  miss=0.0%
+
+  [2/12] L11
+    P99=10.64ms  acc=nan%  miss=0.0%
+
+  [3/12] L12
+    P99=11.42ms  acc=nan%  miss=0.0%
+
+  [4/12] L13
+    P99=12.62ms  acc=nan%  miss=0.0%
+
+  [5/12] L14
+    P99=12.82ms  acc=100.0%  miss=0.0%
+
+  [6/12] L15
+    P99=13.99ms  acc=0.0%  miss=0.0%
+
+  [7/12] L16
+    P99=14.23ms  acc=50.0%  miss=0.0%
+
+  [8/12] L17
+    P99=14.62ms  acc=56.9%  miss=0.0%
+
+  [9/12] L18
+    P99=16.92ms  acc=57.6%  miss=0.0%
+
+  [10/12] L19
+    P99=16.97ms  acc=57.3%  miss=0.0%
+
+  [11/12] L20
+    P99=16.54ms  acc=45.8%  miss=0.0%
+
+  [12/12] Full(22)
+    P99=19.41ms  acc=47.4%  miss=0.0%
+
+Figure saved: /root/anytime-llm-inference/sprint_final/results/dense_ablation.png
+LaTeX: /root/anytime-llm-inference/sprint_final/results/table_dense_ablation.tex
+PASS: E13 complete
+
+  [PASS] e13_dense_ablation  (249s, attempt 1)
+
+──────────────────────────────────────────────────────────
+  Generating consolidated plots ...
+Generating plots from: results
+  saved wcet_heatmap.png
+  saved wcet_cdf.png
+  saved pot_sensitivity.png
+  saved accuracy_tau.png
+  saved exit_rate_tau.png
+  saved wcet_ci_gev.png
+  saved acf_seq128.png
+  saved capacity_miss.png
+  saved capacity_throughput.png
+  saved tight_accuracy.png
+  saved tight_miss.png
+  saved thermal_latency.png
+  saved thermal_temp.png
+  saved exit_head_accuracy.png
+  saved exit_head_loss.png
+  saved ablation_latency.png
+  saved ablation_accuracy.png
+  saved ablation_pareto.png
+
+Done — 17 PNG files written to results
+  [PASS] plot_runner
+
+═══════════════════════════════════════════════════════════
+ Sprint Final complete
+ PASS=5  FAIL=0  SKIP=9  TIME=715s
+ Summary: results/SPRINT_SUMMARY.md
+═══════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════
+ AUTO-LOOP iteration 1 / 20 — Sun Apr 26 19:08:14 UTC 2026
+════════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════
+ Sprint Final  —  Full Experiment Run
+═══════════════════════════════════════════════════════════
+ Sprint Final  —  Full Experiment Run
+ Started: Sun Apr 26 19:08:14 UTC 2026
+ GPU: NVIDIA A100-SXM4-80GB
+ RESUME=1  ONLY=all  DRY=0
+ Started: Sun Apr 26 19:08:14 UTC 2026
+ GPU: NVIDIA A100-SXM4-80GB
+ RESUME=1  ONLY=all  DRY=0
+═══════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════
+  [SKIP] e00_wcet_reprofiling  (already done)
+  [SKIP] e00_wcet_reprofiling  (already done)
+  [SKIP] e01_evt_gev_ad  (already done)
+  [SKIP] e01_evt_gev_ad  (already done)
+  [SKIP] e02_threshold_crossval  (already done)
+  [SKIP] e02_threshold_crossval  (already done)
+  [SKIP] e03_forced_exit_extended  (already done)
+  [SKIP] e03_forced_exit_extended  (already done)
+  [SKIP] e04_pot_sensitivity  (already done)
+  [SKIP] e04_pot_sensitivity  (already done)
+  [SKIP] e05_deadline_sweep_comparison  (already done)
+  [SKIP] e05_deadline_sweep_comparison  (already done)
+  [SKIP] e06_accuracy_large  (already done)
+  [SKIP] e06_accuracy_large  (already done)
+  [SKIP] e07_wcet_ci_gev  (already done)
+  [SKIP] e07_wcet_ci_gev  (already done)
+  [SKIP] e08_sample_independence  (already done)
+  [SKIP] e08_sample_independence  (already done)
+  [SKIP] e09_capacity_empirical  (already done)
+  [SKIP] e09_capacity_empirical  (already done)
+  [SKIP] e10_tight_deadline  (already done)
+  [SKIP] e10_tight_deadline  (already done)
+  [SKIP] e11_thermal_a100  (already done)
+  [SKIP] e11_thermal_a100  (already done)
+  [SKIP] e12_exit_head_training  (already done)
+  [SKIP] e12_exit_head_training  (already done)
+  [SKIP] e13_dense_ablation  (already done)
+  [SKIP] e13_dense_ablation  (already done)
+
+
+──────────────────────────────────────────────────────────
+  Generating consolidated plots ...
+──────────────────────────────────────────────────────────
+  Generating consolidated plots ...
+Generating plots from: results
+  saved wcet_heatmap.png
+  saved wcet_cdf.png
+  saved pot_sensitivity.png
+  saved accuracy_tau.png
+  saved exit_rate_tau.png
+  saved wcet_ci_gev.png
+  saved acf_seq128.png
+  saved capacity_miss.png
+  saved capacity_throughput.png
+  saved tight_accuracy.png
+  saved tight_miss.png
+  saved thermal_latency.png
+  saved thermal_temp.png
+  saved exit_head_accuracy.png
+  saved exit_head_loss.png
+  saved ablation_latency.png
+  saved ablation_accuracy.png
+  saved ablation_pareto.png
+
+Done — 17 PNG files written to results
+Generating plots from: results
+  saved wcet_heatmap.png
+  saved wcet_cdf.png
+  saved pot_sensitivity.png
+  saved accuracy_tau.png
+  saved exit_rate_tau.png
+  saved wcet_ci_gev.png
+  saved acf_seq128.png
+  saved capacity_miss.png
+  saved capacity_throughput.png
+  saved tight_accuracy.png
+  saved tight_miss.png
+  saved thermal_latency.png
+  saved thermal_temp.png
+  saved exit_head_accuracy.png
+  saved exit_head_loss.png
+  saved ablation_latency.png
+  saved ablation_accuracy.png
+  saved ablation_pareto.png
+
+Done — 17 PNG files written to results
+  [PASS] plot_runner
+  [PASS] plot_runner
+
+═══════════════════════════════════════════════════════════
+ Sprint Final complete
+ PASS=0  FAIL=0  SKIP=14  TIME=4s
+ Summary: results/SPRINT_SUMMARY.md
+═══════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════
+ Sprint Final complete
+ PASS=0  FAIL=0  SKIP=14  TIME=4s
+ Summary: results/SPRINT_SUMMARY.md
+═══════════════════════════════════════════════════════════
+AUTO-LOOP-ITER-DONE: iter=1 **Results:** PASS=0  FAIL=0  SKIP=14
+AUTO-LOOP-ALL-PASS: iter=1
+AUTO-LOOP-EXIT: Sun Apr 26 19:08:18 UTC 2026

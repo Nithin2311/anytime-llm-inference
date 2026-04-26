@@ -1,0 +1,47 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E09  Empirical multi-request capacity
+     D=45.0ms, seq=128, 30 tokens/request
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  24%|██▍       | 49/201 [00:00<00:00, 485.56it/s]Loading weights:  52%|█████▏    | 104/201 [00:00<00:00, 511.16it/s]Loading weights:  79%|███████▉  | 159/201 [00:00<00:00, 519.60it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 526.30it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  N_concurrent=1  (effective D/token = 45.0ms)
+    trial 0: p99=469.51ms miss=3.3% throughput=25.2t/s
+    trial 1: p99=28.94ms miss=0.0% throughput=50.8t/s
+    trial 2: p99=24.77ms miss=0.0% throughput=51.4t/s
+    trial 3: p99=23.75ms miss=0.0% throughput=49.3t/s
+    trial 4: p99=23.26ms miss=0.0% throughput=53.3t/s
+    AVG: p99=114.05ms  miss=0.7%  schedulable=YES
+
+  N_concurrent=2  (effective D/token = 22.5ms)
+    trial 0: p99=29.94ms miss=5.0% throughput=52.1t/s
+    trial 1: p99=21.36ms miss=0.0% throughput=54.3t/s
+    trial 2: p99=22.14ms miss=0.0% throughput=54.2t/s
+    trial 3: p99=25.21ms miss=3.3% throughput=52.6t/s
+    trial 4: p99=21.62ms miss=0.0% throughput=51.2t/s
+    AVG: p99=24.05ms  miss=1.7%  schedulable=NO
+
+  N_concurrent=3  (effective D/token = 15.0ms)
+    trial 0: p99=22.30ms miss=100.0% throughput=53.6t/s
+    trial 1: p99=24.09ms miss=100.0% throughput=52.4t/s
+    trial 2: p99=23.97ms miss=100.0% throughput=52.2t/s
+    trial 3: p99=24.18ms miss=100.0% throughput=52.9t/s
+    trial 4: p99=24.34ms miss=100.0% throughput=54.2t/s
+    AVG: p99=23.77ms  miss=100.0%  schedulable=NO
+
+  N_concurrent=4  (effective D/token = 11.2ms)
+    trial 0: p99=23.25ms miss=100.0% throughput=54.1t/s
+    trial 1: p99=24.37ms miss=100.0% throughput=53.7t/s
+    trial 2: p99=23.64ms miss=100.0% throughput=51.0t/s
+    trial 3: p99=24.15ms miss=100.0% throughput=51.1t/s
+    trial 4: p99=23.97ms miss=100.0% throughput=53.6t/s
+    AVG: p99=23.88ms  miss=100.0%  schedulable=NO
+
+Empirical N_max = 1
+Theory N_max    = floor(45.0/114.05) = 0
+Figure saved: /root/anytime-llm-inference/sprint_final/results/capacity_empirical.png
+LaTeX: /root/anytime-llm-inference/sprint_final/results/table_capacity.tex
+PASS: E09 complete
+

@@ -1,0 +1,33 @@
+2026-04-26T17:58:48 [E01] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  24%|██▍       | 49/201 [00:00<00:00, 489.81it/s]Loading weights:  52%|█████▏    | 104/201 [00:00<00:00, 523.17it/s]Loading weights:  79%|███████▉  | 159/201 [00:00<00:00, 524.81it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 540.89it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  [ 1/24] seq=  32 L5      /root/anytime-llm-inference/sprint_final/src/evt_utils.py:63: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(tail, dist="gumbel_r")
+mean=4.02  gumbel_1e6=9.45  xi=+1.749  AD=FAIL
+  [ 2/24] seq=  32 L11     mean=8.39  gumbel_1e6=18.36  xi=+1.008  AD=FAIL
+  [ 3/24] seq=  32 L16     mean=11.89  gumbel_1e6=25.34  xi=+1.136  AD=FAIL
+  [ 4/24] seq=  32 Full    mean=15.86  gumbel_1e6=24.96  xi=+0.978  AD=FAIL
+  [ 5/24] seq=  64 L5      mean=4.10  gumbel_1e6=8.94  xi=+1.483  AD=FAIL
+  [ 6/24] seq=  64 L11     mean=8.43  gumbel_1e6=18.09  xi=+1.053  AD=FAIL
+  [ 7/24] seq=  64 L16     mean=12.40  gumbel_1e6=21.07  xi=+1.302  AD=FAIL
+  [ 8/24] seq=  64 Full    mean=16.21  gumbel_1e6=24.66  xi=+0.963  AD=FAIL
+  [ 9/24] seq= 128 L5      mean=4.23  gumbel_1e6=7.30  xi=+0.807  AD=FAIL
+  [10/24] seq= 128 L11     mean=8.51  gumbel_1e6=17.53  xi=+1.265  AD=FAIL
+  [11/24] seq= 128 L16     mean=12.08  gumbel_1e6=21.41  xi=+1.360  AD=FAIL
+  [12/24] seq= 128 Full    mean=16.50  gumbel_1e6=29.08  xi=+0.449  AD=FAIL
+  [13/24] seq= 256 L5      mean=4.36  gumbel_1e6=8.00  xi=+1.366  AD=FAIL
+  [14/24] seq= 256 L11     mean=8.32  gumbel_1e6=14.92  xi=+1.019  AD=FAIL
+  [15/24] seq= 256 L16     mean=12.00  gumbel_1e6=22.96  xi=+1.359  AD=FAIL
+  [16/24] seq= 256 Full    mean=16.61  gumbel_1e6=28.35  xi=+0.380  AD=FAIL
+  [17/24] seq= 512 L5      mean=4.05  gumbel_1e6=8.65  xi=+1.845  AD=FAIL
+  [18/24] seq= 512 L11     mean=8.27  gumbel_1e6=16.57  xi=+1.385  AD=FAIL
+  [19/24] seq= 512 L16     mean=12.21  gumbel_1e6=24.59  xi=+0.628  AD=FAIL
+  [20/24] seq= 512 Full    mean=16.16  gumbel_1e6=25.44  xi=+0.987  AD=FAIL
+  [21/24] seq=1024 L5      mean=4.81  gumbel_1e6=5.52  xi=+2.000  AD=FAIL
+  [22/24] seq=1024 L11     mean=9.77  gumbel_1e6=10.83  xi=+2.012  AD=FAIL
+  [23/24] seq=1024 L16     mean=13.91  gumbel_1e6=15.04  xi=+0.077  AD=FAIL
+  [24/24] seq=1024 Full    2026-04-26T18:03:08 [E01] SUCCESS elapsed=259.7s
+mean=18.87  gumbel_1e6=19.79  xi=+0.548  AD=FAIL
+  Figure  → /root/anytime-llm-inference/sprint_final/figures/evt_analysis.png

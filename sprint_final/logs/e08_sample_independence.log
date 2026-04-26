@@ -1,0 +1,40 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E08  WCET sample independence: Ljung-Box + ACF
+     N=1000, max_lag=40
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  33%|███▎      | 67/201 [00:00<00:00, 658.82it/s]Loading weights:  66%|██████▌   | 133/201 [00:00<00:00, 616.57it/s]Loading weights:  97%|█████████▋| 195/201 [00:00<00:00, 606.64it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 625.90it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  [1/9] seq=64, layer=11 ...
+    LB p-value=0.0  independent=False  ACF outside band: 6/40
+
+  [2/9] seq=64, layer=16 ...
+    LB p-value=0.0  independent=False  ACF outside band: 40/40
+
+  [3/9] seq=64, layer=None ...
+    LB p-value=0.0  independent=False  ACF outside band: 40/40
+
+  [4/9] seq=128, layer=11 ...
+    LB p-value=0.0  independent=False  ACF outside band: 9/40
+
+  [5/9] seq=128, layer=16 ...
+    LB p-value=0.0  independent=False  ACF outside band: 5/40
+
+  [6/9] seq=128, layer=None ...
+    LB p-value=0.0  independent=False  ACF outside band: 26/40
+
+  [7/9] seq=512, layer=11 ...
+    LB p-value=0.0  independent=False  ACF outside band: 12/40
+
+  [8/9] seq=512, layer=16 ...
+    LB p-value=0.0  independent=False  ACF outside band: 40/40
+
+  [9/9] seq=512, layer=None ...
+    LB p-value=0.0  independent=False  ACF outside band: 40/40
+
+Figure saved: /root/anytime-llm-inference/sprint_final/results/sample_independence.png
+LaTeX table: /root/anytime-llm-inference/sprint_final/results/table_independence.tex
+PASS: E08 complete
+

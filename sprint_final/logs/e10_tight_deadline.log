@@ -1,0 +1,54 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+============================================================
+E10  Tight-deadline regime (D=14-30ms)
+     N=200 queries, τ=0.55
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  39%|███▉      | 78/201 [00:00<00:00, 773.79it/s]Loading weights:  78%|███████▊  | 156/201 [00:00<00:00, 696.45it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 683.95it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 200 PubMedQA queries ...
+
+[2/3] Collecting raw token data (D=45ms collection pass) ...
+      query 1/200
+      query 11/200
+      query 21/200
+      query 31/200
+      query 41/200
+      query 51/200
+      query 61/200
+      query 71/200
+      query 81/200
+      query 91/200
+      query 101/200
+      query 111/200
+      query 121/200
+      query 131/200
+      query 141/200
+      query 151/200
+      query 161/200
+      query 171/200
+      query 181/200
+      query 191/200
+      query 200/200
+
+[3/3] Post-hoc deadline sweep ...
+  D= 14ms  acc=45.7%  exit=9.5%  miss=100.0%
+  D= 15ms  acc=45.7%  exit=9.5%  miss=100.0%
+  D= 16ms  acc=45.7%  exit=9.5%  miss=99.9%
+  D= 17ms  acc=45.7%  exit=9.5%  miss=99.3%
+  D= 18ms  acc=45.7%  exit=9.5%  miss=15.8%
+  D= 19ms  acc=45.7%  exit=9.5%  miss=5.2%
+  D= 20ms  acc=45.7%  exit=9.5%  miss=2.2%
+  D= 21ms  acc=45.7%  exit=9.5%  miss=1.3%
+  D= 22ms  acc=45.7%  exit=9.5%  miss=0.9%
+  D= 23ms  acc=45.7%  exit=9.5%  miss=0.6%
+  D= 25ms  acc=45.7%  exit=9.5%  miss=0.3%
+  D= 27ms  acc=45.7%  exit=9.5%  miss=0.3%
+  D= 30ms  acc=45.7%  exit=9.5%  miss=0.2%
+
+Figure saved: /root/anytime-llm-inference/sprint_final/results/tight_deadline.png
+Minimum schedulable D (< 1% miss): 22ms
+LaTeX: /root/anytime-llm-inference/sprint_final/results/table_tight_deadline.tex
+PASS: E10 complete
+

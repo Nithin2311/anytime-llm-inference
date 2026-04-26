@@ -1,0 +1,25 @@
+2026-04-26T18:09:13 [E05] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  25%|██▍       | 50/201 [00:00<00:00, 499.22it/s]Loading weights:  51%|█████     | 103/201 [00:00<00:00, 507.55it/s]Loading weights:  79%|███████▉  | 159/201 [00:00<00:00, 530.16it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 553.99it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+  D= 14ms  SL miss=4.9% p99=17.1  KV miss=100.0% p99=21.8
+  D= 16ms  SL miss=0.5% p99=15.5  KV miss=57.2% p99=19.6
+  D= 18ms  SL miss=0.1% p99=16.2  KV miss=7.7% p99=21.2
+  D= 20ms  SL miss=0.0% p99=15.3  KV miss=1.6% p99=20.4
+  D= 22ms  SL miss=0.0% p99=16.2  KV miss=1.1% p99=21.9
+  D= 24ms  SL miss=0.0% p99=15.8  KV miss=0.0% p99=20.5
+  D= 25ms  SL miss=0.0% p99=16.4  KV miss=0.0% p99=21.8
+  D= 27ms  SL miss=0.0% p99=15.9  KV miss=0.0% p99=21.2
+  D= 30ms  SL miss=0.0% p99=15.8  KV miss=0.0% p99=21.1
+  D= 35ms  SL miss=0.0% p99=31.0  KV miss=0.0% p99=20.7
+  D= 40ms  SL miss=0.0% p99=32.9  KV miss=0.0% p99=20.1
+  D= 45ms  SL miss=0.0% p99=32.8  KV miss=0.0% p99=20.8
+  D= 50ms  SL miss=0.0% p99=33.7  KV miss=0.0% p99=20.3
+  D= 60ms  SL miss=0.0% p99=33.3  KV miss=0.0% p99=20.7
+  D= 75ms  SL miss=0.0% p99=33.1  KV miss=0.0% p99=20.2
+  D=100ms  2026-04-26T18:17:17 [E05] SUCCESS elapsed=484.4s
+SL miss=0.0% p99=32.8  KV miss=0.0% p99=21.0
+
+  D_min_schedulable: stateless=20ms  kv_cached=24ms
+  Figure → /root/anytime-llm-inference/sprint_final/figures/deadline_sweep_comparison.png

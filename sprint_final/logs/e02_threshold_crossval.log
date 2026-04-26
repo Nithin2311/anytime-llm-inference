@@ -1,0 +1,22 @@
+2026-04-26T18:03:12 [E02] START
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  34%|███▍      | 69/201 [00:00<00:00, 672.90it/s]Loading weights:  68%|██████▊   | 137/201 [00:00<00:00, 637.66it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 619.01it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 626.82it/s]
+2026-04-26T18:04:45 [E02] SUCCESS elapsed=92.8s
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+[E02] Collecting raw token data for 300 queries...
+  Calibration: 150 queries | Evaluation: 150 queries
+  τ=0.30  cal_acc=53.8%  eval_acc=46.0%  CI=[33.3,58.7]%
+  τ=0.40  cal_acc=54.2%  eval_acc=50.0%  CI=[37.9,62.1]%
+  τ=0.50  cal_acc=51.8%  eval_acc=52.2%  CI=[40.6,65.2]%
+  τ=0.55  cal_acc=47.0%  eval_acc=52.9%  CI=[41.2,64.7]%
+  τ=0.60  cal_acc=43.4%  eval_acc=52.9%  CI=[41.2,64.7]%
+  τ=0.65  cal_acc=43.4%  eval_acc=54.4%  CI=[42.6,66.2]%
+  τ=0.70  cal_acc=44.6%  eval_acc=50.7%  CI=[39.1,62.3]%
+  τ=0.75  cal_acc=44.6%  eval_acc=50.7%  CI=[39.1,62.3]%
+  τ=0.80  cal_acc=44.6%  eval_acc=52.2%  CI=[40.6,65.2]%
+  τ=0.90  cal_acc=44.6%  eval_acc=53.6%  CI=[42.0,65.2]%
+
+  Best τ (calibration) = 0.4
+  Hold-out accuracy at best τ = 50.0%
+  Figure  → /root/anytime-llm-inference/sprint_final/figures/threshold_crossval.png

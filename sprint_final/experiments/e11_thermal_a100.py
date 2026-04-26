@@ -87,9 +87,10 @@ def main():
         if (i + 1) % TEMP_INTERVAL == 0:
             temp = get_gpu_temp()
             temp_log.append({"token_idx": i + 1, "temp_C": temp})
-            p99_cur = np.percentile(latencies[-200:], 99) if len(latencies) >= 200 else None
+            p99_cur = float(np.percentile(latencies[-200:], 99)) if len(latencies) >= 200 else None
+            p99_str = f"{p99_cur:.2f}ms" if p99_cur is not None else "n/a"
             print(f"  token {i+1:>4}/{N_TOKENS}  "
-                  f"p99(last200)={p99_cur:.2f}ms  "
+                  f"p99(last200)={p99_str}  "
                   f"temp={temp}°C")
 
     wall_elapsed = time.time() - wall_start

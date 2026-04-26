@@ -1,0 +1,21 @@
+Generating plots from: results
+  saved wcet_heatmap.png
+  saved wcet_cdf.png
+  saved pot_sensitivity.png
+  saved accuracy_tau.png
+  saved exit_rate_tau.png
+  saved wcet_ci_gev.png
+  saved acf_seq128.png
+  saved capacity_miss.png
+  saved capacity_throughput.png
+  saved tight_accuracy.png
+  saved tight_miss.png
+  saved thermal_latency.png
+  saved thermal_temp.png
+  saved exit_head_accuracy.png
+  saved exit_head_loss.png
+  saved ablation_latency.png
+  saved ablation_accuracy.png
+  saved ablation_pareto.png
+
+Done — 17 PNG files written to results

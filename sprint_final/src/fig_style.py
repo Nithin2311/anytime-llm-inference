@@ -21,3 +21,6 @@ def apply(style="seaborn-v0_8-whitegrid"):
     if style:
         plt.style.use(style)
     plt.rcParams.update(_RC)
+
+
+apply_style = apply
