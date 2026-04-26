@@ -121,7 +121,7 @@ run_experiment() {
 # ── Experiments ──────────────────────────────────────────────────────────────
 run_experiment "e00_spaced_profiling"   "Re-profile 12 cells with 200ms sleep, 50 warm-up"
 run_experiment "e01_iid_validation"     "Ljung-Box IID check on spaced data vs reference"
-run_experiment "e02_outlier_warmup"     "Cold-start vs warm latency — warm-up artifact study"
+run_experiment "e02_outlier_warmup_study" "Cold-start vs warm latency — warm-up artifact study"
 run_experiment "e03_gev_xi_refit"       "GEV xi refit on spaced data, Anderson-Darling"
 run_experiment "e04_block_maxima_pwcet" "Block maxima EVT, block sizes 5-50, pWCET"
 run_experiment "e05_final_pwcet_report" "Decision-driven final pWCET table + LaTeX"

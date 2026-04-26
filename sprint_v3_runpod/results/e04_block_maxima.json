@@ -1,0 +1,2864 @@
+{
+  "_timestamp": "2026-04-26T21:07:09",
+  "experiment": "e04_block_maxima_pwcet",
+  "block_sizes": [
+    5,
+    10,
+    20,
+    25,
+    50
+  ],
+  "exceedance_prob": 1e-06,
+  "min_iid_valid_block": {
+    "seq128_l16": null,
+    "seq128_full": null,
+    "seq512_l16": 20,
+    "seq512_full": null
+  },
+  "cells": {
+    "seq32_l16": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 21.931882915496825,
+        "maxima_p99": 27.235239334106453,
+        "maxima_max": 28.71548843383789,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.09262459896303281,
+              "pvalue": 0.7608666670567177,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 19.77355073832771,
+              "pvalue": 0.0013780852128924678,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 33.48170160947223,
+              "pvalue": 0.00022598388570064767,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.00022598388570064767
+        },
+        "gev": {
+          "xi": 0.6229927829778479,
+          "mu": 20.769179105714308,
+          "sigma": 0.8683431129442697,
+          "c_scipy": -0.6229927829778479
+        },
+        "ad": {
+          "statistic": 3.3068794360689537,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 7643.059783642084,
+        "pwcet_gumbel": 38.67183317137501,
+        "ci": {
+          "ci_lower": 149.49472365358056,
+          "ci_upper": 255094.43343268838,
+          "n_valid": 497
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 22.813305015563966,
+        "maxima_p99": 27.982839889526364,
+        "maxima_max": 28.71548843383789,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 3.3335244681245864,
+              "pvalue": 0.06788126699943166,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 24.62888511850769,
+              "pvalue": 0.00016430511450531488,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 26.714848813805965,
+              "pvalue": 0.002888870877361165,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.00016430511450531488
+        },
+        "gev": {
+          "xi": 0.14374501071267975,
+          "mu": 21.768070084169047,
+          "sigma": 1.4407474561016513,
+          "c_scipy": -0.14374501071267975
+        },
+        "ad": {
+          "statistic": 0.5923879968726808,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 84.76904655068648,
+        "pwcet_gumbel": 43.2161000995569,
+        "ci": {
+          "ci_lower": 30.28229220968599,
+          "ci_upper": 20170.285285734266,
+          "n_valid": 500
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 23.825355529785156,
+        "maxima_p99": 28.356640167236325,
+        "maxima_max": 28.71548843383789,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 7.632965304308497,
+              "pvalue": 0.005731100091946293,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 17.899443882254403,
+              "pvalue": 0.003075105664508399,
+              "iid_pass": false
+            },
+            "lag_6": {
+              "statistic": 22.345473409337846,
+              "pvalue": 0.001048116753278928,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.001048116753278928
+        },
+        "gev": {
+          "xi": -0.04115892750080542,
+          "mu": 22.889230623904957,
+          "sigma": 1.71103494913672,
+          "c_scipy": 0.04115892750080542
+        },
+        "ad": {
+          "statistic": 0.17334354034701605,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 40.91876066967251,
+        "pwcet_gumbel": 46.12602868869489,
+        "ci": {
+          "ci_lower": 27.946335689690944,
+          "ci_upper": 682.7077768013166,
+          "n_valid": 499
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 24.298236751556395,
+        "maxima_p99": 28.43140022277832,
+        "maxima_max": 28.71548843383789,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 9.90517786432759,
+              "pvalue": 0.001648143992049754,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 18.58859963277074,
+              "pvalue": 0.002292382454686866,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.001648143992049754
+        },
+        "gev": {
+          "xi": -0.22889472951670753,
+          "mu": 23.522325585781697,
+          "sigma": 1.9743699919462507,
+          "c_scipy": 0.22889472951670753
+        },
+        "ad": {
+          "statistic": 0.3992989926025814,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 31.782883213326038,
+        "pwcet_gumbel": 49.23736450336927,
+        "ci": {
+          "ci_lower": 27.22028650483549,
+          "ci_upper": 79.86213239627614,
+          "n_valid": 496
+        }
+      }
+    },
+    "seq32_full": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 22.217650642395018,
+        "maxima_p99": 25.922879295349137,
+        "maxima_max": 29.18592071533203,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.7978750358649832,
+              "pvalue": 0.37172945920643363,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 7.859928718000754,
+              "pvalue": 0.1641260584732193,
+              "iid_pass": true
+            },
+            "lag_10": {
+              "statistic": 11.0841810116092,
+              "pvalue": 0.3509972626545497,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.1641260584732193
+        },
+        "gev": {
+          "xi": -0.033204194596646655,
+          "mu": 21.656870835164007,
+          "sigma": 1.0644115081706012,
+          "c_scipy": 0.033204194596646655
+        },
+        "ad": {
+          "statistic": 1.5828273701515911,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 33.45098189124784,
+        "pwcet_gumbel": 36.2615919649897,
+        "ci": {
+          "ci_lower": 25.404284809911946,
+          "ci_upper": 45.63669482098532,
+          "n_valid": 500
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 22.914047470092772,
+        "maxima_p99": 27.5708800125122,
+        "maxima_max": 29.18592071533203,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.6709783358728441,
+              "pvalue": 0.41271072247133933,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 1.7679583615579346,
+              "pvalue": 0.8802293785596463,
+              "iid_pass": true
+            },
+            "lag_10": {
+              "statistic": 6.0675122342112155,
+              "pvalue": 0.8095596071866892,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.41271072247133933
+        },
+        "gev": {
+          "xi": -0.004258530557058755,
+          "mu": 22.34627020447788,
+          "sigma": 1.0209362697664552,
+          "c_scipy": 0.004258530557058755
+        },
+        "ad": {
+          "statistic": 0.6429893248638123,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 36.044126305186275,
+        "pwcet_gumbel": 36.445292496171504,
+        "ci": {
+          "ci_lower": 25.633988533973643,
+          "ci_upper": 238.5461328898274,
+          "n_valid": 500
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 23.540476303100586,
+        "maxima_p99": 28.394880371093745,
+        "maxima_max": 29.18592071533203,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 1.0327279267031653,
+              "pvalue": 0.3095188162456583,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 2.8226309066599344,
+              "pvalue": 0.7273080507930599,
+              "iid_pass": true
+            },
+            "lag_6": {
+              "statistic": 2.829374317450777,
+              "pvalue": 0.8299373014566781,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.3095188162456583
+        },
+        "gev": {
+          "xi": 0.39103278257379326,
+          "mu": 22.822439825195513,
+          "sigma": 0.642196065642263,
+          "c_scipy": -0.39103278257379326
+        },
+        "ad": {
+          "statistic": 0.7011946069455277,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 385.64114935441535,
+        "pwcet_gumbel": 34.445320713770904,
+        "ci": {
+          "ci_lower": 28.839286983208225,
+          "ci_upper": 75555.47361935485,
+          "n_valid": 487
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 23.795252895355226,
+        "maxima_p99": 28.559680442810055,
+        "maxima_max": 29.18592071533203,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 1.3943407483447186,
+              "pvalue": 0.23767341679787446,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 2.6180135021329374,
+              "pvalue": 0.7586264705381056,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.23767341679787446
+        },
+        "gev": {
+          "xi": 0.2605826231365489,
+          "mu": 23.05373492801587,
+          "sigma": 0.8193132906505229,
+          "c_scipy": -0.2605826231365489
+        },
+        "ad": {
+          "statistic": 0.3785787690143998,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 134.98967557265223,
+        "pwcet_gumbel": 36.23650629625223,
+        "ci": {
+          "ci_lower": 25.27461451019686,
+          "ci_upper": 14381.533561248441,
+          "n_valid": 491
+        }
+      }
+    },
+    "seq64_l16": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 20.724735012054442,
+        "maxima_p99": 24.42743911743165,
+        "maxima_max": 26.08576011657715,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 1.3975104725114131,
+              "pvalue": 0.23714084374902797,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 14.27801585203948,
+              "pvalue": 0.013936605709886104,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 16.103198433513423,
+              "pvalue": 0.09671608997903361,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.013936605709886104
+        },
+        "gev": {
+          "xi": 0.483189030344484,
+          "mu": 20.179249927074892,
+          "sigma": 0.40299650250914176,
+          "c_scipy": -0.483189030344484
+        },
+        "ad": {
+          "statistic": 5.0166110886385695,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 680.5230531048901,
+        "pwcet_gumbel": 28.467321970065484,
+        "ci": {
+          "ci_lower": 154.75927178160123,
+          "ci_upper": 7700.083875286662,
+          "n_valid": 500
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 21.15664707183838,
+        "maxima_p99": 25.264974975585933,
+        "maxima_max": 26.08576011657715,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.6718795093332498,
+              "pvalue": 0.41239709107069933,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 6.446573639996856,
+              "pvalue": 0.26515654274314177,
+              "iid_pass": true
+            },
+            "lag_10": {
+              "statistic": 12.20574450278036,
+              "pvalue": 0.27152279899872317,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.26515654274314177
+        },
+        "gev": {
+          "xi": 0.5875562097164733,
+          "mu": 20.409799288630765,
+          "sigma": 0.502803197975825,
+          "c_scipy": -0.5875562097164733
+        },
+        "ad": {
+          "statistic": 2.9428931470688298,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 2888.2580619785094,
+        "pwcet_gumbel": 31.545334185875326,
+        "ci": {
+          "ci_lower": 236.1454534843058,
+          "ci_upper": 123767.14614368002,
+          "n_valid": 496
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 21.773550186157227,
+        "maxima_p99": 25.68374290466308,
+        "maxima_max": 26.08576011657715,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 2.666123828874948,
+              "pvalue": 0.1025053985697303,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 8.29230210761485,
+              "pvalue": 0.14084506510720574,
+              "iid_pass": true
+            },
+            "lag_6": {
+              "statistic": 8.458589665638932,
+              "pvalue": 0.20639306134713314,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.1025053985697303
+        },
+        "gev": {
+          "xi": 0.8308591486714332,
+          "mu": 20.747744996010294,
+          "sigma": 0.62001389489555,
+          "c_scipy": -0.8308591486714332
+        },
+        "ad": {
+          "statistic": 1.0440679725906072,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 72135.51957320498,
+        "pwcet_gumbel": 35.491045341030464,
+        "ci": {
+          "ci_lower": 31.20723541213021,
+          "ci_upper": 667906.5054804338,
+          "n_valid": 396
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 22.002526569366456,
+        "maxima_p99": 25.767496490478514,
+        "maxima_max": 26.08576011657715,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 4.692240181487352,
+              "pvalue": 0.03029912063144824,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 6.556401404688172,
+              "pvalue": 0.25577556600023615,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.03029912063144824
+        },
+        "gev": {
+          "xi": 0.5257758552816112,
+          "mu": 21.019644813987874,
+          "sigma": 0.8333703998280209,
+          "c_scipy": -0.5257758552816112
+        },
+        "ad": {
+          "statistic": 0.6193939274738547,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 2282.475758868528,
+        "pwcet_gumbel": 36.84685412916487,
+        "ci": {
+          "ci_lower": 24.410688292618982,
+          "ci_upper": 367466.96407545096,
+          "n_valid": 453
+        }
+      }
+    },
+    "seq64_full": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 21.78391139984131,
+        "maxima_p99": 25.64191404342653,
+        "maxima_max": 29.328927993774414,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 14.124004291165118,
+              "pvalue": 0.00017114579414875675,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 47.90051267222304,
+              "pvalue": 3.7219489485765153e-09,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 65.54903816205646,
+              "pvalue": 3.182172291990575e-10,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 3.182172291990575e-10
+        },
+        "gev": {
+          "xi": 0.0034489321236475636,
+          "mu": 21.12121214090601,
+          "sigma": 1.1526371847758317,
+          "c_scipy": -0.0034489321236475636
+        },
+        "ad": {
+          "statistic": 1.2679825120381452,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 37.43096683050471,
+        "pwcet_gumbel": 37.065723775096416,
+        "ci": {
+          "ci_lower": 26.372964406357116,
+          "ci_upper": 72.6958072906854,
+          "n_valid": 500
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 22.463767700195312,
+        "maxima_p99": 27.50404230117797,
+        "maxima_max": 29.328927993774414,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 11.455234382760786,
+              "pvalue": 0.0007129289641721022,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 29.224636556844654,
+              "pvalue": 2.0949344708361118e-05,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 31.826276384598657,
+              "pvalue": 0.00042801804638995525,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 2.0949344708361118e-05
+        },
+        "gev": {
+          "xi": -0.015399336833221634,
+          "mu": 21.7558443486836,
+          "sigma": 1.2802742144578378,
+          "c_scipy": 0.015399336833221634
+        },
+        "ad": {
+          "statistic": 0.4822187283020867,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 37.688591184485965,
+        "pwcet_gumbel": 39.365967550737835,
+        "ci": {
+          "ci_lower": 25.70349982120358,
+          "ci_upper": 80.00692323551463,
+          "n_valid": 500
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 22.990744323730468,
+        "maxima_p99": 28.435106430053704,
+        "maxima_max": 29.328927993774414,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 2.8339589266797347,
+              "pvalue": 0.09229059495882957,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 5.690500677339988,
+              "pvalue": 0.33750849746346423,
+              "iid_pass": true
+            },
+            "lag_6": {
+              "statistic": 6.592458795065356,
+              "pvalue": 0.36018427441986683,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.09229059495882957
+        },
+        "gev": {
+          "xi": -0.004883137878001637,
+          "mu": 22.19250227249588,
+          "sigma": 1.4128381671807198,
+          "c_scipy": 0.004883137878001637
+        },
+        "ad": {
+          "statistic": 0.25591403875452556,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 41.06773363251277,
+        "pwcet_gumbel": 41.68518467265645,
+        "ci": {
+          "ci_lower": 25.21453123604149,
+          "ci_upper": 205.40821408063417,
+          "n_valid": 500
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 23.168984031677248,
+        "maxima_p99": 28.62131925582885,
+        "maxima_max": 29.328927993774414,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 1.784374308977481,
+              "pvalue": 0.18161310260882585,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 4.237347502688496,
+              "pvalue": 0.5157741261831157,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.18161310260882585
+        },
+        "gev": {
+          "xi": 0.03010670182892556,
+          "mu": 22.287941486542643,
+          "sigma": 1.4538008522334276,
+          "c_scipy": -0.03010670182892556
+        },
+        "ad": {
+          "statistic": 0.18268330140654498,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 47.19475015910076,
+        "pwcet_gumbel": 42.59781866419635,
+        "ci": {
+          "ci_lower": 24.738309635116963,
+          "ci_upper": 1660.2270287663623,
+          "n_valid": 497
+        }
+      }
+    },
+    "seq128_l16": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 21.565444831848144,
+        "maxima_p99": 24.69482053756714,
+        "maxima_max": 24.701631546020508,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 25.097812971123346,
+              "pvalue": 5.449462835293862e-07,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 103.6518812488253,
+              "pvalue": 8.973722302085012e-21,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 171.41403951736308,
+              "pvalue": 1.4134222009272644e-31,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 1.4134222009272644e-31
+        },
+        "gev": {
+          "xi": 0.004526020086100203,
+          "mu": 20.96495719743327,
+          "sigma": 1.0201319917680864,
+          "c_scipy": -0.004526020086100203
+        },
+        "ad": {
+          "statistic": 2.553762636419151,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 35.5085631927332,
+        "pwcet_gumbel": 35.08971754142948,
+        "ci": {
+          "ci_lower": 27.079503636214564,
+          "ci_upper": 4092.7222988640005,
+          "n_valid": 500
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 21.992130584716797,
+        "maxima_p99": 24.698260440826417,
+        "maxima_max": 24.701631546020508,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 10.327812809835292,
+              "pvalue": 0.0013104040049611765,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 62.51641444863595,
+              "pvalue": 3.666166385826489e-12,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 94.14316401471758,
+              "pvalue": 8.045854394202279e-16,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 8.045854394202279e-16
+        },
+        "gev": {
+          "xi": -0.16723275773526247,
+          "mu": 21.425442122202355,
+          "sigma": 1.2705800157974898,
+          "c_scipy": 0.16723275773526247
+        },
+        "ad": {
+          "statistic": 1.1637032814027393,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 28.269267718573822,
+        "pwcet_gumbel": 37.76958114419754,
+        "ci": {
+          "ci_lower": 25.090992086190717,
+          "ci_upper": 4257.6278301631855,
+          "n_valid": 496
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 22.46818557739258,
+        "maxima_p99": 24.699980392456055,
+        "maxima_max": 24.701631546020508,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 10.520687013423649,
+              "pvalue": 0.0011804559133980837,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 36.893837312566426,
+              "pvalue": 6.290260618540861e-07,
+              "iid_pass": false
+            },
+            "lag_6": {
+              "statistic": 38.168972770996156,
+              "pvalue": 1.041069267284236e-06,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 6.290260618540861e-07
+        },
+        "gev": {
+          "xi": -0.5712355925956467,
+          "mu": 22.154953729067245,
+          "sigma": 1.684944089091848,
+          "c_scipy": 0.5712355925956467
+        },
+        "ad": {
+          "statistic": 0.5760446204672363,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 25.103499574753265,
+        "pwcet_gumbel": 40.168986961268,
+        "ci": {
+          "ci_lower": 24.671870209313244,
+          "ci_upper": 228.6678149485899,
+          "n_valid": 493
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 22.66594228744507,
+        "maxima_p99": 24.700324382781982,
+        "maxima_max": 24.701631546020508,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 8.600788619141058,
+              "pvalue": 0.0033601746852457,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 28.551422901297222,
+              "pvalue": 2.8391405083968545e-05,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 2.8391405083968545e-05
+        },
+        "gev": {
+          "xi": -1.0496271529676502,
+          "mu": 22.78162069411197,
+          "sigma": 2.0152955241557495,
+          "c_scipy": 1.0496271529676502
+        },
+        "ad": {
+          "statistic": 0.6911107223282862,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 24.701630578765485,
+        "pwcet_gumbel": 42.143277278725165,
+        "ci": {
+          "ci_lower": 24.558265689858164,
+          "ci_upper": 48.99809789564703,
+          "n_valid": 494
+        }
+      }
+    },
+    "seq128_full": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 20.70898265838623,
+        "maxima_p99": 24.137548751831066,
+        "maxima_max": 26.277183532714844,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 8.751990975000064,
+              "pvalue": 0.0030926422933139314,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 38.86142079085321,
+              "pvalue": 2.532344572493731e-07,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 77.89746478957758,
+              "pvalue": 1.2949910241610794e-12,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 1.2949910241610794e-12
+        },
+        "gev": {
+          "xi": 0.6289690598827398,
+          "mu": 20.009953157127615,
+          "sigma": 0.4474073590744374,
+          "c_scipy": -0.6289690598827398
+        },
+        "ad": {
+          "statistic": 6.478378123150762,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 4244.89550333474,
+        "pwcet_gumbel": 30.319561369145923,
+        "ci": {
+          "ci_lower": 731.3159783074185,
+          "ci_upper": 32165.482820239762,
+          "n_valid": 500
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 21.13779010772705,
+        "maxima_p99": 25.218172378540036,
+        "maxima_max": 26.277183532714844,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 3.128202982889053,
+              "pvalue": 0.07694851714447958,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 19.23342145064011,
+              "pvalue": 0.0017388718470416713,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 36.0809036078764,
+              "pvalue": 8.152332276047872e-05,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 8.152332276047872e-05
+        },
+        "gev": {
+          "xi": 0.6353676338374472,
+          "mu": 20.237309131912717,
+          "sigma": 0.5903175734651838,
+          "c_scipy": -0.6353676338374472
+        },
+        "ad": {
+          "statistic": 3.7966451038104125,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 6048.599825889221,
+        "pwcet_gumbel": 33.79062734478677,
+        "ci": {
+          "ci_lower": 585.7410817854943,
+          "ci_upper": 359812.2421940702,
+          "n_valid": 474
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 21.78051322937012,
+        "maxima_p99": 25.758484191894528,
+        "maxima_max": 26.277183532714844,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 1.6718186059128683,
+              "pvalue": 0.19601512417448289,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 12.226071897367992,
+              "pvalue": 0.03181800266156938,
+              "iid_pass": false
+            },
+            "lag_6": {
+              "statistic": 12.503482506819946,
+              "pvalue": 0.051634361154143917,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.03181800266156938
+        },
+        "gev": {
+          "xi": 0.7921112369114487,
+          "mu": 20.58584080446758,
+          "sigma": 0.7638122096462592,
+          "c_scipy": -0.7921112369114487
+        },
+        "ad": {
+          "statistic": 1.3785610329212403,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 54578.78110378716,
+        "pwcet_gumbel": 38.17910770581895,
+        "ci": {
+          "ci_lower": 24.115935637681226,
+          "ci_upper": 725126.1747732972,
+          "n_valid": 427
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 22.109985446929933,
+        "maxima_p99": 25.866546554565428,
+        "maxima_max": 26.277183532714844,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 6.813744754185952,
+              "pvalue": 0.009045886662107596,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 15.422362387583394,
+              "pvalue": 0.00870217224157243,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.00870217224157243
+        },
+        "gev": {
+          "xi": 0.7810502925777272,
+          "mu": 20.81622809831007,
+          "sigma": 0.8861140713578037,
+          "c_scipy": -0.7810502925777272
+        },
+        "ad": {
+          "statistic": 1.1717376459973394,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 55114.68579435154,
+        "pwcet_gumbel": 40.192672371310195,
+        "ci": {
+          "ci_lower": 24.00255962487888,
+          "ci_upper": 802996.219926301,
+          "n_valid": 370
+        }
+      }
+    },
+    "seq256_l16": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 23.02171594619751,
+        "maxima_p99": 28.10854373931885,
+        "maxima_max": 28.69148826599121,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.7547042200014699,
+              "pvalue": 0.38499092171095173,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 9.064887940956641,
+              "pvalue": 0.10650381862538306,
+              "iid_pass": true
+            },
+            "lag_10": {
+              "statistic": 13.052749905267056,
+              "pvalue": 0.220737452244154,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.10650381862538306
+        },
+        "gev": {
+          "xi": 0.03757144346803942,
+          "mu": 22.287092557732464,
+          "sigma": 1.1927527762185393,
+          "c_scipy": -0.03757144346803942
+        },
+        "ad": {
+          "statistic": 0.8327305930706075,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 43.88921010454551,
+        "pwcet_gumbel": 38.97883168298588,
+        "ci": {
+          "ci_lower": 32.30597481522623,
+          "ci_upper": 74.63783103104102,
+          "n_valid": 500
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 23.83975498199463,
+        "maxima_p99": 28.40296016693115,
+        "maxima_max": 28.69148826599121,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 1.7784733834066981,
+              "pvalue": 0.18233689794780625,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 3.038071124736122,
+              "pvalue": 0.6941162521412861,
+              "iid_pass": true
+            },
+            "lag_10": {
+              "statistic": 6.902544974981988,
+              "pvalue": 0.734612167501,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.18233689794780625
+        },
+        "gev": {
+          "xi": 0.13093977041388227,
+          "mu": 22.976905229106038,
+          "sigma": 1.2033977062535448,
+          "c_scipy": -0.13093977041388227
+        },
+        "ad": {
+          "statistic": 0.45701219196782716,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 69.88816055565078,
+        "pwcet_gumbel": 40.70345543651348,
+        "ci": {
+          "ci_lower": 33.04723398162754,
+          "ci_upper": 1728.1834890475627,
+          "n_valid": 499
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 24.611447143554688,
+        "maxima_p99": 28.550168380737304,
+        "maxima_max": 28.69148826599121,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.723471209320087,
+              "pvalue": 0.3950076446790415,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 5.40778299511442,
+              "pvalue": 0.36816379149515643,
+              "iid_pass": true
+            },
+            "lag_6": {
+              "statistic": 6.041283465775296,
+              "pvalue": 0.4185814159029733,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.36816379149515643
+        },
+        "gev": {
+          "xi": 0.05849500504706655,
+          "mu": 23.75495540149177,
+          "sigma": 1.3367172292510556,
+          "c_scipy": -0.05849500504706655
+        },
+        "ad": {
+          "statistic": 0.25119583238436505,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 52.176379285879534,
+        "pwcet_gumbel": 42.7081227189881,
+        "ci": {
+          "ci_lower": 29.366173049124075,
+          "ci_upper": 1403.6109675515738,
+          "n_valid": 499
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 24.930492973327638,
+        "maxima_p99": 28.579610023498535,
+        "maxima_max": 28.69148826599121,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.2414789796507732,
+              "pvalue": 0.6231399525566799,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 2.5125894598541887,
+              "pvalue": 0.7745978913881914,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.6231399525566799
+        },
+        "gev": {
+          "xi": -0.013320309025846785,
+          "mu": 24.10582589304768,
+          "sigma": 1.441140283067968,
+          "c_scipy": 0.013320309025846785
+        },
+        "ad": {
+          "statistic": 0.1983553528617783,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 42.29131166163267,
+        "pwcet_gumbel": 43.91274703105084,
+        "ci": {
+          "ci_lower": 28.583654866073793,
+          "ci_upper": 1818.9588172484996,
+          "n_valid": 498
+        }
+      }
+    },
+    "seq256_full": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 20.935695743560792,
+        "maxima_p99": 24.564828281402587,
+        "maxima_max": 24.637279510498047,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 2.670665572662869,
+              "pvalue": 0.10221327048090699,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 23.69282228038223,
+              "pvalue": 0.0002486958678648079,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 27.848517467544152,
+              "pvalue": 0.0019088352940707662,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.0002486958678648079
+        },
+        "gev": {
+          "xi": 0.5886305391099821,
+          "mu": 20.26812035709859,
+          "sigma": 0.45007477649378635,
+          "c_scipy": -0.5886305391099821
+        },
+        "ad": {
+          "statistic": 5.513895950630854,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 2621.010460617633,
+        "pwcet_gumbel": 30.202158902818482,
+        "ci": {
+          "ci_lower": 467.31830516658016,
+          "ci_upper": 17361.095828564994,
+          "n_valid": 500
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 21.424579200744628,
+        "maxima_p99": 24.60141981124878,
+        "maxima_max": 24.637279510498047,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.9630151984742322,
+              "pvalue": 0.32642836807495834,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 7.102051312539017,
+              "pvalue": 0.21316059472628257,
+              "iid_pass": true
+            },
+            "lag_10": {
+              "statistic": 13.775653880759174,
+              "pvalue": 0.183472862118796,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.183472862118796
+        },
+        "gev": {
+          "xi": 0.8066158789068915,
+          "mu": 20.464419072290706,
+          "sigma": 0.5493050424991959,
+          "c_scipy": -0.8066158789068915
+        },
+        "ad": {
+          "statistic": 3.260963420938417,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 47100.375607584734,
+        "pwcet_gumbel": 34.29578890074329,
+        "ci": {
+          "ci_lower": 2211.993969674629,
+          "ci_upper": 640819.5544631818,
+          "n_valid": 476
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 22.322472915649413,
+        "maxima_p99": 24.619715576171874,
+        "maxima_max": 24.637279510498047,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 2.1796498707807235,
+              "pvalue": 0.1398462733394985,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 10.585026928076893,
+              "pvalue": 0.060257550730023264,
+              "iid_pass": true
+            },
+            "lag_6": {
+              "statistic": 13.506289558911506,
+              "pvalue": 0.035664627011480696,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.035664627011480696
+        },
+        "gev": {
+          "xi": -0.763202905536202,
+          "mu": 22.145468613565892,
+          "sigma": 1.9674288889301512,
+          "c_scipy": 0.763202905536202
+        },
+        "ad": {
+          "statistic": 1.1591588846090346,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 24.72325891370172,
+        "pwcet_gumbel": 39.83024938997501,
+        "ci": {
+          "ci_lower": 24.538560179301484,
+          "ci_upper": 14830.09964718096,
+          "n_valid": 494
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 22.63351526260376,
+        "maxima_p99": 24.623374729156495,
+        "maxima_max": 24.637279510498047,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 3.590338438691305,
+              "pvalue": 0.05811640626162272,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 16.626286995555578,
+              "pvalue": 0.005265897269830643,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.005265897269830643
+        },
+        "gev": {
+          "xi": -1.1534796203867688,
+          "mu": 22.74618183229974,
+          "sigma": 2.1813426319624827,
+          "c_scipy": 1.1534796203867688
+        },
+        "ad": {
+          "statistic": 1.1501211842774133,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 24.637279283597007,
+        "pwcet_gumbel": 41.68890353181144,
+        "ci": {
+          "ci_lower": 24.538559664964694,
+          "ci_upper": 13389.820577442353,
+          "n_valid": 490
+        }
+      }
+    },
+    "seq512_l16": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 22.645219192504882,
+        "maxima_p99": 27.12562210083009,
+        "maxima_max": 29.155359268188477,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 3.8267035141746626,
+              "pvalue": 0.05044204776883568,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 21.025203516253118,
+              "pvalue": 0.0008012259055717174,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 38.60645665709115,
+              "pvalue": 2.974890305751305e-05,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 2.974890305751305e-05
+        },
+        "gev": {
+          "xi": 0.016460358776025037,
+          "mu": 21.892926606249567,
+          "sigma": 1.2665430025096658,
+          "c_scipy": -0.016460358776025037
+        },
+        "ad": {
+          "statistic": 1.2004579917341829,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 41.54024757658654,
+        "pwcet_gumbel": 39.508681939502694,
+        "ci": {
+          "ci_lower": 30.161775741616754,
+          "ci_upper": 86.0355529617632,
+          "n_valid": 500
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 23.45345733642578,
+        "maxima_p99": 28.150741882324215,
+        "maxima_max": 29.155359268188477,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 1.145757594024403,
+              "pvalue": 0.28443899790766103,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 12.650443815599376,
+              "pvalue": 0.02688423415266106,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 16.021877004270728,
+              "pvalue": 0.09900785643694757,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.02688423415266106
+        },
+        "gev": {
+          "xi": -0.05359450040953263,
+          "mu": 22.699017566798815,
+          "sigma": 1.4385579098314545,
+          "c_scipy": 0.05359450040953263
+        },
+        "ad": {
+          "statistic": 0.7751291303107237,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 36.739649600999186,
+        "pwcet_gumbel": 42.288381568146036,
+        "ci": {
+          "ci_lower": 28.7331463151452,
+          "ci_upper": 57.61283782595508,
+          "n_valid": 500
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 24.32005126953125,
+        "maxima_p99": 28.663301773071286,
+        "maxima_max": 29.155359268188477,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.3490260340517212,
+              "pvalue": 0.5546649870096285,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 7.055559436698739,
+              "pvalue": 0.216540969543192,
+              "iid_pass": true
+            },
+            "lag_6": {
+              "statistic": 7.0621236937657255,
+              "pvalue": 0.31514025156350717,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.216540969543192
+        },
+        "gev": {
+          "xi": -0.09463041597113228,
+          "mu": 23.52950106064007,
+          "sigma": 1.5988068466640124,
+          "c_scipy": 0.09463041597113228
+        },
+        "ad": {
+          "statistic": 0.22459983089218127,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 35.854074875316044,
+        "pwcet_gumbel": 45.06856938769643,
+        "ci": {
+          "ci_lower": 27.1051190993205,
+          "ci_upper": 1165.6020596552323,
+          "n_valid": 499
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 24.639364814758302,
+        "maxima_p99": 28.7658137512207,
+        "maxima_max": 29.155359268188477,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 1.808647866474103,
+              "pvalue": 0.17867051616407603,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 4.911621291517115,
+              "pvalue": 0.42676108602839913,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.17867051616407603
+        },
+        "gev": {
+          "xi": -0.16268849889388898,
+          "mu": 23.877447871830856,
+          "sigma": 1.7344074994308905,
+          "c_scipy": 0.16268849889388898
+        },
+        "ad": {
+          "statistic": 0.29246424776242463,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 33.41203422246069,
+        "pwcet_gumbel": 47.03737093454665,
+        "ci": {
+          "ci_lower": 27.10511887611311,
+          "ci_upper": 3115.113794402194,
+          "n_valid": 493
+        }
+      }
+    },
+    "seq512_full": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 21.669863719940185,
+        "maxima_p99": 27.63517322540284,
+        "maxima_max": 29.36534309387207,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 28.98553803353149,
+              "pvalue": 7.292066637465052e-08,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 157.30523285834258,
+              "pvalue": 3.7135744093824066e-32,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 271.0554730606035,
+              "pvalue": 2.003850643440874e-52,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 2.003850643440874e-52
+        },
+        "gev": {
+          "xi": 0.4460539173085358,
+          "mu": 20.682476887778837,
+          "sigma": 0.9411242972732903,
+          "c_scipy": -0.4460539173085358
+        },
+        "ad": {
+          "statistic": 3.577987873073738,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 1019.9159772477783,
+        "pwcet_gumbel": 37.42671685416702,
+        "ci": {
+          "ci_lower": 26.47157722951132,
+          "ci_upper": 292522.1137676803,
+          "n_valid": 498
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 22.13410041809082,
+        "maxima_p99": 28.50899639129638,
+        "maxima_max": 29.36534309387207,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 12.621434416321605,
+              "pvalue": 0.0003813485874909813,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 59.9728685156592,
+              "pvalue": 1.2312496725110057e-11,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 79.17155430202187,
+              "pvalue": 7.295111208351013e-13,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 7.295111208351013e-13
+        },
+        "gev": {
+          "xi": 0.22651317907621946,
+          "mu": 21.114305566773982,
+          "sigma": 1.2535744229005479,
+          "c_scipy": -0.22651317907621946
+        },
+        "ad": {
+          "statistic": 1.5718914757377007,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 142.09323359814738,
+        "pwcet_gumbel": 40.74592086918477,
+        "ci": {
+          "ci_lower": 25.075095276364273,
+          "ci_upper": 123779.4790949825,
+          "n_valid": 496
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 22.766791687011718,
+        "maxima_p99": 28.94590797424316,
+        "maxima_max": 29.36534309387207,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 9.865437646285633,
+              "pvalue": 0.0016841261096350905,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 16.757776335673384,
+              "pvalue": 0.004982845759685138,
+              "iid_pass": false
+            },
+            "lag_6": {
+              "statistic": 17.6471738665228,
+              "pvalue": 0.007177153661455324,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.0016841261096350905
+        },
+        "gev": {
+          "xi": 0.1660235067756511,
+          "mu": 21.60736037880393,
+          "sigma": 1.5480104897206979,
+          "c_scipy": -0.1660235067756511
+        },
+        "ad": {
+          "statistic": 0.7699813827252626,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 104.69892346484008,
+        "pwcet_gumbel": 44.96584170649591,
+        "ci": {
+          "ci_lower": 24.621978678196864,
+          "ci_upper": 301115.3321107767,
+          "n_valid": 368
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 22.89584970474243,
+        "maxima_p99": 29.033290290832518,
+        "maxima_max": 29.36534309387207,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 7.150429260855363,
+              "pvalue": 0.00749460468159554,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 10.465656069686625,
+              "pvalue": 0.06306635848286245,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 0.00749460468159554
+        },
+        "gev": {
+          "xi": 0.16798032066766905,
+          "mu": 21.654212277771503,
+          "sigma": 1.6540470325638772,
+          "c_scipy": -0.16798032066766905
+        },
+        "ad": {
+          "statistic": 0.690530666924893,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 112.07761493366286,
+        "pwcet_gumbel": 46.63269258152327,
+        "ci": {
+          "ci_lower": 24.687134456526447,
+          "ci_upper": 5679.387436057665,
+          "n_valid": 342
+        }
+      }
+    },
+    "seq1024_l16": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 25.03250015258789,
+        "maxima_p99": 30.50279521942139,
+        "maxima_max": 31.3624324798584,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 10.863967909026751,
+              "pvalue": 0.0009805338117970257,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 104.23223695219126,
+              "pvalue": 6.768898378837753e-21,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 166.94135638658253,
+              "pvalue": 1.1915948543227298e-30,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 1.1915948543227298e-30
+        },
+        "gev": {
+          "xi": 0.07394562225409738,
+          "mu": 24.29714027653697,
+          "sigma": 1.098994023052456,
+          "c_scipy": -0.07394562225409738
+        },
+        "ad": {
+          "statistic": 6.337484379594173,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 50.716554020311406,
+        "pwcet_gumbel": 39.6435336070877,
+        "ci": {
+          "ci_lower": 37.13570069593557,
+          "ci_upper": 258005.525258399,
+          "n_valid": 500
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 25.630557441711424,
+        "maxima_p99": 30.936955451965332,
+        "maxima_max": 31.3624324798584,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 18.55353373722477,
+              "pvalue": 1.65198688949113e-05,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 65.7710030855135,
+              "pvalue": 7.754134076010602e-13,
+              "iid_pass": false
+            },
+            "lag_10": {
+              "statistic": 89.71341337388085,
+              "pvalue": 6.1045579959507315e-15,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 6.1045579959507315e-15
+        },
+        "gev": {
+          "xi": 0.908693993468775,
+          "mu": 24.33254350649294,
+          "sigma": 0.6004931425618262,
+          "c_scipy": -0.908693993468775
+        },
+        "ad": {
+          "statistic": 3.9885687448695535,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 187201.39410081145,
+        "pwcet_gumbel": 42.36968294299943,
+        "ci": {
+          "ci_lower": 9701.13389172848,
+          "ci_upper": 765927.251126063,
+          "n_valid": 417
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 26.376403121948243,
+        "maxima_p99": 31.154035568237305,
+        "maxima_max": 31.3624324798584,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 14.007928781936517,
+              "pvalue": 0.0001820413800854469,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 37.849480561372154,
+              "pvalue": 4.045258049352113e-07,
+              "iid_pass": false
+            },
+            "lag_6": {
+              "statistic": 39.202546140242916,
+              "pvalue": 6.532139780014588e-07,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 4.045258049352113e-07
+        },
+        "gev": {
+          "xi": 1.288586236467427,
+          "mu": 24.508738203611074,
+          "sigma": 0.738639053779979,
+          "c_scipy": -1.288586236467427
+        },
+        "ad": {
+          "statistic": 1.5510852668696558,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": null,
+        "pwcet_gumbel": 49.06563437763769,
+        "ci": {
+          "ci_lower": 31.36243186441851,
+          "ci_upper": 834368.9811671615,
+          "n_valid": 107
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 26.600239944458007,
+        "maxima_p99": 31.1974515914917,
+        "maxima_max": 31.3624324798584,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 11.99023184317931,
+              "pvalue": 0.0005348013601759837,
+              "iid_pass": false
+            },
+            "lag_5": {
+              "statistic": 26.630338716203926,
+              "pvalue": 6.731802576774172e-05,
+              "iid_pass": false
+            }
+          },
+          "iid_pass": false,
+          "min_pvalue": 6.731802576774172e-05
+        },
+        "gev": {
+          "xi": 1.7568408763593513,
+          "mu": 24.48630038950114,
+          "sigma": 0.6202871931723047,
+          "c_scipy": -1.7568408763593513
+        },
+        "ad": {
+          "statistic": 1.3442081131768013,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": true,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": null,
+        "pwcet_gumbel": 50.600540032847924,
+        "ci": {
+          "ci_lower": 30.49411199943655,
+          "ci_upper": 833387.4338834757,
+          "n_valid": 119
+        }
+      }
+    },
+    "seq1024_full": {
+      "b5": {
+        "block_size": 5,
+        "n_blocks": 100,
+        "maxima_mean": 25.247993907928468,
+        "maxima_p99": 30.120447044372582,
+        "maxima_max": 34.43193435668945,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.41467806010280145,
+              "pvalue": 0.5196046058855794,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 1.673245055356055,
+              "pvalue": 0.8922530363989675,
+              "iid_pass": true
+            },
+            "lag_10": {
+              "statistic": 5.14348265355922,
+              "pvalue": 0.8813893183827215,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.5196046058855794
+        },
+        "gev": {
+          "xi": 0.09187158750694457,
+          "mu": 24.54003986524736,
+          "sigma": 1.0493290879524224,
+          "c_scipy": -0.09187158750694457
+        },
+        "ad": {
+          "statistic": 0.43506539799638233,
+          "critical_value_5pct": 0.742,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.465,
+            0.625,
+            0.742,
+            0.86,
+            1.018
+          ]
+        },
+        "pwcet_gev": 53.75893589014045,
+        "pwcet_gumbel": 39.66249039627833,
+        "ci": {
+          "ci_lower": 30.676660799193126,
+          "ci_upper": 122.75232011806118,
+          "n_valid": 500
+        }
+      },
+      "b10": {
+        "block_size": 10,
+        "n_blocks": 50,
+        "maxima_mean": 25.932273864746094,
+        "maxima_p99": 32.29796588897704,
+        "maxima_max": 34.43193435668945,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.34269326034383496,
+              "pvalue": 0.5582787311535128,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 2.840732903586104,
+              "pvalue": 0.7245239241949076,
+              "iid_pass": true
+            },
+            "lag_10": {
+              "statistic": 5.651386401806155,
+              "pvalue": 0.84365274698166,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.5582787311535128
+        },
+        "gev": {
+          "xi": 0.07378896602975119,
+          "mu": 25.153760243635496,
+          "sigma": 1.1912089391161882,
+          "c_scipy": -0.07378896602975119
+        },
+        "ad": {
+          "statistic": 0.297897294727683,
+          "critical_value_5pct": 0.736,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.461,
+            0.619,
+            0.736,
+            0.853,
+            1.009
+          ]
+        },
+        "pwcet_gev": 53.75383971267692,
+        "pwcet_gumbel": 42.09564699673239,
+        "ci": {
+          "ci_lower": 28.70121378203254,
+          "ci_upper": 192.21362844807646,
+          "n_valid": 500
+        }
+      },
+      "b20": {
+        "block_size": 20,
+        "n_blocks": 25,
+        "maxima_mean": 26.8306982421875,
+        "maxima_p99": 33.386725311279285,
+        "maxima_max": 34.43193435668945,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 0.06473142882407455,
+              "pvalue": 0.7991682285485988,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 2.0543710339700767,
+              "pvalue": 0.8415717832325489,
+              "iid_pass": true
+            },
+            "lag_6": {
+              "statistic": 2.127499931717656,
+              "pvalue": 0.9076067424891221,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.7991682285485988
+        },
+        "gev": {
+          "xi": 0.06290036389000658,
+          "mu": 25.95219924097425,
+          "sigma": 1.3707694226161808,
+          "c_scipy": -0.06290036389000658
+        },
+        "ad": {
+          "statistic": 0.37480892859253956,
+          "critical_value_5pct": 0.728,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.456,
+            0.612,
+            0.728,
+            0.843,
+            0.998
+          ]
+        },
+        "pwcet_gev": 56.12478644553846,
+        "pwcet_gumbel": 45.29326313231603,
+        "ci": {
+          "ci_lower": 28.10242890035128,
+          "ci_upper": 709.9057587713742,
+          "n_valid": 500
+        }
+      },
+      "b25": {
+        "block_size": 25,
+        "n_blocks": 20,
+        "maxima_mean": 27.213366413116454,
+        "maxima_p99": 33.60447719573974,
+        "maxima_max": 34.43193435668945,
+        "iid": {
+          "lags": {
+            "lag_1": {
+              "statistic": 7.938948611327265e-06,
+              "pvalue": 0.9977518722716266,
+              "iid_pass": true
+            },
+            "lag_5": {
+              "statistic": 0.9477823393154949,
+              "pvalue": 0.9666665813143586,
+              "iid_pass": true
+            }
+          },
+          "iid_pass": true,
+          "min_pvalue": 0.9666665813143586
+        },
+        "gev": {
+          "xi": 0.07578698902754635,
+          "mu": 26.32206180889661,
+          "sigma": 1.353840199370918,
+          "c_scipy": -0.07578698902754635
+        },
+        "ad": {
+          "statistic": 0.4921576591379768,
+          "critical_value_5pct": 0.725,
+          "gumbel_rejected": false,
+          "significance_levels": [
+            25.0,
+            10.0,
+            5.0,
+            2.5,
+            1.0
+          ],
+          "critical_values": [
+            0.454,
+            0.61,
+            0.725,
+            0.839,
+            0.994
+          ]
+        },
+        "pwcet_gev": 59.355598136743225,
+        "pwcet_gumbel": 45.503620528417784,
+        "ci": {
+          "ci_lower": 28.135049443400142,
+          "ci_upper": 1885.0865127083684,
+          "n_valid": 499
+        }
+      }
+    }
+  }
+}

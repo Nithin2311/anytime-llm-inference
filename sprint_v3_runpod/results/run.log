@@ -1,0 +1,316 @@
+═══════════════════════════════════════════════════════════
+ sprint_v3_runpod — IID + GEV Resolution Sprint
+ Started: Sun Apr 26 20:25:24 UTC 2026
+ GPU: NVIDIA A100-SXM4-80GB
+ RESUME=0  ONLY=all  DRY=0
+═══════════════════════════════════════════════════════════
+
+──────────────────────────────────────────────────────────
+  Running: e00_spaced_profiling
+  Re-profile 12 cells with 200ms sleep, 50 warm-up
+  Sun Apr 26 20:25:24 UTC 2026
+  Attempt 1/3 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+============================================================
+E00  Spaced Profiling (sleep_ms=200, n_warmup=50)
+     6 seq_lens x 2 layers = 12 cells
+     Estimated time: ~20 min (dominated by sleep)
+============================================================
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 76/201 [00:00<00:00, 633.77it/s]Loading weights:  70%|██████▉   | 140/201 [00:00<00:00, 614.83it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 608.61it/s]
+
+  [1/12] Profiling seq32_l16 ...
+    Done in 112s  mean=20.64ms  p99=25.51ms  max=28.72ms
+
+  [2/12] Profiling seq32_full ...
+    Done in 111s  mean=20.63ms  p99=24.25ms  max=29.19ms
+
+  [3/12] Profiling seq64_l16 ...
+    Done in 111s  mean=20.11ms  p99=23.12ms  max=26.09ms
+
+  [4/12] Profiling seq64_full ...
+    Done in 111s  mean=20.44ms  p99=24.41ms  max=29.33ms
+
+  [5/12] Profiling seq128_l16 ...
+    Done in 111s  mean=20.34ms  p99=24.23ms  max=24.70ms
+
+  [6/12] Profiling seq128_full ...
+    Done in 111s  mean=19.95ms  p99=23.21ms  max=26.28ms
+
+  [7/12] Profiling seq256_l16 ...
+    Done in 112s  mean=21.33ms  p99=26.46ms  max=28.69ms
+
+  [8/12] Profiling seq256_full ...
+    Done in 111s  mean=20.13ms  p99=23.98ms  max=24.64ms
+
+  [9/12] Profiling seq512_l16 ...
+    Done in 112s  mean=21.16ms  p99=25.81ms  max=29.16ms
+
+  [10/12] Profiling seq512_full ...
+    Done in 111s  mean=20.47ms  p99=24.08ms  max=29.37ms
+
+  [11/12] Profiling seq1024_l16 ...
+    Done in 113s  mean=24.15ms  p99=30.42ms  max=31.36ms
+
+  [12/12] Profiling seq1024_full ...
+    Done in 113s  mean=23.91ms  p99=27.35ms  max=34.43ms
+  seq32_l16: mean=20.635  p99=25.508  max=28.715
+  seq32_full: mean=20.635  p99=24.246  max=29.186
+  seq64_l16: mean=20.114  p99=23.118  max=26.086
+  seq64_full: mean=20.441  p99=24.412  max=29.329
+  seq128_l16: mean=20.339  p99=24.229  max=24.702
+  seq128_full: mean=19.954  p99=23.214  max=26.277
+  seq256_l16: mean=21.326  p99=26.462  max=28.691
+  seq256_full: mean=20.131  p99=23.984  max=24.637
+  seq512_l16: mean=21.164  p99=25.814  max=29.155
+  seq512_full: mean=20.474  p99=24.083  max=29.365
+  seq1024_l16: mean=24.155  p99=30.415  max=31.362
+  seq1024_full: mean=23.911  p99=27.352  max=34.432
+  Saved: /workspace/anytime-llm-inference/sprint_v3_runpod/results/e00_spaced_profiling.json
+
+PASS: E00 complete
+
+  [PASS] e00_spaced_profiling  (1348s)
+
+──────────────────────────────────────────────────────────
+  Running: e01_iid_validation
+  Ljung-Box IID check on spaced data vs reference
+  Sun Apr 26 20:47:52 UTC 2026
+  Attempt 1/3 ...
+============================================================
+E01  IID Validation: Ljung-Box on Spaced Profiling Data
+============================================================
+
+Cell                    min_p   IID?  lag detail
+------------------------------------------------------------
+  seq32_l16            0.0000   FAIL  lag1:p=0.000  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+  seq32_full           0.0000   FAIL  lag1:p=0.395  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+  seq64_l16            0.0000   FAIL  lag1:p=0.000  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+  seq64_full           0.0000   FAIL  lag1:p=0.000  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+  seq128_l16           0.0000   FAIL  lag1:p=0.267  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+  seq128_full          0.0000   FAIL  lag1:p=0.000  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+  seq256_l16           0.0000   FAIL  lag1:p=0.000  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+  seq256_full          0.0092   FAIL  lag1:p=0.010  lag5:p=0.009  lag10:p=0.015  lag20:p=0.108
+  seq512_l16           0.0000   FAIL  lag1:p=0.000  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+  seq512_full          0.0000   FAIL  lag1:p=0.000  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+  seq1024_l16          0.0000   FAIL  lag1:p=0.000  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+  seq1024_full         0.0000   FAIL  lag1:p=0.000  lag5:p=0.000  lag10:p=0.000  lag20:p=0.000
+
+  Cells PASS: 0/12
+  Cells FAIL: 12/12
+  Reference (no spacing): ALL FAIL (p=0.0)
+  ACF figure saved.
+  Saved: /workspace/anytime-llm-inference/sprint_v3_runpod/results/e01_iid_validation.json
+
+PASS: E01 complete — IID overall: PARTIAL
+
+  [PASS] e01_iid_validation  (2s)
+
+──────────────────────────────────────────────────────────
+  Running: e02_outlier_warmup
+  Cold-start vs warm latency — warm-up artifact study
+  Sun Apr 26 20:47:54 UTC 2026
+  Attempt 1/3 ...
+python3: can't open file '/workspace/anytime-llm-inference/sprint_v3_runpod/experiments/e02_outlier_warmup.py': [Errno 2] No such file or directory
+  Attempt 1 failed (exit 2)
+  Retrying in 30s ...
+  Attempt 2/3 ...
+python3: can't open file '/workspace/anytime-llm-inference/sprint_v3_runpod/experiments/e02_outlier_warmup.py': [Errno 2] No such file or directory
+  Attempt 2 failed (exit 2)
+  Retrying in 30s ...
+  Attempt 3/3 ...
+python3: can't open file '/workspace/anytime-llm-inference/sprint_v3_runpod/experiments/e02_outlier_warmup.py': [Errno 2] No such file or directory
+  Attempt 3 failed (exit 2)
+  [FAIL] e02_outlier_warmup  after 3 attempts — see logs/e02_outlier_warmup.log
+
+──────────────────────────────────────────────────────────
+  Running: e03_gev_xi_refit
+  GEV xi refit on spaced data, Anderson-Darling
+  Sun Apr 26 20:48:57 UTC 2026
+  Attempt 1/3 ...
+/workspace/anytime-llm-inference/sprint_v3_runpod/src/evt_utils_v3.py:90: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(data, dist="gumbel_r")
+============================================================
+E03  GEV Shape Parameter Refit on Spaced Data
+     POT=20%  exceedance=1e-6  bootstrap=1000
+============================================================
+
+Cell                        xi       AD  Gumbel?   pWCET_Gumbel    pWCET_GEV
+---------------------------------------------------------------------------
+  seq32_l16             0.2908    0.937     FAIL        35.54ms     179.10ms
+  seq32_full            0.5239    2.669     FAIL        30.40ms    1130.58ms
+  seq64_l16             0.3564    2.793     FAIL        28.01ms     180.51ms
+  seq64_full            0.6331    2.458     FAIL        30.50ms    4040.81ms
+  seq128_l16            0.2085    1.317     FAIL        31.16ms      72.15ms
+  seq128_full           0.5907    2.392     FAIL        30.90ms    3077.64ms
+  seq256_l16            0.6106    3.752     FAIL        33.86ms    3846.15ms
+  seq256_full           1.1791    5.533     FAIL        29.75ms    unbounded
+  seq512_l16            0.5954    2.460     FAIL        32.48ms    2998.47ms
+  seq512_full           0.3179    1.120     FAIL        32.22ms     180.40ms
+  seq1024_l16           0.5427    2.808     FAIL        36.46ms    1926.33ms
+  seq1024_full          0.6437    2.552     FAIL        34.36ms    4796.08ms
+
+  Gumbel valid cells: 0/12
+  Reference (no spacing): 0/12 (all rejected)
+  Saved: /workspace/anytime-llm-inference/sprint_v3_runpod/results/e03_gev_xi_refit.json
+
+PASS: E03 complete
+
+  [PASS] e03_gev_xi_refit  (332s)
+
+──────────────────────────────────────────────────────────
+  Running: e04_block_maxima_pwcet
+  Block maxima EVT, block sizes 5-50, pWCET
+  Sun Apr 26 20:54:29 UTC 2026
+  Attempt 1/3 ...
+/workspace/anytime-llm-inference/sprint_v3_runpod/src/evt_utils_v3.py:90: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
+  result = anderson(data, dist="gumbel_r")
+============================================================
+E04  Block Maxima EVT Analysis
+     Block sizes: [5, 10, 20, 25, 50]  exceedance=1e-6
+============================================================
+
+  Cell: seq32_l16  (n=500, mean=20.64ms, p99=25.51ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100   FAIL  0.6230     FAIL    7643.06ms        38.67ms
+        10       50   FAIL  0.1437       OK      84.77ms        43.22ms
+        20       25   FAIL -0.0412       OK      40.92ms        46.13ms
+        25       20   FAIL -0.2289       OK      31.78ms        49.24ms
+
+  Cell: seq32_full  (n=500, mean=20.63ms, p99=24.25ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100     OK -0.0332     FAIL      33.45ms        36.26ms
+        10       50     OK -0.0043       OK      36.04ms        36.45ms
+        20       25     OK  0.3910       OK     385.64ms        34.45ms
+        25       20     OK  0.2606       OK     134.99ms        36.24ms
+
+  Cell: seq64_l16  (n=500, mean=20.11ms, p99=23.12ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100   FAIL  0.4832     FAIL     680.52ms        28.47ms
+        10       50     OK  0.5876     FAIL    2888.26ms        31.55ms
+        20       25     OK  0.8309     FAIL   72135.52ms        35.49ms
+        25       20   FAIL  0.5258       OK    2282.48ms        36.85ms
+
+  Cell: seq64_full  (n=500, mean=20.44ms, p99=24.41ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100   FAIL  0.0034     FAIL      37.43ms        37.07ms
+        10       50   FAIL -0.0154       OK      37.69ms        39.37ms
+        20       25     OK -0.0049       OK      41.07ms        41.69ms
+        25       20     OK  0.0301       OK      47.19ms        42.60ms
+
+  Cell: seq128_l16  (n=500, mean=20.34ms, p99=24.23ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100   FAIL  0.0045     FAIL      35.51ms        35.09ms
+        10       50   FAIL -0.1672     FAIL      28.27ms        37.77ms
+        20       25   FAIL -0.5712       OK      25.10ms        40.17ms
+        25       20   FAIL -1.0496       OK      24.70ms        42.14ms
+
+  Cell: seq128_full  (n=500, mean=19.95ms, p99=23.21ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100   FAIL  0.6290     FAIL    4244.90ms        30.32ms
+        10       50   FAIL  0.6354     FAIL    6048.60ms        33.79ms
+        20       25   FAIL  0.7921     FAIL   54578.78ms        38.18ms
+        25       20   FAIL  0.7811     FAIL   55114.69ms        40.19ms
+
+  Cell: seq256_l16  (n=500, mean=21.33ms, p99=26.46ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100     OK  0.0376     FAIL      43.89ms        38.98ms
+        10       50     OK  0.1309       OK      69.89ms        40.70ms
+        20       25     OK  0.0585       OK      52.18ms        42.71ms
+        25       20     OK -0.0133       OK      42.29ms        43.91ms
+
+  Cell: seq256_full  (n=500, mean=20.13ms, p99=23.98ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100   FAIL  0.5886     FAIL    2621.01ms        30.20ms
+        10       50     OK  0.8066     FAIL   47100.38ms        34.30ms
+        20       25   FAIL -0.7632     FAIL      24.72ms        39.83ms
+        25       20   FAIL -1.1535     FAIL      24.64ms        41.69ms
+
+  Cell: seq512_l16  (n=500, mean=21.16ms, p99=25.81ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100   FAIL  0.0165     FAIL      41.54ms        39.51ms
+        10       50   FAIL -0.0536     FAIL      36.74ms        42.29ms
+        20       25     OK -0.0946       OK      35.85ms        45.07ms
+        25       20     OK -0.1627       OK      33.41ms        47.04ms
+
+  Cell: seq512_full  (n=500, mean=20.47ms, p99=24.08ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100   FAIL  0.4461     FAIL    1019.92ms        37.43ms
+        10       50   FAIL  0.2265     FAIL     142.09ms        40.75ms
+        20       25   FAIL  0.1660     FAIL     104.70ms        44.97ms
+        25       20   FAIL  0.1680       OK     112.08ms        46.63ms
+
+  Cell: seq1024_l16  (n=500, mean=24.15ms, p99=30.42ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100   FAIL  0.0739     FAIL      50.72ms        39.64ms
+        10       50   FAIL  0.9087     FAIL  187201.39ms        42.37ms
+        20       25   FAIL  1.2886     FAIL    unbounded        49.07ms
+        25       20   FAIL  1.7568     FAIL    unbounded        50.60ms
+
+  Cell: seq1024_full  (n=500, mean=23.91ms, p99=27.35ms)
+   BlockSz  NBlocks   IID?      xi  Gumbel?    pWCET_GEV   pWCET_Gumbel
+  -----------------------------------------------------------------
+         5      100     OK  0.0919       OK      53.76ms        39.66ms
+        10       50     OK  0.0738       OK      53.75ms        42.10ms
+        20       25     OK  0.0629       OK      56.12ms        45.29ms
+        25       20     OK  0.0758       OK      59.36ms        45.50ms
+
+  Minimum block size achieving IID for focus cells:
+    seq128_l16: no block size achieves IID
+    seq128_full: no block size achieves IID
+    seq512_l16: b=20  xi=-0.0946  pWCET(1e-6)=35.85ms
+    seq512_full: no block size achieves IID
+  Saved: /workspace/anytime-llm-inference/sprint_v3_runpod/results/e04_block_maxima.json
+
+PASS: E04 complete
+
+  [PASS] e04_block_maxima_pwcet  (760s)
+
+──────────────────────────────────────────────────────────
+  Running: e05_final_pwcet_report
+  Decision-driven final pWCET table + LaTeX
+  Sun Apr 26 21:07:09 UTC 2026
+  Attempt 1/3 ...
+============================================================
+E05  Final pWCET Report — Decision-Driven Methodology
+============================================================
+
+  Method decision per cell:
+  Cell                   Method                    xi    pWCET(1e-6)    CI_lo    CI_hi   IID  Gumbel
+  -----------------------------------------------------------------------------------------------
+  seq32_l16              block_maxima_gev      0.1437        84.77ms    30.28 20170.29     N       N
+  seq32_full             block_maxima_gev     -0.0043        36.04ms    25.63   238.55     N       N
+  seq64_l16              block_maxima_gev      0.5876      2888.26ms   236.15 123767.15     N       N
+  seq64_full             block_maxima_gev     -0.0154        37.69ms    25.70    80.01     N       N
+  seq128_l16             block_maxima_gev     -0.1672        28.27ms    25.09  4257.63     N       N
+  seq128_full            block_maxima_gev      0.6354      6048.60ms   585.74 359812.24     N       N
+  seq256_l16             block_maxima_gev      0.1309        69.89ms    33.05  1728.18     N       N
+  seq256_full            block_maxima_gev      0.8066     47100.38ms  2211.99 640819.55     N       N
+  seq512_l16             block_maxima_gev     -0.0946        35.85ms    27.11  1165.60     N       N
+  seq512_full            block_maxima_gev      0.2265       142.09ms    25.08 123779.48     N       N
+  seq1024_l16            block_maxima_gev      0.9087    187201.39ms  9701.13 765927.25     N       N
+  seq1024_full           block_maxima_gev      0.0738        53.75ms    28.70   192.21     N       N
+
+  LaTeX table: /workspace/anytime-llm-inference/sprint_v3_runpod/results/table_final_pwcet.tex
+  Saved: /workspace/anytime-llm-inference/sprint_v3_runpod/results/e05_final_pwcet.json
+
+PASS: E05 complete
+
+  [PASS] e05_final_pwcet_report  (2s)
+
+═══════════════════════════════════════════════════════════
+ Sprint V3 complete
+ PASS=5  FAIL=1  SKIP=0  TIME=2507s
+ Summary: results/SPRINT_V3_SUMMARY.md
+═══════════════════════════════════════════════════════════

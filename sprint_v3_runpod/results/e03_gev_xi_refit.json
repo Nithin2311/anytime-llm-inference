@@ -1,0 +1,481 @@
+{
+  "_timestamp": "2026-04-26T20:54:29",
+  "experiment": "e03_gev_xi_refit",
+  "pot_fraction": 0.2,
+  "exceedance_prob": 1e-06,
+  "n_bootstrap": 1000,
+  "gumbel_valid_count": 0,
+  "total_cells": 12,
+  "ad_critical_5pct": 0.742,
+  "reference": {
+    "seq128_l16": {
+      "xi": 1.360218,
+      "ad_stat": 17.5465,
+      "gumbel_valid": false
+    },
+    "seq128_full": {
+      "xi": 0.6,
+      "ad_stat": null,
+      "gumbel_valid": false
+    }
+  },
+  "cells": {
+    "seq32_l16": {
+      "gev": {
+        "xi": 0.2908180103654753,
+        "mu": 21.851832366824958,
+        "sigma": 0.8378613603328426,
+        "c_scipy": -0.2908180103654753
+      },
+      "ad": {
+        "statistic": 0.9365752514710977,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 35.536,
+      "pwcet_gev_ms": 179.096,
+      "pwcet_gev_ci": {
+        "ci_lower": 49.58481226945571,
+        "ci_upper": 2177.248039748398,
+        "n_valid": 1000
+      },
+      "n_tail": 100,
+      "mean_ms": 20.635,
+      "p99_ms": 25.508
+    },
+    "seq32_full": {
+      "gev": {
+        "xi": 0.5238614784295523,
+        "mu": 21.97394822973953,
+        "sigma": 0.41796219816190017,
+        "c_scipy": -0.5238614784295523
+      },
+      "ad": {
+        "statistic": 2.668935467505108,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 30.405,
+      "pwcet_gev_ms": 1130.579,
+      "pwcet_gev_ci": {
+        "ci_lower": 154.41634605011814,
+        "ci_upper": 17478.787708890526,
+        "n_valid": 1000
+      },
+      "n_tail": 100,
+      "mean_ms": 20.635,
+      "p99_ms": 24.246
+    },
+    "seq64_l16": {
+      "gev": {
+        "xi": 0.3563918066853269,
+        "mu": 20.728787467676273,
+        "sigma": 0.4171345056546209,
+        "c_scipy": -0.3563918066853269
+      },
+      "ad": {
+        "statistic": 2.79278756393785,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 28.008,
+      "pwcet_gev_ms": 180.511,
+      "pwcet_gev_ci": {
+        "ci_lower": 39.52831254270146,
+        "ci_upper": 3163.9106028682895,
+        "n_valid": 1000
+      },
+      "n_tail": 100,
+      "mean_ms": 20.114,
+      "p99_ms": 23.118
+    },
+    "seq64_full": {
+      "gev": {
+        "xi": 0.6330628846765977,
+        "mu": 21.8321010382029,
+        "sigma": 0.4048124683520253,
+        "c_scipy": -0.6330628846765977
+      },
+      "ad": {
+        "statistic": 2.457577692941399,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 30.5,
+      "pwcet_gev_ms": 4040.805,
+      "pwcet_gev_ci": {
+        "ci_lower": 183.7243245640523,
+        "ci_upper": 98165.2723707205,
+        "n_valid": 996
+      },
+      "n_tail": 100,
+      "mean_ms": 20.441,
+      "p99_ms": 24.412
+    },
+    "seq128_l16": {
+      "gev": {
+        "xi": 0.20850384385345172,
+        "mu": 21.468960444665893,
+        "sigma": 0.6281356554379814,
+        "c_scipy": -0.20850384385345172
+      },
+      "ad": {
+        "statistic": 1.3173359740095094,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 31.155,
+      "pwcet_gev_ms": 72.155,
+      "pwcet_gev_ci": {
+        "ci_lower": 35.17006826312624,
+        "ci_upper": 664.1639033349413,
+        "n_valid": 1000
+      },
+      "n_tail": 100,
+      "mean_ms": 20.339,
+      "p99_ms": 24.229
+    },
+    "seq128_full": {
+      "gev": {
+        "xi": 0.5907492698473225,
+        "mu": 20.51855603395493,
+        "sigma": 0.5156380152428967,
+        "c_scipy": -0.5907492698473225
+      },
+      "ad": {
+        "statistic": 2.391626092122195,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 30.902,
+      "pwcet_gev_ms": 3077.644,
+      "pwcet_gev_ci": {
+        "ci_lower": 153.40672797247228,
+        "ci_upper": 139743.0314143443,
+        "n_valid": 989
+      },
+      "n_tail": 100,
+      "mean_ms": 19.954,
+      "p99_ms": 23.214
+    },
+    "seq256_l16": {
+      "gev": {
+        "xi": 0.6105810593165224,
+        "mu": 22.959348635882403,
+        "sigma": 0.5067306061479337,
+        "c_scipy": -0.6105810593165224
+      },
+      "ad": {
+        "statistic": 3.751982397958102,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 33.861,
+      "pwcet_gev_ms": 3846.148,
+      "pwcet_gev_ci": {
+        "ci_lower": 515.3198140639554,
+        "ci_upper": 37646.82418899948,
+        "n_valid": 1000
+      },
+      "n_tail": 100,
+      "mean_ms": 21.326,
+      "p99_ms": 26.462
+    },
+    "seq256_full": {
+      "gev": {
+        "xi": 1.179088253071558,
+        "mu": 20.415923712477383,
+        "sigma": 0.2857526876435944,
+        "c_scipy": -1.179088253071558
+      },
+      "ad": {
+        "statistic": 5.5326891353315375,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 29.747,
+      "pwcet_gev_ms": null,
+      "pwcet_gev_ci": {
+        "ci_lower": 4493.958672943459,
+        "ci_upper": 961565.4799064619,
+        "n_valid": 362
+      },
+      "n_tail": 100,
+      "mean_ms": 20.131,
+      "p99_ms": 23.984
+    },
+    "seq512_l16": {
+      "gev": {
+        "xi": 0.5953845793304627,
+        "mu": 22.610122489750818,
+        "sigma": 0.4744804200904523,
+        "c_scipy": -0.5953845793304627
+      },
+      "ad": {
+        "statistic": 2.4602293171276557,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 32.484,
+      "pwcet_gev_ms": 2998.465,
+      "pwcet_gev_ci": {
+        "ci_lower": 215.5202675668534,
+        "ci_upper": 87022.44375379443,
+        "n_valid": 998
+      },
+      "n_tail": 100,
+      "mean_ms": 21.164,
+      "p99_ms": 25.814
+    },
+    "seq512_full": {
+      "gev": {
+        "xi": 0.3179037129593618,
+        "mu": 21.615950789749377,
+        "sigma": 0.6325214980281901,
+        "c_scipy": -0.3179037129593618
+      },
+      "ad": {
+        "statistic": 1.1201238831944238,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 32.22,
+      "pwcet_gev_ms": 180.395,
+      "pwcet_gev_ci": {
+        "ci_lower": 32.42207671700109,
+        "ci_upper": 15958.255062133318,
+        "n_valid": 999
+      },
+      "n_tail": 100,
+      "mean_ms": 20.474,
+      "p99_ms": 24.083
+    },
+    "seq1024_l16": {
+      "gev": {
+        "xi": 0.5427415146213037,
+        "mu": 24.848034424615335,
+        "sigma": 0.5721070465164411,
+        "c_scipy": -0.5427415146213037
+      },
+      "ad": {
+        "statistic": 2.8079185901499812,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 36.455,
+      "pwcet_gev_ms": 1926.331,
+      "pwcet_gev_ci": {
+        "ci_lower": 169.32823045957377,
+        "ci_upper": 46697.524845276064,
+        "n_valid": 999
+      },
+      "n_tail": 100,
+      "mean_ms": 24.155,
+      "p99_ms": 30.415
+    },
+    "seq1024_full": {
+      "gev": {
+        "xi": 0.643687090223424,
+        "mu": 25.082239190164625,
+        "sigma": 0.42191107467749267,
+        "c_scipy": -0.643687090223424
+      },
+      "ad": {
+        "statistic": 2.5523090166847453,
+        "critical_value_5pct": 0.742,
+        "gumbel_rejected": true,
+        "significance_levels": [
+          25.0,
+          10.0,
+          5.0,
+          2.5,
+          1.0
+        ],
+        "critical_values": [
+          0.465,
+          0.625,
+          0.742,
+          0.86,
+          1.018
+        ]
+      },
+      "gumbel_valid": false,
+      "pwcet_gumbel_ms": 34.363,
+      "pwcet_gev_ms": 4796.076,
+      "pwcet_gev_ci": {
+        "ci_lower": 206.6801250563714,
+        "ci_upper": 163679.77833447594,
+        "n_valid": 995
+      },
+      "n_tail": 100,
+      "mean_ms": 23.911,
+      "p99_ms": 27.352
+    }
+  },
+  "gumbel_fully_restored": false
+}
