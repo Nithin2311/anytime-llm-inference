@@ -95,6 +95,10 @@ def _build_prompt(tokenizer, context, question):
 
 
 def run_pubmed_benchmark(n_samples=30, deadline_ms=45.0, max_new_tokens=15):
+    import random
+    random.seed(42); np.random.seed(42); torch.manual_seed(42)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(42)
     print("Loading PubMedQA Dataset...")
     dataset = load_dataset("pubmed_qa", "pqa_labeled", split=f"train[:{n_samples}]")
 

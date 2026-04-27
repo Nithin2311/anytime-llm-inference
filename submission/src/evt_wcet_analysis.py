@@ -28,7 +28,7 @@ matplotlib.use("Agg")
 import fig_style as fs
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-from scipy.stats import gumbel_r, probplot
+from scipy.stats import gumbel_r, genextreme, anderson, probplot
 
 from early_exit_model import EarlyExitTinyLlama
 from profile_wcet import make_input
@@ -100,6 +100,32 @@ def fit_gumbel_evt(samples):
     }
 
 
+def fit_gev_evt(samples):
+    """
+    Fit GEV (genextreme) to the top TOP_FRACTION of samples and run
+    Anderson-Darling test for Gumbel (xi=0).  scipy sign convention: c = -xi.
+    """
+    n_tail = max(int(TOP_FRACTION * len(samples)), 10)
+    tail   = np.sort(samples)[-n_tail:]
+    c_fit, loc, scale = genextreme.fit(tail)
+    xi = -c_fit  # positive xi = Fréchet (heavy tail)
+    wcet_1e4 = float(genextreme.ppf(1.0 - 1e-4, c_fit, loc=loc, scale=scale))
+    wcet_1e6 = float(genextreme.ppf(1.0 - 1e-6, c_fit, loc=loc, scale=scale))
+    ad       = anderson(tail, dist="gumbel_r")
+    crit5    = float(ad.critical_values[2]) if len(ad.critical_values) >= 3 else None
+    return {
+        "gev_xi":          round(float(xi), 4),
+        "gev_loc":         round(float(loc), 6),
+        "gev_scale":       round(float(scale), 6),
+        "gev_wcet_1e4":    round(wcet_1e4, 4) if np.isfinite(wcet_1e4) else None,
+        "gev_wcet_1e6":    round(wcet_1e6, 4) if np.isfinite(wcet_1e6) else None,
+        "ad_stat":         round(float(ad.statistic), 4),
+        "ad_crit_5pct":    crit5,
+        "gumbel_rejected": bool(ad.statistic > crit5) if crit5 is not None else None,
+        "n_tail_used":     int(n_tail),
+    }
+
+
 # ── Main sweep ─────────────────────────────────────────────────────────────────
 
 def run_evt_sweep(model):
@@ -122,6 +148,7 @@ def run_evt_sweep(model):
 
             samples = collect_samples(model, input_ids, exit_layer, NUM_WARMUP, NUM_RUNS)
             evt     = fit_gumbel_evt(samples)
+            gev     = fit_gev_evt(samples)
 
             emp_max = float(np.max(samples))
             mean_ms = float(np.mean(samples))
@@ -134,6 +161,14 @@ def run_evt_sweep(model):
                 "wcet_evt_1e6":       evt["wcet_evt_1e6"],
                 "gumbel_loc":         evt["gumbel_loc"],
                 "gumbel_scale":       evt["gumbel_scale"],
+                "gev_xi":             gev["gev_xi"],
+                "gev_loc":            gev["gev_loc"],
+                "gev_scale":          gev["gev_scale"],
+                "gev_wcet_1e4":       gev["gev_wcet_1e4"],
+                "gev_wcet_1e6":       gev["gev_wcet_1e6"],
+                "ad_stat":            gev["ad_stat"],
+                "ad_crit_5pct":       gev["ad_crit_5pct"],
+                "gumbel_rejected":    gev["gumbel_rejected"],
                 "n_samples":          NUM_RUNS,
             }
             all_results[str(seq_len)][str(exit_layer)] = cell_result

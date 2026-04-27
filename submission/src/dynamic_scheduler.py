@@ -214,11 +214,11 @@ def generate_anytime_with_kv(model, prompt, max_new_tokens=15, deadline_ms=50.0,
         print(f"Deadline: {deadline_ms} ms | Threshold: {(max_conf + min_conf) / 2.0:.2f}")
         print("=" * 55 + "\n")
 
-    # Warm up: full prompt pass + two single-token passes
+    # Warm up: full prompt pass + two chained single-token decode passes
     with torch.inference_mode():
         _, _, wkv = model.forward_cached(input_ids)
         dummy = torch.zeros((1, 1), dtype=torch.long, device="cuda")
-        model.forward_cached(dummy, past_key_values=wkv)
+        _, _, wkv = model.forward_cached(dummy, past_key_values=wkv)
         model.forward_cached(dummy, past_key_values=wkv)
     torch.cuda.synchronize()
     if verbose:

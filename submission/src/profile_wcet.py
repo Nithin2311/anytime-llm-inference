@@ -10,10 +10,15 @@ Outputs:
 """
 
 import json
+import random
 import numpy as np
 import torch
 import matplotlib
 matplotlib.use("Agg")
+
+random.seed(42); np.random.seed(42); torch.manual_seed(42)
+if torch.cuda.is_available():
+    torch.cuda.manual_seed(42)
 import fig_style as fs
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
