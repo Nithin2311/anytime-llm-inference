@@ -31,7 +31,7 @@
 \begin{document}
 
 \title{Predictive Early-Exit Routing for SLO-Compliant LLM Inference:\\
-Probabilistic WCET Bounds via Post-Hoc KV-Cached Forward Hooks}
+Empirical Compliance and EVT Tail Characterisation via Post-Hoc KV-Cached Forward Hooks}
 
 \author{
     \IEEEauthorblockN{Nithin Palyam}
@@ -70,8 +70,9 @@ At $D=45$~ms, the KV-cached router achieves P99~TPOT~$=18.26$~ms
 ($R=0.406$) with 0\% deadline misses across 150~TPOT samples;
 the empirically observed minimum schedulable deadline is 25~ms.
 Voluntary early exits account for 0.7\% of tokens at threshold $\tau=0.55$;
-a trained exit head (2-layer MLP, exit-rate improvement demonstrated in E12)
-achieves higher exit rates when deployed as the routing signal.
+a trained 2-layer MLP exit head increases the voluntary exit rate to 79\%
+at the cost of reduced oracle agreement; results are reported in
+Section~\ref{sec:exithead}.
 An EVT analysis of 500 spaced timing samples per cell (200\,ms inter-run
 spacing) reveals heavy tails throughout: GEV shape $\hat{\xi} \in [0.21,\,1.18]$
 across all 12 (seq\_len, exit\_layer) cells, Gumbel rejected by
@@ -207,6 +208,11 @@ in TinyLlama concentrates in later layers, which our ablation
 (Section~\ref{sec:ablation}) corroborates.
 Critically, prior work targets throughput and mean latency;
 we instead target the \emph{tail} latency needed for hard SLO guarantees.
+Speculative decoding~\cite{leviathan2023fast,chen2023accelerating} also
+exploits intermediate computations (draft tokens from a smaller model)
+but targets mean throughput and requires a separate draft model, whereas
+our hook captures intermediate activations from the same model in a
+single pass without a second model or KV-cache interaction.
 
 \subsection{LLM Serving Systems}
 
@@ -241,9 +247,10 @@ Bernat et al.~\cite{bernat2002wcet} established Extreme Value Theory
 (EVT), particularly the Gumbel distribution, as the appropriate model
 for execution time extremes; Davis and Cucu-Grosjean~\cite{davis2013quantifying}
 survey the state of the art.
-We apply Gumbel EVT with bootstrap confidence intervals to GPU forward-pass
-timing samples to derive a bound far stronger than the empirical
-$\max \times 1.10$ heuristic.
+We apply GEV/Gumbel EVT to GPU forward-pass timing samples to characterise
+the statistical tail of TPOT; Section~\ref{sec:evt} reports the outcome,
+including formal rejection of the Gumbel null across all profiled cells
+and the implications for probabilistic WCET certification.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{System Architecture}
@@ -425,13 +432,28 @@ on the A100~SXM4.
 \end{table}
 
 A notable feature of Table~\ref{tab:wcet} is that the full-pass latency
-is remarkably flat from 32--512~tokens (16.82--16.99~ms mean),
+is remarkably flat from 32--512~tokens (15.86--16.61~ms mean),
 reflecting FlashAttention's tiled kernel keeping attention memory-bandwidth
 costs sub-linear in sequence length.
-At 1{,}024 tokens the curve inflects to 18.84~ms mean, with
-$\text{WCET}_{\text{safe}} = 20.98$~ms.
+At 1{,}024 tokens the curve inflects to 18.87~ms mean, with
+$\text{WCET}_{\text{safe}} = 21.57$~ms.
 All sequence lengths remain well within the $D=45$~ms operating
 deadline.
+
+\smallskip\noindent\textit{Note on dual profiling protocols:}
+Table~\ref{tab:wcet} (standard profiling, back-to-back runs) and
+Table~\ref{tab:evt} (spaced profiling, 200\,ms inter-run spacing) yield
+systematically different latencies: spaced-protocol full-pass means are
+${\approx}3$--4~ms higher (20.0--23.9~ms vs.\ 15.9--18.9~ms).
+This uplift arises because NVIDIA GPUs engage clock-gating during
+200\,ms idle intervals, resetting core clocks toward a lower idle state;
+the first kernel dispatch of each timed run pays a frequency ramp
+overhead that is absent in back-to-back execution.
+The standard-profiling values in Table~\ref{tab:wcet} represent
+sustained-throughput latency (relevant for WCET budgeting at high
+request rate), while the spaced-profiling values in Table~\ref{tab:evt}
+represent isolated-request latency (relevant for characterising
+worst-case behaviour of individual infrequent requests).
 
 \subsection{Exit-Layer Ablation}
 \label{sec:ablation}
@@ -544,6 +566,15 @@ unused at P99---a safety margin that accommodates GPU scheduling jitter
 and the variance inherent in clinical prompt length diversity
 (Section~\ref{sec:capacity}).
 
+The one-sided 95\% Clopper-Pearson upper confidence bound on the
+token-level miss rate is 2.4\% (0 misses / 150 token observations).
+Because tokens within a query share KV state and are therefore
+correlated, the effective sample size for independence lies between
+30 (query level) and 150 (token level).
+At the query level (0 miss queries / 30 queries), the corresponding
+UCB is 9.7\%; both bounds are reported to bound the miss rate under
+varying independence assumptions.
+
 The 54.6\% accuracy result is reported with its bootstrap 95\% CI of
 [48.3\%, 60.8\%] (2{,}000 resamples, $n=240$ scoreable tokens).
 The CI width of 12.5 percentage points reflects the 500-query scale:
@@ -558,7 +589,10 @@ Table~\ref{tab:comparison} compares all three routers under equivalent
 conditions (30~queries, $D=45$~ms).
 
 \begin{table}[htbp]
-\caption{Three-Way Router Comparison ($D=45$~ms, A100~SXM4).
+\caption{Three-Way Router Comparison ($D=45$~ms, A100~SXM4),
+         \textit{initial 30-query evaluation} (150 TPOT samples).
+         SLO compliance is confirmed at 500-query scale in
+         Table~\ref{tab:benchmark}.
          Note that the stateless and KV-cached routers operate at
          different early exit rates (5.3\% vs.\ 0.7\%), so the
          miss-rate difference reflects both the architectural change
@@ -645,7 +679,9 @@ the 500-query evaluation (Table~\ref{tab:benchmark}) uses the same
 $\tau{=}0.55$ post-hoc, confirming 0\% misses at scale.
 
 \begin{table}[htbp]
-\caption{Threshold Ablation (30~queries, KV-cached, $D=45$~ms)}
+\caption{Threshold Ablation (initial 30-query evaluation set, KV-cached, $D=45$~ms).
+         Accuracy values are from the 30-query set ($n{=}14$ scoreable);
+         see Table~\ref{tab:benchmark} for 500-query results.}
 \centering
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{@{}rrrrrr@{}}
@@ -702,6 +738,43 @@ occasionally produce non-answer tokens; this is quantified as
 for binary yes/no/maybe classification (ROUGE-L=0.0 for all exits due to
 tokenisation format mismatch).
 
+\subsection{Exit-Head Training Results}
+\label{sec:exithead}
+
+The shared LM head at Layer~16 is not fine-tuned for the routing
+decision; its confidence scores are repurposed from next-token
+prediction.
+To evaluate the potential of a dedicated exit head, we trained a
+2-layer MLP on Layer-16 hidden states collected from 300 PubMedQA
+queries and evaluated on a held-out 100-query set (E12).
+
+\begin{table}[htbp]
+\caption{Exit-Head MLP vs.\ Shared LM Head (100-query eval, $\tau{=}0.55$, A100~SXM4)}
+\centering
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Metric} & \textbf{Shared LM Head} & \textbf{Exit-Head MLP} \\
+\midrule
+Early-exit rate      & 8.5\%  & \textbf{79.0\%} \\
+Oracle agreement     & 64.7\% & 21.0\% \\
+Task accuracy        & 54.6\% & 50.6\% \\
+\bottomrule
+\end{tabular}
+\label{tab:exithead}
+\end{table}
+
+The MLP achieves a 79\% early-exit rate---a 9$\times$ increase over the
+shared LM head---but at significant cost to oracle agreement (21.0\% vs.\
+64.7\%) and a modest accuracy drop (50.6\% vs.\ 54.6\%).
+The MLP trained to 35\% validation accuracy after 30 epochs, suggesting
+that the Layer-16 hidden states carry limited discriminative signal for
+this 3-class (yes/no/maybe) task without further architectural changes.
+A higher exit rate is desirable for latency; the oracle agreement drop
+indicates that the exit head is committing on uncertain tokens, which
+limits its practical deployability without a quality-cost trade-off
+calibration tailored to the target application.
+
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Real-Time Systems Analysis}
 % ─────────────────────────────────────────────────────────────────────────────
@@ -740,7 +813,7 @@ The effective control surface is the GPU computation itself, which is
 precisely what the post-hoc hook addresses by enabling quality selection
 without a second forward call.
 
-\subsection{EVT Tail Analysis and Gumbel Rejection}
+\subsection{EVT Tail Analysis: Gumbel Rejection and Block-Maxima Fallback}
 \label{sec:evt}
 
 The empirical WCET ($\max \times 1.10$) provides no probabilistic
@@ -822,8 +895,11 @@ The choice of POT tail fraction affects pWCET estimates; we validate
 the 20\% default by sweeping fractions from 10\% to 25\% on all cells.
 
 \begin{table}[htbp]
-\caption{POT Sensitivity: pWCET(1e-6) (ms) — Full Pass, seq=64
-         (A100~SXM4, 500~samples)}
+\caption{POT Sensitivity: Gumbel pWCET(1e-6) (ms) — Full Pass, seq=64
+         (A100~SXM4, 500~samples). \textbf{Note: the Gumbel distribution
+         is formally rejected for this workload (Table~\ref{tab:evt});
+         these values are reported for methodological completeness only
+         and do not constitute valid pWCET bounds.}}
 \centering
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{@{}rcccc@{}}
@@ -837,13 +913,14 @@ $n_{\text{tail}}$ & 50 & 75 & 100 & 125 \\
 \label{tab:pot}
 \end{table}
 
-Across the full range tested, pWCET(1e-6) varies by at most 1.11~ms
+Across the full range tested, Gumbel pWCET(1e-6) varies by at most 1.11~ms
 for seq=64 full pass (20.26 to 19.15~ms), and by less than 0.80~ms for
 seq=512 full pass.
-This stability justifies the 20\% default: the pWCET estimates do not
-meaningfully depend on the exact fraction chosen within this range,
-and the 1.10$\times$ safety margin in Equation~\eqref{eq:wcet_safe}
-easily absorbs the variation.
+This stability confirms that the 20\% POT fraction is not a sensitive
+tuning parameter.
+However, because the Gumbel null is formally rejected for this workload
+(Section~\ref{sec:evt}), these stability results are methodological
+observations, not valid pWCET bounds.
 
 \subsection{Admission Control}
 \label{sec:admission}
@@ -856,7 +933,7 @@ The admission test is:
 
 With the A100~SXM4 WCET table at $D=45$~ms, all sequence lengths
 up to 1{,}024~tokens are admitted
-($\text{WCET}_{\text{safe}}^{\max} = 20.98$~ms at seq=1024).
+($\text{WCET}_{\text{safe}}^{\max} = 21.57$~ms at seq=1024).
 The KV-cached router is schedulable from $D \geq 25$~ms for typical
 chat-template prompts.
 
