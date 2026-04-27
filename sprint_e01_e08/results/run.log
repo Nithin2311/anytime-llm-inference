@@ -29,3 +29,6 @@ Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
   LB p=0.0  lag1_ACF=0.192  IID=FAIL  (237s)
 
   Spacing=1000ms ...
+  LB p=0.0  lag1_ACF=0.098  IID=FAIL  (1037s)
+
+  Spacing=5000ms ...
