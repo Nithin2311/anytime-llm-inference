@@ -1,0 +1,5 @@
+2026-04-27T17:57:09 [WATCHDOG] Watchdog started (PID=3645, session=sprint_e01, poll=120s, total=8)
+2026-04-27T17:59:09 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+2026-04-27T18:01:09 [WATCHDOG] OK  temp=30C  util=1 %  done=0
+0/8
