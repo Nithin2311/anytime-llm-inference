@@ -32,3 +32,147 @@ Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
   LB p=0.0  lag1_ACF=0.098  IID=FAIL  (1037s)
 
   Spacing=5000ms ...
+  LB p=0.001187  lag1_ACF=0.070  IID=FAIL  (5033s)
+
+  Summary:
+        0ms  LB_p=0.0000  lag1=0.432  IID FAIL
+      200ms  LB_p=0.0000  lag1=0.192  IID FAIL
+     1000ms  LB_p=0.0000  lag1=0.098  IID FAIL
+     5000ms  LB_p=0.0012  lag1=0.070  IID FAIL
+
+PASS: E01 complete
+
+2026-04-27T19:42:35   [PASS] e01_iid_spacing_study  (6336s)
+2026-04-27T19:42:35   [PASS] e01_iid_spacing_study  (6336s)
+2026-04-27T19:42:35 
+2026-04-27T19:42:35 
+2026-04-27T19:42:35 ──────────────────────────────────────────────
+2026-04-27T19:42:35 ──────────────────────────────────────────────
+2026-04-27T19:42:35   Running: e02_block_maxima_large  —  Block-maxima GEV n=5000, b=25/50/100
+2026-04-27T19:42:35   Running: e02_block_maxima_large  —  Block-maxima GEV n=5000, b=25/50/100
+2026-04-27T19:42:35   Attempt 1/3 ...
+2026-04-27T19:42:35   Attempt 1/3 ...
+============================================================
+E02  Block-Maxima GEV  (requires E00)
+============================================================
+Traceback (most recent call last):
+  File "/workspace/repo/sprint_e01_e08/experiments/e02_block_maxima_large.py", line 83, in <module>
+    main()
+  File "/workspace/repo/sprint_e01_e08/experiments/e02_block_maxima_large.py", line 21, in main
+    raise FileNotFoundError(f"Run e00 first: {e00_path}")
+FileNotFoundError: Run e00 first: /workspace/repo/sprint_e01_e08/results/e00_wcet_large_spaced.json
+2026-04-27T19:42:37   Attempt 1 failed (exit 1)
+2026-04-27T19:42:37   Attempt 1 failed (exit 1)
+2026-04-27T19:42:37   Clearing GPU cache, retrying in 30s ...
+2026-04-27T19:42:37   Clearing GPU cache, retrying in 30s ...
+2026-04-27T19:43:09   Attempt 2/3 ...
+2026-04-27T19:43:09   Attempt 2/3 ...
+============================================================
+E02  Block-Maxima GEV  (requires E00)
+============================================================
+Traceback (most recent call last):
+  File "/workspace/repo/sprint_e01_e08/experiments/e02_block_maxima_large.py", line 83, in <module>
+    main()
+  File "/workspace/repo/sprint_e01_e08/experiments/e02_block_maxima_large.py", line 21, in main
+    raise FileNotFoundError(f"Run e00 first: {e00_path}")
+FileNotFoundError: Run e00 first: /workspace/repo/sprint_e01_e08/results/e00_wcet_large_spaced.json
+2026-04-27T19:43:10   Attempt 2 failed (exit 1)
+2026-04-27T19:43:10   Attempt 2 failed (exit 1)
+2026-04-27T19:43:10   Clearing GPU cache, retrying in 30s ...
+2026-04-27T19:43:10   Clearing GPU cache, retrying in 30s ...
+2026-04-27T19:43:42   Attempt 3/3 ...
+2026-04-27T19:43:42   Attempt 3/3 ...
+============================================================
+E02  Block-Maxima GEV  (requires E00)
+============================================================
+Traceback (most recent call last):
+  File "/workspace/repo/sprint_e01_e08/experiments/e02_block_maxima_large.py", line 83, in <module>
+    main()
+  File "/workspace/repo/sprint_e01_e08/experiments/e02_block_maxima_large.py", line 21, in main
+    raise FileNotFoundError(f"Run e00 first: {e00_path}")
+FileNotFoundError: Run e00 first: /workspace/repo/sprint_e01_e08/results/e00_wcet_large_spaced.json
+2026-04-27T19:43:44   Attempt 3 failed (exit 1)
+2026-04-27T19:43:44   Attempt 3 failed (exit 1)
+2026-04-27T19:43:44   [FAIL] e02_block_maxima_large  after 3 attempts
+2026-04-27T19:43:44   [FAIL] e02_block_maxima_large  after 3 attempts
+2026-04-27T19:43:44 
+2026-04-27T19:43:44 
+2026-04-27T19:43:44 ──────────────────────────────────────────────
+2026-04-27T19:43:44 ──────────────────────────────────────────────
+2026-04-27T19:43:44   Running: e03_nonevt_wcet  —  Non-EVT empirical bounds P99/P99.9 + safety factor
+2026-04-27T19:43:44   Running: e03_nonevt_wcet  —  Non-EVT empirical bounds P99/P99.9 + safety factor
+2026-04-27T19:43:44   Attempt 1/3 ...
+2026-04-27T19:43:44   Attempt 1/3 ...
+============================================================
+E03  Non-EVT Empirical WCET Bounds  (requires E00)
+============================================================
+Traceback (most recent call last):
+  File "/workspace/repo/sprint_e01_e08/experiments/e03_nonevt_wcet.py", line 73, in <module>
+    main()
+  File "/workspace/repo/sprint_e01_e08/experiments/e03_nonevt_wcet.py", line 20, in main
+    raise FileNotFoundError(f"Run e00 first: {e00_path}")
+FileNotFoundError: Run e00 first: /workspace/repo/sprint_e01_e08/results/e00_wcet_large_spaced.json
+2026-04-27T19:43:46   Attempt 1 failed (exit 1)
+2026-04-27T19:43:46   Attempt 1 failed (exit 1)
+2026-04-27T19:43:46   Clearing GPU cache, retrying in 30s ...
+2026-04-27T19:43:46   Clearing GPU cache, retrying in 30s ...
+2026-04-27T19:44:18   Attempt 2/3 ...
+2026-04-27T19:44:18   Attempt 2/3 ...
+============================================================
+E03  Non-EVT Empirical WCET Bounds  (requires E00)
+============================================================
+Traceback (most recent call last):
+  File "/workspace/repo/sprint_e01_e08/experiments/e03_nonevt_wcet.py", line 73, in <module>
+    main()
+  File "/workspace/repo/sprint_e01_e08/experiments/e03_nonevt_wcet.py", line 20, in main
+    raise FileNotFoundError(f"Run e00 first: {e00_path}")
+FileNotFoundError: Run e00 first: /workspace/repo/sprint_e01_e08/results/e00_wcet_large_spaced.json
+2026-04-27T19:44:20   Attempt 2 failed (exit 1)
+2026-04-27T19:44:20   Attempt 2 failed (exit 1)
+2026-04-27T19:44:20   Clearing GPU cache, retrying in 30s ...
+2026-04-27T19:44:20   Clearing GPU cache, retrying in 30s ...
+2026-04-27T19:44:52   Attempt 3/3 ...
+2026-04-27T19:44:52   Attempt 3/3 ...
+============================================================
+E03  Non-EVT Empirical WCET Bounds  (requires E00)
+============================================================
+Traceback (most recent call last):
+  File "/workspace/repo/sprint_e01_e08/experiments/e03_nonevt_wcet.py", line 73, in <module>
+    main()
+  File "/workspace/repo/sprint_e01_e08/experiments/e03_nonevt_wcet.py", line 20, in main
+    raise FileNotFoundError(f"Run e00 first: {e00_path}")
+FileNotFoundError: Run e00 first: /workspace/repo/sprint_e01_e08/results/e00_wcet_large_spaced.json
+2026-04-27T19:44:53   Attempt 3 failed (exit 1)
+2026-04-27T19:44:53   Attempt 3 failed (exit 1)
+2026-04-27T19:44:53   [FAIL] e03_nonevt_wcet  after 3 attempts
+2026-04-27T19:44:53   [FAIL] e03_nonevt_wcet  after 3 attempts
+2026-04-27T19:44:53 
+2026-04-27T19:44:53 
+2026-04-27T19:44:53 ──────────────────────────────────────────────
+2026-04-27T19:44:53 ──────────────────────────────────────────────
+2026-04-27T19:44:53   Running: e04_accuracy_1000  —  1000-query PubMedQA accuracy CI ~+-3pp
+2026-04-27T19:44:53   Running: e04_accuracy_1000  —  1000-query PubMedQA accuracy CI ~+-3pp
+2026-04-27T19:44:53   Attempt 1/3 ...
+2026-04-27T19:44:53   Attempt 1/3 ...
+============================================================
+E04  1000-Query PubMedQA Accuracy  tau=0.55  D=45.0ms
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  25%|██▌       | 51/201 [00:00<00:00, 500.47it/s]Loading weights:  57%|█████▋    | 114/201 [00:00<00:00, 571.10it/s]Loading weights:  88%|████████▊ | 177/201 [00:00<00:00, 595.40it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 597.07it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 1000 PubMedQA queries ...
+Generating train split:   0%|          | 0/1000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 1000/1000 [00:00<00:00, 48882.95 examples/s]
+      Loaded 1000 queries
+
+[2/3] Collecting raw token data ...
+      query 1/1000
+      query 51/1000
+      query 101/1000
+      query 151/1000
+      query 201/1000
+      query 251/1000
+      query 301/1000
+      query 351/1000
+      query 401/1000
+      query 451/1000

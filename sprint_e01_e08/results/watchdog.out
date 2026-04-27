@@ -167,3 +167,46 @@ watchdog.sh: line 31: [: 0
 0/8
 watchdog.sh: line 31: [: 0
 0: integer expression expected
+2026-04-27T19:23:13 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T19:25:14 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T19:27:14 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T19:29:14 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T19:31:14 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T19:33:14 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T19:35:14 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T19:37:14 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T19:39:15 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T19:41:15 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T19:43:15 [WATCHDOG] OK  temp=30C  util=0 %  done=1/8
+2026-04-27T19:45:15 [WATCHDOG] OK  temp=31C  util=41 %  done=1/8
+2026-04-27T19:47:15 [WATCHDOG] OK  temp=31C  util=42 %  done=1/8
