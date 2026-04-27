@@ -1,0 +1,18 @@
+2026-04-27T21:06:23 ═══════════════════════════════════════════════════════════
+2026-04-27T21:06:23 ═══════════════════════════════════════════════════════════
+2026-04-27T21:06:23  Sprint E00  |  e00_wcet_large_spaced  (5000 samples, 1s spacing)
+2026-04-27T21:06:23  Sprint E00  |  e00_wcet_large_spaced  (5000 samples, 1s spacing)
+2026-04-27T21:06:23  GPU: NVIDIA A100-SXM4-80GB  |  DRY=0  SKIP_PUSH=1
+2026-04-27T21:06:23  GPU: NVIDIA A100-SXM4-80GB  |  DRY=0  SKIP_PUSH=1
+2026-04-27T21:06:23 ═══════════════════════════════════════════════════════════
+2026-04-27T21:06:23 ═══════════════════════════════════════════════════════════
+2026-04-27T21:06:23 Attempt 1/3 — running e00_wcet_large_spaced ...
+2026-04-27T21:06:23 Attempt 1/3 — running e00_wcet_large_spaced ...
+==============================================================
+E00  Large Spaced WCET  N=5000  spacing=1000ms  cells=12
+==============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  28%|██▊       | 56/201 [00:00<00:00, 557.21it/s]Loading weights:  59%|█████▊    | 118/201 [00:00<00:00, 590.31it/s]Loading weights:  90%|████████▉ | 180/201 [00:00<00:00, 603.15it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 603.33it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/12] seq32_l5 ...
