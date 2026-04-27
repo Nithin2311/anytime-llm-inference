@@ -1,0 +1,40 @@
+{
+  "experiment": "e08_capacity_full",
+  "deadline_ms": 45.0,
+  "max_tokens": 15,
+  "seq_len": 128,
+  "results": [
+    {
+      "n_requests": 1,
+      "n_reps": 100,
+      "mean_tpot_ms": 17.673,
+      "p99_tpot_ms": 18.191,
+      "throughput_tps": 52.42,
+      "slo_compliance": 100.0
+    },
+    {
+      "n_requests": 2,
+      "n_reps": 100,
+      "mean_tpot_ms": 17.539,
+      "p99_tpot_ms": 17.89,
+      "throughput_tps": 53.1,
+      "slo_compliance": 100.0
+    },
+    {
+      "n_requests": 4,
+      "n_reps": 100,
+      "mean_tpot_ms": 17.523,
+      "p99_tpot_ms": 17.862,
+      "throughput_tps": 53.15,
+      "slo_compliance": 100.0
+    },
+    {
+      "n_requests": 8,
+      "n_reps": 100,
+      "mean_tpot_ms": 17.549,
+      "p99_tpot_ms": 17.974,
+      "throughput_tps": 53.07,
+      "slo_compliance": 100.0
+    }
+  ]
+}

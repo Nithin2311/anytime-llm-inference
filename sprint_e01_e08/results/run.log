@@ -1208,3 +1208,169 @@ Soaking for 60 min ...
   t= 47.8min  TPOT=57.11ms  temp=43.0C  clock=1155.0MHz  power=217.78W
   t= 47.9min  TPOT=57.36ms  temp=43.0C  clock=1155.0MHz  power=214.47W
   t= 48.0min  TPOT=57.28ms  temp=43.0C  clock=1155.0MHz  power=221.43W
+  t= 48.1min  TPOT=57.64ms  temp=43.0C  clock=1155.0MHz  power=218.98W
+  t= 48.2min  TPOT=57.41ms  temp=43.0C  clock=1155.0MHz  power=217.19W
+  t= 48.3min  TPOT=57.69ms  temp=43.0C  clock=1155.0MHz  power=218.12W
+  t= 48.4min  TPOT=57.59ms  temp=43.0C  clock=1155.0MHz  power=162.95W
+  t= 48.5min  TPOT=57.78ms  temp=43.0C  clock=1155.0MHz  power=218.98W
+  t= 48.6min  TPOT=57.69ms  temp=43.0C  clock=1155.0MHz  power=215.99W
+  t= 48.7min  TPOT=58.05ms  temp=43.0C  clock=1155.0MHz  power=218.98W
+  t= 48.8min  TPOT=57.79ms  temp=43.0C  clock=1155.0MHz  power=214.14W
+  t= 48.9min  TPOT=58.02ms  temp=43.0C  clock=1155.0MHz  power=220.5W
+  t= 49.0min  TPOT=57.95ms  temp=43.0C  clock=1155.0MHz  power=219.58W
+  t= 49.1min  TPOT=58.26ms  temp=43.0C  clock=1155.0MHz  power=218.98W
+  t= 49.2min  TPOT=58.15ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 49.3min  TPOT=58.38ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 49.4min  TPOT=58.22ms  temp=44.0C  clock=1155.0MHz  power=221.43W
+  t= 49.5min  TPOT=58.47ms  temp=43.0C  clock=1155.0MHz  power=220.23W
+  t= 49.6min  TPOT=58.41ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 49.7min  TPOT=58.94ms  temp=43.0C  clock=1155.0MHz  power=219.58W
+  t= 49.7min  TPOT=58.51ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 49.8min  TPOT=58.78ms  temp=43.0C  clock=1155.0MHz  power=217.46W
+  t= 49.9min  TPOT=58.69ms  temp=43.0C  clock=1155.0MHz  power=212.95W
+  t= 50.0min  TPOT=58.92ms  temp=43.0C  clock=1155.0MHz  power=221.43W
+  t= 50.1min  TPOT=58.86ms  temp=42.0C  clock=1155.0MHz  power=221.7W
+  t= 50.2min  TPOT=59.05ms  temp=43.0C  clock=1155.0MHz  power=216.26W
+  t= 50.3min  TPOT=59.09ms  temp=43.0C  clock=1155.0MHz  power=220.23W
+  t= 50.4min  TPOT=59.30ms  temp=43.0C  clock=1155.0MHz  power=215.4W
+  t= 50.5min  TPOT=59.18ms  temp=43.0C  clock=1155.0MHz  power=215.66W
+  t= 50.6min  TPOT=59.37ms  temp=43.0C  clock=1155.0MHz  power=219.91W
+  t= 50.7min  TPOT=59.25ms  temp=43.0C  clock=1155.0MHz  power=220.23W
+  t= 50.8min  TPOT=59.51ms  temp=43.0C  clock=1155.0MHz  power=217.46W
+  t= 50.9min  TPOT=59.41ms  temp=43.0C  clock=1155.0MHz  power=218.71W
+  t= 51.0min  TPOT=59.68ms  temp=43.0C  clock=1155.0MHz  power=217.19W
+  t= 51.1min  TPOT=59.45ms  temp=43.0C  clock=1155.0MHz  power=216.26W
+  t= 51.2min  TPOT=59.74ms  temp=42.0C  clock=1155.0MHz  power=221.43W
+  t= 51.3min  TPOT=59.61ms  temp=43.0C  clock=1155.0MHz  power=221.11W
+  t= 51.4min  TPOT=59.99ms  temp=43.0C  clock=1155.0MHz  power=217.78W
+  t= 51.5min  TPOT=59.77ms  temp=43.0C  clock=1155.0MHz  power=214.14W
+  t= 51.6min  TPOT=60.09ms  temp=43.0C  clock=1155.0MHz  power=219.91W
+  t= 51.7min  TPOT=60.26ms  temp=43.0C  clock=1155.0MHz  power=219.91W
+  t= 51.8min  TPOT=60.20ms  temp=43.0C  clock=1155.0MHz  power=221.43W
+  t= 51.9min  TPOT=60.07ms  temp=43.0C  clock=1155.0MHz  power=212.61W
+  t= 52.0min  TPOT=60.42ms  temp=43.0C  clock=1155.0MHz  power=218.98W
+  t= 52.1min  TPOT=60.94ms  temp=43.0C  clock=1155.0MHz  power=218.71W
+  t= 52.2min  TPOT=60.86ms  temp=43.0C  clock=1155.0MHz  power=220.23W
+  t= 52.3min  TPOT=60.66ms  temp=43.0C  clock=1155.0MHz  power=211.75W
+  t= 52.4min  TPOT=60.64ms  temp=43.0C  clock=1155.0MHz  power=217.46W
+  t= 52.5min  TPOT=60.51ms  temp=43.0C  clock=1155.0MHz  power=219.91W
+  t= 52.6min  TPOT=60.78ms  temp=43.0C  clock=1155.0MHz  power=218.71W
+  t= 52.7min  TPOT=60.65ms  temp=43.0C  clock=1155.0MHz  power=221.11W
+  t= 52.8min  TPOT=60.93ms  temp=42.0C  clock=1155.0MHz  power=220.5W
+  t= 52.9min  TPOT=60.89ms  temp=44.0C  clock=1155.0MHz  power=216.86W
+  t= 53.0min  TPOT=61.17ms  temp=44.0C  clock=1155.0MHz  power=221.43W
+  t= 53.2min  TPOT=61.19ms  temp=44.0C  clock=1155.0MHz  power=134.76W
+  t= 53.3min  TPOT=61.26ms  temp=43.0C  clock=1155.0MHz  power=219.58W
+  t= 53.4min  TPOT=61.08ms  temp=43.0C  clock=1155.0MHz  power=220.23W
+  t= 53.5min  TPOT=61.44ms  temp=43.0C  clock=1155.0MHz  power=205.65W
+  t= 53.6min  TPOT=61.30ms  temp=43.0C  clock=1155.0MHz  power=215.99W
+  t= 53.7min  TPOT=61.54ms  temp=43.0C  clock=1155.0MHz  power=221.11W
+  t= 53.8min  TPOT=61.67ms  temp=43.0C  clock=1155.0MHz  power=219.91W
+  t= 53.9min  TPOT=61.84ms  temp=43.0C  clock=1155.0MHz  power=219.58W
+  t= 54.0min  TPOT=61.57ms  temp=43.0C  clock=1155.0MHz  power=220.84W
+  t= 54.1min  TPOT=61.89ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 54.2min  TPOT=61.76ms  temp=43.0C  clock=1155.0MHz  power=220.84W
+  t= 54.3min  TPOT=62.02ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 54.4min  TPOT=61.84ms  temp=43.0C  clock=1155.0MHz  power=216.86W
+  t= 54.5min  TPOT=62.27ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 54.6min  TPOT=62.09ms  temp=43.0C  clock=1155.0MHz  power=220.23W
+  t= 54.7min  TPOT=62.38ms  temp=43.0C  clock=1155.0MHz  power=218.98W
+  t= 54.8min  TPOT=62.42ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 54.9min  TPOT=62.53ms  temp=43.0C  clock=1155.0MHz  power=221.7W
+  t= 55.0min  TPOT=62.60ms  temp=43.0C  clock=1155.0MHz  power=218.12W
+  t= 55.1min  TPOT=62.60ms  temp=43.0C  clock=1155.0MHz  power=218.98W
+  t= 55.2min  TPOT=62.46ms  temp=43.0C  clock=1155.0MHz  power=219.58W
+  t= 55.3min  TPOT=62.76ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 55.4min  TPOT=62.56ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 55.5min  TPOT=62.93ms  temp=43.0C  clock=1155.0MHz  power=220.23W
+  t= 55.6min  TPOT=62.77ms  temp=43.0C  clock=1155.0MHz  power=215.4W
+  t= 55.7min  TPOT=63.11ms  temp=43.0C  clock=1155.0MHz  power=192.92W
+  t= 55.8min  TPOT=63.06ms  temp=43.0C  clock=1155.0MHz  power=218.12W
+  t= 56.0min  TPOT=63.44ms  temp=43.0C  clock=1155.0MHz  power=220.5W
+  t= 56.1min  TPOT=63.19ms  temp=43.0C  clock=1155.0MHz  power=218.71W
+  t= 56.2min  TPOT=63.44ms  temp=43.0C  clock=1155.0MHz  power=218.71W
+  t= 56.3min  TPOT=63.30ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 56.4min  TPOT=63.60ms  temp=43.0C  clock=1155.0MHz  power=215.06W
+  t= 56.5min  TPOT=63.40ms  temp=43.0C  clock=1155.0MHz  power=218.98W
+  t= 56.6min  TPOT=63.61ms  temp=43.0C  clock=1155.0MHz  power=217.19W
+  t= 56.7min  TPOT=63.51ms  temp=43.0C  clock=1155.0MHz  power=222.36W
+  t= 56.8min  TPOT=63.86ms  temp=43.0C  clock=1155.0MHz  power=218.71W
+  t= 56.9min  TPOT=63.57ms  temp=43.0C  clock=1155.0MHz  power=219.91W
+  t= 57.0min  TPOT=63.96ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 57.1min  TPOT=63.77ms  temp=43.0C  clock=1155.0MHz  power=218.12W
+  t= 57.2min  TPOT=64.08ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 57.3min  TPOT=63.87ms  temp=42.0C  clock=1155.0MHz  power=216.26W
+  t= 57.4min  TPOT=64.80ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 57.5min  TPOT=64.07ms  temp=43.0C  clock=1155.0MHz  power=220.23W
+  t= 57.7min  TPOT=64.38ms  temp=43.0C  clock=1155.0MHz  power=218.39W
+  t= 57.8min  TPOT=64.27ms  temp=43.0C  clock=1155.0MHz  power=216.59W
+  t= 57.9min  TPOT=64.64ms  temp=43.0C  clock=1155.0MHz  power=216.86W
+  t= 58.0min  TPOT=64.43ms  temp=43.0C  clock=1155.0MHz  power=216.86W
+  t= 58.1min  TPOT=64.66ms  temp=43.0C  clock=1155.0MHz  power=218.39W
+  t= 58.2min  TPOT=64.48ms  temp=43.0C  clock=1155.0MHz  power=217.46W
+  t= 58.3min  TPOT=64.82ms  temp=43.0C  clock=1155.0MHz  power=154.78W
+  t= 58.4min  TPOT=64.64ms  temp=43.0C  clock=1155.0MHz  power=220.23W
+  t= 58.5min  TPOT=64.91ms  temp=43.0C  clock=1155.0MHz  power=219.91W
+  t= 58.6min  TPOT=64.85ms  temp=43.0C  clock=1155.0MHz  power=222.63W
+  t= 58.7min  TPOT=65.27ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 58.8min  TPOT=65.15ms  temp=43.0C  clock=1155.0MHz  power=217.78W
+  t= 59.0min  TPOT=65.37ms  temp=42.0C  clock=1155.0MHz  power=217.46W
+  t= 59.1min  TPOT=65.25ms  temp=43.0C  clock=1155.0MHz  power=218.39W
+  t= 59.2min  TPOT=65.46ms  temp=43.0C  clock=1155.0MHz  power=215.06W
+  t= 59.3min  TPOT=65.26ms  temp=43.0C  clock=1155.0MHz  power=219.3W
+  t= 59.4min  TPOT=65.85ms  temp=43.0C  clock=1155.0MHz  power=218.98W
+  t= 59.5min  TPOT=65.48ms  temp=43.0C  clock=1155.0MHz  power=213.27W
+  t= 59.6min  TPOT=65.82ms  temp=43.0C  clock=1155.0MHz  power=216.86W
+  t= 59.7min  TPOT=65.90ms  temp=43.0C  clock=1155.0MHz  power=211.75W
+  t= 59.8min  TPOT=65.93ms  temp=43.0C  clock=1155.0MHz  power=216.86W
+  t= 59.9min  TPOT=65.78ms  temp=43.0C  clock=1155.0MHz  power=218.39W
+
+  Total samples : 99357
+  Mean TPOT     : 35.868 ms
+  Std TPOT      : 15.297 ms
+  Drift (L10-F10): +36.004 ms  (+100.4%)
+PASS: E07 complete
+
+2026-04-27T20:57:18   [PASS] e07_thermal_extended  (3610s)
+2026-04-27T20:57:18   [PASS] e07_thermal_extended  (3610s)
+2026-04-27T20:57:18 
+2026-04-27T20:57:18 
+2026-04-27T20:57:18 ──────────────────────────────────────────────
+2026-04-27T20:57:18 ──────────────────────────────────────────────
+2026-04-27T20:57:18   Running: e08_capacity_full  —  Multi-request capacity N=1..8
+2026-04-27T20:57:18   Running: e08_capacity_full  —  Multi-request capacity N=1..8
+2026-04-27T20:57:18   Attempt 1/3 ...
+2026-04-27T20:57:18   Attempt 1/3 ...
+============================================================
+E08  Multi-Request Capacity  N=[1, 2, 4, 8]  reps=100
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  25%|██▌       | 51/201 [00:00<00:00, 508.58it/s]Loading weights:  57%|█████▋    | 114/201 [00:00<00:00, 574.40it/s]Loading weights:  87%|████████▋ | 175/201 [00:00<00:00, 586.85it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 598.51it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  N=1 (100 reps) ...
+    p99=18.19ms  throughput=52.4tok/s  SLO=100.0%
+
+  N=2 (100 reps) ...
+    p99=17.89ms  throughput=53.1tok/s  SLO=100.0%
+
+  N=4 (100 reps) ...
+    p99=17.86ms  throughput=53.1tok/s  SLO=100.0%
+
+  N=8 (100 reps) ...
+    p99=17.97ms  throughput=53.1tok/s  SLO=100.0%
+
+PASS: E08 complete
+
+2026-04-27T21:04:32   [PASS] e08_capacity_full  (434s)
+2026-04-27T21:04:32   [PASS] e08_capacity_full  (434s)
+2026-04-27T21:04:33 
+2026-04-27T21:04:33 
+2026-04-27T21:04:33 ═══════════════════════════════════════════════════════════
+2026-04-27T21:04:33 ═══════════════════════════════════════════════════════════
+2026-04-27T21:04:33  PASS=6  FAIL=2  SKIP=0  TIME=11253s
+2026-04-27T21:04:33  PASS=6  FAIL=2  SKIP=0  TIME=11253s
+2026-04-27T21:04:33 ═══════════════════════════════════════════════════════════
+2026-04-27T21:04:33 ═══════════════════════════════════════════════════════════
+2026-04-27T21:04:33 Skipping push — 2 experiment(s) failed.
+2026-04-27T21:04:33 Skipping push — 2 experiment(s) failed.
