@@ -7,3 +7,19 @@ watchdog.sh: line 31: [: 0
 0/8
 watchdog.sh: line 31: [: 0
 0: integer expression expected
+2026-04-27T18:03:09 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T18:05:09 [WATCHDOG] OK  temp=30C  util=3 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T18:07:09 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
+2026-04-27T18:09:09 [WATCHDOG] OK  temp=30C  util=0 %  done=0
+0/8
+watchdog.sh: line 31: [: 0
+0: integer expression expected
