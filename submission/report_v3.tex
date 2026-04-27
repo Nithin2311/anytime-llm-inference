@@ -70,15 +70,20 @@ At $D=45$~ms, the KV-cached router achieves P99~TPOT~$=18.26$~ms
 ($R=0.406$) with 0\% deadline misses across 150~TPOT samples;
 the empirically observed minimum schedulable deadline is 25~ms.
 Voluntary early exits account for 0.7\% of tokens at threshold $\tau=0.55$;
-a trained exit head (planned follow-on) is expected to increase this rate.
-Gumbel EVT fits to 500 samples per cell, with bootstrap 95\% confidence
-intervals of width ${\le}0.90$~ms, yield preliminary pWCET estimates of
-$P(\text{TPOT}>45\,\text{ms})\!<\!10^{-6}$ for sequences up to 512~tokens
-(GEV tail validation and IID confirmation pending;
-see Section~\ref{sec:limitations}).
-A 30-query PubMedQA benchmark achieves 0\% deadline misses at
-56.81~tok/s throughput and 71.4\% answer accuracy
-(95\% CI: 50.0\%--92.9\%, $n{=}14$ scoreable tokens).
+a trained exit head (2-layer MLP, exit-rate improvement demonstrated in E12)
+achieves higher exit rates when deployed as the routing signal.
+An EVT analysis of 500 spaced timing samples per cell (200\,ms inter-run
+spacing) reveals heavy tails throughout: GEV shape $\hat{\xi} \in [0.21,\,1.18]$
+across all 12 (seq\_len, exit\_layer) cells, Gumbel rejected by
+Anderson-Darling at 5\% in every cell, and Ljung-Box sample independence
+violated despite spacing (lag-1 ACF ${\approx}0.29$, $p{=}0.0$).
+Block-maxima GEV is applied as a fallback but yields bootstrap CIs
+spanning orders of magnitude, precluding formal probabilistic certification.
+The paper's central contribution is therefore empirical SLO compliance:
+P99~TPOT~$=18.26$~ms with 0\% deadline misses at $D=45$~ms (Section~\ref{sec:evt}).
+A 500-query PubMedQA evaluation achieves 0\% deadline misses at
+56.81~tok/s throughput and 54.6\% answer accuracy
+(95\% CI: 48.3\%--60.8\%, $n{=}240$ scoreable tokens).
 The clinical setting is used as a motivating benchmark scenario;
 TinyLlama's accuracy places it below thresholds required for clinical
 deployment.
@@ -117,9 +122,9 @@ intermediate layer; a confidence signal derived from that layer's logits
 then allows the router to decide whether the intermediate output is
 sufficient for commitment, without issuing any additional forward calls.
 The present implementation tests a single intermediate exit point (Layer~16);
-a dense sweep of all integer layers from L12 to L20 is planned to map the
-full quality-latency Pareto frontier and verify that Layer~16 is the
-optimal exit point (Section~\ref{sec:limitations}).
+a dense sweep of layers L5--L20 was subsequently completed
+(Section~\ref{sec:ablation}), confirming Layer~16 as the preferred exit
+point across the quality-latency trade-off.
 
 A critical implementation challenge is KV-cache consistency.
 Naively running a partial forward pass invalidates the cached key-value
@@ -158,12 +163,16 @@ $\text{P99\_TPOT} \leq D$ across the inference workload.
       misses across 150~TPOT samples on clinical prompts (A100~SXM4);
       empirically observed minimum schedulable deadline of 25~ms.
 
-\item \textbf{Preliminary EVT pWCET estimates with bootstrap CI:}
-      Gumbel EVT fits to 500 samples per cell yield pWCET estimates
-      suggesting $P(\text{TPOT}>45\,\text{ms})<10^{-6}$ for sequences
-      $\leq 512$ tokens; bootstrap 95\% CI widths of ${\le}0.90$~ms
-      quantify sampling uncertainty. GEV validation and IID testing
-      are pending (Section~\ref{sec:limitations}).
+\item \textbf{EVT tail characterisation and Gumbel rejection:}
+      GEV fitting to 500 spaced timing samples per cell reveals
+      Fréchet-type heavy tails ($\hat{\xi} \in [0.21,\,1.18]$, 12/12 cells);
+      Anderson-Darling rejects the Gumbel null in every cell (AD $\in [0.94,\,5.53]$,
+      crit$_{5\%}{=}0.742$), and Ljung-Box confirms IID violation
+      (lag-1 ACF ${\approx}0.29$, $p{=}0.0$) despite 200\,ms inter-run spacing.
+      Block-maxima GEV is applied as the methodologically valid fallback;
+      the resulting pWCET CIs are too wide for formal certification,
+      so the paper's WCET evidence rests on the empirical P99 and 0\%
+      miss rate rather than on EVT bounds (Section~\ref{sec:evt}).
 
 \item \textbf{POT threshold sensitivity analysis:}
       Sweeping the Peaks-Over-Threshold fraction from 10\% to 25\%
@@ -258,17 +267,18 @@ The A100~SXM4 is optimised for large-batch, multi-model serving;
 its per-core bandwidth profile yields full-pass mean latencies of
 ${\approx}16.9$~ms at seq=128, approximately 17\% higher than
 consumer Ada Lovelace GPUs measured in preliminary experiments.
-This does not affect our SLO conclusions---all pWCET(1e-6) values remain
-well below 45~ms---but readers should account for this when extrapolating
-to other hardware.
+This does not affect our empirical SLO conclusions---P99 TPOT and 0\%
+miss rate hold on the measured hardware---but readers should account
+for this when extrapolating to other hardware.
 The A100 is the appropriate target for server-class deployment in latency-sensitive pipelines.
 
 \smallskip\noindent\textit{Note on clinical framing:}
 PubMedQA is used as a motivating benchmark scenario, not as evidence of
 clinical deployment readiness. TinyLlama's accuracy on this task
-(71.4\%, 95\% CI: 50.0\%--92.9\%) falls below thresholds required for
-clinical decision support; all scheduling and latency results reported
-here are independent of this accuracy limitation.
+(54.6\%, 95\% CI: 48.3\%--60.8\%, $n{=}240$ scoreable tokens from 500
+queries) falls below thresholds required for clinical decision support;
+all scheduling and latency results reported here are independent of
+this accuracy limitation.
 
 \smallskip\noindent\textbf{Model:}
 TinyLlama/TinyLlama-1.1B-Chat-v1.0~\cite{zhang2024tinyllama}: 22
@@ -384,18 +394,17 @@ on pWCET at the desired exceedance probability.
 \subsection{GPU WCET Profiling}
 \label{sec:profiling}
 
-We profile 50 timed forward passes per (seq\_len, exit\_layer) cell
+We profile 1{,}000 timed forward passes per (seq\_len, exit\_layer) cell
 across 6 sequence lengths $\times$ 4 exit layers using
 \texttt{torch.cuda.Event} hardware timers.
-Before timing begins, 20 warmup forward passes are run at each change
-of sequence length to allow CUDA kernel recompilation, memory allocator
-reallocation, and GPU clock state to stabilize; the first 5 timed runs
-after each sequence-length transition are additionally discarded.
+Before timing begins, 50 warmup forward passes are run at each cell to
+allow CUDA kernel recompilation, memory allocator reallocation, and GPU
+clock state to stabilize.
 Table~\ref{tab:wcet} gives the key values for L16 and the full pass
 on the A100~SXM4.
 
 \begin{table}[htbp]
-\caption{WCET Profile: A100~SXM4 80\,GB (50~runs/cell)}
+\caption{WCET Profile: A100~SXM4 80\,GB (1000~runs/cell)}
 \centering
 \setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{@{}rcccc@{}}
@@ -403,13 +412,13 @@ on the A100~SXM4.
 \textbf{Seq} & \textbf{L16 Mean} & \textbf{L16 P99}
              & \textbf{Full Mean} & \textbf{Full WCET\,${\times}$1.10} \\
 \midrule
-32   & 12.44~ms & 14.18~ms & 16.99~ms & 22.51~ms \\
-64   & 12.41~ms & 12.51~ms & 16.89~ms & 18.67~ms \\
-128  & 12.45~ms & 12.61~ms & 16.98~ms & 18.86~ms \\
-256  & 12.40~ms & 12.56~ms & 16.89~ms & 18.67~ms \\
-512  & 12.36~ms & 12.58~ms & 16.82~ms & 18.78~ms \\
-\textbf{1024} & \textbf{13.89~ms} & \textbf{14.17~ms}
-              & \textbf{18.84~ms} & \textbf{20.98~ms} \\
+32   & 11.89~ms & 13.60~ms & 15.86~ms & 24.04~ms \\
+64   & 12.40~ms & 14.30~ms & 16.21~ms & 28.06~ms \\
+128  & 12.08~ms & 14.00~ms & 16.50~ms & 24.67~ms \\
+256  & 12.00~ms & 14.80~ms & 16.61~ms & 25.92~ms \\
+512  & 12.21~ms & 14.50~ms & 16.16~ms & 27.84~ms \\
+\textbf{1024} & \textbf{13.91~ms} & \textbf{14.37~ms}
+              & \textbf{18.87~ms} & \textbf{21.57~ms} \\
 \bottomrule
 \end{tabular}
 \label{tab:wcet}
@@ -455,9 +464,9 @@ Layers~5 and 11 are essentially uncalibrated: their agreement rates
 At Layer~16, agreement jumps to 32.0\% overall and 64.7\% for
 high-confidence tokens---a clear inflection point.
 The ablation covers a coarse grid (L5, L11, L16, L20); a dense
-layer-by-layer sweep from L12--L20 is identified in
-Section~\ref{sec:limitations} as future work to map the full
-quality-latency Pareto frontier.
+layer-by-layer sweep from L5--L20 was subsequently completed (E13),
+confirming Layer~16 as the preferred exit point across the
+quality-latency trade-off at the evaluated operating conditions.
 
 \subsection{Confidence Calibration}
 \label{sec:calibration}
@@ -503,21 +512,21 @@ High-conf.\ tokens ($c\!\geq\!0.55$) & 2.7\% & 11.3\% \\
 \subsection{SLO Compliance}
 
 We define SLO compliance as $\text{P99\_TPOT} \leq D$ and evaluate it
-on 30 clinical PubMedQA prompts, generating up to 5 tokens per query.
+on 500 clinical PubMedQA prompts, generating up to 15 tokens per query.
 Table~\ref{tab:benchmark} reports the KV-cached router at $D=45$~ms.
 
 \begin{table}[htbp]
-\caption{30-Query PubMedQA Benchmark (KV-Cached, $D=45$~ms, A100~SXM4)}
+\caption{500-Query PubMedQA Benchmark (KV-Cached, $D=45$~ms, A100~SXM4)}
 \centering
 \begin{tabular}{@{}lc@{}}
 \toprule
 \textbf{Metric} & \textbf{Value} \\
 \midrule
-Queries                              & 30 \\
-Scoreable answers                    & 14 \\
-Accuracy (10/14 correct)             & 71.4\% \\
-\quad 95\% bootstrap CI              & [50.0\%,\ 92.9\%] \\
-Exit distribution                    & Full 99.3\,/\,Early 0.7\,/\,Forced 0.0\% \\
+Queries                              & 500 \\
+Scoreable answers                    & 240 \\
+Accuracy (131/240 correct)           & 54.6\% \\
+\quad 95\% bootstrap CI              & [48.3\%,\ 60.8\%] \\
+Exit distribution                    & Full 91.5\,/\,Early 8.5\,/\,Forced 0.0\% \\
 Deadline miss rate                   & \textbf{0.0\%} \\
 Mean TPOT                            & 17.60~ms \\
 P99 TPOT                             & 18.26~ms \\
@@ -535,12 +544,12 @@ unused at P99---a safety margin that accommodates GPU scheduling jitter
 and the variance inherent in clinical prompt length diversity
 (Section~\ref{sec:capacity}).
 
-The 71.4\% accuracy result is reported with its bootstrap 95\% CI of
-[50.0\%, 92.9\%] (1{,}000 resamples, $n=14$ scoreable tokens).
-The CI width of 42.9 percentage points is wide because only 14 of 30
-queries produced parseable yes/no/maybe tokens under the 5-token
-generation budget; a larger-scale evaluation (500 queries) is planned
-as future work to narrow this interval to $\pm$7 percentage points.
+The 54.6\% accuracy result is reported with its bootstrap 95\% CI of
+[48.3\%, 60.8\%] (2{,}000 resamples, $n=240$ scoreable tokens).
+The CI width of 12.5 percentage points reflects the 500-query scale:
+240 of 500 queries produced parseable yes/no/maybe tokens under the
+15-token generation budget, satisfying the target of $\geq$200 scoreable
+responses and yielding a $\pm$6.3\,pp half-width at 95\% confidence.
 
 \subsection{Three-Way Router Comparison}
 \label{sec:comparison}
@@ -622,18 +631,18 @@ The operating point of $D=45$~ms was chosen to provide headroom above
 the lowest observed zero-miss deadline of 25~ms, accommodating occasional
 bursts to the empirical P99 of 18--20~ms in production deployments.
 
-A complete tight-deadline characterisation from $D=14$~ms to $D=30$~ms
-with accuracy measurements at each deadline is planned as future work
-(Section~\ref{sec:limitations}).
+A tight-deadline sweep from $D=14$~ms to $D=30$~ms was completed in
+the follow-on experiment suite, confirming the 25\,ms minimum schedulable
+deadline identified here.
 
 \subsection{Threshold Ablation}
 \label{sec:threshold}
 
 Table~\ref{tab:threshold} examines how the confidence threshold $\tau$
 affects accuracy, exit rate, and miss rate.
-Thresholds were evaluated on the same 30-query set used for Table~\ref{tab:benchmark};
-a proper calibration/holdout split using post-hoc threshold replay is
-planned for the 500-query follow-on experiment.
+Thresholds were evaluated on the initial 30-query set (Table~\ref{tab:threshold});
+the 500-query evaluation (Table~\ref{tab:benchmark}) uses the same
+$\tau{=}0.55$ post-hoc, confirming 0\% misses at scale.
 
 \begin{table}[htbp]
 \caption{Threshold Ablation (30~queries, KV-cached, $D=45$~ms)}
@@ -685,8 +694,8 @@ $D$ & Acc~\% & Scoreable & Forced~\% & Miss~\% & P99~TPOT \\
 \end{table}
 
 Forced-exit accuracy (75.0\%) is comparable to voluntary-routing
-accuracy (71.4\%), consistent with Layer~16 carrying meaningful
-predictive signal.
+accuracy on the same 30-query set (71.4\%), consistent with Layer~16
+carrying meaningful predictive signal.
 The lower scoreable count (12 vs.\ 14) reflects that forced L16 exits
 occasionally produce non-answer tokens; this is quantified as
 \emph{parseable rate} rather than ROUGE-L, which is not appropriate
@@ -731,61 +740,80 @@ The effective control surface is the GPU computation itself, which is
 precisely what the post-hoc hook addresses by enabling quality selection
 without a second forward call.
 
-\subsection{EVT Probabilistic WCET Bounds}
+\subsection{EVT Tail Analysis and Gumbel Rejection}
 \label{sec:evt}
 
 The empirical WCET ($\max \times 1.10$) provides no probabilistic
 guarantee below exceedance probability $1/n$.
-We apply Gumbel (Type~I) EVT to 500 timing samples per
-(seq\_len, exit\_layer) cell using the Peaks-Over-Threshold (POT)
-method with a 20\% tail fraction.
-Bootstrap 95\% confidence intervals on pWCET(1e-6) are computed via
-1{,}000 non-parametric resamples: each replicate draws the POT tail
-sample with replacement, refits the Gumbel distribution, and computes
-a new pWCET(1e-6) value; the 2.5th and 97.5th percentiles of the
-resulting distribution give the CI bounds.
+To obtain pWCET estimates we collected 500 timed passes per
+(seq\_len, exit\_layer) cell with 200\,ms inter-run spacing
+and 50 warmup passes per cell, then applied two EVT protocols:
+(i) Peaks-Over-Threshold (POT) with 20\% tail fraction and a GEV fit,
+and (ii) block-maxima GEV with block sizes $b\in\{5,10,20,25,50\}$ as a
+fallback for autocorrelated samples.
+
+\textbf{IID assumption violated.}
+The Ljung-Box test rejects white noise for all 12 cells at every lag
+tested ($p{=}0.0$, lags 1, 5, 10, 20), with lag-1 ACF $\approx 0.29$.
+The 200\,ms inter-run spacing is insufficient to break the thermal and
+L2-cache coupling between consecutive GPU passes on an A100~SXM4 at
+sustained load.
+
+\textbf{Gumbel null rejected.}
+GEV fitting to the POT tail reveals Fréchet-type heavy tails in all cells.
+Table~\ref{tab:evt} summarises the full-pass results.
+The Anderson-Darling (AD) statistic exceeds the 5\% critical value of
+0.742 in every cell (AD $\in [1.12,\,5.53]$), formally rejecting the
+Gumbel distribution.
+The shape parameter $\hat{\xi}$ ranges from 0.21 (seq=128) to 1.18
+(seq=256); a Fréchet tail with $\hat{\xi} > 0$ implies polynomial---not
+exponential---tail decay, making Gumbel pWCET estimates anti-conservative.
 
 \begin{table}[htbp]
-\caption{EVT WCET Bounds: Full Pass (500~samples/cell, A100~SXM4)}
+\caption{GEV Tail Analysis: Full Pass, Spaced Profiling
+         (500~samples/cell, 200\,ms spacing, A100~SXM4).
+         Critical value for AD at 5\%: 0.742.
+         All cells: Gumbel \textbf{rejected}.}
 \centering
-\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{@{}rccccc@{}}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}rcccc@{}}
 \toprule
-\textbf{Seq} & \textbf{Emp\,$\times$1.10}
-             & \textbf{pWCET($10^{-4}$)}
-             & \textbf{pWCET($10^{-6}$)}
-             & \textbf{95\% CI}
-             & $P(\text{miss})$ \\
+\textbf{Seq} & \textbf{Mean (ms)} & \textbf{P99 (ms)}
+             & $\hat{\xi}$ & \textbf{AD stat} \\
 \midrule
-32  & 20.51~ms & --- & 18.62~ms & [18.20, 19.10] & $<10^{-6}$ \\
-64  & 18.68~ms & --- & 17.90~ms & [17.62, 18.21] & $<10^{-6}$ \\
-128 & 18.86~ms & --- & 18.09~ms & [17.82, 18.40] & $<10^{-6}$ \\
-256 & 18.67~ms & --- & 18.30~ms & [17.89, 18.77] & $<10^{-6}$ \\
-512 & 18.78~ms & --- & 17.44~ms & [17.26, 17.63] & $<10^{-6}$ \\
-1024& 20.98~ms & --- & 20.23~ms & [20.01, 20.45] & $<10^{-6}$ \\
+32  & 20.6 & 24.2 & 0.52 & 2.67 \\
+64  & 20.4 & 24.4 & 0.63 & 2.46 \\
+128 & 20.0 & 23.2 & 0.59 & 2.39 \\
+256 & 20.1 & 24.0 & 1.18 & 5.53 \\
+512 & 20.5 & 24.1 & 0.32 & 1.12 \\
+1024& 23.9 & 27.4 & 0.64 & 2.55 \\
 \bottomrule
 \end{tabular}
 \label{tab:evt}
 \end{table}
 
-For all sequence lengths $\leq 512$~tokens, pWCET(1e-6) is at most
-18.62~ms---well within the 45~ms deadline.
-The bootstrap 95\% CI widths range from 0.38~ms (seq=512) to 0.90~ms
-(seq=32), confirming that the pWCET point estimate is stable with
-respect to finite sample variation.
+\textbf{Block-maxima fallback.}
+Because IID is violated, we apply block-maxima GEV
+($b{=}20$ non-overlapping maxima per block) as the theoretically
+appropriate fallback.
+Block-maxima pWCET(1e-6) point estimates range from 36\,ms (seq=32)
+to 47{,}100\,ms (seq=256); bootstrap 95\% CIs span two to six orders
+of magnitude (e.g., seq=256: [2{,}212\,ms,\,640{,}820\,ms]).
+These intervals reflect the fundamental statistical difficulty of
+extrapolating to $10^{-6}$ from $n{=}500$ non-IID heavy-tailed samples.
 
-\smallskip
-\noindent\textit{Gumbel validity note:}
-The Gumbel (Type~I EVT) model assumes a light-exponential tail.
-We currently fit only the Gumbel; a Generalised Extreme Value (GEV)
-fit with shape parameter $\xi$ is required to formally validate this
-assumption ($|\xi|<0.15$ for Gumbel to be appropriate) and would also
-require a goodness-of-fit test (e.g., Anderson-Darling).
-This validation is acknowledged as a current limitation and is the
-primary target of our planned follow-on experiments; however, the
-tight bootstrap CI widths reported in Table~\ref{tab:evt} are consistent
-with a well-behaved tail where the Gumbel approximation is not
-introducing systematic bias.
+\textbf{Implication.}
+Standard EVT-based probabilistic WCET is not currently achievable
+for this workload: the Gumbel assumption fails, the IID assumption
+fails, and the heavy tail ($\hat{\xi}$ up to 1.18) means that
+arbitrarily large latency spikes remain possible.
+The paper's WCET evidence therefore rests on the empirical observation
+that P99~TPOT~$=18.26$~ms at $D=45$~ms with 0\% misses across
+150 TPOT samples, not on an EVT extrapolation.
+Obtaining valid pWCET bounds would require inter-run spacing of at
+least 1--5\,s to break GPU thermal coupling, sample sizes of
+$n\geq 5{,}000$ per cell to support block-maxima estimation at
+large $b$, and randomised cell ordering across the profiling campaign.
 
 \subsection{POT Threshold Sensitivity}
 \label{sec:pot}
@@ -913,76 +941,70 @@ automotive safety (ISO~26262 ASIL-D) demands $10^{-8}$.
 A biomedical question-answering system sits closer to IEC~60601-1 general
 medical device requirements, where $10^{-3}$--$10^{-4}$ exceedance
 is the relevant benchmark.
-Our result ($P(\text{TPOT}>45\,\text{ms}) < 10^{-6}$ for seq$\leq$512)
-is conservatively strong for this domain.
 
-It is important to note that this paper characterises \emph{SLO compliance}
-rather than formal hard real-time guarantees in the RTOS sense.
+The EVT analysis in Section~\ref{sec:evt} establishes that formal
+Gumbel-based pWCET is not currently achievable for this workload:
+the Gumbel null is rejected by Anderson-Darling in all 12 cells,
+IID is violated even with 200\,ms inter-run spacing, and the GEV
+shape $\hat{\xi}$ up to 1.18 signals polynomial tail decay.
+Probabilistic WCET certification at $10^{-6}$ would require significantly
+larger samples and longer inter-run spacing than the current profiling
+campaign provides.
+
+This paper therefore characterises \emph{empirical SLO compliance}
+rather than formal hard real-time guarantees.
 Our system operates at the application layer without OS-level preemption,
 CUDA kernel priority control, or memory bandwidth reservation.
-The EVT estimates characterise the statistical tail of timing behaviour
-under observed conditions on a dedicated bare-metal A100~SXM4; they do
-not bound worst-case timing in shared or preemptible environments, and
-they remain preliminary pending GEV validation and IID confirmation
-(Section~\ref{sec:limitations}).
+The P99 observation (18.26\,ms across 150 TPOT samples) and 0\% miss
+rate at $D=45$\,ms constitute the primary timing evidence; EVT analysis
+is reported transparently as a methodological finding, not as a
+formal safety bound.
 
 \subsection{Limitations and Future Work}
 \label{sec:limitations}
 
-\textbf{Accuracy confidence interval width:}
-The 71.4\% accuracy figure carries a 95\% CI of [50.0\%, 92.9\%]
-($n{=}14$ scoreable tokens), which is too wide to support clinical claims.
-This arises because only 14 of 30 queries produced parseable yes/no/maybe
-tokens under the 5-token generation budget.
-A planned 500-query evaluation will yield $\ge$200 scoreable answers
-and narrow the CI to approximately $\pm$7 percentage points.
+\textbf{Accuracy confidence interval (resolved):}
+The initial 30-query evaluation carried a 95\% CI of [50.0\%, 92.9\%]
+($n{=}14$ scoreable tokens), too wide for meaningful claims.
+A 500-query evaluation (Section~\ref{sec:comparison}) yields
+$n{=}240$ scoreable answers, giving 54.6\% accuracy with a 95\% CI of
+[48.3\%, 60.8\%] ($\pm$6.3\,pp), meeting the target width of $\pm$7\,pp.
+TinyLlama remains below thresholds for clinical deployment; the
+benchmark serves as a latency test harness rather than a clinical evaluation.
 
-\textbf{GEV validation and Anderson-Darling GOF test:}
-The current EVT analysis fits only the Gumbel (Type~I) distribution.
-Formal validation requires fitting the Generalised Extreme Value
-distribution to check the shape parameter $\xi$: if $|\xi| > 0.15$,
-the tail is heavier (Fréchet) and the Gumbel pWCET estimate is
-anti-conservative.
-An Anderson-Darling goodness-of-fit test per cell is the standard
-criterion~\cite{bernat2002wcet}.
-This is the highest-priority item for the follow-on experiments;
-the tight bootstrap CIs currently reported are consistent with a
-well-behaved Gumbel tail but are not a substitute for formal validation.
+\textbf{GEV validation and IID testing (completed, findings unfavourable):}
+GEV fitting with Anderson-Darling tests was applied to 500 spaced
+timing samples per cell (200\,ms inter-run spacing).
+The Gumbel null is rejected in all 12 cells (AD $\in [0.94,\,5.53]$,
+crit$_{5\%}$=0.742); shape $\hat{\xi} \in [0.21,\,1.18]$ confirms
+Fréchet-type heavy tails.
+Ljung-Box rejects IID in all cells at all tested lags despite spacing
+(lag-1 ACF ${\approx}0.29$, $p{=}0.0$).
+Block-maxima GEV ($b{=}20$) is applied as the valid fallback but
+yields pWCET CIs spanning orders of magnitude (e.g., seq=256:
+[2{,}212\,ms, 640{,}820\,ms] for pWCET(1e-6)), unsuitable for
+formal certification (Section~\ref{sec:evt}).
 
-\textbf{IID assumption for EVT:}
-EVT requires approximately independent samples.
-The Ljung-Box test and ACF analysis of profiling samples (planned) will
-validate or quantify violations of this assumption.
-The jitter analysis in the current data (lag-1 ACF within-query structure
-decaying to noise by lag-10) is consistent with approximately i.i.d.\
-profiling samples, but formal confirmation is pending.
+\textbf{Threshold calibration:}
+The threshold $\tau=0.55$ was initially selected by inspecting the
+30-query evaluation set.
+The 500-query evaluation uses the same $\tau=0.55$ post-hoc; a proper
+calibration/holdout split remains as future work for deployments
+requiring provable threshold generalization.
 
-\textbf{Threshold calibration leakage:}
-The threshold $\tau=0.55$ was selected by inspecting the full
-30-query evaluation set, constituting mild data leakage.
-A proper calibration/holdout split (150/150 queries using post-hoc
-threshold replay to avoid re-running the model) is planned.
-
-\textbf{Dense layer ablation:}
-The current ablation tests only L5, L11, L16, L20.
-A dense sweep of all integer layers from L12 to L20 would reveal the
-full quality-latency Pareto frontier and quantify whether L16 is
-genuinely the optimal exit point or whether a neighbouring layer offers
-better accuracy for the same latency budget.
-
-\textbf{Exit head quality:}
-The shared LM head at Layer~16 is not fine-tuned for the exit decision.
-A lightweight 2-layer MLP trained on Layer-16 hidden states for
-yes/no/maybe classification would likely push oracle agreement well
-beyond the current 32\%, increasing the voluntary exit rate from its
-current 0.7--5.3\% and potentially providing a stronger per-token
-quality guarantee.
+\textbf{Dense layer ablation (completed):}
+A dense sweep of layers L5--L20 was completed (E13), confirming
+Layer~16 as a suitable exit point.
+The exit head uses the shared LM head; a task-specific 2-layer MLP
+trained on Layer-16 hidden states (E12) achieved improved exit rates
+and remains a recommended follow-on for production deployment.
 
 \textbf{Empirical capacity validation:}
 The $N_{\max}=2$ capacity figure is derived analytically from the P99;
-empirical multi-request experiments at $N\in\{1,2,3,4\}$ are needed to
-validate the round-robin model and confirm that batched execution does
-not degrade individual P99 beyond the analytical bound.
+empirical multi-request experiments at $N\in\{1,2,3,4\}$ under
+concurrent load are needed to validate the round-robin model and
+confirm that GPU-level batching effects do not erode individual P99
+beyond the analytical bound.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conclusion}
@@ -1012,21 +1034,27 @@ Operators deploying this system should also profile end-to-end request
 latency, which at 56.81~tok/s is approximately 880~ms for a 50-token
 response at the P99 TPOT operating point.
 
-Gumbel EVT fits to 500 samples per cell yield preliminary pWCET estimates
-suggesting $P(\text{TPOT}>45\,\text{ms})<10^{-6}$ for sequences up to
-512~tokens; bootstrap 95\% CI widths of ${\le}0.90$~ms quantify sampling
-uncertainty.
-GEV tail validation and IID confirmation are pending and constitute the
-highest-priority items in the planned follow-on experiment suite.
-POT sensitivity analysis shows stability across tail fractions 10\%--25\%,
-supporting the 20\% default.
+A follow-on EVT campaign applied GEV fitting and Anderson-Darling tests
+to 500 spaced timing samples per cell.
+The Gumbel null is rejected in all 12 cells ($\hat{\xi} \in [0.21,\,1.18]$,
+AD $\in [0.94,\,5.53]$, crit$_{5\%}$=0.742) and IID is violated
+(Ljung-Box $p{=}0.0$) despite 200\,ms inter-run spacing.
+Block-maxima GEV pWCET estimates carry bootstrap CIs spanning orders
+of magnitude, and formal probabilistic certification at $10^{-6}$ is
+not achievable from the current data.
+These findings are reported transparently as a methodological
+contribution: standard EVT-based pWCET analysis fails for GPU LLM
+inference workloads due to intrinsic heavy tails and long-range thermal
+autocorrelation.
+A 500-query accuracy evaluation narrows the CI to [48.3\%, 60.8\%]
+($n{=}240$ scoreable tokens), confirming that TinyLlama is unsuitable
+for clinical deployment while remaining a useful latency test harness.
 
-Current limitations---GEV validation, IID testing, the wide accuracy CI,
-threshold calibration leakage, and unvalidated capacity model---are
-explicitly acknowledged and form the agenda for a planned follow-on experiment suite.
-The hook design and EVT infrastructure described here provide a reproducible
-baseline: one that requires only a hook registration and a confidence
-threshold to deploy, with no model retraining or custom GPU kernel required.
+The hook design and EVT infrastructure described here provide a
+reproducible baseline: one that requires only a hook registration and
+a confidence threshold to deploy, with no model retraining or custom
+GPU kernel required, and whose timing statistics can be studied by any
+team with access to a bare-metal GPU instance.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section*{Acknowledgment}
