@@ -10,7 +10,8 @@ SESSION="sprint_cr"
 WLOG="results/watchdog.log"
 POLL_S=120    # poll every 2 minutes
 RESTART_WAIT=60
-PUSH_EVERY=5  # push every 5 polls = 10 minutes
+PUSH_EVERY=3  # push every 3 polls = 6 minutes
+LAST_DONE=0   # last seen done count (for immediate-on-completion push)
 
 # Source persisted env (tokens, repo, branch)
 [ -f /root/.sprint_env ] && source /root/.sprint_env
@@ -64,7 +65,12 @@ while true; do
     GPU_UTIL=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader 2>/dev/null | head -1 || echo "?")
     DONE_COUNT=$(ls results/.*.done 2>/dev/null | wc -l || echo 0)
     wlog "OK  temp=${GPU_TEMP}C  util=${GPU_UTIL}  done=${DONE_COUNT}/10"
-    if [ $((POLL_COUNT % PUSH_EVERY)) -eq 0 ]; then
+    # Push immediately on any new .done flag (lose < 1 experiment if disk wipes)
+    if [ "$DONE_COUNT" -gt "$LAST_DONE" ]; then
+      wlog "NEW completion detected (${LAST_DONE}->${DONE_COUNT}) — pushing now"
+      push_results || true
+      LAST_DONE=$DONE_COUNT
+    elif [ $((POLL_COUNT % PUSH_EVERY)) -eq 0 ]; then
       push_results || true
     fi
     if [ "$DONE_COUNT" -ge 10 ]; then
