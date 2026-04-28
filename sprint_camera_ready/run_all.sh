@@ -94,7 +94,7 @@ run_experiment() {
 }
 
 # ── Experiment sequence ──────────────────────────────────────────────────────
-run_experiment "e00_wcet_large_spaced"   "5000 samples/cell, 1s spacing, 12 cells (~17h)"
+run_experiment "e00_wcet_large_spaced"   "round-robin N=5000, 1s spacing, 12 cells (~1.4h)"
 run_experiment "e01_iid_spacing_study"   "Ljung-Box IID at 0/200ms/1s/5s spacing"
 run_experiment "e02_block_maxima_large"  "Block-maxima GEV n=5000, b=25/50/100"
 run_experiment "e03_nonevt_wcet"         "Non-EVT empirical bounds P99/P99.9 + safety factor"
