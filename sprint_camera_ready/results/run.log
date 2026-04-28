@@ -72,3 +72,45 @@ Timed phase: 5000 rounds × 12 cells = 60,000 samples, ETA ≈ 83.3 min
   round  4401/5000  ( 88.0%)  wall= 73.4min  eta= 10.0min  cell0_p99=6.916ms
   round  4501/5000  ( 90.0%)  wall= 75.1min  eta=  8.3min  cell0_p99=6.901ms
   round  4601/5000  ( 92.0%)  wall= 76.7min  eta=  6.7min  cell0_p99=6.916ms
+  round  4701/5000  ( 94.0%)  wall= 78.4min  eta=  5.0min  cell0_p99=6.950ms
+  round  4801/5000  ( 96.0%)  wall= 80.1min  eta=  3.3min  cell0_p99=6.959ms
+  round  4901/5000  ( 98.0%)  wall= 81.7min  eta=  1.7min  cell0_p99=7.013ms
+
+Per-cell summary:
+  seq32_l5              mean=  4.978  p99=  7.022  p99.9=  7.859  max= 12.838 ms
+  seq32_l16             mean= 12.633  p99= 14.706  p99.9= 16.564  max= 20.307 ms
+  seq32_full            mean= 18.383  p99= 20.658  p99.9= 23.714  max= 26.283 ms
+  seq128_l5             mean=  4.279  p99=  4.795  p99.9=  6.872  max=  8.445 ms
+  seq128_l16            mean= 12.511  p99= 14.486  p99.9= 15.729  max= 16.909 ms
+  seq128_full           mean= 18.257  p99= 20.520  p99.9= 22.580  max= 23.449 ms
+  seq256_l16            mean= 12.535  p99= 14.509  p99.9= 16.616  max= 16.982 ms
+  seq256_full           mean= 18.249  p99= 20.345  p99.9= 22.455  max= 22.932 ms
+  seq512_l16            mean= 12.517  p99= 13.173  p99.9= 16.326  max= 16.850 ms
+  seq512_full           mean= 18.206  p99= 19.740  p99.9= 22.587  max= 24.349 ms
+  seq1024_l16           mean= 12.509  p99= 13.203  p99.9= 16.615  max= 16.915 ms
+  seq1024_full          mean= 18.216  p99= 19.777  p99.9= 22.944  max= 35.610 ms
+
+PASS: E00 complete  (83.4 min)
+
+2026-04-28T22:32:43   [PASS] e00_wcet_large_spaced  (5017s)
+2026-04-28T22:32:43   [PASS] e00_wcet_large_spaced  (5017s)
+2026-04-28T22:32:43 
+2026-04-28T22:32:43 
+2026-04-28T22:32:43 ──────────────────────────────────────────────
+2026-04-28T22:32:43 ──────────────────────────────────────────────
+2026-04-28T22:32:43   Running: e01_iid_spacing_study  —  Ljung-Box IID at 0/200ms/1s/5s spacing
+2026-04-28T22:32:43   Running: e01_iid_spacing_study  —  Ljung-Box IID at 0/200ms/1s/5s spacing
+2026-04-28T22:32:43   Attempt 1/3 ...
+2026-04-28T22:32:43   Attempt 1/3 ...
+============================================================
+E01  IID Spacing Study
+     N=1000  cell=seq128_full  spacings=[0, 200, 1000, 5000]ms
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  56%|█████▌    | 112/201 [00:00<00:00, 1109.00it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1133.60it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  Spacing=0ms ...
+  LB p=0.009781  lag1_ACF=0.070  IID=FAIL  (19s)
+
+  Spacing=200ms ...
