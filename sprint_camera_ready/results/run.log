@@ -61,3 +61,7 @@ Timed phase: 5000 rounds × 12 cells = 60,000 samples, ETA ≈ 83.3 min
   round  3301/5000  ( 66.0%)  wall= 55.0min  eta= 28.3min  cell0_p99=6.756ms
   round  3401/5000  ( 68.0%)  wall= 56.7min  eta= 26.7min  cell0_p99=6.756ms
   round  3501/5000  ( 70.0%)  wall= 58.4min  eta= 25.0min  cell0_p99=6.950ms
+  round  3601/5000  ( 72.0%)  wall= 60.0min  eta= 23.3min  cell0_p99=6.933ms
+  round  3701/5000  ( 74.0%)  wall= 61.7min  eta= 21.7min  cell0_p99=6.916ms
+  round  3801/5000  ( 76.0%)  wall= 63.4min  eta= 20.0min  cell0_p99=6.901ms
+  round  3901/5000  ( 78.0%)  wall= 65.0min  eta= 18.3min  cell0_p99=6.854ms
