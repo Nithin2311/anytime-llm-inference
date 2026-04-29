@@ -1523,3 +1523,9 @@ Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
     p99=18.71ms  throughput=51.9tok/s  SLO=100.0%
 
   N=2 (100 reps) ...
+    p99=18.76ms  throughput=52.2tok/s  SLO=100.0%
+
+  N=4 (100 reps) ...
+    p99=18.63ms  throughput=52.3tok/s  SLO=100.0%
+
+  N=8 (100 reps) ...
