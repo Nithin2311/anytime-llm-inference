@@ -1482,3 +1482,44 @@ Soaking for 60 min ...
   t= 58.4min  TPOT=60.91ms  temp=59.0C  clock=1410.0MHz  power=323.57W
   t= 58.5min  TPOT=60.59ms  temp=59.0C  clock=1410.0MHz  power=319.64W
   t= 58.6min  TPOT=60.85ms  temp=51.0C  clock=1410.0MHz  power=93.6W
+  t= 58.7min  TPOT=60.84ms  temp=59.0C  clock=1410.0MHz  power=319.64W
+  t= 58.8min  TPOT=60.97ms  temp=59.0C  clock=1410.0MHz  power=325.09W
+  t= 58.9min  TPOT=60.77ms  temp=59.0C  clock=1410.0MHz  power=326.89W
+  t= 59.0min  TPOT=61.32ms  temp=59.0C  clock=1410.0MHz  power=312.93W
+  t= 59.1min  TPOT=61.01ms  temp=59.0C  clock=1410.0MHz  power=323.29W
+  t= 59.2min  TPOT=61.24ms  temp=59.0C  clock=1410.0MHz  power=168.91W
+  t= 59.3min  TPOT=61.09ms  temp=59.0C  clock=1410.0MHz  power=318.12W
+  t= 59.4min  TPOT=61.34ms  temp=59.0C  clock=1410.0MHz  power=320.56W
+  t= 59.5min  TPOT=61.42ms  temp=59.0C  clock=1410.0MHz  power=322.37W
+  t= 59.6min  TPOT=61.52ms  temp=59.0C  clock=1410.0MHz  power=321.17W
+  t= 59.7min  TPOT=61.35ms  temp=59.0C  clock=1410.0MHz  power=314.19W
+  t= 59.8min  TPOT=61.88ms  temp=59.0C  clock=1410.0MHz  power=315.33W
+  t= 59.9min  TPOT=61.55ms  temp=59.0C  clock=1410.0MHz  power=323.57W
+
+  Total samples : 105965
+  Mean TPOT     : 33.402 ms
+  Std TPOT      : 13.868 ms
+  Drift (L10-F10): +33.055 ms  (+99.0%)
+PASS: E07 complete
+
+2026-04-29T01:41:32   [PASS] e07_thermal_extended  (3609s)
+2026-04-29T01:41:32   [PASS] e07_thermal_extended  (3609s)
+2026-04-29T01:41:32 
+2026-04-29T01:41:32 
+2026-04-29T01:41:32 ──────────────────────────────────────────────
+2026-04-29T01:41:32 ──────────────────────────────────────────────
+2026-04-29T01:41:32   Running: e08_capacity_full  —  Multi-request capacity N=1..8
+2026-04-29T01:41:32   Running: e08_capacity_full  —  Multi-request capacity N=1..8
+2026-04-29T01:41:32   Attempt 1/3 ...
+2026-04-29T01:41:32   Attempt 1/3 ...
+============================================================
+E08  Multi-Request Capacity  N=[1, 2, 4, 8]  reps=100
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  55%|█████▍    | 110/201 [00:00<00:00, 1082.51it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1137.68it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+  N=1 (100 reps) ...
+    p99=18.71ms  throughput=51.9tok/s  SLO=100.0%
+
+  N=2 (100 reps) ...
