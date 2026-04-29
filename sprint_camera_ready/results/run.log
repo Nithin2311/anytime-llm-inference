@@ -148,3 +148,27 @@ E02  Block-Maxima GEV  (requires E00)
   seq32_l5
 /root/anytime-llm-inference/sprint_camera_ready/src/evt_utils.py:143: FutureWarning: As of SciPy 1.17, users must choose a p-value calculation method by providing the `method` parameter. `method='interpolate'` interpolates the p-value from pre-calculated tables; `method` may also be an instance of `MonteCarloMethod` to approximate the p-value via Monte Carlo simulation. When `method` is specified, the result object will include a `pvalue` attribute and not attributes `critical_value`, `significance_level`, or `fit_result`. Beginning in 1.19.0, these other attributes will no longer be available, and a p-value will always be computed according to one of the available `method` options.
   ad_result = anderson(maxima, dist="gumbel_r")
+    b= 10  n_b= 500  xi=+0.280  pWCET=49.647ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.973  pWCET=153765.1581ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.964  pWCET=225637.414ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=+0.429  pWCET=639.8499ms  Gumbel=FAIL
+
+  seq32_l16
+    b= 10  n_b= 500  xi=+0.710  pWCET=5046.7464ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+1.101  pWCET=1106811.4843ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.832  pWCET=69814.2946ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=+0.013  pWCET=31.5531ms  Gumbel=FAIL
+
+  seq32_full
+    b= 10  n_b= 500  xi=+0.580  pWCET=1573.386ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.779  pWCET=27786.1297ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.580  pWCET=3789.6097ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=+0.152  pWCET=75.4069ms  Gumbel=FAIL
+
+  seq128_l5
+    b= 10  n_b= 500  xi=+0.777  pWCET=4386.4891ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.870  pWCET=27350.1978ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.821  pWCET=25325.9666ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=+0.875  pWCET=82961.4805ms  Gumbel=FAIL
+
+  seq128_l16
