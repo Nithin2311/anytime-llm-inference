@@ -337,3 +337,58 @@ Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
       query 251/1000
       query 301/1000
       query 351/1000
+      query 401/1000
+      query 451/1000
+      query 501/1000
+      query 551/1000
+      query 601/1000
+      query 651/1000
+      query 701/1000
+      query 751/1000
+      query 801/1000
+      query 851/1000
+      query 901/1000
+      query 951/1000
+      query 1000/1000
+      Done in 282.8s
+
+[3/3] 5-fold CV ...
+  Fold 1: best_tau=0.5  train_acc=57.0%  val_acc=50.0% [40.6,59.4]
+  Fold 2: best_tau=0.5  train_acc=53.9%  val_acc=61.5% [52.8,70.3]
+  Fold 3: best_tau=0.5  train_acc=53.4%  val_acc=63.7% [53.9,73.6]
+  Fold 4: best_tau=0.5  train_acc=56.4%  val_acc=51.1% [40.9,61.4]
+  Fold 5: best_tau=0.5  train_acc=56.4%  val_acc=51.6% [40.0,61.0]
+
+  Mean val accuracy: 55.6% ± 5.8%
+  Modal tau selected: 0.5 (selected 5/5 folds)
+  tau=0.55 selected: 0/5 folds
+PASS: E05 complete
+
+2026-04-29T00:38:55   [PASS] e05_tau_crossval  (291s)
+2026-04-29T00:38:55   [PASS] e05_tau_crossval  (291s)
+2026-04-29T00:38:55 
+2026-04-29T00:38:55 
+2026-04-29T00:38:55 ──────────────────────────────────────────────
+2026-04-29T00:38:55 ──────────────────────────────────────────────
+2026-04-29T00:38:55   Running: e06_router_comparison  —  Three-router comparison, 500 queries each
+2026-04-29T00:38:55   Running: e06_router_comparison  —  Three-router comparison, 500 queries each
+2026-04-29T00:38:55   Attempt 1/3 ...
+2026-04-29T00:38:55   Attempt 1/3 ...
+============================================================
+E06  Router Comparison  N=500 queries each
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  57%|█████▋    | 114/201 [00:00<00:00, 1128.77it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1156.37it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 500 queries ...
+
+[2/3] Collecting raw token data ...
+      query 1/500
+      query 26/500
+      query 51/500
+      query 76/500
+      query 101/500
+      query 126/500
+      query 151/500
+      query 176/500

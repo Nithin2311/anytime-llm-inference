@@ -1,0 +1,72 @@
+{
+  "experiment": "e05_tau_crossval",
+  "n_queries": 1000,
+  "k_folds": 5,
+  "tau_grid": [
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8
+  ],
+  "fold_results": [
+    {
+      "fold": 1,
+      "best_tau": 0.5,
+      "train_acc": 57.0,
+      "val_acc": 50.0,
+      "val_ci_lower": 40.57,
+      "val_ci_upper": 59.43,
+      "val_n": 200,
+      "exit_rate": 10.9
+    },
+    {
+      "fold": 2,
+      "best_tau": 0.5,
+      "train_acc": 53.9,
+      "val_acc": 61.5,
+      "val_ci_lower": 52.75,
+      "val_ci_upper": 70.33,
+      "val_n": 200,
+      "exit_rate": 8.9
+    },
+    {
+      "fold": 3,
+      "best_tau": 0.5,
+      "train_acc": 53.4,
+      "val_acc": 63.7,
+      "val_ci_lower": 53.85,
+      "val_ci_upper": 73.63,
+      "val_n": 200,
+      "exit_rate": 9.6
+    },
+    {
+      "fold": 4,
+      "best_tau": 0.5,
+      "train_acc": 56.4,
+      "val_acc": 51.1,
+      "val_ci_lower": 40.91,
+      "val_ci_upper": 61.36,
+      "val_n": 200,
+      "exit_rate": 9.6
+    },
+    {
+      "fold": 5,
+      "best_tau": 0.5,
+      "train_acc": 56.4,
+      "val_acc": 51.6,
+      "val_ci_lower": 40.0,
+      "val_ci_upper": 61.05,
+      "val_n": 200,
+      "exit_rate": 10.7
+    }
+  ],
+  "mean_val_acc": 55.58,
+  "std_val_acc": 5.8,
+  "modal_tau": 0.5,
+  "tau_0_55_count": 0
+}
