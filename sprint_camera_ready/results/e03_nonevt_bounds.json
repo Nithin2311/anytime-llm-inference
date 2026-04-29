@@ -1,0 +1,641 @@
+{
+  "experiment": "e03_nonevt_wcet",
+  "cells": [
+    {
+      "n": 5000,
+      "mean_ms": 4.9785,
+      "std_ms": 0.4791,
+      "min_ms": 4.1459,
+      "max_ms": 12.838,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 7.0215,
+          "ci_lower": 6.8544,
+          "ci_upper": 7.1892,
+          "ci_width": 0.3348,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 7.8589,
+          "ci_lower": 7.6079,
+          "ci_upper": 9.0012,
+          "ci_width": 1.3933,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 12.6161,
+          "ci_lower": 8.0346,
+          "ci_upper": 12.838,
+          "ci_width": 4.8034,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 7.0215,
+        "sigma_ms": 0.4791,
+        "bound_ms": 8.4589,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 12.838,
+        "range_ms": 8.6921,
+        "epsilon_ms": 0.3231,
+        "bound_ms": 13.1611,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq32_l5"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 12.6327,
+      "std_ms": 0.3987,
+      "min_ms": 12.1525,
+      "max_ms": 20.3074,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 14.7055,
+          "ci_lower": 14.6498,
+          "ci_upper": 14.7884,
+          "ci_width": 0.1386,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 16.564,
+          "ci_lower": 15.6416,
+          "ci_upper": 17.8808,
+          "ci_width": 2.2392,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 19.5355,
+          "ci_lower": 16.7407,
+          "ci_upper": 20.3074,
+          "ci_width": 3.5667,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 14.7055,
+        "sigma_ms": 0.3987,
+        "bound_ms": 15.9015,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 20.3074,
+        "range_ms": 8.1549,
+        "epsilon_ms": 0.3031,
+        "bound_ms": 20.6105,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq32_l16"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 18.3825,
+      "std_ms": 0.5056,
+      "min_ms": 17.6355,
+      "max_ms": 26.2825,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 20.6581,
+          "ci_lower": 20.5371,
+          "ci_upper": 20.8801,
+          "ci_width": 0.343,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 23.7137,
+          "ci_lower": 22.4126,
+          "ci_upper": 25.038,
+          "ci_width": 2.6254,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 25.7416,
+          "ci_lower": 24.324,
+          "ci_upper": 26.2825,
+          "ci_width": 1.9585,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 20.6581,
+        "sigma_ms": 0.5056,
+        "bound_ms": 22.1748,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 26.2825,
+        "range_ms": 8.647,
+        "epsilon_ms": 0.3214,
+        "bound_ms": 26.6039,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq32_full"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 4.2791,
+      "std_ms": 0.2077,
+      "min_ms": 4.1191,
+      "max_ms": 8.4447,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 4.7946,
+          "ci_lower": 4.6394,
+          "ci_upper": 5.3593,
+          "ci_width": 0.7199,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 6.8724,
+          "ci_lower": 6.4768,
+          "ci_upper": 7.4507,
+          "ci_width": 0.9738,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 8.1265,
+          "ci_lower": 7.1149,
+          "ci_upper": 8.4447,
+          "ci_width": 1.3298,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 4.7946,
+        "sigma_ms": 0.2077,
+        "bound_ms": 5.4177,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 8.4447,
+        "range_ms": 4.3256,
+        "epsilon_ms": 0.1608,
+        "bound_ms": 8.6055,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq128_l5"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 12.5112,
+      "std_ms": 0.3096,
+      "min_ms": 12.0773,
+      "max_ms": 16.9092,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 14.4859,
+          "ci_lower": 14.0838,
+          "ci_upper": 14.5757,
+          "ci_width": 0.4919,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 15.7288,
+          "ci_lower": 15.1195,
+          "ci_upper": 16.555,
+          "ci_width": 1.4355,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 16.8783,
+          "ci_lower": 16.1415,
+          "ci_upper": 16.9092,
+          "ci_width": 0.7677,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 14.4859,
+        "sigma_ms": 0.3096,
+        "bound_ms": 15.4146,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 16.9092,
+        "range_ms": 4.8319,
+        "epsilon_ms": 0.1796,
+        "bound_ms": 17.0888,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq128_l16"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 18.2571,
+      "std_ms": 0.4505,
+      "min_ms": 17.555,
+      "max_ms": 23.4492,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 20.5199,
+          "ci_lower": 20.3524,
+          "ci_upper": 20.6552,
+          "ci_width": 0.3028,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 22.5801,
+          "ci_lower": 22.1055,
+          "ci_upper": 22.6914,
+          "ci_width": 0.5859,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 23.2209,
+          "ci_lower": 22.6106,
+          "ci_upper": 23.4492,
+          "ci_width": 0.8386,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 20.5199,
+        "sigma_ms": 0.4505,
+        "bound_ms": 21.8713,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 23.4492,
+        "range_ms": 5.8942,
+        "epsilon_ms": 0.2191,
+        "bound_ms": 23.6683,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq128_full"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 12.5353,
+      "std_ms": 0.3424,
+      "min_ms": 12.0898,
+      "max_ms": 16.9821,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 14.509,
+          "ci_lower": 14.4161,
+          "ci_upper": 14.6027,
+          "ci_width": 0.1866,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 16.6161,
+          "ci_lower": 16.1138,
+          "ci_upper": 16.6527,
+          "ci_width": 0.5388,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 16.9515,
+          "ci_lower": 16.6244,
+          "ci_upper": 16.9821,
+          "ci_width": 0.3577,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 14.509,
+        "sigma_ms": 0.3424,
+        "bound_ms": 15.5364,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 16.9821,
+        "range_ms": 4.8923,
+        "epsilon_ms": 0.1818,
+        "bound_ms": 17.1639,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq256_l16"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 18.2491,
+      "std_ms": 0.379,
+      "min_ms": 17.5299,
+      "max_ms": 22.9324,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 20.3453,
+          "ci_lower": 20.198,
+          "ci_upper": 20.3961,
+          "ci_width": 0.1982,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 22.4548,
+          "ci_lower": 21.5879,
+          "ci_upper": 22.7236,
+          "ci_width": 1.1357,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 22.828,
+          "ci_lower": 22.4952,
+          "ci_upper": 22.9324,
+          "ci_width": 0.4372,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 20.3453,
+        "sigma_ms": 0.379,
+        "bound_ms": 21.4822,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 22.9324,
+        "range_ms": 5.4025,
+        "epsilon_ms": 0.2008,
+        "bound_ms": 23.1332,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq256_full"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 12.517,
+      "std_ms": 0.2593,
+      "min_ms": 12.1143,
+      "max_ms": 16.8496,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 13.1729,
+          "ci_lower": 13.0457,
+          "ci_upper": 13.3454,
+          "ci_width": 0.2997,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 16.3263,
+          "ci_lower": 15.5876,
+          "ci_upper": 16.7761,
+          "ci_width": 1.1886,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 16.8257,
+          "ci_lower": 16.3591,
+          "ci_upper": 16.8496,
+          "ci_width": 0.4905,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 13.1729,
+        "sigma_ms": 0.2593,
+        "bound_ms": 13.9508,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 16.8496,
+        "range_ms": 4.7353,
+        "epsilon_ms": 0.176,
+        "bound_ms": 17.0256,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq512_l16"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 18.2059,
+      "std_ms": 0.3565,
+      "min_ms": 17.6879,
+      "max_ms": 24.3494,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 19.7402,
+          "ci_lower": 19.2483,
+          "ci_upper": 20.3608,
+          "ci_width": 1.1125,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 22.587,
+          "ci_lower": 21.9159,
+          "ci_upper": 22.7835,
+          "ci_width": 0.8676,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 23.6178,
+          "ci_lower": 22.6464,
+          "ci_upper": 24.3494,
+          "ci_width": 1.703,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 19.7402,
+        "sigma_ms": 0.3565,
+        "bound_ms": 20.8097,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 24.3494,
+        "range_ms": 6.6615,
+        "epsilon_ms": 0.2476,
+        "bound_ms": 24.597,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq512_full"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 12.5087,
+      "std_ms": 0.2856,
+      "min_ms": 12.1476,
+      "max_ms": 16.9147,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 13.203,
+          "ci_lower": 13.0973,
+          "ci_upper": 13.6749,
+          "ci_width": 0.5775,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 16.6152,
+          "ci_lower": 16.0636,
+          "ci_upper": 16.7317,
+          "ci_width": 0.6681,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 16.8824,
+          "ci_lower": 16.6767,
+          "ci_upper": 16.9147,
+          "ci_width": 0.238,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 13.203,
+        "sigma_ms": 0.2856,
+        "bound_ms": 14.0597,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 16.9147,
+        "range_ms": 4.7671,
+        "epsilon_ms": 0.1772,
+        "bound_ms": 17.0919,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq1024_l16"
+    },
+    {
+      "n": 5000,
+      "mean_ms": 18.2164,
+      "std_ms": 0.4613,
+      "min_ms": 17.6829,
+      "max_ms": 35.6098,
+      "method_A": {
+        "p99.0": {
+          "percentile": 99.0,
+          "point": 19.7767,
+          "ci_lower": 19.2542,
+          "ci_upper": 20.231,
+          "ci_width": 0.9768,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.9": {
+          "percentile": 99.9,
+          "point": 22.9444,
+          "ci_lower": 22.1646,
+          "ci_upper": 26.0544,
+          "ci_width": 3.8898,
+          "n": 5000,
+          "n_bootstrap": 1000
+        },
+        "p99.99": {
+          "percentile": 99.99,
+          "point": 31.0375,
+          "ci_lower": 24.6844,
+          "ci_upper": 35.6098,
+          "ci_width": 10.9254,
+          "n": 5000,
+          "n_bootstrap": 1000
+        }
+      },
+      "method_B": {
+        "name": "P99 + 3*sigma",
+        "p99_ms": 19.7767,
+        "sigma_ms": 0.4613,
+        "bound_ms": 21.1606,
+        "description": "Gaussian tail approximation; conservative if tail is heavy"
+      },
+      "method_C": {
+        "name": "Hoeffding (distribution-free)",
+        "max_obs_ms": 35.6098,
+        "range_ms": 17.9269,
+        "epsilon_ms": 0.6663,
+        "bound_ms": 36.2761,
+        "delta": 1e-06,
+        "description": "P(new sample > bound) < 1e-6 with no distributional assumption"
+      },
+      "cell": "seq1024_full"
+    }
+  ]
+}

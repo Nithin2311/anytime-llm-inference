@@ -208,3 +208,69 @@ E02  Block-Maxima GEV  (requires E00)
     b=100  n_b=  50  xi=+0.124  pWCET=57.065ms  Gumbel=PASS
 
   seq1024_l16
+    b= 10  n_b= 500  xi=+0.503  pWCET=333.6989ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.663  pWCET=3620.5478ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.953  pWCET=194528.0337ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=+0.729  pWCET=21869.1915ms  Gumbel=FAIL
+
+  seq1024_full
+    b= 10  n_b= 500  xi=+0.549  pWCET=877.4ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.693  pWCET=7592.8913ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.627  pWCET=5577.0717ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=+0.697  pWCET=17545.1798ms  Gumbel=FAIL
+
+PASS: E02 complete
+
+2026-04-29T00:29:06   [PASS] e02_block_maxima_large  (704s)
+2026-04-29T00:29:06   [PASS] e02_block_maxima_large  (704s)
+2026-04-29T00:29:06 
+2026-04-29T00:29:06 
+2026-04-29T00:29:06 ──────────────────────────────────────────────
+2026-04-29T00:29:06 ──────────────────────────────────────────────
+2026-04-29T00:29:06   Running: e03_nonevt_wcet  —  Non-EVT empirical bounds P99/P99.9 + safety factor
+2026-04-29T00:29:06   Running: e03_nonevt_wcet  —  Non-EVT empirical bounds P99/P99.9 + safety factor
+2026-04-29T00:29:06   Attempt 1/3 ...
+2026-04-29T00:29:06   Attempt 1/3 ...
+============================================================
+E03  Non-EVT Empirical WCET Bounds  (requires E00)
+============================================================
+  seq32_l5                P99.9=   7.86ms  P99+3s=   8.46ms  Hoeffding=  13.16ms
+  seq32_l16               P99.9=  16.56ms  P99+3s=  15.90ms  Hoeffding=  20.61ms
+  seq32_full              P99.9=  23.71ms  P99+3s=  22.17ms  Hoeffding=  26.60ms
+  seq128_l5               P99.9=   6.87ms  P99+3s=   5.42ms  Hoeffding=   8.61ms
+  seq128_l16              P99.9=  15.73ms  P99+3s=  15.41ms  Hoeffding=  17.09ms
+  seq128_full             P99.9=  22.58ms  P99+3s=  21.87ms  Hoeffding=  23.67ms
+  seq256_l16              P99.9=  16.62ms  P99+3s=  15.54ms  Hoeffding=  17.16ms
+  seq256_full             P99.9=  22.45ms  P99+3s=  21.48ms  Hoeffding=  23.13ms
+  seq512_l16              P99.9=  16.33ms  P99+3s=  13.95ms  Hoeffding=  17.03ms
+  seq512_full             P99.9=  22.59ms  P99+3s=  20.81ms  Hoeffding=  24.60ms
+  seq1024_l16             P99.9=  16.62ms  P99+3s=  14.06ms  Hoeffding=  17.09ms
+  seq1024_full            P99.9=  22.94ms  P99+3s=  21.16ms  Hoeffding=  36.28ms
+
+PASS: E03 complete
+
+2026-04-29T00:29:12   [PASS] e03_nonevt_wcet  (6s)
+2026-04-29T00:29:12   [PASS] e03_nonevt_wcet  (6s)
+2026-04-29T00:29:12 
+2026-04-29T00:29:12 
+2026-04-29T00:29:13 ──────────────────────────────────────────────
+2026-04-29T00:29:13 ──────────────────────────────────────────────
+2026-04-29T00:29:13   Running: e04_accuracy_1000  —  1000-query PubMedQA accuracy, CI ~+-3pp
+2026-04-29T00:29:13   Running: e04_accuracy_1000  —  1000-query PubMedQA accuracy, CI ~+-3pp
+2026-04-29T00:29:13   Attempt 1/3 ...
+2026-04-29T00:29:13   Attempt 1/3 ...
+============================================================
+E04  1000-Query PubMedQA Accuracy  tau=0.55  D=45.0ms
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  54%|█████▍    | 109/201 [00:00<00:00, 1085.82it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1107.57it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+[1/3] Loading 1000 PubMedQA queries ...
+Generating train split:   0%|          | 0/1000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 1000/1000 [00:00<00:00, 93300.06 examples/s]
+      Loaded 1000 queries
+
+[2/3] Collecting raw token data ...
+      query 1/1000
+      query 51/1000
+      query 101/1000
