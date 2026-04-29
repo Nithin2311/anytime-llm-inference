@@ -172,3 +172,39 @@ E02  Block-Maxima GEV  (requires E00)
     b=100  n_b=  50  xi=+0.875  pWCET=82961.4805ms  Gumbel=FAIL
 
   seq128_l16
+    b= 10  n_b= 500  xi=+0.618  pWCET=1305.9765ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.772  pWCET=13306.8411ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.859  pWCET=57541.5582ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=+0.835  pWCET=71967.0839ms  Gumbel=FAIL
+
+  seq128_full
+    b= 10  n_b= 500  xi=+0.737  pWCET=9777.514ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.721  pWCET=14524.5049ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.286  pWCET=182.2546ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=-0.247  pWCET=25.1736ms  Gumbel=FAIL
+
+  seq256_l16
+    b= 10  n_b= 500  xi=+0.577  pWCET=912.9035ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.816  pWCET=25701.7997ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.851  pWCET=61972.5915ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=+1.022  pWCET=860669.9999ms  Gumbel=FAIL
+
+  seq256_full
+    b= 10  n_b= 500  xi=+0.597  pWCET=1633.2234ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.692  pWCET=8629.1232ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.390  pWCET=441.3838ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=-0.229  pWCET=24.9978ms  Gumbel=FAIL
+
+  seq512_l16
+    b= 10  n_b= 500  xi=+0.436  pWCET=157.5148ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.572  pWCET=1074.925ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+1.030  pWCET=355478.8131ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=+1.091  pWCET=1595153.5827ms  Gumbel=FAIL
+
+  seq512_full
+    b= 10  n_b= 500  xi=+0.491  pWCET=446.8538ms  Gumbel=FAIL
+    b= 25  n_b= 200  xi=+0.665  pWCET=5621.9243ms  Gumbel=FAIL
+    b= 50  n_b= 100  xi=+0.641  pWCET=6287.4498ms  Gumbel=FAIL
+    b=100  n_b=  50  xi=+0.124  pWCET=57.065ms  Gumbel=PASS
+
+  seq1024_l16
