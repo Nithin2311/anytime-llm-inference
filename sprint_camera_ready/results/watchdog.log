@@ -239,3 +239,5 @@
 2026-04-29T01:48:10 [WATCHDOG] OK  temp=34C  util=39 %  done=8/10
 2026-04-29T01:50:10 [WATCHDOG] OK  temp=31C  util=0 %  done=10/10
 2026-04-29T01:50:10 [WATCHDOG] NEW completion detected (8->10) — pushing now
+2026-04-29T01:50:11 [WATCHDOG] PUSH ok  branch=sprint-cr-final-results  done=10/10
+2026-04-29T01:50:11 [WATCHDOG] All 10 experiments complete — final push and exit.
