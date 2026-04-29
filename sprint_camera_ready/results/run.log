@@ -392,3 +392,59 @@ Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
       query 126/500
       query 151/500
       query 176/500
+      query 201/500
+      query 226/500
+      query 251/500
+      query 276/500
+      query 301/500
+      query 326/500
+      query 351/500
+      query 376/500
+      query 401/500
+      query 426/500
+      query 451/500
+      query 476/500
+      query 500/500
+      Done in 141.0s
+
+[3/3] Three-router post-hoc evaluation ...
+
+  Router                          Acc    95% CI         Exit%   Miss%
+  Full-pass (L22)                  52.9%  [47.1,59.1]    0.0%    0.0%
+  L16 threshold (tau=0.55)         54.6%  [48.3,60.8]    8.5%    0.0%
+  Oracle (L16 when correct)        52.9%  [47.1,59.1]   29.2%    0.0%
+PASS: E06 complete
+
+2026-04-29T00:41:23   [PASS] e06_router_comparison  (148s)
+2026-04-29T00:41:23   [PASS] e06_router_comparison  (148s)
+2026-04-29T00:41:23 
+2026-04-29T00:41:23 
+2026-04-29T00:41:23 ──────────────────────────────────────────────
+2026-04-29T00:41:23 ──────────────────────────────────────────────
+2026-04-29T00:41:23   Running: e07_thermal_extended  —  60-min thermal soak on A100
+2026-04-29T00:41:23   Running: e07_thermal_extended  —  60-min thermal soak on A100
+2026-04-29T00:41:23   Attempt 1/3 ...
+2026-04-29T00:41:23   Attempt 1/3 ...
+============================================================
+E07  60-Minute Thermal Soak  seq128_full
+============================================================
+Loading base model: TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  55%|█████▍    | 110/201 [00:00<00:00, 1093.12it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1159.29it/s]
+Model loaded: 22 transformer layers | dtype=bfloat16 | SDPA enabled
+
+Warm-up (100 runs) ...
+
+Soaking for 60 min ...
+  t=  0.0min  TPOT=26.69ms  temp=35.0C  clock=1185.0MHz  power=87.3W
+  t=  0.0min  TPOT=17.98ms  temp=35.0C  clock=1155.0MHz  power=85.51W
+  t=  0.1min  TPOT=17.90ms  temp=35.0C  clock=1155.0MHz  power=84.9W
+  t=  0.1min  TPOT=17.97ms  temp=35.0C  clock=1155.0MHz  power=86.38W
+  t=  0.1min  TPOT=17.90ms  temp=35.0C  clock=1155.0MHz  power=86.71W
+  t=  0.2min  TPOT=17.98ms  temp=35.0C  clock=1155.0MHz  power=86.29W
+  t=  0.2min  TPOT=17.85ms  temp=35.0C  clock=1170.0MHz  power=88.5W
+  t=  0.2min  TPOT=20.42ms  temp=35.0C  clock=1185.0MHz  power=89.43W
+  t=  0.2min  TPOT=17.91ms  temp=35.0C  clock=1200.0MHz  power=91.28W
+  t=  0.3min  TPOT=17.85ms  temp=35.0C  clock=1200.0MHz  power=91.55W
+  t=  0.3min  TPOT=17.99ms  temp=35.0C  clock=1215.0MHz  power=93.07W
+  t=  0.3min  TPOT=17.84ms  temp=35.0C  clock=1230.0MHz  power=93.07W
+  t=  0.4min  TPOT=18.06ms  temp=35.0C  clock=1230.0MHz  power=94.0W

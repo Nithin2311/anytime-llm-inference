@@ -1,0 +1,35 @@
+{
+  "experiment": "e06_router_comparison",
+  "n_queries": 500,
+  "tau": 0.55,
+  "deadline_ms": 45.0,
+  "routers": [
+    {
+      "name": "Full-pass (L22)",
+      "accuracy": 52.9,
+      "ci_lower": 47.11,
+      "ci_upper": 59.09,
+      "exit_rate_pct": 0.0,
+      "miss_rate_pct": 0.0,
+      "p99_tpot_ms": 19.093
+    },
+    {
+      "name": "L16 threshold (tau=0.55)",
+      "accuracy": 54.6,
+      "ci_lower": 48.33,
+      "ci_upper": 60.83,
+      "exit_rate_pct": 8.5,
+      "miss_rate_pct": 0.0,
+      "p99_tpot_ms": 19.093
+    },
+    {
+      "name": "Oracle (L16 when correct)",
+      "accuracy": 52.9,
+      "ci_lower": 47.11,
+      "ci_upper": 59.09,
+      "exit_rate_pct": 29.2,
+      "miss_rate_pct": 0.0,
+      "p99_tpot_ms": 19.093
+    }
+  ]
+}
